@@ -22,7 +22,9 @@ class MenuTableVC: UITableViewController {
         tableView.register(UINib(nibName: "MenuTableCell", bundle: nil), forCellReuseIdentifier: MenuTableCell.reuseId)
         
         self.navigationController?.tabBarController?.tabBar.items?[2].badgeValue = "11"
+        
         print(self.navigationController?.tabBarController?.tabBar.items?[1].title)
+        print(self.navigationController?.tabBarController?.tabBar.items?[2].title)
         
         items = generateList(count: Int.random(in: 5...20))
     }
