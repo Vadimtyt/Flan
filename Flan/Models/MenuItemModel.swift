@@ -18,3 +18,8 @@ class MenuItem {
         self.price = price
     }
 }
+
+class ListOfMenuItems {
+    static let shared = ListOfMenuItems()
+    var list: [MenuItem] = []
+}

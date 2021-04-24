@@ -10,6 +10,7 @@ import UIKit
 class MenuTableCell: UITableViewCell {
     
     static let reuseId = "MenuTableCell"
+    var viewController: UITableViewController?
     
     @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
