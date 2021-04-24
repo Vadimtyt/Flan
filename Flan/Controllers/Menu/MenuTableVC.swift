@@ -13,7 +13,7 @@ class MenuTableVC: UITableViewController {
     
     let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
 
-    var items: [MenuItem] = []
+    var items: [MenuItem] = ListOfMenuItems.shared.list
     
     weak var delegate: UITabBarControllerDelegate?
 
@@ -21,8 +21,10 @@ class MenuTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "MenuTableCell", bundle: nil), forCellReuseIdentifier: MenuTableCell.reuseId)
         
-        self.navigationController?.tabBarController?.tabBar.items?[2].badgeValue = "11"
+        //self.navigationController?.tabBarController?.tabBar.items?[2].badgeValue = "11"
+        
         print(self.navigationController?.tabBarController?.tabBar.items?[1].title)
+        print(self.navigationController?.tabBarController?.tabBar.items?[2].title)
         
         items = generateList(count: Int.random(in: 5...20))
     }
@@ -38,7 +40,7 @@ class MenuTableVC: UITableViewController {
         let item = items[indexPath.row]
         
         cell.configureCell(with: item)
-        
+        cell.viewController = self
  
         return cell
     }
