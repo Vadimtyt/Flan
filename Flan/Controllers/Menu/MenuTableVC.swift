@@ -13,31 +13,25 @@ class MenuTableVC: UITableViewController {
     
     let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
 
-    var items: [MenuItem] = ListOfMenuItems.shared.list
+    var list: ListOfMenuItems = ListOfMenuItems.shared
     
     weak var delegate: UITabBarControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "MenuTableCell", bundle: nil), forCellReuseIdentifier: MenuTableCell.reuseId)
-        
-        //self.navigationController?.tabBarController?.tabBar.items?[2].badgeValue = "11"
-        
-        print(self.navigationController?.tabBarController?.tabBar.items?[1].title)
-        print(self.navigationController?.tabBarController?.tabBar.items?[2].title)
-        
-        items = generateList(count: Int.random(in: 5...20))
+        list.items = generateList(count: Int.random(in: 5...20))
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return list.items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuTableCell
-        let item = items[indexPath.row]
+        let item = list.items[indexPath.row]
         
         cell.configureCell(with: item)
         cell.viewController = self

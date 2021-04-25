@@ -21,5 +21,5 @@ class MenuItem {
 
 class ListOfMenuItems {
     static let shared = ListOfMenuItems()
-    var list: [MenuItem] = []
+    var items: [MenuItem] = []
 }
