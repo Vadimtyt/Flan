@@ -1,5 +1,5 @@
 //
-//  MenuTableCell.swift
+//  MenuCell.swift
 //  Flan
 //
 //  Created by Вадим on 02.04.2021.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class MenuTableCell: UITableViewCell {
+class MenuCell: UITableViewCell {
     
     let indexOfListVC = 2
     
-    static let reuseId = "MenuTableCell"
+    static let reuseId = "MenuCell"
     var item: MenuItem = MenuItem(name: "Имя", price: 0)
     var viewController: UITableViewController?
     
@@ -55,7 +55,12 @@ class MenuTableCell: UITableViewCell {
             }
         }
         
-        viewController?.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = "\(sumCountOfItems)"
+        if sumCountOfItems != 0 {
+            viewController?.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = "\(sumCountOfItems)"
+        } else if sumCountOfItems == 0 {
+            viewController?.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = nil
+        }
+        
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
