@@ -9,11 +9,11 @@ import UIKit
 
 private let reuseIdentifier = "ListCell"
 
-class ListVC: UIViewController {
+class ListVC: UIViewController, updateListCell {
 
     let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
     
-    var items: [MenuItem] = []
+    var items: [MenuItem] = ListOfMenuItems.shared.list
     
     @IBOutlet weak var listTableView: UITableView!
     
@@ -26,12 +26,18 @@ class ListVC: UIViewController {
         listTableView.delegate = self
         listTableView.dataSource = self
         
-        items = generateList(count: Int.random(in: 5...10))
+//        items = generateList(count: Int.random(in: 5...10))
         changeTotalSumLabel()
         
         listTableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        items = ListOfMenuItems.shared.list
+        changeTotalSumLabel()
+        self.listTableView.reloadData()
     }
     
     func generateItem() -> MenuItem {
@@ -51,13 +57,18 @@ class ListVC: UIViewController {
         return list
     }
     
-    func changeTotalSumLabel() {
+    public func changeTotalSumLabel() {
         var newSum = 0
         for item in items {
-            newSum += item.price
+            newSum += item.price * item.count
         }
         
         totalSumLabel.text = "Итого: \(newSum)Р"
+    }
+    
+    func updateTableView() {
+        self.listTableView.reloadData()
+        changeTotalSumLabel()
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
@@ -74,8 +85,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
  
         let item = items[indexPath.row]
         cell.configureCell(with: item)
-        
-        items.append(item)
+        cell.viewController = self
+        cell.delegate = self
         
         if indexPath.row == items.count {
             changeTotalSumLabel()
@@ -83,7 +94,6 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
  
         return cell
     }
-    
     
     
 }

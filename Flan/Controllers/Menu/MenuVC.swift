@@ -22,6 +22,10 @@ class MenuVC: UITableViewController {
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
         list.items = generateList(count: Int.random(in: 5...20))
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 

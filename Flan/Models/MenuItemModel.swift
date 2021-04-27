@@ -22,4 +22,16 @@ class MenuItem {
 class ListOfMenuItems {
     static let shared = ListOfMenuItems()
     var items: [MenuItem] = []
+    var favorites: [MenuItem] = []
+    var list: [MenuItem] = []
+    
+    func addToList(item: MenuItem) {
+        list.append(item)
+    }
+    
+    func removeFromList(item: MenuItem) {
+        if let index = list.firstIndex(where: { $0 === item }) {
+            list.remove(at: index)
+        }
+    }
 }

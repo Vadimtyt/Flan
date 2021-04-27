@@ -46,6 +46,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <state key="normal" image="minus" catalog="system"/>
+                                <connections>
+                                    <action selector="removeButtonPressed:" destination="rce-az-Obd" eventType="touchUpInside" id="puO-ae-tTB"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhZ-0q-zkj">
                                 <rect key="frame" x="223" y="8" width="32" height="30"/>
@@ -61,6 +64,9 @@
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="rce-az-Obd" eventType="touchUpInside" id="jce-ev-nLE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

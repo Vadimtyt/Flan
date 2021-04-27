@@ -69,6 +69,7 @@ class MenuCell: UITableViewCell {
         if itemsCount == 1 {
             self.item.count = 0
             countItemsLabel.text = "\(self.item.count)"
+            ListOfMenuItems.shared.removeFromList(item: self.item)
             
             removeButton.isHidden = true
             countItemsLabel.isHidden = true
@@ -86,6 +87,7 @@ class MenuCell: UITableViewCell {
         if itemsCount == 0 {
             self.item.count += 1
             countItemsLabel.text = "\(self.item.count)"
+            ListOfMenuItems.shared.addToList(item: item)
             
             removeButton.isHidden = false
             countItemsLabel.isHidden = false
