@@ -76,7 +76,7 @@
             <accessibility key="accessibilityConfiguration" identifier="MenuCell"/>
             <connections>
                 <outlet property="addButton" destination="E3V-Fb-cEn" id="TbY-Ze-CgY"/>
-                <outlet property="countItemsLabel" destination="ytp-pN-ag1" id="VdM-4g-nc3"/>
+                <outlet property="countItemLabel" destination="ytp-pN-ag1" id="kyz-Nq-FFz"/>
                 <outlet property="imageItemView" destination="qYp-v1-cKQ" id="Tv5-wx-KeS"/>
                 <outlet property="nameLabel" destination="Euu-Am-soA" id="qwC-Pu-OyI"/>
                 <outlet property="priceLabel" destination="TiK-cc-1sx" id="guH-UK-ClW"/>

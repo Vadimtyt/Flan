@@ -9,9 +9,9 @@ import UIKit
 
 private let reuseIdentifier = "ListCell"
 
-class ListVC: UIViewController, updateListCell {
+class ListVC: UIViewController, updatingListCell {
 
-    let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
+    private let indexOfListVC = 2
     
     var items: [MenuItem] = ListOfMenuItems.shared.list
     
@@ -26,7 +26,6 @@ class ListVC: UIViewController, updateListCell {
         listTableView.delegate = self
         listTableView.dataSource = self
         
-//        items = generateList(count: Int.random(in: 5...10))
         changeTotalSumLabel()
         
         listTableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
@@ -35,29 +34,10 @@ class ListVC: UIViewController, updateListCell {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        items = ListOfMenuItems.shared.list
-        changeTotalSumLabel()
-        self.listTableView.reloadData()
+        updateList()
     }
     
-    func generateItem() -> MenuItem {
-        let item = MenuItem(name: names.randomElement() ?? "Error", price: Int.random(in: 100...500))
-        item.count = 1
-        return item
-    }
-    
-    func generateList(count: Int) -> [MenuItem]{
-        var list: [MenuItem] = []
-        
-        for _ in 0...count {
-            let newItem = generateItem()
-            list.append(newItem)
-        }
-        
-        return list
-    }
-    
-    public func changeTotalSumLabel() {
+    func changeTotalSumLabel() {
         var newSum = 0
         for item in items {
             newSum += item.price * item.count
@@ -66,9 +46,27 @@ class ListVC: UIViewController, updateListCell {
         totalSumLabel.text = "Итого: \(newSum)Р"
     }
     
-    func updateTableView() {
+    func updateList() {
+        items = ListOfMenuItems.shared.list
         self.listTableView.reloadData()
         changeTotalSumLabel()
+    }
+    
+    func updateListBadge() {
+        let items = ListOfMenuItems.shared.items
+        var sumCountOfItems = 0
+        
+        for item in items {
+            if item.count != 0 {
+                sumCountOfItems += item.count
+            }
+        }
+        
+        if sumCountOfItems != 0 {
+            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = "\(sumCountOfItems)"
+        } else if sumCountOfItems == 0 {
+            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = nil
+        }
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
@@ -77,6 +75,7 @@ class ListVC: UIViewController, updateListCell {
 
 extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        changeTotalSumLabel()
         return items.count
     }
     
@@ -85,12 +84,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
  
         let item = items[indexPath.row]
         cell.configureCell(with: item)
-        cell.viewController = self
-        cell.delegate = self
-        
-        if indexPath.row == items.count {
-            changeTotalSumLabel()
-        }
+        cell.listDelegate = self
  
         return cell
     }

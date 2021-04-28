@@ -76,7 +76,7 @@
             <accessibility key="accessibilityConfiguration" identifier="ListCell"/>
             <connections>
                 <outlet property="addButton" destination="7Kc-R3-zwe" id="rtR-QR-Dfi"/>
-                <outlet property="countItemsLabel" destination="fhZ-0q-zkj" id="16l-4M-bdE"/>
+                <outlet property="countItemLabel" destination="fhZ-0q-zkj" id="aL8-lE-WX3"/>
                 <outlet property="imageItemView" destination="PEd-GX-r45" id="fmY-p5-yEu"/>
                 <outlet property="nameLabel" destination="4YZ-Sh-SZc" id="Cvv-rE-qso"/>
                 <outlet property="priceLabel" destination="a5O-Fl-vgw" id="1dk-qW-MRA"/>

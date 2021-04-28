@@ -20,7 +20,7 @@ class MenuCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     
     @IBOutlet weak var removeButton: UIButton!
-    @IBOutlet weak var countItemsLabel: UILabel!
+    @IBOutlet weak var countItemLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
     override func awakeFromNib() {
@@ -32,12 +32,12 @@ class MenuCell: UITableViewCell {
         
         if item.count == 0 {
             removeButton.isHidden = true
-            countItemsLabel.isHidden = true
-            countItemsLabel.text = "0"
+            countItemLabel.isHidden = true
+            countItemLabel.text = "0"
         } else {
             removeButton.isHidden = false
-            countItemsLabel.isHidden = false
-            countItemsLabel.text = "\(item.count)"
+            countItemLabel.isHidden = false
+            countItemLabel.text = "\(item.count)"
         }
         
         imageItemView.image = item.image
@@ -68,14 +68,14 @@ class MenuCell: UITableViewCell {
         
         if itemsCount == 1 {
             self.item.count = 0
-            countItemsLabel.text = "\(self.item.count)"
+            countItemLabel.text = "\(self.item.count)"
             ListOfMenuItems.shared.removeFromList(item: self.item)
             
             removeButton.isHidden = true
-            countItemsLabel.isHidden = true
+            countItemLabel.isHidden = true
         } else if itemsCount > 1 {
             self.item.count -= 1
-            countItemsLabel.text = "\(self.item.count)"
+            countItemLabel.text = "\(self.item.count)"
         } else { print("ошибка в countItemsLabel") }
         
         updateListVCBadge()
@@ -86,14 +86,14 @@ class MenuCell: UITableViewCell {
         
         if itemsCount == 0 {
             self.item.count += 1
-            countItemsLabel.text = "\(self.item.count)"
+            countItemLabel.text = "\(self.item.count)"
             ListOfMenuItems.shared.addToList(item: item)
             
             removeButton.isHidden = false
-            countItemsLabel.isHidden = false
+            countItemLabel.isHidden = false
         } else if itemsCount > 0 {
             self.item.count += 1
-            countItemsLabel.text = "\(self.item.count)"
+            countItemLabel.text = "\(self.item.count)"
         } else { print("ошибка в countItemsLabel") }
         
         updateListVCBadge()
