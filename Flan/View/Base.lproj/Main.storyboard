@@ -4,51 +4,22 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Список Table-->
+        <!--Избранное-->
         <scene sceneID="Vy4-Ck-2di">
             <objects>
-                <tableViewController id="KPW-bh-96E" customClass="ListTableVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="KPW-bh-96E" customClass="FavoriteVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="166" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CCn-O1-cKW">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="lAv-jH-bTT">
-                            <rect key="frame" x="0.0" y="0.0" width="428" height="74"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Итого:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDf-AZ-HJO">
-                                    <rect key="frame" x="8" y="11" width="226" height="51"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" name="AccentColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQC-cP-uCZ">
-                                    <rect key="frame" x="242" y="16" width="163" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                    <state key="normal" title="Поделиться списком"/>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="sdJ-LK-BYF">
-                            <rect key="frame" x="0.0" y="293" width="428" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items>
-                                <barButtonItem title="Item" id="GBy-hy-RLp"/>
-                            </items>
-                        </toolbar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuTableCell" rowHeight="163" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuTableCell" customModule="Flan" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="102" width="428" height="163"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" rowHeight="163" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
+                                <rect key="frame" x="0.0" y="28" width="428" height="163"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgp-7z-N4S" id="DIj-3k-2gD" customClass="UITextView">
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="163"/>
@@ -98,7 +69,7 @@
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration" identifier="MenuTableCell"/>
+                                <accessibility key="accessibilityConfiguration" identifier="MenuCell"/>
                                 <connections>
                                     <outlet property="addButton" destination="FXA-5w-dqd" id="UV7-DL-uYh"/>
                                     <outlet property="countItems" destination="PQD-bX-ME9" id="eaA-Qs-mUL"/>
@@ -115,18 +86,18 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Список Table" id="fCZ-qx-uu6"/>
+                    <navigationItem key="navigationItem" title="Избранное" id="fCZ-qx-uu6"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FG-J4-YiU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1763.5514018691588" y="-144.49244060475164"/>
         </scene>
-        <!--Список Table-->
+        <!--Избранное-->
         <scene sceneID="5c6-QO-MRp">
             <objects>
                 <navigationController id="E9S-NS-A2X" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Список Table" image="folder.fill" catalog="system" id="VLv-jL-gOa"/>
+                    <tabBarItem key="tabBarItem" title="Избранное" image="heart.fill" catalog="system" id="VLv-jL-gOa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ilm-8K-hqE">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -159,23 +130,23 @@
             </objects>
             <point key="canvasLocation" x="-897" y="187"/>
         </scene>
-        <!--Меню Table-->
+        <!--Меню-->
         <scene sceneID="jRt-xN-ZvE">
             <objects>
-                <tableViewController id="htg-z2-5ok" customClass="MenuTableVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="htg-z2-5ok" customClass="MenuVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="166" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ypg-pV-nLS">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuTableCell" id="WHn-3N-e0f" customClass="MenuTableCell" customModule="Flan" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="WHn-3N-e0f" customClass="MenuCell" customModule="Flan" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="428" height="166"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WHn-3N-e0f" id="7L6-D7-Rwb">
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="166"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration" identifier="MenuTableCell"/>
+                                <accessibility key="accessibilityConfiguration" identifier="MenuCell"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -183,7 +154,7 @@
                             <outlet property="delegate" destination="htg-z2-5ok" id="Z4D-Uj-SNT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Меню Table" id="Jhv-6H-QFp"/>
+                    <navigationItem key="navigationItem" title="Меню" id="Jhv-6H-QFp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r6d-N1-b8q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -287,7 +258,7 @@
         <scene sceneID="i1U-Cy-CxF">
             <objects>
                 <navigationController id="nix-vX-Zqu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Еще" id="123-K8-dgF"/>
+                    <tabBarItem key="tabBarItem" title="Еще" image="info.circle" catalog="system" id="123-K8-dgF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Q6-8e-bax">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -363,7 +334,7 @@
         <scene sceneID="8aj-5r-sBg">
             <objects>
                 <navigationController id="Ye6-XQ-66q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Список VC" id="aUk-rS-C4X"/>
+                    <tabBarItem key="tabBarItem" title="Список VC" image="list.number" catalog="system" id="aUk-rS-C4X"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hUA-Pz-thO">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -376,11 +347,11 @@
             </objects>
             <point key="canvasLocation" x="750" y="522"/>
         </scene>
-        <!--Меню Table-->
+        <!--Меню-->
         <scene sceneID="31R-rb-PLK">
             <objects>
                 <navigationController id="VLd-vW-yxZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Меню Table" image="contextualmenu.and.cursorarrow" catalog="system" id="RHJ-lq-8AD"/>
+                    <tabBarItem key="tabBarItem" title="Меню" image="filemenu.and.selection" catalog="system" id="RHJ-lq-8AD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XGp-pN-Drt">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -395,14 +366,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="contextualmenu.and.cursorarrow" catalog="system" width="124" height="128"/>
-        <image name="folder.fill" catalog="system" width="128" height="97"/>
+        <image name="filemenu.and.selection" catalog="system" width="128" height="93"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="list.number" catalog="system" width="128" height="97"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

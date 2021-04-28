@@ -1,5 +1,5 @@
 //
-//  MenuTableVC.swift
+//  MenuVC.swift
 //  Flan
 //
 //  Created by Вадим on 01.04.2021.
@@ -7,37 +7,35 @@
 
 import UIKit
 
-private let reuseIdentifier = "MenuTableCell"
+private let reuseIdentifier = "MenuCell"
 
-class MenuTableVC: UITableViewController {
+class MenuVC: UITableViewController {
     
     let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
 
-    var items: [MenuItem] = ListOfMenuItems.shared.list
+    var list: ListOfMenuItems = ListOfMenuItems.shared
     
     weak var delegate: UITabBarControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "MenuTableCell", bundle: nil), forCellReuseIdentifier: MenuTableCell.reuseId)
-        
-        //self.navigationController?.tabBarController?.tabBar.items?[2].badgeValue = "11"
-        
-        print(self.navigationController?.tabBarController?.tabBar.items?[1].title)
-        print(self.navigationController?.tabBarController?.tabBar.items?[2].title)
-        
-        items = generateList(count: Int.random(in: 5...20))
+        tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
+        list.items = generateList(count: Int.random(in: 5...20))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return list.items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuTableCell
-        let item = items[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
+        let item = list.items[indexPath.row]
         
         cell.configureCell(with: item)
         cell.viewController = self

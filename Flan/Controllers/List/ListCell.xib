@@ -46,6 +46,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <state key="normal" image="minus" catalog="system"/>
+                                <connections>
+                                    <action selector="removeButtonPressed:" destination="rce-az-Obd" eventType="touchUpInside" id="puO-ae-tTB"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhZ-0q-zkj">
                                 <rect key="frame" x="223" y="8" width="32" height="30"/>
@@ -61,6 +64,9 @@
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="rce-az-Obd" eventType="touchUpInside" id="jce-ev-nLE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -70,7 +76,7 @@
             <accessibility key="accessibilityConfiguration" identifier="ListCell"/>
             <connections>
                 <outlet property="addButton" destination="7Kc-R3-zwe" id="rtR-QR-Dfi"/>
-                <outlet property="countItemsLabel" destination="fhZ-0q-zkj" id="16l-4M-bdE"/>
+                <outlet property="countItemLabel" destination="fhZ-0q-zkj" id="aL8-lE-WX3"/>
                 <outlet property="imageItemView" destination="PEd-GX-r45" id="fmY-p5-yEu"/>
                 <outlet property="nameLabel" destination="4YZ-Sh-SZc" id="Cvv-rE-qso"/>
                 <outlet property="priceLabel" destination="a5O-Fl-vgw" id="1dk-qW-MRA"/>

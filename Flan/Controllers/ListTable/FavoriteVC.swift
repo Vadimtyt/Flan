@@ -1,5 +1,5 @@
 //
-//  MenuTableViewController.swift
+//  FavoriteVC.swift
 //  Flan
 //
 //  Created by Вадим on 20.02.2021.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-private let reuseIdentifier = "MenuTableCell"
+private let reuseIdentifier = "MenuCell"
 
-class ListTableVC: UITableViewController {
+class FavoriteVC: UITableViewController {
 
     let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
 
@@ -20,7 +20,7 @@ class ListTableVC: UITableViewController {
         
         items = generateList(count: Int.random(in: 5...20))
         
-        tableView.register(UINib(nibName: "MenuTableCell", bundle: nil), forCellReuseIdentifier: MenuTableCell.reuseId)
+        tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
     }
 
     // MARK: - Table view data source
@@ -30,7 +30,7 @@ class ListTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
  
         let item = items[indexPath.row]
         cell.configureCell(with: item)
