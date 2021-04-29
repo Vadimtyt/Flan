@@ -47,6 +47,15 @@ class ListVC: UIViewController, updatingListCell {
     }
     
     func updateList() {
+        for index in 0..<items.count {
+            if items[index].count == 0 {
+                ListOfMenuItems.shared.list.remove(at: index)
+                items = ListOfMenuItems.shared.list
+                listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
+                return
+             }
+        }
+        
         items = ListOfMenuItems.shared.list
         self.listTableView.reloadData()
         changeTotalSumLabel()

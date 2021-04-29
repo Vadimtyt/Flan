@@ -48,9 +48,6 @@ class ListCell: UITableViewCell {
     @IBAction func removeButtonPressed(_ sender: UIButton) {
         self.item.count -= 1
         countItemLabel.text = "\(self.item.count)"
-        if self.item.count == 0 {
-            ListOfMenuItems.shared.removeFromList(item: self.item)
-        }
         
         self.listDelegate?.updateList()
         self.listDelegate?.updateListBadge()
