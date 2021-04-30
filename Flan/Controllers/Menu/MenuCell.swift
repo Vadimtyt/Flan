@@ -17,6 +17,7 @@ class MenuCell: UITableViewCell {
     
     @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
     
     @IBOutlet weak var removeButton: UIButton!
@@ -43,6 +44,9 @@ class MenuCell: UITableViewCell {
         imageItemView.image = item.image
         nameLabel.text = item.name
         priceLabel.text = "\(item.price)Р"
+        if item.isFavorite == true {
+            favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
+        } else { favoriteButton.setImage(UIImage(named: "addToFavorite"), for: .normal) }
     }
     
     func updateListVCBadge() {
@@ -97,6 +101,14 @@ class MenuCell: UITableViewCell {
         } else { print("ошибка в countItemsLabel") }
         
         updateListVCBadge()
+    }
+
+    @IBAction func favoriteButtonPressed(_ sender: UIButton) {
+        item.isFavorite = !item.isFavorite
+        
+        if item.isFavorite == true {
+            favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
+        } else { favoriteButton.setImage(UIImage(named: "addToFavorite"), for: .normal) }
     }
 }
 

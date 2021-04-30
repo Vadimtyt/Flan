@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euu-Am-soA">
-                        <rect key="frame" x="174" y="0.0" width="240" height="60"/>
+                        <rect key="frame" x="174" y="0.0" width="181" height="60"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -71,12 +71,23 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eR4-js-LSQ">
+                        <rect key="frame" x="381" y="14" width="33" height="33"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                        <color key="tintColor" systemColor="systemRedColor"/>
+                        <state key="normal" image="addToFavorite"/>
+                        <connections>
+                            <action selector="favoriteButtonPressed:" destination="kXm-Ya-DaH" eventType="touchUpInside" id="NC7-wz-fYj"/>
+                        </connections>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="MenuCell"/>
             <connections>
                 <outlet property="addButton" destination="E3V-Fb-cEn" id="TbY-Ze-CgY"/>
                 <outlet property="countItemLabel" destination="ytp-pN-ag1" id="kyz-Nq-FFz"/>
+                <outlet property="favoriteButton" destination="eR4-js-LSQ" id="T1m-YY-r4c"/>
                 <outlet property="imageItemView" destination="qYp-v1-cKQ" id="Tv5-wx-KeS"/>
                 <outlet property="nameLabel" destination="Euu-Am-soA" id="qwC-Pu-OyI"/>
                 <outlet property="priceLabel" destination="TiK-cc-1sx" id="guH-UK-ClW"/>
@@ -86,6 +97,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="addToFavorite" width="860" height="921"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
@@ -100,6 +112,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

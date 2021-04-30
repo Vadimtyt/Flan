@@ -12,6 +12,7 @@ class MenuItem {
     let price: Int
     var image = UIImage(named: "downloading_icon 13.04.59")
     var count = 0
+    var isFavorite = false
     
     init(name: String, price: Int) {
         self.name = name
