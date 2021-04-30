@@ -51,14 +51,13 @@ class ListVC: UIViewController, updatingListCell {
             if items[index].count == 0 {
                 ListOfMenuItems.shared.list.remove(at: index)
                 items = ListOfMenuItems.shared.list
-                listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
+                listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle)
                 return
              }
         }
         
         items = ListOfMenuItems.shared.list
         self.listTableView.reloadData()
-        changeTotalSumLabel()
     }
     
     func updateListBadge() {

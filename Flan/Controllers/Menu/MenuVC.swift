@@ -16,11 +16,28 @@ class MenuVC: UITableViewController {
     var list: ListOfMenuItems = ListOfMenuItems.shared
     
     weak var delegate: UITabBarControllerDelegate?
+    
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    private var filtredItems: [MenuItem] = []
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
         list.items = generateList(count: Int.random(in: 5...20))
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = searchController
+        definesPresentationContext = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,12 +47,19 @@ class MenuVC: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filtredItems.count
+        }
         return list.items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
-        let item = list.items[indexPath.row]
+        var item = MenuItem(name: "Имя", price: 0)
+        
+        if isFiltering {
+            item = filtredItems[indexPath.row]
+        } else { item = list.items[indexPath.row] }
         
         cell.configureCell(with: item)
         cell.viewController = self
@@ -103,4 +127,18 @@ class MenuVC: UITableViewController {
     }
     */
 
+}
+
+extension MenuVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    func filterContentForSearchText(_ searchText: String){
+        filtredItems = list.items.filter({ (MenuItem: MenuItem) -> Bool in
+            return MenuItem.name.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
 }
