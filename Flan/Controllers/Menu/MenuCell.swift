@@ -7,13 +7,24 @@
 
 import UIKit
 
+protocol MenuVCDelegate: class {
+    func updateListBadge()
+}
+
+protocol FavoriteVCDelegate: class {
+    func updateListBadge()
+    func updateFavoriteVC()
+}
+
 class MenuCell: UITableViewCell {
     
     let indexOfListVC = 2
     
+    weak var MenuVCDelegate: MenuVCDelegate?
+    weak var FavoriteVCDelegate: FavoriteVCDelegate?
+    
     static let reuseId = "MenuCell"
     var item: MenuItem = MenuItem(name: "Имя", price: 0)
-    var viewController: UITableViewController?
     
     @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -50,21 +61,13 @@ class MenuCell: UITableViewCell {
     }
     
     func updateListVCBadge() {
-        let items = ListOfMenuItems.shared.items
-        var sumCountOfItems = 0
-        
-        for item in items {
-            if item.count != 0 {
-                sumCountOfItems += item.count
-            }
-        }
-        
-        if sumCountOfItems != 0 {
-            viewController?.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = "\(sumCountOfItems)"
-        } else if sumCountOfItems == 0 {
-            viewController?.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = nil
-        }
-        
+        MenuVCDelegate?.updateListBadge()
+        FavoriteVCDelegate?.updateListBadge()
+    }
+    
+    func updateFavoriteVC() {
+        FavoriteVCDelegate?.updateListBadge()
+        FavoriteVCDelegate?.updateFavoriteVC()
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
@@ -107,8 +110,18 @@ class MenuCell: UITableViewCell {
         item.isFavorite = !item.isFavorite
         
         if item.isFavorite == true {
+            ListOfMenuItems.shared.favorites.append(item)
+        } else {
+            guard let index = ListOfMenuItems.shared.favorites.firstIndex(where: {$0 === item}) else { return }
+            if FavoriteVCDelegate == nil { ListOfMenuItems.shared.favorites.remove(at: index) }
+        }
+        
+        
+        if item.isFavorite == true {
             favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
         } else { favoriteButton.setImage(UIImage(named: "addToFavorite"), for: .normal) }
+        
+        updateFavoriteVC()
     }
 }
 

@@ -9,10 +9,11 @@ import UIKit
 
 private let reuseIdentifier = "MenuCell"
 
-class MenuVC: UITableViewController {
+class MenuVC: UITableViewController, MenuVCDelegate {
     
     let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
-
+    
+    private let indexOfListVC = 2
     var list: ListOfMenuItems = ListOfMenuItems.shared
     
     weak var delegate: UITabBarControllerDelegate?
@@ -43,6 +44,23 @@ class MenuVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
+    
+    func updateListBadge() {
+        let items = ListOfMenuItems.shared.list
+        var sumCountOfItems = 0
+        
+        for item in items {
+            if item.count != 0 {
+                sumCountOfItems += item.count
+            }
+        }
+        
+        if sumCountOfItems != 0 {
+            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = "\(sumCountOfItems)"
+        } else if sumCountOfItems == 0 {
+            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = nil
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -62,7 +80,7 @@ class MenuVC: UITableViewController {
         } else { item = list.items[indexPath.row] }
         
         cell.configureCell(with: item)
-        cell.viewController = self
+        cell.MenuVCDelegate = self
  
         return cell
     }

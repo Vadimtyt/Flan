@@ -9,18 +9,51 @@ import UIKit
 
 private let reuseIdentifier = "MenuCell"
 
-class FavoriteVC: UITableViewController {
+class FavoriteVC: UITableViewController, FavoriteVCDelegate {
 
-    let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
-
-    var items: [MenuItem] = []
+    private let indexOfListVC = 2
+    
+    var items: [MenuItem] = ListOfMenuItems.shared.favorites
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        items = generateList(count: Int.random(in: 5...20))
-        
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        items = ListOfMenuItems.shared.favorites
+        updateFavoriteVC()
+    }
+    
+    func updateListBadge() {
+        let items = ListOfMenuItems.shared.items
+        var sumCountOfItems = 0
+        
+        for item in items {
+            if item.count != 0 {
+                sumCountOfItems += item.count
+            }
+        }
+        
+        if sumCountOfItems != 0 {
+            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = "\(sumCountOfItems)"
+        } else if sumCountOfItems == 0 {
+            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = nil
+        }
+    }
+    
+    func updateFavoriteVC() {
+        for index in 0..<items.count {
+            if items[index].isFavorite == false {
+                ListOfMenuItems.shared.favorites.remove(at: index)
+                items = ListOfMenuItems.shared.favorites
+                tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle)
+                return
+             }
+        }
+        
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -34,25 +67,9 @@ class FavoriteVC: UITableViewController {
  
         let item = items[indexPath.row]
         cell.configureCell(with: item)
-        
-        items.append(item)
+        cell.FavoriteVCDelegate = self
  
         return cell
-    }
-    
-    func generateItem() -> MenuItem {
-        return MenuItem(name: names.randomElement() ?? "Error", price: Int.random(in: 100...500))
-    }
-    
-    func generateList(count: Int) -> [MenuItem]{
-        var list: [MenuItem] = []
-        
-        for _ in 0...count {
-            let newItem = generateItem()
-            list.append(newItem)
-        }
-        
-        return list
     }
 
     /*

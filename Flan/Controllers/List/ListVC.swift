@@ -61,7 +61,7 @@ class ListVC: UIViewController, updatingListCell {
     }
     
     func updateListBadge() {
-        let items = ListOfMenuItems.shared.items
+        let items = ListOfMenuItems.shared.list
         var sumCountOfItems = 0
         
         for item in items {
