@@ -110,10 +110,9 @@ class MenuCell: UITableViewCell {
         item.isFavorite = !item.isFavorite
         
         if item.isFavorite == true {
-            ListOfMenuItems.shared.favorites.append(item)
+            ListOfMenuItems.shared.updateFavorites()
         } else {
-            guard let index = ListOfMenuItems.shared.favorites.firstIndex(where: {$0 === item}) else { return }
-            if FavoriteVCDelegate == nil { ListOfMenuItems.shared.favorites.remove(at: index) }
+            if FavoriteVCDelegate == nil { ListOfMenuItems.shared.updateFavorites() }
         }
         
         

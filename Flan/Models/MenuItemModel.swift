@@ -35,4 +35,13 @@ class ListOfMenuItems {
             list.remove(at: index)
         }
     }
+    
+    func updateFavorites() {
+        favorites.removeAll()
+        for item in items {
+            if item.isFavorite == true {
+                favorites.append(item)
+            }
+        }
+    }
 }
