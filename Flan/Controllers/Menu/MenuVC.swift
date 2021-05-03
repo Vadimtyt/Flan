@@ -14,9 +14,7 @@ class MenuVC: UITableViewController, MenuVCDelegate {
     let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
     
     private let indexOfListVC = 2
-    var list: ListOfMenuItems = ListOfMenuItems.shared
-    
-    weak var delegate: UITabBarControllerDelegate?
+    var items: [MenuItem] = ListOfMenuItems.shared.items
     
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -32,7 +30,8 @@ class MenuVC: UITableViewController, MenuVCDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
-        list.items = generateList(count: Int.random(in: 5...20))
+        ListOfMenuItems.shared.items = generateItems(count: Int.random(in: 5...20))
+        items = ListOfMenuItems.shared.items
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -68,7 +67,7 @@ class MenuVC: UITableViewController, MenuVCDelegate {
         if isFiltering {
             return filtredItems.count
         }
-        return list.items.count
+        return items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,7 +76,7 @@ class MenuVC: UITableViewController, MenuVCDelegate {
         
         if isFiltering {
             item = filtredItems[indexPath.row]
-        } else { item = list.items[indexPath.row] }
+        } else { item = items[indexPath.row] }
         
         cell.configureCell(with: item)
         cell.MenuVCDelegate = self
@@ -89,15 +88,15 @@ class MenuVC: UITableViewController, MenuVCDelegate {
         return MenuItem(name: names.randomElement() ?? "Error", price: Int.random(in: 100...500))
     }
     
-    func generateList(count: Int) -> [MenuItem]{
-        var list: [MenuItem] = []
+    func generateItems(count: Int) -> [MenuItem] {
+        var items: [MenuItem] = []
         
         for _ in 0...count {
             let newItem = generateItem()
-            list.append(newItem)
+            items.append(newItem)
         }
         
-        return list
+        return items
     }
     
     /*
@@ -153,7 +152,7 @@ extension MenuVC: UISearchResultsUpdating {
     }
     
     func filterContentForSearchText(_ searchText: String){
-        filtredItems = list.items.filter({ (MenuItem: MenuItem) -> Bool in
+        filtredItems = items.filter({ (MenuItem: MenuItem) -> Bool in
             return MenuItem.name.lowercased().contains(searchText.lowercased())
         })
         

@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "ListCell"
 
-class ListVC: UIViewController, updatingListCell {
+class ListVC: UIViewController {
 
     private let indexOfListVC = 2
     
@@ -46,37 +46,6 @@ class ListVC: UIViewController, updatingListCell {
         totalSumLabel.text = "Итого: \(newSum)Р"
     }
     
-    func updateList() {
-        for index in 0..<items.count {
-            if items[index].count == 0 {
-                ListOfMenuItems.shared.list.remove(at: index)
-                items = ListOfMenuItems.shared.list
-                listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle)
-                return
-             }
-        }
-        
-        items = ListOfMenuItems.shared.list
-        self.listTableView.reloadData()
-    }
-    
-    func updateListBadge() {
-        let items = ListOfMenuItems.shared.list
-        var sumCountOfItems = 0
-        
-        for item in items {
-            if item.count != 0 {
-                sumCountOfItems += item.count
-            }
-        }
-        
-        if sumCountOfItems != 0 {
-            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = "\(sumCountOfItems)"
-        } else if sumCountOfItems == 0 {
-            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = nil
-        }
-    }
-    
     @IBAction func shareButtonPressed(_ sender: UIButton) {
     }
 }
@@ -98,4 +67,37 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+extension ListVC: updatingListCell {
+    func updateList() {
+        items = ListOfMenuItems.shared.list
+        for index in 0..<items.count {
+            if items[index].count == 0 {
+                ListOfMenuItems.shared.list.remove(at: index)
+                items = ListOfMenuItems.shared.list
+                listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle)
+                return
+             }
+        }
+        
+        self.listTableView.reloadData()
+    }
+    
+    func updateListBadge() {
+        let items = ListOfMenuItems.shared.list
+        var sumCountOfItems = 0
+        
+        for item in items {
+            if item.count != 0 {
+                sumCountOfItems += item.count
+            }
+        }
+        
+        if sumCountOfItems != 0 {
+            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = "\(sumCountOfItems)"
+        } else if sumCountOfItems == 0 {
+            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = nil
+        }
+    }
 }

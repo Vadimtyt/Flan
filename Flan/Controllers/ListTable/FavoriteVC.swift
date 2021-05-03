@@ -22,7 +22,6 @@ class FavoriteVC: UITableViewController, FavoriteVCDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        items = ListOfMenuItems.shared.favorites
         updateFavoriteVC()
     }
     
@@ -44,6 +43,7 @@ class FavoriteVC: UITableViewController, FavoriteVCDelegate {
     }
     
     func updateFavoriteVC() {
+        items = ListOfMenuItems.shared.favorites
         for index in 0..<items.count {
             if items[index].isFavorite == false {
                 ListOfMenuItems.shared.favorites.remove(at: index)
