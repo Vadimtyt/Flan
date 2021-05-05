@@ -17,12 +17,23 @@ class FavoriteVC: UITableViewController, FavoriteVCDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateFavoriteVC()
+    }
+    
+    func configureNavigationBar() {
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+            let largeStyle = UINavigationBarAppearance()
+            largeStyle.configureWithTransparentBackground()
+            largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 42)]
+            self.navigationController?.navigationBar.scrollEdgeAppearance = largeStyle
+        }
     }
     
     func updateListBadge() {

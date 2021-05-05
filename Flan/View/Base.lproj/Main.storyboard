@@ -160,7 +160,7 @@
             </objects>
             <point key="canvasLocation" x="1764" y="-794"/>
         </scene>
-        <!--Список VC-->
+        <!--Список-->
         <scene sceneID="Tvs-3e-Nma">
             <objects>
                 <viewController id="lGD-iN-1Wp" customClass="ListVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
@@ -244,7 +244,7 @@
                             <constraint firstItem="OuG-re-Ssq" firstAttribute="bottom" secondItem="vV2-51-ZVF" secondAttribute="bottom" id="nTt-9h-cVT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Список VC" id="hnL-e4-egq"/>
+                    <navigationItem key="navigationItem" title="Список" id="hnL-e4-egq"/>
                     <connections>
                         <outlet property="listTableView" destination="LY4-ab-atz" id="iCw-3M-mD1"/>
                         <outlet property="totalSumLabel" destination="yZu-xn-pgQ" id="mM2-0S-Yzh"/>
@@ -330,11 +330,11 @@
             </objects>
             <point key="canvasLocation" x="1757" y="1479"/>
         </scene>
-        <!--Список VC-->
+        <!--Список-->
         <scene sceneID="8aj-5r-sBg">
             <objects>
                 <navigationController id="Ye6-XQ-66q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Список VC" image="list.number" catalog="system" id="aUk-rS-C4X"/>
+                    <tabBarItem key="tabBarItem" title="Список" image="list.number" catalog="system" id="aUk-rS-C4X"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hUA-Pz-thO">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

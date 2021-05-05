@@ -38,10 +38,22 @@ class MenuVC: UITableViewController, MenuVCDelegate {
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = false
+        
+        configureNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
+    }
+    
+    func configureNavigationBar() {
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+            let largeStyle = UINavigationBarAppearance()
+            largeStyle.configureWithTransparentBackground()
+            largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 42)]
+            self.navigationController?.navigationBar.scrollEdgeAppearance = largeStyle
+        }
     }
     
     func updateListBadge() {
