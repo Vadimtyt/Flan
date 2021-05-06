@@ -46,7 +46,23 @@ class ListVC: UIViewController {
         totalSumLabel.text = "Итого: \(newSum)Р"
     }
     
+    func getTextList() -> String {
+        var list = "Весь список:"
+        for item in items {
+            list += "\n\(item.name) - \(item.count) шт.,"
+        }
+        list.removeLast()
+        list += "\n\(totalSumLabel.text ?? "")"
+        return list
+    }
+    
     @IBAction func shareButtonPressed(_ sender: UIButton) {
+        let message = getTextList()
+        let objectsToShare = [message]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+        self.present(activityVC, animated: true, completion: nil)
+                
     }
 }
 
