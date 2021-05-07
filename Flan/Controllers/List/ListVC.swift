@@ -84,6 +84,31 @@ class ListVC: UIViewController {
         self.present(popVC, animated: true)
     }
     
+    func clearAlert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        // Save action
+        let clearAction = UIAlertAction(title: "Очистить", style: .default) { [weak self] _ in
+            for item in ListOfMenuItems.shared.list {
+                item.count = 0
+            }
+            ListOfMenuItems.shared.list.removeAll()
+            self?.updateList()
+            self?.updateListBadge()
+        }
+        
+        // Cancel action
+        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        alert.addAction(clearAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         let message = getTextList()
         let objectsToShare = [message]
@@ -92,6 +117,13 @@ class ListVC: UIViewController {
         self.present(activityVC, animated: true, completion: nil)
                 
     }
+    
+    @IBAction func clearListButtonPressed(_ sender: UIBarButtonItem) {
+        if items.count != 0 {
+            clearAlert(title: "Очистить список?", message: "")
+        }
+    }
+    
 }
 
 extension ListVC: UITableViewDelegate, UITableViewDataSource {

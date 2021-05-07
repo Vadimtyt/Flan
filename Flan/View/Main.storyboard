@@ -255,7 +255,13 @@
                             <constraint firstItem="OuG-re-Ssq" firstAttribute="bottom" secondItem="vV2-51-ZVF" secondAttribute="bottom" id="nTt-9h-cVT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Список" id="hnL-e4-egq"/>
+                    <navigationItem key="navigationItem" title="Список" id="hnL-e4-egq">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="ocd-JX-a3Y">
+                            <connections>
+                                <action selector="clearListButtonPressed:" destination="lGD-iN-1Wp" id="jRZ-PF-1Ct"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="infoButton" destination="KmW-UO-bgb" id="ZBt-AW-CPK"/>
                         <outlet property="listTableView" destination="LY4-ab-atz" id="iCw-3M-mD1"/>
@@ -411,6 +417,7 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
