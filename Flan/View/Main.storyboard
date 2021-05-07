@@ -200,26 +200,37 @@
                                                     <action selector="shareButtonPressed:" destination="lGD-iN-1Wp" eventType="touchUpInside" id="7eb-KS-KEI"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Итого: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZu-xn-pgQ">
-                                                <rect key="frame" x="8" y="8" width="152" height="41"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Итого: 0Р" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZu-xn-pgQ">
+                                                <rect key="frame" x="8" y="8" width="80" height="41"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="152" id="LI2-iR-PZJ"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="LI2-iR-PZJ"/>
                                                     <constraint firstAttribute="height" constant="41" id="w2k-ok-i5Q"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KmW-UO-bgb" userLabel="Info Button">
+                                                <rect key="frame" x="88" y="17.666666666666629" width="22" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="4Un-Z6-e7K"/>
+                                                    <constraint firstAttribute="width" constant="22" id="Xgi-Wj-mQv"/>
+                                                </constraints>
+                                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                <state key="normal" image="questionmark.circle" catalog="system"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="9YQ-X3-vfD" secondAttribute="trailing" constant="8" id="16H-DA-efm"/>
                                             <constraint firstAttribute="bottom" secondItem="yZu-xn-pgQ" secondAttribute="bottom" constant="8" id="DhI-eJ-ZIP"/>
+                                            <constraint firstItem="KmW-UO-bgb" firstAttribute="centerY" secondItem="yZu-xn-pgQ" secondAttribute="centerY" id="FmJ-lA-PDN"/>
                                             <constraint firstAttribute="bottom" secondItem="9YQ-X3-vfD" secondAttribute="bottom" constant="8" id="JwN-Df-UgI"/>
                                             <constraint firstItem="yZu-xn-pgQ" firstAttribute="leading" secondItem="Pbh-2A-KDQ" secondAttribute="leading" constant="8" id="dDC-lR-4Cg"/>
                                             <constraint firstAttribute="height" constant="57" id="gV6-8h-mCt"/>
                                             <constraint firstItem="9YQ-X3-vfD" firstAttribute="top" secondItem="Pbh-2A-KDQ" secondAttribute="top" constant="8" id="hec-45-Hi1"/>
                                             <constraint firstItem="yZu-xn-pgQ" firstAttribute="top" secondItem="Pbh-2A-KDQ" secondAttribute="top" constant="8" id="lzF-iP-nIG"/>
+                                            <constraint firstItem="KmW-UO-bgb" firstAttribute="leading" secondItem="yZu-xn-pgQ" secondAttribute="trailing" id="maA-OF-anc"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -246,6 +257,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Список" id="hnL-e4-egq"/>
                     <connections>
+                        <outlet property="infoButton" destination="KmW-UO-bgb" id="ZBt-AW-CPK"/>
                         <outlet property="listTableView" destination="LY4-ab-atz" id="iCw-3M-mD1"/>
                         <outlet property="totalSumLabel" destination="yZu-xn-pgQ" id="mM2-0S-Yzh"/>
                     </connections>
@@ -253,6 +265,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vU8-LF-TWJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1759.3457943925232" y="519.65442764578836"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="b3b-6t-gsZ">
+            <objects>
+                <viewController storyboardIdentifier="popVC" id="GLB-ur-o76" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LnB-Ah-fNf">
+                        <rect key="frame" x="0.0" y="0.0" width="267" height="117"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbL-dV-6HA">
+                                <rect key="frame" x="8" y="8" width="251" height="101"/>
+                                <string key="text">Здесь указывается приблизительная сумма, она не учитывает фактический вес всех позиций, цену упаковочных изделий и т.п. Эта сумма отображается исключительно в ознакомительных целях.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nYZ-n0-fIf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DbL-dV-6HA" firstAttribute="leading" secondItem="nYZ-n0-fIf" secondAttribute="leading" constant="8" id="8yO-0e-sYu"/>
+                            <constraint firstItem="nYZ-n0-fIf" firstAttribute="bottom" secondItem="DbL-dV-6HA" secondAttribute="bottom" constant="8" id="Yvc-6F-1wY"/>
+                            <constraint firstItem="DbL-dV-6HA" firstAttribute="top" secondItem="LnB-Ah-fNf" secondAttribute="top" constant="8" id="rVQ-sT-Od0"/>
+                            <constraint firstItem="nYZ-n0-fIf" firstAttribute="trailing" secondItem="DbL-dV-6HA" secondAttribute="trailing" constant="8" id="rdR-Hc-HmC"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="267" height="117"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fTx-cr-FZn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2327" y="648"/>
         </scene>
         <!--Еще-->
         <scene sceneID="i1U-Cy-CxF">
@@ -328,7 +371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKa-xR-ig2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1757" y="1479"/>
+            <point key="canvasLocation" x="1714" y="1479"/>
         </scene>
         <!--Список-->
         <scene sceneID="8aj-5r-sBg">
@@ -372,6 +415,7 @@
         <image name="list.number" catalog="system" width="128" height="97"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -381,6 +425,9 @@
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

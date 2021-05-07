@@ -16,8 +16,8 @@ class ListVC: UIViewController {
     var items: [MenuItem] = ListOfMenuItems.shared.list
     
     @IBOutlet weak var listTableView: UITableView!
-    
     @IBOutlet weak var totalSumLabel: UILabel!
+    @IBOutlet weak var infoButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -25,10 +25,11 @@ class ListVC: UIViewController {
         
         listTableView.delegate = self
         listTableView.dataSource = self
-        
-        changeTotalSumLabel()
+        setupGestures()
         
         listTableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+        
+        changeTotalSumLabel()
 
         // Do any additional setup after loading the view.
     }
@@ -43,7 +44,9 @@ class ListVC: UIViewController {
             newSum += item.price * item.count
         }
         
-        totalSumLabel.text = "Итого: \(newSum)Р"
+        if newSum == 0 {
+            totalSumLabel.text = "Итого: 0Р"
+        } else { totalSumLabel.text = "Итого: ≈\(newSum)Р" }
     }
     
     func getTextList() -> String {
@@ -54,6 +57,31 @@ class ListVC: UIViewController {
         list.removeLast()
         list += "\n\(totalSumLabel.text ?? "")"
         return list
+    }
+    
+    private func setupGestures() {
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        tapGesture.numberOfTapsRequired = 1
+        infoButton.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    private func tapped() {
+        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") else { return }
+        popVC.modalPresentationStyle = .popover
+        
+        let popOverVC = popVC.popoverPresentationController
+        popOverVC?.delegate=self
+        popOverVC?.sourceView = self.infoButton
+        popOverVC?.sourceRect = CGRect(x: self.infoButton.bounds.minX - 19,
+                                       y: self.infoButton.bounds.minY,
+                                       width: 0,
+                                       height: 0)
+        popOverVC?.permittedArrowDirections = .down
+        popVC.preferredContentSize = CGSize(width: 267, height: 117)
+        
+        self.present(popVC, animated: true)
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
@@ -115,5 +143,12 @@ extension ListVC: updatingListCell {
         } else if sumCountOfItems == 0 {
             self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = nil
         }
+    }
+}
+
+
+extension ListVC: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 }
