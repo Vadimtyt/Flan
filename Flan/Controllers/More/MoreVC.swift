@@ -31,11 +31,17 @@ class MoreVC: UIViewController, BakeryCellDelegate {
         bakeriesTableView.register(UINib(nibName: "BakeryCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
     }
     
-    func openMap(with tag: Int) {
-        //
+    func callPhone(with tag: Int) {
+        let phoneNumber = bakeries[tag].phone
+        if let phoneCallURL = URL(string: "tel://" + phoneNumber) {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
     }
     
-    func callPhone(with tag: Int) {
+    func openMap(with tag: Int) {
         //
     }
 }

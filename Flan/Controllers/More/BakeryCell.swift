@@ -8,8 +8,9 @@
 import UIKit
 
 protocol BakeryCellDelegate: class {
-    func openMap(with tag: Int)
     func callPhone(with tag: Int)
+    func openMap(with tag: Int)
+    
 }
 
 class BakeryCell: UITableViewCell {
@@ -35,9 +36,11 @@ class BakeryCell: UITableViewCell {
         self.tag = tag
     }
     @IBAction func phoneButtonPressed(_ sender: UIButton) {
+        bakeryCellDelegate?.callPhone(with: tag)
     }
     
     @IBAction func mapButtonPressed(_ sender: UIButton) {
+        bakeryCellDelegate?.openMap(with: tag)
     }
     
     

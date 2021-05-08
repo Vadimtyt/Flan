@@ -38,25 +38,37 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuC-1z-8SO" userLabel="Phone Button">
-                        <rect key="frame" x="362" y="11" width="40" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuC-1z-8SO" userLabel="Phone Button">
+                        <rect key="frame" x="362" y="12" width="40" height="40"/>
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="bSI-b8-jwf"/>
+                            <constraint firstAttribute="width" constant="40" id="jPN-XG-rSv"/>
+                        </constraints>
                         <state key="normal" image="phone" catalog="system"/>
                         <connections>
                             <action selector="phoneButtonPressed:" destination="kwe-tE-TCk" eventType="touchUpInside" id="DIm-ds-dQ8"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-sq-6gh" userLabel="Map Button">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-sq-6gh" userLabel="Map Button">
                         <rect key="frame" x="362" y="64" width="40" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="FNT-rt-4CD"/>
+                            <constraint firstAttribute="width" constant="40" id="Gmj-UQ-ggY"/>
+                        </constraints>
                         <state key="normal" image="map" catalog="system"/>
                         <connections>
                             <action selector="mapButtonPressed:" destination="kwe-tE-TCk" eventType="touchUpInside" id="sYN-M5-Qbd"/>
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="jPv-sq-6gh" secondAttribute="bottom" constant="12" id="0py-uz-XuD"/>
+                    <constraint firstAttribute="trailing" secondItem="LuC-1z-8SO" secondAttribute="trailing" constant="12" id="OAp-Lr-KGW"/>
+                    <constraint firstAttribute="trailing" secondItem="jPv-sq-6gh" secondAttribute="trailing" constant="12" id="eee-LY-SiH"/>
+                    <constraint firstItem="LuC-1z-8SO" firstAttribute="top" secondItem="PTp-xG-eGU" secondAttribute="top" constant="12" id="vdZ-Md-Rni"/>
+                </constraints>
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="BakeryCell"/>
             <connections>
