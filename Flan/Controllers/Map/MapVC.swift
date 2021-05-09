@@ -11,16 +11,16 @@ import MapKit
 class MapVC: UIViewController {
 
     var bakery: Bakery!
+    let annotationID = "annotationID"
     
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        mapView.delegate = self
         setupPlacemarkFor(bakery)
-        
-        // Do any additional setup after loading the view.
+
     }
     
     func setupPlacemarkFor(_ bakery: Bakery) {
@@ -53,4 +53,19 @@ class MapVC: UIViewController {
         dismiss(animated: true)
     }
     
+}
+
+extension MapVC: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else { return nil }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationID) as? MKPinAnnotationView
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotationID)
+            annotationView?.canShowCallout = true
+        }
+        
+        return annotationView
+    }
 }
