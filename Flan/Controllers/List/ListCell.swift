@@ -3,7 +3,7 @@
 //  Flan
 //
 //  Created by Вадим on 07.04.2021.
-//
+//1
 
 import UIKit
 
@@ -46,6 +46,8 @@ class ListCell: UITableViewCell {
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
         self.item.count -= 1
         countItemLabel.text = "\(self.item.count)"
         
@@ -54,6 +56,8 @@ class ListCell: UITableViewCell {
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
         self.item.count += 1
         countItemLabel.text = "\(self.item.count)"
         

@@ -17,6 +17,7 @@
 		C15C40912645CA420053910A /* BakeryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C40902645CA420053910A /* BakeryModel.swift */; };
 		C15C40972645CCC40053910A /* BakeryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C15C40962645CCC40053910A /* BakeryCell.xib */; };
 		C15C409A2645CD670053910A /* BakeryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C40992645CD670053910A /* BakeryCell.swift */; };
+		C15C40C32646D3220053910A /* TapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C40C22646D3220053910A /* TapticFeedback.swift */; };
 		C15CFFF026358940006CE868 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15CFFEF26358940006CE868 /* SceneDelegate.swift */; };
 		C19C8BEB261625EA0039CA79 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19C8BEA261625EA0039CA79 /* MenuVC.swift */; };
 		C19C8BF0261740670039CA79 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19C8BEF261740670039CA79 /* MenuCell.swift */; };
@@ -40,6 +41,7 @@
 		C15C40902645CA420053910A /* BakeryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryModel.swift; sourceTree = "<group>"; };
 		C15C40962645CCC40053910A /* BakeryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BakeryCell.xib; sourceTree = "<group>"; };
 		C15C40992645CD670053910A /* BakeryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryCell.swift; sourceTree = "<group>"; };
+		C15C40C22646D3220053910A /* TapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticFeedback.swift; sourceTree = "<group>"; };
 		C15CFFEF26358940006CE868 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C19C8BEA261625EA0039CA79 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		C19C8BEF261740670039CA79 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				C125438425D4C3120086ADD2 /* Models */,
 				C125438525D4C31A0086ADD2 /* View */,
 				C125438625D4C3240086ADD2 /* Controllers */,
+				C15C40C52646D32C0053910A /* TapticFeedback */,
 				C125438725D4C3300086ADD2 /* Supporting resourses */,
 				C125438825D4C3510086ADD2 /* App */,
 			);
@@ -145,6 +148,14 @@
 				C15C40962645CCC40053910A /* BakeryCell.xib */,
 			);
 			path = More;
+			sourceTree = "<group>";
+		};
+		C15C40C52646D32C0053910A /* TapticFeedback */ = {
+			isa = PBXGroup;
+			children = (
+				C15C40C22646D3220053910A /* TapticFeedback.swift */,
+			);
+			path = TapticFeedback;
 			sourceTree = "<group>";
 		};
 		C19C8BEE261740100039CA79 /* Menu */ = {
@@ -253,6 +264,7 @@
 				C19C8BEB261625EA0039CA79 /* MenuVC.swift in Sources */,
 				C19DD6FF26080E3600D00BFD /* MenuItemModel.swift in Sources */,
 				C19C8BF0261740670039CA79 /* MenuCell.swift in Sources */,
+				C15C40C32646D3220053910A /* TapticFeedback.swift in Sources */,
 				C1573D82263103F5001C600B /* TapBarController.swift in Sources */,
 				C15CFFF026358940006CE868 /* SceneDelegate.swift in Sources */,
 				C15C40912645CA420053910A /* BakeryModel.swift in Sources */,

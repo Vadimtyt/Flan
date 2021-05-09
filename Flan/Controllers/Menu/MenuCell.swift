@@ -71,6 +71,8 @@ class MenuCell: UITableViewCell {
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
         let itemsCount = self.item.count
         
         if itemsCount == 1 {
@@ -89,6 +91,8 @@ class MenuCell: UITableViewCell {
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
         let itemsCount = self.item.count
         
         if itemsCount == 0 {
@@ -107,6 +111,8 @@ class MenuCell: UITableViewCell {
     }
 
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
         item.isFavorite = !item.isFavorite
         
         if item.isFavorite == true {

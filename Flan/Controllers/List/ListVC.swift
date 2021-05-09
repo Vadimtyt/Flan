@@ -110,6 +110,8 @@ class ListVC: UIViewController {
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
         let message = getTextList()
         let objectsToShare = [message]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
@@ -119,6 +121,8 @@ class ListVC: UIViewController {
     }
     
     @IBAction func clearListButtonPressed(_ sender: UIBarButtonItem) {
+        TapticFeedback.shared.tapticFeedback(.medium)
+        
         if items.count != 0 {
             clearAlert(title: "Очистить список?", message: "")
         }
