@@ -12,7 +12,7 @@ private let reuseIdentifier = "BakeryCell"
 private let bakeries = [
     Bakery(name: "Флан на Новой", address: "ул.Новая, 14А", phone: "+7(989)248-14-14", openTime: 8, closeTime: 21),
     Bakery(name: "Флан на Отдельской", address: "ул.Отдельская 324/7", phone: "+7(988)135-07-07", openTime: 9, closeTime: 22),
-    Bakery(name: "Флан на Школьной", address: "уд.Школьная, 301А", phone: "+7(918)123-45-67", openTime: 8, closeTime: 20),
+    Bakery(name: "Флан на Школьной", address: "ул.Школьная, 301А", phone: "+7(918)123-45-67", openTime: 8, closeTime: 20),
     Bakery(name: "Флан на Лермонтова", address: "ул.Лермонтова, 216Г", phone: "+7(988)316-21-21", openTime: 8, closeTime: 21)
 ]
 
@@ -42,7 +42,9 @@ class MoreVC: UIViewController, BakeryCellDelegate {
     }
     
     func openMap(with tag: Int) {
-        //
+        guard let mapVC = storyboard?.instantiateViewController(withIdentifier: "mapVC") as? MapVC else { return }
+        mapVC.bakery = bakeries[tag]
+        self.present(mapVC, animated: true)
     }
 }
 
@@ -58,7 +60,6 @@ extension MoreVC: UITableViewDelegate, UITableViewDataSource {
         let bakery = bakeries[indexPath.row]
         cell.configureCell(with: bakery, and: indexPath.row)
         cell.bakeryCellDelegate = self
-        cell.selectionStyle = .none
  
         return cell
     }

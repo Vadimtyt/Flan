@@ -84,14 +84,12 @@ class ListVC: UIViewController {
         self.present(popVC, animated: true)
     }
     
-    func clearAlert(title: String, message: String) {
+    func clearListAlert() {
         
-        let alert = UIAlertController(title: title,
-                                      message: message,
-                                      preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Save action
-        let clearAction = UIAlertAction(title: "Очистить", style: .default) { [weak self] _ in
+        let clearAction = UIAlertAction(title: "Очистить cписок", style: .destructive) { [weak self] _ in
             for item in ListOfMenuItems.shared.list {
                 item.count = 0
             }
@@ -101,8 +99,8 @@ class ListVC: UIViewController {
         }
         
         // Cancel action
-        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
-        
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+
         alert.addAction(clearAction)
         alert.addAction(cancelAction)
         
@@ -124,7 +122,7 @@ class ListVC: UIViewController {
         TapticFeedback.shared.tapticFeedback(.medium)
         
         if items.count != 0 {
-            clearAlert(title: "Очистить список?", message: "")
+            clearListAlert()
         }
     }
     

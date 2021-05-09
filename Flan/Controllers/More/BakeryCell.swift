@@ -29,6 +29,8 @@ class BakeryCell: UITableViewCell {
     }
 
     func configureCell(with bakery: Bakery, and tag: Int) {
+        selectionStyle = .none
+        
         nameLabel.text = bakery.name
         workTimeLabel.text = "\(bakery.openTime):00-\(bakery.closeTime):00"
         addressLabel.text = bakery.address

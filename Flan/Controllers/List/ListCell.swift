@@ -33,6 +33,7 @@ class ListCell: UITableViewCell {
     
     func configureCell(with item: MenuItem) {
         self.item = item
+        selectionStyle = .none
         
         if item.count > 0 {
             removeButton.isHidden = false
