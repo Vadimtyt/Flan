@@ -10,7 +10,7 @@ import UIKit
 class MenuItem {
     let name: String
     let price: Int
-    var image = UIImage(named: "downloading_icon 13.04.59")
+    var image = UIImage(named: "Кекс")
     var count = 0
     var isFavorite = false
     

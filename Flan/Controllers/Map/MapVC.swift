@@ -17,6 +17,7 @@ class MapVC: UIViewController {
     let regionInMeters = 5000.0
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var startRouteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +109,7 @@ class MapVC: UIViewController {
     @IBAction func closeVC(_ sender: UIButton) {
         dismiss(animated: true)
     }
+    
     @IBAction func myPositionButtonPressed(_ sender: UIButton) {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion(center: location,
@@ -115,6 +117,9 @@ class MapVC: UIViewController {
                                             longitudinalMeters: regionInMeters)
             mapView.setRegion(region, animated: true)
         }
+    }
+    
+    @IBAction func startRouteButtonPressed(_ sender: UIButton) {
     }
     
 }

@@ -414,6 +414,9 @@
                                 <state key="normal">
                                     <imageReference key="image" image="chevron.right" catalog="system" symbolScale="large" renderingMode="original"/>
                                 </state>
+                                <connections>
+                                    <action selector="startRouteButtonPressed:" destination="ucZ-eI-JEl" eventType="touchUpInside" id="1eV-KZ-rW7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pya-VU-Gvb" userLabel="My position">
                                 <rect key="frame" x="370" y="802" width="25" height="24"/>
@@ -446,6 +449,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="FTC-st-SIB" id="Pum-o7-xLL"/>
+                        <outlet property="startRouteButton" destination="cTL-t8-P6b" id="Q53-3X-QrW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYs-cd-d7t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
