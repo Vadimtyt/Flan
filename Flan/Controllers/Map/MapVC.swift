@@ -7,11 +7,14 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class MapVC: UIViewController {
 
     var bakery: Bakery!
     let annotationID = "annotationID"
+    let locationManager = CLLocationManager()
+    let regionInMeters = 5000.0
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -20,7 +23,7 @@ class MapVC: UIViewController {
         
         mapView.delegate = self
         setupPlacemarkFor(bakery)
-
+        checkLocationServesieces()
     }
     
     func setupPlacemarkFor(_ bakery: Bakery) {
@@ -49,8 +52,69 @@ class MapVC: UIViewController {
         }
     }
     
+    func checkLocationServesieces() {
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+            checkLocationAuthorisation()
+        } else {
+            turnOnLocationAlert(message: "Пожалуйста, перейдите в настройки и включите службы геолокации.")
+        }
+    }
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func checkLocationAuthorisation() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            break
+        case .denied:
+            turnOnLocationAlert(message: "Пожалуйста, перейдите в настройки и разрешите приложению определять ваше местоположение.")
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            turnOnLocationAlert(message: "Пожалуйста, перейдите в настройки и разрешите приложению определять ваше местоположение.")
+            break
+        case .authorizedAlways:
+            break
+        @unknown default:
+            print("New case is available")
+        }
+    }
+
+    func turnOnLocationAlert(message: String) {
+        let title = "Службы геолокации недоступны"
+        let message = "Пожалуйста, перейдите в настройки и разрешите приложению определять ваше местоположение."
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // OpenSettingsAction action
+        let openSettingsAction = UIAlertAction(title: "Настройки", style: .default) {  _ in
+            UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
+        }
+        
+        // Cancel action
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(openSettingsAction)
+        
+        
+        present(alert, animated: true)
+    }
+    
     @IBAction func closeVC(_ sender: UIButton) {
         dismiss(animated: true)
+    }
+    @IBAction func myPositionButtonPressed(_ sender: UIButton) {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location,
+                                            latitudinalMeters: regionInMeters,
+                                            longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
 }
@@ -67,5 +131,11 @@ extension MapVC: MKMapViewDelegate {
         }
         
         return annotationView
+    }
+}
+
+extension MapVC: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorisation()
     }
 }

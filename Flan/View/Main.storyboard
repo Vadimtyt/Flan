@@ -424,6 +424,9 @@
                                 <state key="normal">
                                     <imageReference key="image" image="location.fill" catalog="system" symbolScale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="myPositionButtonPressed:" destination="ucZ-eI-JEl" eventType="touchUpInside" id="6GI-YO-D6l"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Na4-Im-1RD"/>
