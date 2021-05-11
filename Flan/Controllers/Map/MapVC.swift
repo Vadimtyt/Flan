@@ -89,17 +89,20 @@ class MapVC: UIViewController {
     }
     
     func showUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion(center: location,
-                                            latitudinalMeters: regionInMeters,
-                                            longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
+        guard let location = locationManager.location?.coordinate else {
+            shoowAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
+            return
         }
+        let region = MKCoordinateRegion(center: location,
+                                        latitudinalMeters: regionInMeters,
+                                        longitudinalMeters: regionInMeters)
+        mapView.setRegion(region, animated: true)
+        
     }
         
     func getDirection() {
         guard let location = locationManager.location?.coordinate else {
-            shoowAlert(title: "Ошибка", message: "Геолокация не определена")
+            shoowAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
             return
         }
         
@@ -117,6 +120,7 @@ class MapVC: UIViewController {
         direction.calculate { [weak self] (response, error) in
             if let error = error {
                 print(error)
+                self?.shoowAlert(title: "Ошибка", message: "Пешие маршруты недоступны")
                 return
             }
             
@@ -133,6 +137,7 @@ class MapVC: UIViewController {
                 let timeInterval = Int(route.expectedTravelTime/60)
                 
                 print(distance, timeInterval)
+                self?.startRouteButton.isHidden = true
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
                     self?.showUserLocation()
@@ -165,7 +170,6 @@ class MapVC: UIViewController {
     
     @IBAction func startRouteButtonPressed(_ sender: UIButton) {
         getDirection()
-        startRouteButton.isHidden = true
     }
     
 }

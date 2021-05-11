@@ -42,7 +42,9 @@ class MoreVC: UIViewController, BakeryCellDelegate {
     }
     
     func openMap(with tag: Int) {
-        guard let mapVC = storyboard?.instantiateViewController(withIdentifier: "mapVC") as? MapVC else { return }
+        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+        
+        guard let mapVC = storyboard.instantiateViewController(withIdentifier: "mapVC") as? MapVC else { return }
         mapVC.bakery = bakeries[tag]
         self.present(mapVC, animated: true)
     }

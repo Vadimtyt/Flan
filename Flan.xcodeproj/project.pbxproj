@@ -20,6 +20,7 @@
 		C15C40C32646D3220053910A /* TapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C40C22646D3220053910A /* TapticFeedback.swift */; };
 		C15C40D226480FBD0053910A /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C40D126480FBD0053910A /* MapVC.swift */; };
 		C15CFFF026358940006CE868 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15CFFEF26358940006CE868 /* SceneDelegate.swift */; };
+		C1600D242649F17700D06F31 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1600D232649F17700D06F31 /* Map.storyboard */; };
 		C19C8BEB261625EA0039CA79 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19C8BEA261625EA0039CA79 /* MenuVC.swift */; };
 		C19C8BF0261740670039CA79 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19C8BEF261740670039CA79 /* MenuCell.swift */; };
 		C19C8BF8261741050039CA79 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19C8BF7261741050039CA79 /* MenuCell.xib */; };
@@ -45,6 +46,7 @@
 		C15C40C22646D3220053910A /* TapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticFeedback.swift; sourceTree = "<group>"; };
 		C15C40D126480FBD0053910A /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		C15CFFEF26358940006CE868 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C1600D232649F17700D06F31 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		C19C8BEA261625EA0039CA79 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		C19C8BEF261740670039CA79 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		C19C8BF7261741050039CA79 /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				C15C40D126480FBD0053910A /* MapVC.swift */,
+				C1600D232649F17700D06F31 /* Map.storyboard */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C125437C25D4C2FE0086ADD2 /* LaunchScreen.storyboard in Resources */,
+				C1600D242649F17700D06F31 /* Map.storyboard in Resources */,
 				C15C4087264589770053910A /* Main.storyboard in Resources */,
 				C125437925D4C2FE0086ADD2 /* Assets.xcassets in Resources */,
 				C19C8BF8261741050039CA79 /* MenuCell.xib in Resources */,

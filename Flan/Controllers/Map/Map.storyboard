@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MapVC-->
+        <scene sceneID="adq-0A-JSL">
+            <objects>
+                <viewController storyboardIdentifier="mapVC" id="kFa-Qo-8ns" customClass="MapVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qU2-0A-WvV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fRO-8h-EFn">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U45-oG-a0g" userLabel="Close">
+                                <rect key="frame" x="352" y="76" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1S5-rh-LNc"/>
+                                    <constraint firstAttribute="width" constant="30" id="tvy-uC-t9o"/>
+                                </constraints>
+                                <state key="normal">
+                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeVC:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="Z4B-BN-Gx9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sh-LC-UAj" userLabel="Start route">
+                                <rect key="frame" x="199.5" y="773" width="15" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="PyI-01-o7B"/>
+                                    <constraint firstAttribute="width" constant="15" id="hle-N7-5tn"/>
+                                </constraints>
+                                <state key="normal">
+                                    <imageReference key="image" image="chevron.right" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </state>
+                                <connections>
+                                    <action selector="startRouteButtonPressed:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="nxV-8m-PgR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgQ-z3-0MS" userLabel="My position">
+                                <rect key="frame" x="356" y="772" width="25" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="BWV-jF-Jd9"/>
+                                    <constraint firstAttribute="height" constant="24" id="gIk-Xb-jQN"/>
+                                </constraints>
+                                <state key="normal">
+                                    <imageReference key="image" image="location.fill" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="myPositionButtonPressed:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="7d6-Pq-41X"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6n8-cs-dZl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fRO-8h-EFn" firstAttribute="trailing" secondItem="6n8-cs-dZl" secondAttribute="trailing" id="2HZ-zc-I6g"/>
+                            <constraint firstAttribute="bottom" secondItem="fRO-8h-EFn" secondAttribute="bottom" id="Aj3-WS-2Yf"/>
+                            <constraint firstItem="U45-oG-a0g" firstAttribute="top" secondItem="6n8-cs-dZl" secondAttribute="top" constant="32" id="QYb-pw-PFU"/>
+                            <constraint firstItem="fRO-8h-EFn" firstAttribute="leading" secondItem="6n8-cs-dZl" secondAttribute="leading" id="ZuS-ID-4yD"/>
+                            <constraint firstItem="6n8-cs-dZl" firstAttribute="bottom" secondItem="7sh-LC-UAj" secondAttribute="bottom" constant="67" id="bfw-qa-H3g"/>
+                            <constraint firstItem="6n8-cs-dZl" firstAttribute="trailing" secondItem="EgQ-z3-0MS" secondAttribute="trailing" constant="33" id="chZ-et-5Nj"/>
+                            <constraint firstItem="6n8-cs-dZl" firstAttribute="bottom" secondItem="EgQ-z3-0MS" secondAttribute="bottom" constant="66" id="hOA-Di-IaT"/>
+                            <constraint firstItem="7sh-LC-UAj" firstAttribute="centerX" secondItem="fRO-8h-EFn" secondAttribute="centerX" id="iWU-zw-rwD"/>
+                            <constraint firstItem="6n8-cs-dZl" firstAttribute="trailing" secondItem="U45-oG-a0g" secondAttribute="trailing" constant="32" id="xPY-EB-sNi"/>
+                            <constraint firstItem="fRO-8h-EFn" firstAttribute="top" secondItem="qU2-0A-WvV" secondAttribute="top" id="ySl-PD-5fK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="fRO-8h-EFn" id="jmB-Xj-EOw"/>
+                        <outlet property="startRouteButton" destination="7sh-LC-UAj" id="U2H-2u-Cog"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qOp-Nz-Uhw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2524.766355140187" y="1300.4319654427647"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="location.fill" catalog="system" width="128" height="121"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
