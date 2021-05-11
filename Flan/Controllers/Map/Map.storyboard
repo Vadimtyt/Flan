@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -60,13 +61,31 @@
                                     <action selector="myPositionButtonPressed:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="7d6-Pq-41X"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Расстояние: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygk-ED-9zH" userLabel="Distance">
+                                <rect key="frame" x="154" y="668" width="106.5" height="21"/>
+                                <color key="backgroundColor" red="0.77025273900000002" green="0.77025273900000002" blue="0.77025273900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Время: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VC3-yS-PJA" userLabel="Time interval">
+                                <rect key="frame" x="174.5" y="697" width="65" height="21"/>
+                                <color key="backgroundColor" red="0.77025273900000002" green="0.77025273900000002" blue="0.77025273900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6n8-cs-dZl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fRO-8h-EFn" firstAttribute="trailing" secondItem="6n8-cs-dZl" secondAttribute="trailing" id="2HZ-zc-I6g"/>
+                            <constraint firstItem="ygk-ED-9zH" firstAttribute="centerX" secondItem="fRO-8h-EFn" secondAttribute="centerX" id="4R4-RW-BJj"/>
+                            <constraint firstItem="VC3-yS-PJA" firstAttribute="top" secondItem="ygk-ED-9zH" secondAttribute="bottom" constant="8" id="5bK-21-ArF"/>
                             <constraint firstAttribute="bottom" secondItem="fRO-8h-EFn" secondAttribute="bottom" id="Aj3-WS-2Yf"/>
+                            <constraint firstItem="VC3-yS-PJA" firstAttribute="centerX" secondItem="fRO-8h-EFn" secondAttribute="centerX" id="OEq-Ye-iJQ"/>
                             <constraint firstItem="U45-oG-a0g" firstAttribute="top" secondItem="6n8-cs-dZl" secondAttribute="top" constant="32" id="QYb-pw-PFU"/>
+                            <constraint firstItem="6n8-cs-dZl" firstAttribute="bottom" secondItem="VC3-yS-PJA" secondAttribute="bottom" constant="144" id="Qzh-zG-g23"/>
                             <constraint firstItem="fRO-8h-EFn" firstAttribute="leading" secondItem="6n8-cs-dZl" secondAttribute="leading" id="ZuS-ID-4yD"/>
                             <constraint firstItem="6n8-cs-dZl" firstAttribute="bottom" secondItem="7sh-LC-UAj" secondAttribute="bottom" constant="67" id="bfw-qa-H3g"/>
                             <constraint firstItem="6n8-cs-dZl" firstAttribute="trailing" secondItem="EgQ-z3-0MS" secondAttribute="trailing" constant="33" id="chZ-et-5Nj"/>
@@ -77,8 +96,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="distanceLabel" destination="ygk-ED-9zH" id="kne-6d-Adl"/>
                         <outlet property="mapView" destination="fRO-8h-EFn" id="jmB-Xj-EOw"/>
                         <outlet property="startRouteButton" destination="7sh-LC-UAj" id="U2H-2u-Cog"/>
+                        <outlet property="timeIntervalLabel" destination="VC3-yS-PJA" id="dcy-Qu-jzL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qOp-Nz-Uhw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -90,6 +111,9 @@
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

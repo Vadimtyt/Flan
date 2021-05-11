@@ -18,10 +18,14 @@ class MapVC: UIViewController {
     var placeCoordinate: CLLocationCoordinate2D?
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var timeIntervalLabel: UILabel!
     @IBOutlet weak var startRouteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        distanceLabel.isHidden = true
+        timeIntervalLabel.isHidden = true
         
         mapView.delegate = self
         setupPlacemarkFor(bakery)
@@ -97,7 +101,6 @@ class MapVC: UIViewController {
         }
         
         locationManager.startUpdatingLocation()
-        //self.previousLocaion = CLLocation(latitude: location.latitude, longitude: location.longitude)
         
         guard let request = createDirectionRequest(from: location) else {
             shoowAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
@@ -123,14 +126,20 @@ class MapVC: UIViewController {
                 self?.mapView.addOverlay(route.polyline)
                 self?.mapView.setVisibleMapRect(route.polyline.boundingMapRect , animated: true)
                 
-                let distance = String(format: "%.1f", route.distance/1000)
+                let distance = String(Int(route.distance))
                 let timeInterval = Int(route.expectedTravelTime/60)
                 
-                print(distance, timeInterval)
+                self?.distanceLabel.text! += "\(distance)м. "
+                self?.timeIntervalLabel.text! += "\(timeInterval)мин. "
+                self?.distanceLabel.isHidden = false
+                self?.timeIntervalLabel.isHidden = false
+                
                 self?.startRouteButton.isHidden = true
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
                     self?.showUserLocation()
+                    self?.distanceLabel.isHidden = true
+                    self?.timeIntervalLabel.isHidden = true
                 }
             }
         }
