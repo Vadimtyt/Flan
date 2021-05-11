@@ -48,6 +48,21 @@ class MoreVC: UIViewController, BakeryCellDelegate {
         mapVC.bakery = bakeries[tag]
         self.present(mapVC, animated: true)
     }
+    
+    
+    @IBAction func instagramButtonPressed(_ sender: UIButton) {
+        let Username =  "pekarnya_flan" // Your Instagram Username here
+        let appURL = URL(string: "instagram://user?username=\(Username)")!
+        let application = UIApplication.shared
+
+        if application.canOpenURL(appURL) {
+            application.open(appURL)
+        } else {
+            // if Instagram app is not installed, open URL inside Safari
+            let webURL = URL(string: "https://instagram.com/\(Username)")!
+            application.open(webURL)
+        }
+    }
 }
 
 extension MoreVC: UITableViewDelegate, UITableViewDataSource {

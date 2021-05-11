@@ -60,7 +60,9 @@ class MapVC: UIViewController {
             setupLocationManager()
             checkLocationAuthorisation()
         } else {
-            turnOnLocationAlert(message: "Пожалуйста, перейдите в настройки и включите службы геолокации.")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.turnOnLocationAlert(message: "Пожалуйста, перейдите в настройки и включите службы геолокации.")
+            }
         }
     }
     func setupLocationManager() {
@@ -86,18 +88,6 @@ class MapVC: UIViewController {
         @unknown default:
             print("New case is available")
         }
-    }
-    
-    func showUserLocation() {
-        guard let location = locationManager.location?.coordinate else {
-            shoowAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
-            return
-        }
-        let region = MKCoordinateRegion(center: location,
-                                        latitudinalMeters: regionInMeters,
-                                        longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
-        
     }
         
     func getDirection() {
@@ -160,6 +150,20 @@ class MapVC: UIViewController {
         return request
     }
     
+    func showUserLocation() {
+        checkLocationAuthorisation()
+        guard let location = locationManager.location?.coordinate else {
+            shoowAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
+            print("kek")
+            return
+        }
+        let region = MKCoordinateRegion(center: location,
+                                        latitudinalMeters: regionInMeters,
+                                        longitudinalMeters: regionInMeters)
+        mapView.setRegion(region, animated: true)
+        
+    }
+    
     @IBAction func closeVC(_ sender: UIButton) {
         dismiss(animated: true)
     }
@@ -187,14 +191,6 @@ extension MapVC: MKMapViewDelegate {
         
         return annotationView
     }
-    
-//    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-//        if self.previousLocaion != nil {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-//                self?.showUserLocation()
-//            }
-//        }
-//    }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)

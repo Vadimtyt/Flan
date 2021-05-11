@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Приложению требуется геопозиция пользователя, чтобы показывать на карте текущее местоположение и прокладывать от него пеший маршрут.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleAllowMixedLocalizations</key>
