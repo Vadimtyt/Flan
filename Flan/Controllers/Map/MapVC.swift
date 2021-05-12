@@ -18,14 +18,12 @@ class MapVC: UIViewController {
     var placeCoordinate: CLLocationCoordinate2D?
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var timeIntervalLabel: UILabel!
+    @IBOutlet weak var distanceAndTimeLabel: UILabel!
     @IBOutlet weak var startRouteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        distanceLabel.isHidden = true
-        timeIntervalLabel.isHidden = true
+        distanceAndTimeLabel.isHidden = true
         
         mapView.delegate = self
         setupPlacemarkFor(bakery)
@@ -129,17 +127,16 @@ class MapVC: UIViewController {
                 let distance = String(Int(route.distance))
                 let timeInterval = Int(route.expectedTravelTime/60)
                 
-                self?.distanceLabel.text! += "\(distance)м. "
-                self?.timeIntervalLabel.text! += "\(timeInterval)мин. "
-                self?.distanceLabel.isHidden = false
-                self?.timeIntervalLabel.isHidden = false
+                self?.distanceAndTimeLabel.text! = " \(distance)м.\n"
+                self?.distanceAndTimeLabel.text! += " \(timeInterval)мин."
+                
+                self?.distanceAndTimeLabel.isHidden = false
                 
                 self?.startRouteButton.isHidden = true
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
                     self?.showUserLocation()
-                    self?.distanceLabel.isHidden = true
-                    self?.timeIntervalLabel.isHidden = true
+                    self?.distanceAndTimeLabel.isHidden = true
                 }
             }
         }
@@ -174,14 +171,17 @@ class MapVC: UIViewController {
     }
     
     @IBAction func closeVC(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.medium)
         dismiss(animated: true)
     }
     
     @IBAction func myPositionButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
         showUserLocation()
     }
     
     @IBAction func startRouteButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
         getDirection()
     }
     
