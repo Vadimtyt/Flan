@@ -94,14 +94,14 @@ class MapVC: UIViewController {
         
     func getDirection() {
         guard let location = locationManager.location?.coordinate else {
-            shoowAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
+            showAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
             return
         }
         
         locationManager.startUpdatingLocation()
         
         guard let request = createDirectionRequest(from: location) else {
-            shoowAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
+            showAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
             return
         }
         
@@ -111,12 +111,12 @@ class MapVC: UIViewController {
         direction.calculate { [weak self] (response, error) in
             if let error = error {
                 print(error)
-                self?.shoowAlert(title: "Ошибка", message: "Пешие маршруты недоступны")
+                self?.showAlert(title: "Ошибка", message: "Пешие маршруты недоступны")
                 return
             }
             
             guard let response = response else {
-                self?.shoowAlert(title: "Ошибка", message: "Не удалось получить маршрут")
+                self?.showAlert(title: "Ошибка", message: "Не удалось получить маршрут")
                 return
             }
             
@@ -159,7 +159,7 @@ class MapVC: UIViewController {
     func showUserLocation() {
         checkLocationAuthorisation()
         guard let location = locationManager.location?.coordinate else {
-            shoowAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
+            showAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
             print("kek")
             return
         }
@@ -235,7 +235,7 @@ extension MapVC {
         present(alert, animated: true)
     }
     
-    func shoowAlert(title: String, message: String) {
+    func showAlert(title: String, message: String) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 private let reuseIdentifier = "BakeryCell"
 
@@ -49,7 +50,6 @@ class MoreVC: UIViewController, BakeryCellDelegate {
         self.present(mapVC, animated: true)
     }
     
-    
     @IBAction func instagramButtonPressed(_ sender: UIButton) {
         let Username =  "pekarnya_flan" // Your Instagram Username here
         let appURL = URL(string: "instagram://user?username=\(Username)")!
@@ -62,6 +62,12 @@ class MoreVC: UIViewController, BakeryCellDelegate {
             let webURL = URL(string: "https://instagram.com/\(Username)")!
             application.open(webURL)
         }
+    }
+    
+    @IBAction func feedbackButtonPressed(_ sender: UIButton) {
+        sendEmail(subject: NSLocalizedString("Идея для приложения Флан", comment: ""),
+                  messageBody: NSLocalizedString("Напишите здесь Вашу идею или предложение по улучшению приложения Флан", comment: ""),
+                  to: "vadimtyt@mail.ru")
     }
 }
 
@@ -82,4 +88,38 @@ extension MoreVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+extension MoreVC: MFMailComposeViewControllerDelegate {
+    func sendEmail(subject: String, messageBody: String, to: String){
+        if !MFMailComposeViewController.canSendMail() {
+            self.showAlert(title: "Ошибка", message: "Не найден аккаунт почты")
+            return
+        }
+        
+        let picker = MFMailComposeViewController()
+        
+        picker.setSubject(subject)
+        picker.setMessageBody(messageBody, isHTML: true)
+        picker.setToRecipients([to])
+        picker.mailComposeDelegate = self
+        
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func showAlert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // OpenSettingsAction action
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(okAction)
+        
+        present(alert, animated: true)
+    }
 }

@@ -328,9 +328,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="426" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Erf-Y6-INI">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Erf-Y6-INI">
                                 <rect key="frame" x="0.0" y="88" width="426" height="1412"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BUD-JI-9wL">
                                         <rect key="frame" x="360" y="32" width="40" height="40"/>
@@ -365,11 +364,25 @@
                                         </prototypes>
                                         <sections/>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCh-uR-4eD" userLabel="Feedback">
+                                        <rect key="frame" x="29" y="592" width="368" height="30"/>
+                                        <color key="backgroundColor" red="0.8723436336" green="0.8723436336" blue="0.8723436336" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="O7m-eu-K61"/>
+                                        </constraints>
+                                        <state key="normal" title="Обратная связь"/>
+                                        <connections>
+                                            <action selector="feedbackButtonPressed:" destination="I8a-Tg-YTw" eventType="touchUpInside" id="MPk-PI-0IX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="k50-8S-ECi" firstAttribute="trailing" secondItem="zCh-uR-4eD" secondAttribute="trailing" constant="29" id="BKd-L1-j3a"/>
                                     <constraint firstItem="KCi-38-oeo" firstAttribute="top" secondItem="k50-8S-ECi" secondAttribute="top" constant="100" id="KeV-8G-bTD"/>
                                     <constraint firstItem="KCi-38-oeo" firstAttribute="trailing" secondItem="k50-8S-ECi" secondAttribute="trailing" id="T67-5Z-kG7"/>
+                                    <constraint firstItem="zCh-uR-4eD" firstAttribute="top" secondItem="k50-8S-ECi" secondAttribute="top" constant="592" id="YPz-D0-lKt"/>
                                     <constraint firstItem="KCi-38-oeo" firstAttribute="leading" secondItem="k50-8S-ECi" secondAttribute="leading" id="hcA-2f-u8W"/>
+                                    <constraint firstItem="zCh-uR-4eD" firstAttribute="leading" secondItem="k50-8S-ECi" secondAttribute="leading" constant="29" id="svr-32-pUR"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="dv8-RD-5rG"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="k50-8S-ECi"/>
@@ -377,6 +390,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d8u-xw-R0F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Erf-Y6-INI" firstAttribute="leading" secondItem="d8u-xw-R0F" secondAttribute="leading" id="AsK-CE-jXF"/>
+                            <constraint firstItem="Erf-Y6-INI" firstAttribute="trailing" secondItem="d8u-xw-R0F" secondAttribute="trailing" id="QuR-DQ-6dO"/>
+                            <constraint firstAttribute="bottom" secondItem="Erf-Y6-INI" secondAttribute="bottom" id="mcb-OB-C22"/>
+                            <constraint firstItem="Erf-Y6-INI" firstAttribute="top" secondItem="d8u-xw-R0F" secondAttribute="top" id="x27-JF-HZS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Еще" id="WAn-R4-OdS"/>
                     <size key="freeformSize" width="426" height="1500"/>
