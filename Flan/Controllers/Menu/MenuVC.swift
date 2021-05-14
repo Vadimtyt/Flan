@@ -57,20 +57,7 @@ class MenuVC: UITableViewController, MenuVCDelegate {
     }
     
     func updateListBadge() {
-        let items = ListOfMenuItems.shared.list
-        var sumCountOfItems = 0
-        
-        for item in items {
-            if item.count != 0 {
-                sumCountOfItems += item.count
-            }
-        }
-        
-        if sumCountOfItems != 0 {
-            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = "\(sumCountOfItems)"
-        } else if sumCountOfItems == 0 {
-            self.navigationController?.tabBarController?.tabBar.items?[indexOfListVC].badgeValue = nil
-        }
+        updateListBadge(with: indexOfListVC)
     }
 
     // MARK: - Table view data source
