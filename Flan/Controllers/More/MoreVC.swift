@@ -9,7 +9,6 @@ import UIKit
 import MessageUI
 
 private let reuseIdentifier = "BakeryCell"
-
 private let bakeries = [
     Bakery(name: "Флан на Новой", address: "ул.Дорожная, 5 к1", phone: "+7(989)248-14-14", openTime: 8, closeTime: 21),
     Bakery(name: "Флан на Отдельской", address: "ул.Отдельская 324/7", phone: "+7(988)135-07-07", openTime: 9, closeTime: 22),
@@ -18,7 +17,6 @@ private let bakeries = [
 ]
 
 class MoreVC: UIViewController, BakeryCellDelegate {
-    
     //var bakeries: [Bakery] = []
     let countOfbakeries = 4
     
@@ -72,7 +70,6 @@ class MoreVC: UIViewController, BakeryCellDelegate {
 }
 
 extension MoreVC: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countOfbakeries
     }
@@ -86,8 +83,6 @@ extension MoreVC: UITableViewDelegate, UITableViewDataSource {
  
         return cell
     }
-    
-    
 }
 
 extension MoreVC: MFMailComposeViewControllerDelegate {

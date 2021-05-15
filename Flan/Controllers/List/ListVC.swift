@@ -10,7 +10,6 @@ import UIKit
 private let reuseIdentifier = "ListCell"
 
 class ListVC: UIViewController {
-
     private let indexOfListVC = 2
     
     var items: [MenuItem] = ListOfMenuItems.shared.list
@@ -30,8 +29,6 @@ class ListVC: UIViewController {
         listTableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         
         changeTotalSumLabel()
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +57,6 @@ class ListVC: UIViewController {
     }
     
     private func setupGestures() {
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
         tapGesture.numberOfTapsRequired = 1
         infoButton.addGestureRecognizer(tapGesture)
@@ -85,7 +81,6 @@ class ListVC: UIViewController {
     }
     
     func clearListAlert() {
-        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Save action
@@ -115,7 +110,6 @@ class ListVC: UIViewController {
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
         self.present(activityVC, animated: true, completion: nil)
-                
     }
     
     @IBAction func clearListButtonPressed(_ sender: UIBarButtonItem) {
@@ -125,7 +119,6 @@ class ListVC: UIViewController {
             clearListAlert()
         }
     }
-    
 }
 
 extension ListVC: UITableViewDelegate, UITableViewDataSource {
@@ -143,8 +136,6 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
  
         return cell
     }
-    
-    
 }
 
 extension ListVC: updatingListCell {
@@ -158,12 +149,20 @@ extension ListVC: updatingListCell {
                 return
              }
         }
-        
         self.listTableView.reloadData()
     }
     
     func updateListBadge() {
-        updateListBadge(with: indexOfListVC)
+        let items = ListOfMenuItems.shared.list
+        var sumCountOfItems = 0
+        
+        for item in items {
+            if item.count != 0 {
+                sumCountOfItems += item.count
+            }
+        }
+        
+        updateListBadge(withIndesOfVC: indexOfListVC, and: sumCountOfItems)
     }
 }
 
