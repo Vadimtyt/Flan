@@ -47,8 +47,8 @@ class MenuVC: UITableViewController, MenuVCDelegate {
     }
     
     func configureNavigationBar() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         if #available(iOS 13.0, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
             let largeStyle = UINavigationBarAppearance()
             largeStyle.configureWithTransparentBackground()
             largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 42)]

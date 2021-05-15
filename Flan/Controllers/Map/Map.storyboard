@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -15,32 +15,39 @@
             <objects>
                 <viewController storyboardIdentifier="mapVC" id="kFa-Qo-8ns" customClass="MapVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qU2-0A-WvV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fRO-8h-EFn">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U45-oG-a0g" userLabel="Close">
-                                <rect key="frame" x="352" y="76" width="30" height="30"/>
+                                <rect key="frame" x="366" y="76" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1S5-rh-LNc"/>
                                     <constraint firstAttribute="width" constant="30" id="tvy-uC-t9o"/>
                                 </constraints>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <imageReference key="image" image="xmark" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </state>
+                                <state key="highlighted" title="X">
+                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="closeVC:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="Z4B-BN-Gx9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sh-LC-UAj" userLabel="Start route">
-                                <rect key="frame" x="199.5" y="773" width="15" height="22"/>
+                                <rect key="frame" x="206.66666666666666" y="803" width="15" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="PyI-01-o7B"/>
                                     <constraint firstAttribute="width" constant="15" id="hle-N7-5tn"/>
                                 </constraints>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Go">
+                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <imageReference key="image" image="chevron.right" catalog="system" symbolScale="large" renderingMode="original"/>
                                 </state>
                                 <connections>
@@ -48,12 +55,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgQ-z3-0MS" userLabel="My position">
-                                <rect key="frame" x="356" y="772" width="25" height="24"/>
+                                <rect key="frame" x="370" y="802" width="25" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="BWV-jF-Jd9"/>
                                     <constraint firstAttribute="height" constant="24" id="gIk-Xb-jQN"/>
                                 </constraints>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Me">
+                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <imageReference key="image" image="location.fill" catalog="system" symbolScale="large"/>
                                 </state>
                                 <connections>
@@ -61,7 +70,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Расстояние и время" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygk-ED-9zH" userLabel="Distance">
-                                <rect key="frame" x="124.5" y="675" width="165.5" height="50"/>
+                                <rect key="frame" x="131.33333333333331" y="705" width="165.33333333333331" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.31014114754277244" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="a7l-k4-R4v"/>
@@ -75,18 +84,18 @@
                         <viewLayoutGuide key="safeArea" id="6n8-cs-dZl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="fRO-8h-EFn" firstAttribute="trailing" secondItem="6n8-cs-dZl" secondAttribute="trailing" id="2HZ-zc-I6g"/>
                             <constraint firstItem="6n8-cs-dZl" firstAttribute="bottom" secondItem="ygk-ED-9zH" secondAttribute="bottom" constant="137" id="2XM-5H-Zqw"/>
                             <constraint firstItem="ygk-ED-9zH" firstAttribute="centerX" secondItem="fRO-8h-EFn" secondAttribute="centerX" id="4R4-RW-BJj"/>
-                            <constraint firstAttribute="bottom" secondItem="fRO-8h-EFn" secondAttribute="bottom" id="Aj3-WS-2Yf"/>
+                            <constraint firstAttribute="trailing" secondItem="fRO-8h-EFn" secondAttribute="trailing" id="PhV-Yh-1Ro"/>
                             <constraint firstItem="U45-oG-a0g" firstAttribute="top" secondItem="6n8-cs-dZl" secondAttribute="top" constant="32" id="QYb-pw-PFU"/>
-                            <constraint firstItem="fRO-8h-EFn" firstAttribute="leading" secondItem="6n8-cs-dZl" secondAttribute="leading" id="ZuS-ID-4yD"/>
+                            <constraint firstAttribute="bottom" secondItem="fRO-8h-EFn" secondAttribute="bottom" id="R2O-1z-RdK"/>
+                            <constraint firstItem="fRO-8h-EFn" firstAttribute="leading" secondItem="qU2-0A-WvV" secondAttribute="leading" id="Xsf-tv-ndN"/>
                             <constraint firstItem="6n8-cs-dZl" firstAttribute="bottom" secondItem="7sh-LC-UAj" secondAttribute="bottom" constant="67" id="bfw-qa-H3g"/>
                             <constraint firstItem="6n8-cs-dZl" firstAttribute="trailing" secondItem="EgQ-z3-0MS" secondAttribute="trailing" constant="33" id="chZ-et-5Nj"/>
                             <constraint firstItem="6n8-cs-dZl" firstAttribute="bottom" secondItem="EgQ-z3-0MS" secondAttribute="bottom" constant="66" id="hOA-Di-IaT"/>
                             <constraint firstItem="7sh-LC-UAj" firstAttribute="centerX" secondItem="fRO-8h-EFn" secondAttribute="centerX" id="iWU-zw-rwD"/>
+                            <constraint firstItem="fRO-8h-EFn" firstAttribute="top" secondItem="qU2-0A-WvV" secondAttribute="top" id="wb1-FQ-se3"/>
                             <constraint firstItem="6n8-cs-dZl" firstAttribute="trailing" secondItem="U45-oG-a0g" secondAttribute="trailing" constant="32" id="xPY-EB-sNi"/>
-                            <constraint firstItem="fRO-8h-EFn" firstAttribute="top" secondItem="qU2-0A-WvV" secondAttribute="top" id="ySl-PD-5fK"/>
                         </constraints>
                     </view>
                     <connections>

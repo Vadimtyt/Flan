@@ -210,14 +210,23 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KmW-UO-bgb" userLabel="Info Button">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KmW-UO-bgb" userLabel="Info Button">
                                                 <rect key="frame" x="88" y="17.666666666666629" width="22" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="4Un-Z6-e7K"/>
                                                     <constraint firstAttribute="width" constant="22" id="Xgi-Wj-mQv"/>
                                                 </constraints>
                                                 <color key="tintColor" systemColor="secondaryLabelColor"/>
-                                                <state key="normal" image="questionmark.circle" catalog="system"/>
+                                                <state key="normal" image="questionmark.circle" catalog="system">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="?">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="system" size="18"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -256,7 +265,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Список" id="hnL-e4-egq">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="ocd-JX-a3Y">
+                        <barButtonItem key="rightBarButtonItem" title="Очистить" image="trash" catalog="system" id="ocd-JX-a3Y">
                             <connections>
                                 <action selector="clearListButtonPressed:" destination="lGD-iN-1Wp" id="jRZ-PF-1Ct"/>
                             </connections>
