@@ -36,17 +36,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUH-LN-uJC">
                         <rect key="frame" x="121" y="67" width="293" height="46"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5O-Fl-vgw">
-                                <rect key="frame" x="0.0" y="0.0" width="89" height="38"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="beg-R8-RqF"/>
-                                    <constraint firstAttribute="width" constant="89" id="nvV-hC-Uhn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lr6-RC-BtM">
                                 <rect key="frame" x="193" y="8" width="30" height="30"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
@@ -54,6 +43,7 @@
                                     <constraint firstAttribute="width" constant="30" id="wnt-8h-Guc"/>
                                     <constraint firstAttribute="height" constant="30" id="y4y-My-9Bb"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                 <state key="normal" image="minus" catalog="system"/>
                                 <connections>
                                     <action selector="removeButtonPressed:" destination="rce-az-Obd" eventType="touchUpInside" id="puO-ae-tTB"/>
@@ -83,6 +73,17 @@
                                     <action selector="addButtonPressed:" destination="rce-az-Obd" eventType="touchUpInside" id="jce-ev-nLE"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5O-Fl-vgw">
+                                <rect key="frame" x="0.0" y="4" width="89" height="38"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="beg-R8-RqF"/>
+                                    <constraint firstAttribute="width" constant="89" id="nvV-hC-Uhn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -92,7 +93,7 @@
                             <constraint firstAttribute="bottom" secondItem="lr6-RC-BtM" secondAttribute="bottom" constant="8" id="P9I-Ri-P2b"/>
                             <constraint firstAttribute="bottom" secondItem="7Kc-R3-zwe" secondAttribute="bottom" constant="8" id="dII-IU-sxY"/>
                             <constraint firstAttribute="height" constant="46" id="esA-cU-soQ"/>
-                            <constraint firstItem="a5O-Fl-vgw" firstAttribute="top" secondItem="AUH-LN-uJC" secondAttribute="top" id="f3q-vn-1oE"/>
+                            <constraint firstItem="a5O-Fl-vgw" firstAttribute="top" secondItem="AUH-LN-uJC" secondAttribute="top" constant="4" id="f3q-vn-1oE"/>
                             <constraint firstAttribute="trailing" secondItem="lr6-RC-BtM" secondAttribute="trailing" constant="70" id="kTH-kM-fYe"/>
                             <constraint firstAttribute="trailing" secondItem="fhZ-0q-zkj" secondAttribute="trailing" constant="38" id="li3-Ng-agR"/>
                         </constraints>

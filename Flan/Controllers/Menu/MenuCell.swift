@@ -17,7 +17,6 @@ protocol FavoriteVCDelegate: class {
 }
 
 class MenuCell: UITableViewCell {
-    
     let indexOfListVC = 2
     
     weak var MenuVCDelegate: MenuVCDelegate?

@@ -10,7 +10,6 @@ import MapKit
 import CoreLocation
 
 class MapVC: UIViewController {
-
     var bakery: Bakery!
     let annotationID = "annotationID"
     let locationManager = CLLocationManager()
@@ -67,6 +66,7 @@ class MapVC: UIViewController {
             }
         }
     }
+    
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -104,7 +104,6 @@ class MapVC: UIViewController {
             showAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
             return
         }
-        
         
         let direction = MKDirections(request: request)
         
@@ -167,7 +166,6 @@ class MapVC: UIViewController {
                                         latitudinalMeters: regionInMeters,
                                         longitudinalMeters: regionInMeters)
         mapView.setRegion(region, animated: true)
-        
     }
     
     @IBAction func closeVC(_ sender: UIButton) {
@@ -197,7 +195,6 @@ extension MapVC: MKMapViewDelegate {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotationID)
             annotationView?.canShowCallout = true
         }
-        
         return annotationView
     }
     
@@ -231,12 +228,10 @@ extension MapVC {
         alert.addAction(cancelAction)
         alert.addAction(openSettingsAction)
         
-        
         present(alert, animated: true)
     }
     
     func showAlert(title: String, message: String) {
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         // OpenSettingsAction action

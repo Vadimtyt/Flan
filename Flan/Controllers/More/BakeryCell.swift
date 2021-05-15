@@ -10,11 +10,9 @@ import UIKit
 protocol BakeryCellDelegate: class {
     func callPhone(with tag: Int)
     func openMap(with tag: Int)
-    
 }
 
 class BakeryCell: UITableViewCell {
-
     static let reuseId = "BakeryCell"
     weak var bakeryCellDelegate: BakeryCellDelegate?
     
@@ -46,6 +44,4 @@ class BakeryCell: UITableViewCell {
         TapticFeedback.shared.tapticFeedback(.light)
         bakeryCellDelegate?.openMap(with: tag)
     }
-    
-    
 }
