@@ -72,7 +72,7 @@ class MenuVC: UITableViewController {
         } else { item = items[indexPath.row] }
         
         cell.configureCell(with: item)
-        cell.MenuVCDelegate = self
+        cell.UpdateCellDelegate = self
  
         return cell
     }
@@ -107,9 +107,13 @@ extension MenuVC: UISearchResultsUpdating {
     }
 }
 
-extension MenuVC: MenuVCDelegate {
-    func updateListBadge() {
+extension MenuVC: UpdateCellDelegate {
+    func updateListVCBadge() {
         let badgeValue = ListOfMenuItems.shared.getValueForListBadge()
         updateListVCBadge(with: badgeValue)
+    }
+    
+    func updateFavorites() {
+        ListOfMenuItems.shared.updateFavorites()
     }
 }

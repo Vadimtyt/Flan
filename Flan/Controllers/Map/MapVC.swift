@@ -46,11 +46,14 @@ class MapVC: UIViewController {
     
     @IBAction func startRouteButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
-        mapManager.getDirection(mapView: mapView, distanceAndTimeLabel: distanceAndTimeLabel, startRouteButton: startRouteButton)
+        mapManager.getDirection(mapView: mapView, distanceAndTimeLabel: distanceAndTimeLabel)
+        
+        startRouteButton.isHidden = true
+        distanceAndTimeLabel.isHidden = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.mapManager.showUserLocation(mapView: (self?.mapView)!)
             self?.distanceAndTimeLabel.isHidden = true
+            self?.mapManager.showUserLocation(mapView: (self?.mapView)!)
         }
     }
     

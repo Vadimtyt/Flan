@@ -22,7 +22,8 @@ class FavoriteVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateFavoriteVC()
+        items = ListOfMenuItems.shared.favorites
+        self.tableView.reloadData()
     }
     
     func configureNavigationBar() {
@@ -46,19 +47,19 @@ class FavoriteVC: UITableViewController {
  
         let item = items[indexPath.row]
         cell.configureCell(with: item)
-        cell.FavoriteVCDelegate = self
+        cell.UpdateCellDelegate = self
  
         return cell
     }
 }
 
-extension FavoriteVC: FavoriteVCDelegate {
-    func updateListBadge() {
+extension FavoriteVC: UpdateCellDelegate {
+    func updateListVCBadge() {
         let badgeValue = ListOfMenuItems.shared.getValueForListBadge()
         updateListVCBadge(with: badgeValue)
     }
     
-    func updateFavoriteVC() {
+    func updateFavorites() {
         items = ListOfMenuItems.shared.favorites
         for index in 0..<items.count {
             if items[index].isFavorite == false {

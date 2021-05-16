@@ -7,20 +7,15 @@
 
 import UIKit
 
-protocol MenuVCDelegate: class {
-    func updateListBadge()
-}
-
-protocol FavoriteVCDelegate: class {
-    func updateListBadge()
-    func updateFavoriteVC()
+protocol UpdateCellDelegate: class {
+    func updateListVCBadge()
+    func updateFavorites()
 }
 
 class MenuCell: UITableViewCell {
     let indexOfListVC = 2
     
-    weak var MenuVCDelegate: MenuVCDelegate?
-    weak var FavoriteVCDelegate: FavoriteVCDelegate?
+    weak var UpdateCellDelegate: UpdateCellDelegate?
     
     static let reuseId = "MenuCell"
     var item: MenuItem = MenuItem(name: "Имя", price: 0)
@@ -61,16 +56,6 @@ class MenuCell: UITableViewCell {
         } else { favoriteButton.setImage(UIImage(named: "addToFavorite"), for: .normal) }
     }
     
-    func updateListVCBadge() {
-        MenuVCDelegate?.updateListBadge()
-        FavoriteVCDelegate?.updateListBadge()
-    }
-    
-    func updateFavoriteVC() {
-        FavoriteVCDelegate?.updateListBadge()
-        FavoriteVCDelegate?.updateFavoriteVC()
-    }
-    
     @IBAction func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
@@ -88,7 +73,7 @@ class MenuCell: UITableViewCell {
             countItemLabel.text = "\(self.item.count)"
         } else { print("ошибка в countItemsLabel") }
         
-        updateListVCBadge()
+        UpdateCellDelegate?.updateListVCBadge()
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
@@ -108,7 +93,7 @@ class MenuCell: UITableViewCell {
             countItemLabel.text = "\(self.item.count)"
         } else { print("ошибка в countItemsLabel") }
         
-        updateListVCBadge()
+        UpdateCellDelegate?.updateListVCBadge()
     }
 
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
@@ -117,17 +102,10 @@ class MenuCell: UITableViewCell {
         item.isFavorite = !item.isFavorite
         
         if item.isFavorite == true {
-            ListOfMenuItems.shared.updateFavorites()
-        } else {
-            if FavoriteVCDelegate == nil { ListOfMenuItems.shared.updateFavorites() }
-        }
-        
-        
-        if item.isFavorite == true {
             favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
         } else { favoriteButton.setImage(UIImage(named: "addToFavorite"), for: .normal) }
         
-        updateFavoriteVC()
+        UpdateCellDelegate?.updateFavorites()
     }
 }
 
