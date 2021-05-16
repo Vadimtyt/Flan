@@ -8,20 +8,13 @@
 import UIKit
 
 extension UIViewController {
-    func updateListBadge(withIndesOfVC index: Int, and badgeValue: Int) {
-        let items = ListOfMenuItems.shared.list
-        var sumCountOfItems = 0
-        
-        for item in items {
-            if item.count != 0 {
-                sumCountOfItems += item.count
-            }
-        }
-        
-        if sumCountOfItems != 0 {
-            self.navigationController?.tabBarController?.tabBar.items?[index].badgeValue = "\(sumCountOfItems)"
-        } else if sumCountOfItems == 0 {
-            self.navigationController?.tabBarController?.tabBar.items?[index].badgeValue = nil
+    static let indexOfListVC = 2
+    
+    func updateListVCBadge(with value: Int) {
+        if value != 0 {
+            self.navigationController?.tabBarController?.tabBar.items?[UIViewController.indexOfListVC].badgeValue = "\(value)"
+        } else if value == 0 {
+            self.navigationController?.tabBarController?.tabBar.items?[UIViewController.indexOfListVC].badgeValue = nil
         }
     }
 }

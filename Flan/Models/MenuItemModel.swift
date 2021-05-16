@@ -44,4 +44,15 @@ class ListOfMenuItems {
             }
         }
     }
+    
+    func getValueForListBadge() -> Int {
+        var sumCountOfItems = 0
+        
+        for item in list {
+            if item.count != 0 {
+                sumCountOfItems += item.count
+            }
+        }
+        return sumCountOfItems
+    }
 }

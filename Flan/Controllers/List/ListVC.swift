@@ -153,16 +153,8 @@ extension ListVC: updatingListCell {
     }
     
     func updateListBadge() {
-        let items = ListOfMenuItems.shared.list
-        var sumCountOfItems = 0
-        
-        for item in items {
-            if item.count != 0 {
-                sumCountOfItems += item.count
-            }
-        }
-        
-        updateListBadge(withIndesOfVC: indexOfListVC, and: sumCountOfItems)
+        let badgeValue = ListOfMenuItems.shared.getValueForListBadge()
+        updateListVCBadge(with: badgeValue)
     }
 }
 

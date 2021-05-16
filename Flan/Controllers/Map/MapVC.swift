@@ -7,14 +7,12 @@
 
 import UIKit
 import MapKit
-import CoreLocation
 
 class MapVC: UIViewController {
+    let mapManager = MapManager()
+    
     var bakery: Bakery!
     let annotationID = "annotationID"
-    let locationManager = CLLocationManager()
-    let regionInMeters = 500.0
-    var placeCoordinate: CLLocationCoordinate2D?
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var distanceAndTimeLabel: UILabel!
@@ -25,147 +23,15 @@ class MapVC: UIViewController {
         distanceAndTimeLabel.isHidden = true
         
         mapView.delegate = self
-        setupPlacemarkFor(bakery)
-        checkLocationServesieces()
+        setupMapView()
     }
     
-    func setupPlacemarkFor(_ bakery: Bakery) {
-        let address = bakery.address
-        
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString("Москва, " + address) { [weak self, weak bakery] (placemarks, error) in
-            
-            if let error = error {
-                print(error)
-                return
-            }
-            
-            guard let placemarks = placemarks else { return }
-            let placemark = placemarks.first
-            
-            let annotation = MKPointAnnotation()
-            annotation.title = bakery?.name
-            annotation.subtitle = bakery?.address
-            
-            guard let placemarkLocation = placemark?.location else { return }
-            annotation.coordinate = placemarkLocation.coordinate
-            self?.placeCoordinate = placemarkLocation.coordinate
-            
-            self?.mapView.showAnnotations([annotation], animated: true)
-            self?.mapView.selectAnnotation(annotation, animated: true)
-        }
-    }
-    
-    func checkLocationServesieces() {
-        if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
-            checkLocationAuthorisation()
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-                self?.turnOnLocationAlert(message: "Пожалуйста, перейдите в настройки и включите службы геолокации.")
-            }
-        }
-    }
-    
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
-    func checkLocationAuthorisation() {
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-            break
-        case .denied:
-            turnOnLocationAlert(message: "Пожалуйста, перейдите в настройки и разрешите приложению определять ваше местоположение.")
-            break
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            turnOnLocationAlert(message: "Пожалуйста, перейдите в настройки и разрешите приложению определять ваше местоположение.")
-            break
-        case .authorizedAlways:
-            break
-        @unknown default:
-            print("New case is available")
-        }
-    }
-        
-    func getDirection() {
-        guard let location = locationManager.location?.coordinate else {
-            showAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
-            return
+    private func setupMapView() {
+        mapManager.checkLocationServesieces(mapView: mapView) {
+            mapManager.locationManager.delegate = self
         }
         
-        locationManager.startUpdatingLocation()
-        
-        guard let request = createDirectionRequest(from: location) else {
-            showAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
-            return
-        }
-        
-        let direction = MKDirections(request: request)
-        
-        direction.calculate { [weak self] (response, error) in
-            if let error = error {
-                print(error)
-                self?.showAlert(title: "Ошибка", message: "Пешие маршруты недоступны")
-                return
-            }
-            
-            guard let response = response else {
-                self?.showAlert(title: "Ошибка", message: "Не удалось получить маршрут")
-                return
-            }
-            
-            for route in response.routes {
-                self?.mapView.addOverlay(route.polyline)
-                self?.mapView.setVisibleMapRect(route.polyline.boundingMapRect , animated: true)
-                
-                let distance = String(Int(route.distance))
-                let timeInterval = Int(route.expectedTravelTime/60)
-                
-                self?.distanceAndTimeLabel.text! = " \(distance)м.\n"
-                self?.distanceAndTimeLabel.text! += " \(timeInterval)мин."
-                
-                self?.distanceAndTimeLabel.isHidden = false
-                
-                self?.startRouteButton.isHidden = true
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-                    self?.showUserLocation()
-                    self?.distanceAndTimeLabel.isHidden = true
-                }
-            }
-        }
-    }
-    
-    func createDirectionRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
-        guard let destinationCoordinate = self.placeCoordinate else { return nil }
-        let startingLocation = MKPlacemark(coordinate: coordinate)
-        let destination = MKPlacemark(coordinate: destinationCoordinate)
-        
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: startingLocation)
-        request.destination = MKMapItem(placemark: destination)
-        request.transportType = .walking
-        request.requestsAlternateRoutes = false
-        
-        return request
-    }
-    
-    func showUserLocation() {
-        checkLocationAuthorisation()
-        guard let location = locationManager.location?.coordinate else {
-            showAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
-            print("kek")
-            return
-        }
-        let region = MKCoordinateRegion(center: location,
-                                        latitudinalMeters: regionInMeters,
-                                        longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
+        mapManager.setupPlacemarkFor(bakery, on: mapView)
     }
     
     @IBAction func closeVC(_ sender: UIButton) {
@@ -175,12 +41,17 @@ class MapVC: UIViewController {
     
     @IBAction func myPositionButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
-        showUserLocation()
+        mapManager.showUserLocation(mapView: mapView)
     }
     
     @IBAction func startRouteButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
-        getDirection()
+        mapManager.getDirection(mapView: mapView, distanceAndTimeLabel: distanceAndTimeLabel, startRouteButton: startRouteButton)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.mapManager.showUserLocation(mapView: (self?.mapView)!)
+            self?.distanceAndTimeLabel.isHidden = true
+        }
     }
     
 }
@@ -208,38 +79,9 @@ extension MapVC: MKMapViewDelegate {
 
 extension MapVC: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAuthorisation()
+        mapManager.checkLocationAuthorisation(mapView: mapView)
     }
 }
 
-extension MapVC {
-    func turnOnLocationAlert(message: String) {
-        let title = "Службы геолокации недоступны"
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        // OpenSettingsAction action
-        let openSettingsAction = UIAlertAction(title: "Настройки", style: .default) {  _ in
-            UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
-        }
-        
-        // Cancel action
-        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
-        alert.addAction(cancelAction)
-        alert.addAction(openSettingsAction)
-        
-        present(alert, animated: true)
-    }
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        // OpenSettingsAction action
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        
-        alert.addAction(okAction)
-        
-        present(alert, animated: true)
-    }
-}
+
 
