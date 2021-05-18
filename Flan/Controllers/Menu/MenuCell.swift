@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol UpdateCellDelegate: class {
+protocol UpdatingMenuCellDelegate: class {
     func updateListVCBadge()
     func updateFavorites()
 }
@@ -15,7 +15,7 @@ protocol UpdateCellDelegate: class {
 class MenuCell: UITableViewCell {
     let indexOfListVC = 2
     
-    weak var UpdateCellDelegate: UpdateCellDelegate?
+    weak var UpdateCellDelegate: UpdatingMenuCellDelegate?
     
     static let reuseId = "MenuCell"
     var item: MenuItem = MenuItem(name: "Имя", price: 0)

@@ -107,7 +107,7 @@ extension MenuVC: UISearchResultsUpdating {
     }
 }
 
-extension MenuVC: UpdateCellDelegate {
+extension MenuVC: UpdatingMenuCellDelegate {
     func updateListVCBadge() {
         let badgeValue = ListOfMenuItems.shared.getValueForListBadge()
         updateListVCBadge(with: badgeValue)

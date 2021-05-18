@@ -138,7 +138,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ListVC: updatingListCell {
+extension ListVC: UpdatingListCellDelegate {
     func updateList() {
         items = ListOfMenuItems.shared.list
         for index in 0..<items.count {

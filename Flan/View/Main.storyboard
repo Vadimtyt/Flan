@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xye-eS-imu">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -14,15 +14,15 @@
             <objects>
                 <tableViewController id="KPW-bh-96E" customClass="FavoriteVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CCn-O1-cKW">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" rowHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
-                                <rect key="frame" x="0.0" y="28" width="428" height="150"/>
+                                <rect key="frame" x="0.0" y="28" width="390" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgp-7z-N4S" id="DIj-3k-2gD" customClass="UITextView">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.and.arrow.down.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4Kz-Uh-XEu">
@@ -99,7 +99,7 @@
                 <navigationController id="E9S-NS-A2X" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Избранное" image="heart.fill" catalog="system" id="VLv-jL-gOa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ilm-8K-hqE">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -135,15 +135,15 @@
             <objects>
                 <tableViewController id="htg-z2-5ok" customClass="MenuVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ypg-pV-nLS">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="WHn-3N-e0f" customClass="MenuCell" customModule="Flan" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="428" height="150"/>
+                                <rect key="frame" x="0.0" y="28" width="390" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WHn-3N-e0f" id="7L6-D7-Rwb">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="MenuCell"/>
@@ -165,21 +165,21 @@
             <objects>
                 <viewController id="lGD-iN-1Wp" customClass="ListVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wLg-Vx-zOm">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OuG-re-Ssq">
-                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="113" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LY4-ab-atz">
-                                        <rect key="frame" x="0.0" y="0.0" width="428" height="698"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="616"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" id="7D0-F5-ssI" customClass="ListCell" customModule="Flan" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="428" height="113"/>
+                                                <rect key="frame" x="0.0" y="28" width="390" height="113"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7D0-F5-ssI" id="KUl-Od-tGs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="428" height="113"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="113"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                                 <accessibility key="accessibilityConfiguration" identifier="ListCell"/>
@@ -187,10 +187,10 @@
                                         </prototypes>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pbh-2A-KDQ">
-                                        <rect key="frame" x="0.0" y="698" width="428" height="57"/>
+                                        <rect key="frame" x="0.0" y="616" width="390" height="57"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YQ-X3-vfD">
-                                                <rect key="frame" x="269" y="8" width="151" height="41"/>
+                                                <rect key="frame" x="231" y="8" width="151" height="41"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="151" id="3TU-Ax-Wqm"/>
                                                     <constraint firstAttribute="height" constant="41" id="Qzb-ZN-qYk"/>
@@ -318,7 +318,7 @@
                 <navigationController id="nix-vX-Zqu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Еще" image="info.circle" catalog="system" id="123-K8-dgF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Q6-8e-bax">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -414,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKa-xR-ig2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1713.0841121495325" y="1478.6177105831534"/>
+            <point key="canvasLocation" x="1646" y="1526"/>
         </scene>
         <!--Список-->
         <scene sceneID="8aj-5r-sBg">
@@ -422,7 +422,7 @@
                 <navigationController id="Ye6-XQ-66q" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Список" image="list.number" catalog="system" id="aUk-rS-C4X"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hUA-Pz-thO">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -439,7 +439,7 @@
                 <navigationController id="VLd-vW-yxZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Меню" image="filemenu.and.selection" catalog="system" id="RHJ-lq-8AD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XGp-pN-Drt">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

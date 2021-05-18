@@ -53,7 +53,7 @@ class FavoriteVC: UITableViewController {
     }
 }
 
-extension FavoriteVC: UpdateCellDelegate {
+extension FavoriteVC: UpdatingMenuCellDelegate {
     func updateListVCBadge() {
         let badgeValue = ListOfMenuItems.shared.getValueForListBadge()
         updateListVCBadge(with: badgeValue)

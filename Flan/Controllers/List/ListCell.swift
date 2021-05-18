@@ -3,17 +3,17 @@
 //  Flan
 //
 //  Created by Вадим on 07.04.2021.
-//1
+//
 
 import UIKit
 
-protocol updatingListCell: class {
+protocol UpdatingListCellDelegate: class {
     func updateList()
     func updateListBadge()
 }
 
 class ListCell: UITableViewCell {
-    weak var listDelegate: updatingListCell?
+    weak var listDelegate: UpdatingListCellDelegate?
     
     static let reuseId = "ListCell"
     var item: MenuItem = MenuItem(name: "Имя", price: 0)
