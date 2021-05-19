@@ -10,8 +10,6 @@ import UIKit
 private let reuseIdentifier = "MenuCell"
 
 class FavoriteVC: UITableViewController {
-    private let indexOfListVC = 2
-    
     var items: [MenuItem] = ListOfMenuItems.shared.favorites
 
     override func viewDidLoad() {

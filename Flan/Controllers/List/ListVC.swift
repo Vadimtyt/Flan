@@ -10,8 +10,6 @@ import UIKit
 private let reuseIdentifier = "ListCell"
 
 class ListVC: UIViewController {
-    private let indexOfListVC = 2
-    
     var items: [MenuItem] = ListOfMenuItems.shared.list
     
     @IBOutlet weak var listTableView: UITableView!

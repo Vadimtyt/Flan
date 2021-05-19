@@ -27,7 +27,7 @@ class MapVC: UIViewController {
     }
     
     private func setupMapView() {
-        mapManager.checkLocationServesieces(mapView: mapView) {
+        mapManager.checkLocationServices(mapView: mapView) {
             mapManager.locationManager.delegate = self
         }
         

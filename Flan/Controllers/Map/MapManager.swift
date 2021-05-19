@@ -41,7 +41,7 @@ class MapManager {
         }
     }
     
-    func checkLocationServesieces(mapView: MKMapView, closure: ()->()) {
+    func checkLocationServices(mapView: MKMapView, closure: ()->()) {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             checkLocationAuthorisation(mapView: mapView)

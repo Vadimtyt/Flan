@@ -12,7 +12,6 @@ private let reuseIdentifier = "MenuCell"
 class MenuVC: UITableViewController {
     let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
     
-    private let indexOfListVC = 2
     var items: [MenuItem] = ListOfMenuItems.shared.items
     
     let searchController = UISearchController(searchResultsController: nil)
