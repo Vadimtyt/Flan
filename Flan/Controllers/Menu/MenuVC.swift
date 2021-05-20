@@ -30,12 +30,7 @@ class MenuVC: UITableViewController {
         ListOfMenuItems.shared.items = generateItems(count: Int.random(in: 5...20))
         items = ListOfMenuItems.shared.items
         
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Поиск"
-        navigationItem.searchController = searchController
-        definesPresentationContext = false
-        
+        configureSearchController()
         configureNavigationBar()
     }
     
@@ -51,6 +46,17 @@ class MenuVC: UITableViewController {
             largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 42)]
             self.navigationController?.navigationBar.scrollEdgeAppearance = largeStyle
         }
+    }
+    
+    func configureSearchController() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MenuVC.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = searchController
+        definesPresentationContext = false
     }
 
     // MARK: - Table view data source
@@ -103,6 +109,10 @@ extension MenuVC: UISearchResultsUpdating {
         })
         
         tableView.reloadData()
+    }
+    
+    @objc func dismissKeyboard() {
+        self.searchController.searchBar.endEditing(true)
     }
 }
 
