@@ -27,6 +27,7 @@ class ListVC: UIViewController {
         listTableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         
         changeTotalSumLabel()
+        listTableView.showsVerticalScrollIndicator = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

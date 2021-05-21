@@ -14,9 +14,10 @@ class FavoriteVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-        
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
+        
+        configureNavigationBar()
+        tableView.showsVerticalScrollIndicator = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

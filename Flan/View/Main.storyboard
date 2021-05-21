@@ -287,7 +287,7 @@
         <scene sceneID="rOC-oe-Xu2">
             <objects>
                 <navigationController id="HfP-JA-bO7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Заказные" id="DjM-6Q-ibA"/>
+                    <tabBarItem key="tabBarItem" title="Заказные" image="sparkles" catalog="system" id="DjM-6Q-ibA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HDO-wV-ilI">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -303,7 +303,7 @@
         <!--Заказные-->
         <scene sceneID="hT8-er-Bkb">
             <objects>
-                <collectionViewController id="dGh-WF-tpX" sceneMemberID="viewController">
+                <collectionViewController id="dGh-WF-tpX" customClass="CustomizedCVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Mt6-mZ-REF">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -315,13 +315,22 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cqD-TH-0oC">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customizedCell" id="cqD-TH-0oC" customClass="CustomizedCell" customModule="Flan" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CPd-uE-FTr">
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="КексКвадрат" translatesAutoresizingMaskIntoConstraints="NO" id="vOK-Pe-TUm">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                    </subviews>
                                 </collectionViewCellContentView>
+                                <connections>
+                                    <outlet property="cakeImage" destination="vOK-Pe-TUm" id="ha6-7Z-4ik"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -333,7 +342,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laM-pa-Syb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1763" y="1293"/>
+            <point key="canvasLocation" x="1761.5384615384614" y="1291.7061611374406"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="b3b-6t-gsZ">
@@ -514,8 +523,10 @@
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="questionmark.circle" catalog="system" width="128" height="121"/>
+        <image name="sparkles" catalog="system" width="112" height="128"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
         <image name="trash" catalog="system" width="121" height="128"/>
+        <image name="КексКвадрат" width="1160" height="1160"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ISY-UO-iD6">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Customized DetailVC-->
+        <scene sceneID="R4D-rh-ofS">
+            <objects>
+                <viewController storyboardIdentifier="customizedDetail" id="ISY-UO-iD6" customClass="CustomizedDetailVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zfE-OD-Ad6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PJl-sV-gKg" userLabel="Cake Image">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PJl-sV-gKg" secondAttribute="height" multiplier="1:1" id="BZ4-SY-yz0"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2o-qh-l2W" userLabel="Numbel Label">
+                                <rect key="frame" x="196.5" y="430" width="21" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="FfF-9J-eX1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HbS-lk-X07"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PJl-sV-gKg" firstAttribute="trailing" secondItem="HbS-lk-X07" secondAttribute="trailing" id="9bL-ci-YPT"/>
+                            <constraint firstItem="O2o-qh-l2W" firstAttribute="centerX" secondItem="HbS-lk-X07" secondAttribute="centerX" id="BHw-Hp-daR"/>
+                            <constraint firstItem="PJl-sV-gKg" firstAttribute="top" secondItem="zfE-OD-Ad6" secondAttribute="top" id="Uy1-SL-uDG"/>
+                            <constraint firstItem="O2o-qh-l2W" firstAttribute="top" secondItem="PJl-sV-gKg" secondAttribute="bottom" constant="16" id="ZNg-BL-4UL"/>
+                            <constraint firstItem="PJl-sV-gKg" firstAttribute="leading" secondItem="HbS-lk-X07" secondAttribute="leading" id="ivO-H5-L7C"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cakeImage" destination="PJl-sV-gKg" id="n3P-NW-6ht"/>
+                        <outlet property="cakeNumberLabel" destination="O2o-qh-l2W" id="ycw-5e-CyG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UHS-iY-2xz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-823.1884057971015" y="-42.1875"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

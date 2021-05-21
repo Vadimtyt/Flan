@@ -32,6 +32,7 @@ class MenuVC: UITableViewController {
         
         configureSearchController()
         configureNavigationBar()
+        tableView.showsVerticalScrollIndicator = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

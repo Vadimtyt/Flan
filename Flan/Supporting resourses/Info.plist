@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Приложению требуется разрешение на сохранение фото в галерею.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Приложению требуется геопозиция пользователя, чтобы показывать на карте текущее местоположение и прокладывать от него пеший маршрут.</string>
 	<key>CFBundleDevelopmentRegion</key>
