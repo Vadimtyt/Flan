@@ -16,7 +16,7 @@ private let bakeries = [
     Bakery(name: "Флан на Лермонтова", address: "ул.Лермонтова, 216Г", phone: "+7(988)316-21-21", openTime: 8, closeTime: 21)
 ]
 
-class MoreVC: UIViewController, BakeryCellDelegate {
+class MoreVC: UIViewController {
     //var bakeries: [Bakery] = []
     let countOfbakeries = 4
     
@@ -28,24 +28,6 @@ class MoreVC: UIViewController, BakeryCellDelegate {
         bakeriesTableView.isScrollEnabled = false
         
         bakeriesTableView.register(UINib(nibName: "BakeryCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
-    }
-    
-    func callPhone(with tag: Int) {
-        let phoneNumber = bakeries[tag].phone
-        if let phoneCallURL = URL(string: "tel://" + phoneNumber) {
-            let application:UIApplication = UIApplication.shared
-            if (application.canOpenURL(phoneCallURL)) {
-                application.open(phoneCallURL, options: [:], completionHandler: nil)
-            }
-        }
-    }
-    
-    func openMap(with tag: Int) {
-        let storyboard = UIStoryboard(name: "Map", bundle: nil)
-        
-        guard let mapVC = storyboard.instantiateViewController(withIdentifier: "mapVC") as? MapVC else { return }
-        mapVC.bakery = bakeries[tag]
-        self.present(mapVC, animated: true)
     }
     
     @IBAction func instagramButtonPressed(_ sender: UIButton) {
@@ -85,10 +67,30 @@ extension MoreVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension MoreVC: BakeryCellDelegate {
+    func callPhone(with tag: Int) {
+        let phoneNumber = bakeries[tag].phone
+        if let phoneCallURL = URL(string: "tel://" + phoneNumber) {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    func openMap(with tag: Int) {
+        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+        
+        guard let mapVC = storyboard.instantiateViewController(withIdentifier: "mapVC") as? MapVC else { return }
+        mapVC.bakery = bakeries[tag]
+        self.present(mapVC, animated: true)
+    }
+}
+
 extension MoreVC: MFMailComposeViewControllerDelegate {
     func sendEmail(subject: String, messageBody: String, to: String){
         if !MFMailComposeViewController.canSendMail() {
-            self.showAlert(title: "Ошибка", message: "Не найден аккаунт почты")
+            self.showAlert(title: "Ошибка", message: "Не найден аккаунт вашей почты")
             return
         }
         

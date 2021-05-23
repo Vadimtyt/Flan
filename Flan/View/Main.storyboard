@@ -419,87 +419,108 @@
             <objects>
                 <viewController id="I8a-Tg-YTw" customClass="MoreVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BzQ-kP-MuA">
-                        <rect key="frame" x="0.0" y="0.0" width="426" height="1500"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="770"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Erf-Y6-INI">
-                                <rect key="frame" x="0.0" y="88" width="426" height="1412"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="jii-Ss-PFR">
+                                <rect key="frame" x="0.0" y="88" width="390" height="633"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BUD-JI-9wL">
-                                        <rect key="frame" x="360" y="32" width="40" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="instaIcon"/>
-                                        <connections>
-                                            <action selector="instagramButtonPressed:" destination="I8a-Tg-YTw" eventType="touchUpInside" id="Roj-6i-nDT"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Пекарни" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khW-Ip-Xpz">
-                                        <rect key="frame" x="50" y="31" width="119" height="42"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KCi-38-oeo" userLabel="Bakeries Table View">
-                                        <rect key="frame" x="0.0" y="100" width="426" height="464"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-is-DzV">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="633"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пекарни" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khW-Ip-Xpz">
+                                                <rect key="frame" x="24.000000000000007" y="24" width="110.66666666666669" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="O0D-Mx-0zN"/>
+                                                    <constraint firstAttribute="width" constant="110.67" id="lXe-c2-n0E"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BUD-JI-9wL">
+                                                <rect key="frame" x="323" y="20" width="40" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="instaIcon"/>
+                                                <connections>
+                                                    <action selector="instagramButtonPressed:" destination="I8a-Tg-YTw" eventType="touchUpInside" id="Roj-6i-nDT"/>
+                                                </connections>
+                                            </button>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KCi-38-oeo" userLabel="Bakeries Table View">
+                                                <rect key="frame" x="0.0" y="80" width="390" height="464"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="464" id="2t6-pB-zjn"/>
+                                                </constraints>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BakeryCell" id="hnU-bU-oq0" customClass="BakeryCell" customModule="Flan" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="390" height="116"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hnU-bU-oq0" id="gQN-gG-4fc">
+                                                            <rect key="frame" x="0.0" y="0.0" width="390" height="116"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <sections/>
+                                            </tableView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCh-uR-4eD" userLabel="Feedback">
+                                                <rect key="frame" x="27" y="574" width="336" height="30"/>
+                                                <color key="backgroundColor" red="0.8723436336" green="0.8723436336" blue="0.8723436336" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Обратная связь"/>
+                                                <connections>
+                                                    <action selector="feedbackButtonPressed:" destination="I8a-Tg-YTw" eventType="touchUpInside" id="MPk-PI-0IX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="464" id="4SQ-If-mdc"/>
+                                            <constraint firstItem="BUD-JI-9wL" firstAttribute="centerY" secondItem="khW-Ip-Xpz" secondAttribute="centerY" id="0Ub-TH-jL8"/>
+                                            <constraint firstAttribute="trailing" secondItem="KCi-38-oeo" secondAttribute="trailing" id="6iK-YQ-3Eh"/>
+                                            <constraint firstItem="zCh-uR-4eD" firstAttribute="top" secondItem="KCi-38-oeo" secondAttribute="bottom" constant="30" id="7Fq-xC-HBg"/>
+                                            <constraint firstItem="zCh-uR-4eD" firstAttribute="leading" secondItem="pLq-is-DzV" secondAttribute="leading" constant="27" id="BIB-tu-p4n"/>
+                                            <constraint firstItem="khW-Ip-Xpz" firstAttribute="leading" secondItem="pLq-is-DzV" secondAttribute="leading" constant="24" id="DGi-3P-Uim"/>
+                                            <constraint firstAttribute="trailing" secondItem="zCh-uR-4eD" secondAttribute="trailing" constant="27" id="RKG-El-TRM"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zCh-uR-4eD" secondAttribute="bottom" constant="29" id="VOr-ZQ-oh0"/>
+                                            <constraint firstItem="KCi-38-oeo" firstAttribute="top" secondItem="khW-Ip-Xpz" secondAttribute="bottom" constant="24" id="jDp-uU-6W7"/>
+                                            <constraint firstItem="khW-Ip-Xpz" firstAttribute="top" secondItem="pLq-is-DzV" secondAttribute="top" constant="24" id="jih-Xx-lpl"/>
+                                            <constraint firstItem="KCi-38-oeo" firstAttribute="top" secondItem="BUD-JI-9wL" secondAttribute="bottom" constant="20" id="nWO-k1-w5d"/>
+                                            <constraint firstItem="KCi-38-oeo" firstAttribute="leading" secondItem="pLq-is-DzV" secondAttribute="leading" id="vvE-rI-3kg"/>
                                         </constraints>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BakeryCell" id="hnU-bU-oq0" customClass="BakeryCell" customModule="Flan" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="426" height="116"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hnU-bU-oq0" id="gQN-gG-4fc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="426" height="116"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <sections/>
-                                    </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCh-uR-4eD" userLabel="Feedback">
-                                        <rect key="frame" x="29" y="592" width="368" height="30"/>
-                                        <color key="backgroundColor" red="0.8723436336" green="0.8723436336" blue="0.8723436336" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="O7m-eu-K61"/>
-                                        </constraints>
-                                        <state key="normal" title="Обратная связь"/>
-                                        <connections>
-                                            <action selector="feedbackButtonPressed:" destination="I8a-Tg-YTw" eventType="touchUpInside" id="MPk-PI-0IX"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="k50-8S-ECi" firstAttribute="trailing" secondItem="zCh-uR-4eD" secondAttribute="trailing" constant="29" id="BKd-L1-j3a"/>
-                                    <constraint firstItem="KCi-38-oeo" firstAttribute="top" secondItem="k50-8S-ECi" secondAttribute="top" constant="100" id="KeV-8G-bTD"/>
-                                    <constraint firstItem="KCi-38-oeo" firstAttribute="trailing" secondItem="k50-8S-ECi" secondAttribute="trailing" id="T67-5Z-kG7"/>
-                                    <constraint firstItem="zCh-uR-4eD" firstAttribute="top" secondItem="k50-8S-ECi" secondAttribute="top" constant="592" id="YPz-D0-lKt"/>
-                                    <constraint firstItem="KCi-38-oeo" firstAttribute="leading" secondItem="k50-8S-ECi" secondAttribute="leading" id="hcA-2f-u8W"/>
-                                    <constraint firstItem="zCh-uR-4eD" firstAttribute="leading" secondItem="k50-8S-ECi" secondAttribute="leading" constant="29" id="svr-32-pUR"/>
+                                    <constraint firstItem="pLq-is-DzV" firstAttribute="height" secondItem="jii-Ss-PFR" secondAttribute="height" priority="250" id="3hb-Bo-nXt"/>
+                                    <constraint firstItem="pLq-is-DzV" firstAttribute="leading" secondItem="jii-Ss-PFR" secondAttribute="leading" id="EqD-qa-4li"/>
+                                    <constraint firstItem="pLq-is-DzV" firstAttribute="top" secondItem="jii-Ss-PFR" secondAttribute="top" id="Jr1-WP-2KG"/>
+                                    <constraint firstItem="pLq-is-DzV" firstAttribute="width" secondItem="jii-Ss-PFR" secondAttribute="width" id="eIX-Yk-YH2"/>
+                                    <constraint firstAttribute="trailing" secondItem="pLq-is-DzV" secondAttribute="trailing" id="gow-xn-wOW"/>
+                                    <constraint firstAttribute="bottom" secondItem="pLq-is-DzV" secondAttribute="bottom" id="pY3-pf-bhr"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="dv8-RD-5rG"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="k50-8S-ECi"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d8u-xw-R0F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Erf-Y6-INI" firstAttribute="leading" secondItem="d8u-xw-R0F" secondAttribute="leading" id="AsK-CE-jXF"/>
-                            <constraint firstItem="Erf-Y6-INI" firstAttribute="trailing" secondItem="d8u-xw-R0F" secondAttribute="trailing" id="QuR-DQ-6dO"/>
-                            <constraint firstAttribute="bottom" secondItem="Erf-Y6-INI" secondAttribute="bottom" id="mcb-OB-C22"/>
-                            <constraint firstItem="Erf-Y6-INI" firstAttribute="top" secondItem="d8u-xw-R0F" secondAttribute="top" id="x27-JF-HZS"/>
+                            <constraint firstItem="jii-Ss-PFR" firstAttribute="bottom" secondItem="d8u-xw-R0F" secondAttribute="bottom" id="22o-dk-q3H"/>
+                            <constraint firstItem="jii-Ss-PFR" firstAttribute="top" secondItem="d8u-xw-R0F" secondAttribute="top" id="ERG-rx-u8b"/>
+                            <constraint firstItem="jii-Ss-PFR" firstAttribute="trailing" secondItem="d8u-xw-R0F" secondAttribute="trailing" id="Iac-i5-f9F"/>
+                            <constraint firstItem="pLq-is-DzV" firstAttribute="leading" secondItem="d8u-xw-R0F" secondAttribute="leading" id="N2Z-qm-buw"/>
+                            <constraint firstItem="jii-Ss-PFR" firstAttribute="leading" secondItem="d8u-xw-R0F" secondAttribute="leading" id="PQf-cb-g4w"/>
+                            <constraint firstItem="d8u-xw-R0F" firstAttribute="bottom" secondItem="pLq-is-DzV" secondAttribute="bottom" id="fFj-03-Tia"/>
+                            <constraint firstItem="pLq-is-DzV" firstAttribute="top" secondItem="d8u-xw-R0F" secondAttribute="top" id="hHM-n6-iTA"/>
+                            <constraint firstItem="d8u-xw-R0F" firstAttribute="trailing" secondItem="pLq-is-DzV" secondAttribute="trailing" id="rAw-gf-VL3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Еще" id="WAn-R4-OdS"/>
-                    <size key="freeformSize" width="426" height="1500"/>
+                    <size key="freeformSize" width="390" height="770"/>
                     <connections>
                         <outlet property="bakeriesTableView" destination="KCi-38-oeo" id="CvL-GS-jev"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKa-xR-ig2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1789" y="2498"/>
+            <point key="canvasLocation" x="1763" y="2266"/>
         </scene>
         <!--Список-->
         <scene sceneID="8aj-5r-sBg">
