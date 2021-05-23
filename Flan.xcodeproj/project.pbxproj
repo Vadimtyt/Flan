@@ -21,7 +21,7 @@
 		C15C40D226480FBD0053910A /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C40D126480FBD0053910A /* MapVC.swift */; };
 		C15CFFF026358940006CE868 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15CFFEF26358940006CE868 /* SceneDelegate.swift */; };
 		C1600D242649F17700D06F31 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1600D232649F17700D06F31 /* Map.storyboard */; };
-		C1600D27264EF65700D06F31 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1600D26264EF65700D06F31 /* Extension.swift */; };
+		C1600D27264EF65700D06F31 /* ExtensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1600D26264EF65700D06F31 /* ExtensionVC.swift */; };
 		C1600D2B26515B5900D06F31 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1600D2A26515B5900D06F31 /* MapManager.swift */; };
 		C19C8BEB261625EA0039CA79 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19C8BEA261625EA0039CA79 /* MenuVC.swift */; };
 		C19C8BF0261740670039CA79 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19C8BEF261740670039CA79 /* MenuCell.swift */; };
@@ -56,7 +56,7 @@
 		C15C40D126480FBD0053910A /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		C15CFFEF26358940006CE868 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C1600D232649F17700D06F31 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
-		C1600D26264EF65700D06F31 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		C1600D26264EF65700D06F31 /* ExtensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionVC.swift; sourceTree = "<group>"; };
 		C1600D2A26515B5900D06F31 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		C19C8BEA261625EA0039CA79 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		C19C8BEF261740670039CA79 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			children = (
 				C1AD6A412659223D007DFBE9 /* PresentationController.swift */,
 				C1573D81263103F5001C600B /* TapBarController.swift */,
-				C1600D26264EF65700D06F31 /* Extension.swift */,
+				C1600D26264EF65700D06F31 /* ExtensionVC.swift */,
 				C19C8BEE261740100039CA79 /* Menu */,
 				C19C8C13261E5CF00039CA79 /* Favorite */,
 				C19C8BFB2618E6020039CA79 /* List */,
@@ -319,7 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1AD6A47265A7599007DFBE9 /* CustomizedHeaderView.swift in Sources */,
-				C1600D27264EF65700D06F31 /* Extension.swift in Sources */,
+				C1600D27264EF65700D06F31 /* ExtensionVC.swift in Sources */,
 				C19C8C06261DE6F60039CA79 /* ListVC.swift in Sources */,
 				C1AD6A422659223D007DFBE9 /* PresentationController.swift in Sources */,
 				C1AD6A3026585138007DFBE9 /* CustomizedCell.swift in Sources */,

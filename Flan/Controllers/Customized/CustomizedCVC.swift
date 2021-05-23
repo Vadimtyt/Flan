@@ -17,17 +17,7 @@ class CustomizedCVC: UICollectionViewController {
         super.viewDidLoad()
 
         collectionView.showsVerticalScrollIndicator = false
-        configureNavigationBar()
-    }
-    
-    func configureNavigationBar() {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        if #available(iOS 13.0, *) {
-            let largeStyle = UINavigationBarAppearance()
-            largeStyle.configureWithTransparentBackground()
-            largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 42)]
-            self.navigationController?.navigationBar.scrollEdgeAppearance = largeStyle
-        }
+        configureNavigationBarLargeStyle()
     }
 
     // MARK: UICollectionViewDataSource

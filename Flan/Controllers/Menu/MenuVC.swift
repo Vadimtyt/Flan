@@ -31,22 +31,12 @@ class MenuVC: UITableViewController {
         items = ListOfMenuItems.shared.items
         
         configureSearchController()
-        configureNavigationBar()
+        configureNavigationBarLargeStyle()
         tableView.showsVerticalScrollIndicator = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
-    }
-    
-    func configureNavigationBar() {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        if #available(iOS 13.0, *) {
-            let largeStyle = UINavigationBarAppearance()
-            largeStyle.configureWithTransparentBackground()
-            largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 42)]
-            self.navigationController?.navigationBar.scrollEdgeAppearance = largeStyle
-        }
     }
     
     func configureSearchController() {
