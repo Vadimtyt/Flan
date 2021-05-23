@@ -15,6 +15,7 @@ class CustomizedDetailVC: UIViewController {
     
     @IBOutlet weak var cakeImage: UIImageView!
     @IBOutlet weak var cakeNumberLabel: UILabel!
+    @IBOutlet weak var topView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,9 @@ class CustomizedDetailVC: UIViewController {
         
         cakeImage.image = cake.image
         cakeNumberLabel.text = "#\(cake.number)"
+        
+        cakeImage.layer.cornerRadius = 10
+        topView.layer.cornerRadius = 3
     }
     
     override func viewDidLayoutSubviews() {
@@ -60,10 +64,5 @@ class CustomizedDetailVC: UIViewController {
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop,UIActivity.ActivityType.addToReadingList]
         self.present(activityVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func closeButtonPressed(_ sender: UIButton) {
-        TapticFeedback.shared.tapticFeedback(.light)
-        dismiss(animated: true)
     }
 }

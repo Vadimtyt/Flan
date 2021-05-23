@@ -310,13 +310,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TGC-XV-l7P">
                             <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="130"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customizedCell" id="cqD-TH-0oC" customClass="CustomizedCell" customModule="Flan" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <rect key="frame" x="0.0" y="130" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CPd-uE-FTr">
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -333,6 +333,28 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="CustomizedHeaderView" id="x58-8j-PdE" customClass="CustomizedHeaderView" customModule="Flan" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="130"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wD2-PT-Jbz">
+                                    <rect key="frame" x="22.666666666666657" y="0.0" width="355.33333333333337" height="130"/>
+                                    <string key="text">Здесь находится лишь небольшая часть наших работ, но мы надеемся, что одна из них поможет вам найти идею для индивидуального заказа.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="wD2-PT-Jbz" firstAttribute="top" secondItem="x58-8j-PdE" secondAttribute="top" id="6uC-pw-gqS"/>
+                                <constraint firstAttribute="trailing" secondItem="wD2-PT-Jbz" secondAttribute="trailing" constant="12" id="A4f-aN-NDs"/>
+                                <constraint firstAttribute="bottom" secondItem="wD2-PT-Jbz" secondAttribute="bottom" id="IvZ-2n-I8h"/>
+                                <constraint firstItem="wD2-PT-Jbz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x58-8j-PdE" secondAttribute="leading" constant="12" id="cPl-8x-37Q"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="label" destination="wD2-PT-Jbz" id="VVf-Oa-eMc"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="dGh-WF-tpX" id="jM2-fD-Lnw"/>
                             <outlet property="delegate" destination="dGh-WF-tpX" id="Veg-bP-xd8"/>

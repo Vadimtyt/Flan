@@ -17,17 +17,42 @@ class CustomizedCVC: UICollectionViewController {
         super.viewDidLoad()
 
         collectionView.showsVerticalScrollIndicator = false
+        configureNavigationBar()
+    }
+    
+    func configureNavigationBar() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 13.0, *) {
+            let largeStyle = UINavigationBarAppearance()
+            largeStyle.configureWithTransparentBackground()
+            largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 42)]
+            self.navigationController?.navigationBar.scrollEdgeAppearance = largeStyle
+        }
     }
 
     // MARK: UICollectionViewDataSource
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 viewForSupplementaryElementOfKind kind: String,
+                                 at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                                   withReuseIdentifier: "\(CustomizedHeaderView.self)",
+                                                                                   for: indexPath) as? CustomizedHeaderView
+            else { fatalError("Invalid view type") }
+            return headerView
+        default:
+            assert(false, "Invalid element type")
+      }
+    }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Int.random(in: 20...30)
+        return Int.random(in: 30...40)
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -58,17 +83,17 @@ extension CustomizedCVC: UICollectionViewDelegateFlowLayout {
         let size = (collectionView.frame.width - sectionPadding * (itemsPerRow + 1)) / itemsPerRow
         return CGSize(width: size, height: size)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: sectionPadding, left: sectionPadding, bottom: sectionPadding, right: sectionPadding)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionPadding
+        return sectionPadding - 1
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionPadding
+        return sectionPadding - 1
     }
 }
 
