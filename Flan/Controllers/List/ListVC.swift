@@ -87,12 +87,9 @@ class ListVC: UIViewController {
         let popUpWidth = 294
         let popUpHeight = 163
         
-        let vc = InfoPopover()
-        vc.text = popUpText
-        vc.fontSize = popUpTextFontSize
-        vc.topConstraint = textTopConstraint
-        
+        let vc = InfoPopover(text: popUpText, fontSize: popUpTextFontSize, topConstraint: textTopConstraint)
         vc.modalPresentationStyle = UIModalPresentationStyle.popover
+        
         let popover: UIPopoverPresentationController = vc.popoverPresentationController!
         popover.sourceView = sender
         popover.delegate = self

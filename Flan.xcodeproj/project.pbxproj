@@ -194,9 +194,9 @@
 		C15C40CF26480C5B0053910A /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				C1600D2A26515B5900D06F31 /* MapManager.swift */,
 				C15C40D126480FBD0053910A /* MapVC.swift */,
 				C1600D232649F17700D06F31 /* Map.storyboard */,
-				C1600D2A26515B5900D06F31 /* MapManager.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";

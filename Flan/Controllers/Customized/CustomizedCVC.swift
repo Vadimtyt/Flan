@@ -79,11 +79,7 @@ class CustomizedCVC: UICollectionViewController {
         let popoverHeight = 170
         let popoverTextTopConstraint: CGFloat = 20
         
-        let vc = InfoPopover()
-        vc.text = popoverText
-        vc.fontSize = popoverTextFontSize
-        vc.topConstraint = popoverTextTopConstraint
-        
+        let vc = InfoPopover(text: popoverText, fontSize: popoverTextFontSize, topConstraint: popoverTextTopConstraint)
         vc.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover: UIPopoverPresentationController = vc.popoverPresentationController!
         
