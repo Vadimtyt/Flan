@@ -12,9 +12,13 @@ private let reuseIdentifier = "ListCell"
 class ListVC: UIViewController {
     var items: [MenuItem] = ListOfMenuItems.shared.list
     
+    private let popUpText = "В этом поле указывается приблизительная сумма, она не учитывает фактический вес всех позиций, цену упаковочных изделий и т.п. Эта сумма отображается исключительно в ознакомительных целях."
+    private let popUpTextFontSize: CGFloat = 18
+    
     @IBOutlet weak var listTableView: UITableView!
     @IBOutlet weak var totalSumLabel: UILabel!
     @IBOutlet weak var infoButton: UIButton!
+    @IBOutlet weak var clearBarButton: UIBarButtonItem!
     
     
     override func viewDidLoad() {
@@ -22,7 +26,6 @@ class ListVC: UIViewController {
         
         listTableView.delegate = self
         listTableView.dataSource = self
-        setupGestures()
         
         listTableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         
@@ -55,30 +58,6 @@ class ListVC: UIViewController {
         return list
     }
     
-    private func setupGestures() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        tapGesture.numberOfTapsRequired = 1
-        infoButton.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc
-    private func tapped() {
-        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") else { return }
-        popVC.modalPresentationStyle = .popover
-        
-        let popOverVC = popVC.popoverPresentationController
-        popOverVC?.delegate=self
-        popOverVC?.sourceView = self.infoButton
-        popOverVC?.sourceRect = CGRect(x: self.infoButton.bounds.minX - 19,
-                                       y: self.infoButton.bounds.minY,
-                                       width: 0,
-                                       height: 0)
-        popOverVC?.permittedArrowDirections = .down
-        popVC.preferredContentSize = CGSize(width: 267, height: 117)
-        
-        self.present(popVC, animated: true)
-    }
-    
     func clearListAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -99,6 +78,33 @@ class ListVC: UIViewController {
         alert.addAction(cancelAction)
         
         present(alert, animated: true)
+    }
+    
+    @IBAction func infoButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
+        let textTopConstraint: CGFloat = 6
+        let popUpWidth = 294
+        let popUpHeight = 163
+        
+        let vc = InfoPopUp()
+        vc.text = popUpText
+        vc.fontSize = popUpTextFontSize
+        vc.topConstraint = textTopConstraint
+        
+        vc.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+        popover.sourceView = sender
+        popover.delegate = self
+        
+        popover.sourceRect = CGRect(x: self.infoButton.bounds.minX - 19,
+                                       y: self.infoButton.bounds.minY,
+                                       width: 0,
+                                       height: 0)
+        popover.permittedArrowDirections = .down
+        vc.preferredContentSize = CGSize(width: popUpWidth, height: popUpHeight)
+        
+        present(vc, animated: true, completion:nil)
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
@@ -123,6 +129,17 @@ class ListVC: UIViewController {
 extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         changeTotalSumLabel()
+        
+        if items.count == 0 {
+            print(items.count)
+            clearBarButton.image = nil
+            clearBarButton.title = ""
+        } else {
+            if #available(iOS 13.0, *) {
+                clearBarButton.image = UIImage(systemName: "trash")
+            } else { clearBarButton.title = "Очистить"}
+        }
+        
         return items.count
     }
     

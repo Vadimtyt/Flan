@@ -13,6 +13,11 @@ class CustomizedCVC: UICollectionViewController {
     private let itemsPerRow: CGFloat = 2
     private let sectionPadding: CGFloat = 16
     
+    private let popUpText = "Здесь находится лишь небольшая часть наших работ, но мы надеемся, что одна из них поможет вам найти идею для индивидуального заказа."
+    private let popUpTextFontSize: CGFloat = 22
+    
+    @IBOutlet weak var infoBarButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,6 +71,34 @@ class CustomizedCVC: UICollectionViewController {
         customizedDetailVC.transitioningDelegate = self
         self.present(customizedDetailVC, animated: true, completion: nil)
     }
+    
+    @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
+        let popUpWidth = 290
+        let popUpHeight = 170
+        let popUpTextTopConstraint: CGFloat = 20
+        
+        let vc = InfoPopUp()
+        vc.text = popUpText
+        vc.fontSize = popUpTextFontSize
+        vc.topConstraint = popUpTextTopConstraint
+        
+        vc.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+        
+        popover.permittedArrowDirections = .up
+        popover.sourceView = sender.customView
+//        popover.sourceRect = CGRect(x: sender.accessibilityFrame.midX - 19,
+//                                       y: sender.accessibilityFrame.minY,
+//                                       width: 0,
+//                                       height: 0)
+        vc.preferredContentSize = CGSize(width: popUpWidth, height: popUpHeight)
+        
+        popover.barButtonItem = sender
+        popover.delegate = self
+        present(vc, animated: true, completion:nil)
+    }
 }
 
 extension CustomizedCVC: UICollectionViewDelegateFlowLayout {
@@ -90,5 +123,11 @@ extension CustomizedCVC: UICollectionViewDelegateFlowLayout {
 extension CustomizedCVC: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return PresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+extension CustomizedCVC: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 }
