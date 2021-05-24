@@ -87,7 +87,7 @@ class ListVC: UIViewController {
         let popUpWidth = 294
         let popUpHeight = 163
         
-        let vc = InfoPopUp()
+        let vc = InfoPopover()
         vc.text = popUpText
         vc.fontSize = popUpTextFontSize
         vc.topConstraint = textTopConstraint
@@ -131,7 +131,6 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         changeTotalSumLabel()
         
         if items.count == 0 {
-            print(items.count)
             clearBarButton.image = nil
             clearBarButton.title = ""
         } else {

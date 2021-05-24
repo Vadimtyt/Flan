@@ -37,8 +37,8 @@
 		C1AD6A3D26586F6C007DFBE9 /* CustomizedDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD6A3C26586F6C007DFBE9 /* CustomizedDetailVC.swift */; };
 		C1AD6A422659223D007DFBE9 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD6A412659223D007DFBE9 /* PresentationController.swift */; };
 		C1AD6A47265A7599007DFBE9 /* CustomizedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD6A46265A7599007DFBE9 /* CustomizedHeaderView.swift */; };
-		C1AD6A51265BC3FF007DFBE9 /* InfoPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1AD6A50265BC3FF007DFBE9 /* InfoPopUp.xib */; };
-		C1AD6A55265BC6DF007DFBE9 /* InfoPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD6A54265BC6DF007DFBE9 /* InfoPopUp.swift */; };
+		C1AD6A51265BC3FF007DFBE9 /* InfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1AD6A50265BC3FF007DFBE9 /* InfoPopover.xib */; };
+		C1AD6A55265BC6DF007DFBE9 /* InfoPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD6A54265BC6DF007DFBE9 /* InfoPopover.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,8 +74,8 @@
 		C1AD6A3C26586F6C007DFBE9 /* CustomizedDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedDetailVC.swift; sourceTree = "<group>"; };
 		C1AD6A412659223D007DFBE9 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		C1AD6A46265A7599007DFBE9 /* CustomizedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedHeaderView.swift; sourceTree = "<group>"; };
-		C1AD6A50265BC3FF007DFBE9 /* InfoPopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPopUp.xib; sourceTree = "<group>"; };
-		C1AD6A54265BC6DF007DFBE9 /* InfoPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopUp.swift; sourceTree = "<group>"; };
+		C1AD6A50265BC3FF007DFBE9 /* InfoPopover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPopover.xib; sourceTree = "<group>"; };
+		C1AD6A54265BC6DF007DFBE9 /* InfoPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopover.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +143,8 @@
 				C1AD6A412659223D007DFBE9 /* PresentationController.swift */,
 				C1573D81263103F5001C600B /* TapBarController.swift */,
 				C1600D26264EF65700D06F31 /* ExtensionVC.swift */,
-				C1AD6A54265BC6DF007DFBE9 /* InfoPopUp.swift */,
-				C1AD6A50265BC3FF007DFBE9 /* InfoPopUp.xib */,
+				C1AD6A54265BC6DF007DFBE9 /* InfoPopover.swift */,
+				C1AD6A50265BC3FF007DFBE9 /* InfoPopover.xib */,
 				C19C8BEE261740100039CA79 /* Menu */,
 				C19C8C13261E5CF00039CA79 /* Favorite */,
 				C19C8BFB2618E6020039CA79 /* List */,
@@ -311,7 +311,7 @@
 				C15C4087264589770053910A /* Main.storyboard in Resources */,
 				C125437925D4C2FE0086ADD2 /* Assets.xcassets in Resources */,
 				C1AD6A3A26586EE1007DFBE9 /* CustomizedDetail.storyboard in Resources */,
-				C1AD6A51265BC3FF007DFBE9 /* InfoPopUp.xib in Resources */,
+				C1AD6A51265BC3FF007DFBE9 /* InfoPopover.xib in Resources */,
 				C19C8BF8261741050039CA79 /* MenuCell.xib in Resources */,
 				C19C8C09261E06520039CA79 /* ListCell.xib in Resources */,
 				C15C40972645CCC40053910A /* BakeryCell.xib in Resources */,
@@ -333,7 +333,7 @@
 				C15C409A2645CD670053910A /* BakeryCell.swift in Sources */,
 				C19C8BEB261625EA0039CA79 /* MenuVC.swift in Sources */,
 				C1600D2B26515B5900D06F31 /* MapManager.swift in Sources */,
-				C1AD6A55265BC6DF007DFBE9 /* InfoPopUp.swift in Sources */,
+				C1AD6A55265BC6DF007DFBE9 /* InfoPopover.swift in Sources */,
 				C19DD6FF26080E3600D00BFD /* MenuItemModel.swift in Sources */,
 				C19C8BF0261740670039CA79 /* MenuCell.swift in Sources */,
 				C15C40C32646D3220053910A /* TapticFeedback.swift in Sources */,

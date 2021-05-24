@@ -1,5 +1,5 @@
 //
-//  InfoPopUp.swift
+//  InfoPopover.swift
 //  Flan
 //
 //  Created by Вадим on 24.05.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
     
-class InfoPopUp: UIViewController {
+class InfoPopover: UIViewController {
     var text = ""
     var fontSize: CGFloat = 18
     var topConstraint: CGFloat = 8

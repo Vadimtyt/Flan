@@ -13,8 +13,8 @@ class CustomizedCVC: UICollectionViewController {
     private let itemsPerRow: CGFloat = 2
     private let sectionPadding: CGFloat = 16
     
-    private let popUpText = "Здесь находится лишь небольшая часть наших работ, но мы надеемся, что одна из них поможет вам найти идею для индивидуального заказа."
-    private let popUpTextFontSize: CGFloat = 22
+    private let popoverText = "Здесь находится лишь небольшая часть наших работ, но мы надеемся, что одна из них поможет вам найти идею для индивидуального заказа."
+    private let popoverTextFontSize: CGFloat = 22
     
     @IBOutlet weak var infoBarButton: UIBarButtonItem!
     
@@ -75,25 +75,20 @@ class CustomizedCVC: UICollectionViewController {
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        let popUpWidth = 290
-        let popUpHeight = 170
-        let popUpTextTopConstraint: CGFloat = 20
+        let popoverWidth = 290
+        let popoverHeight = 170
+        let popoverTextTopConstraint: CGFloat = 20
         
-        let vc = InfoPopUp()
-        vc.text = popUpText
-        vc.fontSize = popUpTextFontSize
-        vc.topConstraint = popUpTextTopConstraint
+        let vc = InfoPopover()
+        vc.text = popoverText
+        vc.fontSize = popoverTextFontSize
+        vc.topConstraint = popoverTextTopConstraint
         
         vc.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover: UIPopoverPresentationController = vc.popoverPresentationController!
         
         popover.permittedArrowDirections = .up
-        popover.sourceView = sender.customView
-//        popover.sourceRect = CGRect(x: sender.accessibilityFrame.midX - 19,
-//                                       y: sender.accessibilityFrame.minY,
-//                                       width: 0,
-//                                       height: 0)
-        vc.preferredContentSize = CGSize(width: popUpWidth, height: popUpHeight)
+        vc.preferredContentSize = CGSize(width: popoverWidth, height: popoverHeight)
         
         popover.barButtonItem = sender
         popover.delegate = self
