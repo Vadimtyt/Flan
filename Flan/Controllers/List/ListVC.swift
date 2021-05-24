@@ -135,6 +135,26 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
  
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+
+                ListOfMenuItems.shared.removeFromList(item: self.items[indexPath.row])
+                self.items = ListOfMenuItems.shared.list
+                tableView.deleteRows(at: [indexPath], with: .left)
+                self.updateListBadge()
+
+                success(true)
+            })
+
+        if #available(iOS 13.0, *) {
+            deleteAction.image = UIImage(systemName: "trash")
+        } else {
+            deleteAction.title = "Удалить"
+        }
+
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
 
 extension ListVC: UpdatingListCellDelegate {
