@@ -44,7 +44,7 @@ class MenuVC: UITableViewController {
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Поиск"
+        searchController.searchBar.placeholder = "Введите название"
         navigationItem.searchController = searchController
         definesPresentationContext = false
     }
@@ -86,6 +86,10 @@ class MenuVC: UITableViewController {
         
         return items
     }
+    
+    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+        searchController.isActive = true
+    }
 }
 
 extension MenuVC: UISearchResultsUpdating {
@@ -94,9 +98,10 @@ extension MenuVC: UISearchResultsUpdating {
     }
     
     func filterContentForSearchText(_ searchText: String){
-        filtredItems = items.filter({ (MenuItem: MenuItem) -> Bool in
-            return MenuItem.name.lowercased().contains(searchText.lowercased())
-        })
+        //Uncomment to change filter strategy
+        //filtredItems = items.filter{ $0.name.lowercased().contains(searchText.lowercased()) }
+        
+        filtredItems = items.filter{ $0.name.lowercased().hasPrefix(searchText.lowercased()) }
         
         tableView.reloadData()
     }
@@ -116,5 +121,3 @@ extension MenuVC: UpdatingMenuCellDelegate {
         ListOfMenuItems.shared.updateFavorites()
     }
 }
-
-//extension MenuVC: UITabBarControllerDelegate {}
