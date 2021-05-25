@@ -12,7 +12,7 @@ private let reuseIdentifier = "MenuCell"
 class MenuVC: UITableViewController {
     let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
     
-    var items: [MenuItem] = ListOfMenuItems.shared.items
+    var items: [MenuItem] { get { return ListOfMenuItems.shared.items } }
     
     let searchController = UISearchController(searchResultsController: nil)
     private var filtredItems: [MenuItem] = []
@@ -28,7 +28,6 @@ class MenuVC: UITableViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
         ListOfMenuItems.shared.items = generateItems(count: Int.random(in: 5...20))
-        items = ListOfMenuItems.shared.items
         
         configureSearchController()
         configureNavigationBarLargeStyle()

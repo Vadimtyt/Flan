@@ -10,7 +10,7 @@ import UIKit
 private let reuseIdentifier = "ListCell"
 
 class ListVC: UIViewController {
-    var items: [MenuItem] = ListOfMenuItems.shared.list
+    var items: [MenuItem] { get { return ListOfMenuItems.shared.list } }
     
     private let popUpText = "В этом поле указывается приблизительная сумма, она не учитывает фактический вес всех позиций, цену упаковочных изделий и т.п. Эта сумма отображается исключительно в ознакомительных целях."
     private let popUpTextFontSize: CGFloat = 18
@@ -153,7 +153,6 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         let deleteAction = UIContextualAction(style: .destructive, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
 
                 ListOfMenuItems.shared.removeFromList(item: self.items[indexPath.row])
-                self.items = ListOfMenuItems.shared.list
                 tableView.deleteRows(at: [indexPath], with: .left)
                 self.updateListBadge()
 
@@ -172,11 +171,9 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
 
 extension ListVC: UpdatingListCellDelegate {
     func updateList() {
-        items = ListOfMenuItems.shared.list
         for index in 0..<items.count {
             if items[index].count == 0 {
                 ListOfMenuItems.shared.list.remove(at: index)
-                items = ListOfMenuItems.shared.list
                 listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle)
                 return
              }
