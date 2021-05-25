@@ -116,3 +116,5 @@ extension MenuVC: UpdatingMenuCellDelegate {
         ListOfMenuItems.shared.updateFavorites()
     }
 }
+
+//extension MenuVC: UITabBarControllerDelegate {}

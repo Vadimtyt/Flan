@@ -111,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="750" y="-144"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tap Bar Controller-->
         <scene sceneID="eWu-0q-S8a">
             <objects>
-                <tabBarController id="xye-eS-imu" sceneMemberID="viewController">
+                <tabBarController id="xye-eS-imu" customClass="TapBarController" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bp6-e8-aXw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

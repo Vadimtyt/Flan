@@ -9,15 +9,27 @@ import UIKit
 
 class TapBarController: UITabBarController, UITabBarControllerDelegate {
     
-    private let indexOfListPage = 2
-    
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
+        self.delegate = self
     }
     
-    func updateListBadge() {
-        self.tabBar.items?[indexOfListPage].badgeValue = "117"
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-}
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let tabBarIndex = tabBarController.selectedIndex
+        if tabBarIndex == 0 {
 
-protocol UITabBarControllerDelegate: class {}
+            let indexPath = NSIndexPath(row: 0, section: 0)
+            let navigVC = viewController as? UINavigationController
+            let finalVC = navigVC?.viewControllers[0] as? MenuVC
+            guard let menulVC = finalVC else { return }
+            menulVC.tableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: true)
+
+        }
+    }
+    
+}

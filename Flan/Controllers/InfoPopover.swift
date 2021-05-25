@@ -16,6 +16,8 @@ class InfoPopover: UIViewController {
     @IBOutlet private weak var constraintTop: NSLayoutConstraint!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         textLabel.text = text
         textLabel.font = UIFont.systemFont(ofSize: fontSize)
         constraintTop.constant = topConstraint
@@ -25,7 +27,7 @@ class InfoPopover: UIViewController {
         self.text = text ?? ""
         self.fontSize = fontSize ?? 18
         self.topConstraint = topConstraint ?? 8
-
+        
         super.init(nibName: nil, bundle: nil)
     }
     
