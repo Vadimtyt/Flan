@@ -27,7 +27,7 @@ class MenuVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
-        ListOfMenuItems.shared.items = generateItems(count: Int.random(in: 5...20))
+        ListOfMenuItems.shared.items = generateItems(count: Int.random(in: 30...50))
         
         configureSearchController()
         configureNavigationBarLargeStyle()

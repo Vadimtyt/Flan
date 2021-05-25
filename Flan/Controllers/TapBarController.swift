@@ -9,27 +9,46 @@ import UIKit
 
 class TapBarController: UITabBarController, UITabBarControllerDelegate {
     
+    var previousController: UIViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+        if previousController == nil {
+            previousController = viewController
+        }
+        
         let tabBarIndex = tabBarController.selectedIndex
-        if tabBarIndex == 0 {
-
-            let indexPath = NSIndexPath(row: 0, section: 0)
+        
+        if tabBarIndex == 0 && previousController == viewController {
             let navigVC = viewController as? UINavigationController
             let finalVC = navigVC?.viewControllers[0] as? MenuVC
             guard let menulVC = finalVC else { return }
-            menulVC.tableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: true)
+            
+            let currentPosition = menulVC.tableView.contentOffset.y
+            guard let height = menulVC.navigationController?.navigationBar.frame.height else { return }
 
+            guard currentPosition > -height else { return }
+            menulVC.tableView.scrollRectToVisible(CGRect(x: 0, y: -height - 10, width: 1, height: 1), animated: true)
         }
+        
+        if tabBarIndex == 3 && previousController == viewController {
+            
+            let navigVC = viewController as? UINavigationController
+            let finalVC = navigVC?.viewControllers[0] as? CustomizedCVC
+            guard let customizedVC = finalVC else { return }
+            
+            let currentPosition = customizedVC.collectionView.contentOffset.y
+            guard let height = customizedVC.navigationController?.navigationBar.frame.height else { return }
+            
+            guard currentPosition > height else { return }
+            customizedVC.collectionView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+        }
+        
+        previousController = viewController
     }
-    
 }

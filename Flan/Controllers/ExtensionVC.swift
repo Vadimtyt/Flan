@@ -12,12 +12,13 @@ extension UIViewController {
     
     func configureNavigationBarLargeStyle() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        if #available(iOS 13.0, *) {
-            let largeStyle = UINavigationBarAppearance()
-            largeStyle.configureWithTransparentBackground()
-            largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 42)]
-            self.navigationController?.navigationBar.scrollEdgeAppearance = largeStyle
-        }
+        
+        guard #available(iOS 13.0, *) else { return }
+        let largeStyle = UINavigationBarAppearance()
+        largeStyle.configureWithTransparentBackground()
+        
+        if #available(iOS 14.0, *) { largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 42)] }
+        self.navigationController?.navigationBar.scrollEdgeAppearance = largeStyle
     }
     
     func updateListVCBadge(with value: Int) {
