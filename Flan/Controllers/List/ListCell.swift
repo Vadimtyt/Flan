@@ -13,6 +13,7 @@ protocol UpdatingListCellDelegate: class {
 }
 
 class ListCell: UITableViewCell {
+    
     weak var listDelegate: UpdatingListCellDelegate?
     
     static let reuseId = "ListCell"

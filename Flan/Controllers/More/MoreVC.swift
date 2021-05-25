@@ -17,6 +17,7 @@ private let bakeries = [
 ]
 
 class MoreVC: UIViewController {
+    
     //var bakeries: [Bakery] = []
     let countOfbakeries = 4
     

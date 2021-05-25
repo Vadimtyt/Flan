@@ -10,6 +10,7 @@ import UIKit
 private let reuseIdentifier = "MenuCell"
 
 class FavoriteVC: UITableViewController {
+    
     var items: [MenuItem] { get { return ListOfMenuItems.shared.favorites } }
 
     override func viewDidLoad() {
@@ -49,11 +50,10 @@ extension FavoriteVC: UpdatingMenuCellDelegate {
     
     func updateFavorites() {
         for index in 0..<items.count {
-            if items[index].isFavorite == false {
-                ListOfMenuItems.shared.favorites.remove(at: index)
-                tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle)
-                return
-             }
+            guard items[index].isFavorite == false else { return }
+            ListOfMenuItems.shared.favorites.remove(at: index)
+            tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle)
+            return
         }
         
         self.tableView.reloadData()

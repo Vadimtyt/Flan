@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIViewController {
+    
     static let indexOfListVC = 2
     
     func configureNavigationBarLargeStyle() {

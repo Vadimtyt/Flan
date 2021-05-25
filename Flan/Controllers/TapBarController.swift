@@ -17,7 +17,6 @@ class TapBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        
         if previousController == nil {
             previousController = viewController
         }

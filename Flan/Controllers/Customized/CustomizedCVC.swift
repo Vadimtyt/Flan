@@ -10,6 +10,7 @@ import UIKit
 private let reuseIdentifier = "customizedCell"
 
 class CustomizedCVC: UICollectionViewController {
+    
     private let itemsPerRow: CGFloat = 2
     private let sectionPadding: CGFloat = 16
     
@@ -39,7 +40,7 @@ class CustomizedCVC: UICollectionViewController {
             return headerView
         default:
             assert(false, "Invalid element type")
-      }
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -72,7 +73,7 @@ class CustomizedCVC: UICollectionViewController {
         TapticFeedback.shared.tapticFeedback(.light)
         
         let popoverWidth = 290
-        let popoverHeight = 170
+        let popoverHeight = 175
         let popoverTextTopConstraint: CGFloat = 20
         
         let vc = InfoPopover(text: popoverText, fontSize: popoverTextFontSize, topConstraint: popoverTextTopConstraint)

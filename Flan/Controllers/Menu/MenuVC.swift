@@ -10,6 +10,7 @@ import UIKit
 private let reuseIdentifier = "MenuCell"
 
 class MenuVC: UITableViewController {
+    
     let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
     
     var items: [MenuItem] { get { return ListOfMenuItems.shared.items } }

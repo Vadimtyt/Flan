@@ -10,6 +10,7 @@ import UIKit
 private let reuseIdentifier = "ListCell"
 
 class ListVC: UIViewController {
+    
     var items: [MenuItem] { get { return ListOfMenuItems.shared.list } }
     
     private let popUpText = "В этом поле указывается приблизительная сумма, она не учитывает фактический вес всех позиций, цену упаковочных изделий и т.п. Эта сумма отображается исключительно в ознакомительных целях."
@@ -159,10 +160,9 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
                 success(true)
             })
 
+        deleteAction.title = "Удалить"
         if #available(iOS 13.0, *) {
             deleteAction.image = UIImage(systemName: "trash")
-        } else {
-            deleteAction.title = "Удалить"
         }
 
         return UISwipeActionsConfiguration(actions: [deleteAction])

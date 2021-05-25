@@ -8,11 +8,15 @@
 import UIKit
 
 class PresentationController: UIPresentationController {
+    
     let blurEffectView: UIVisualEffectView!
     var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
   
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
-        let blurEffect = UIBlurEffect(style: .dark)
+        var blurEffect = UIBlurEffect(style: .extraLight)
+        if #available(iOS 13.0, *) {
+            blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
+        }
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
@@ -36,7 +40,7 @@ class PresentationController: UIPresentationController {
         self.blurEffectView.alpha = 0
         self.containerView?.addSubview(blurEffectView)
         self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
-            self.blurEffectView.alpha = 0.85
+            self.blurEffectView.alpha = 0.8
         }, completion: { (UIViewControllerTransitionCoordinatorContext) in })
     }
   
@@ -65,6 +69,7 @@ class PresentationController: UIPresentationController {
 }
 
 extension UIView {
+    
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners,
                                 cornerRadii: CGSize(width: radius, height: radius))

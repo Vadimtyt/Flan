@@ -13,6 +13,7 @@ protocol UpdatingMenuCellDelegate: class {
 }
 
 class MenuCell: UITableViewCell {
+    
     let indexOfListVC = 2
     
     weak var UpdateCellDelegate: UpdatingMenuCellDelegate?

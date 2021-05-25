@@ -8,6 +8,7 @@
 import UIKit
     
 class InfoPopover: UIViewController {
+    
     private let text: String
     private let fontSize: CGFloat
     private let topConstraint: CGFloat
