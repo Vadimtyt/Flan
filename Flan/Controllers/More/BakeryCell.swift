@@ -13,6 +13,7 @@ protocol BakeryCellDelegate: class {
 }
 
 class BakeryCell: UITableViewCell {
+    
     static let reuseId = "BakeryCell"
     weak var bakeryCellDelegate: BakeryCellDelegate?
     
@@ -35,6 +36,7 @@ class BakeryCell: UITableViewCell {
         
         self.tag = tag
     }
+    
     @IBAction func phoneButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.medium)
         bakeryCellDelegate?.callPhone(with: tag)

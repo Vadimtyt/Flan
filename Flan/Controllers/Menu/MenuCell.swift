@@ -19,7 +19,7 @@ class MenuCell: UITableViewCell {
     weak var UpdateCellDelegate: UpdatingMenuCellDelegate?
     
     static let reuseId = "MenuCell"
-    var item: MenuItem = MenuItem(name: "Имя", price: 0)
+    var item: MenuItem = MenuItem(name: "Имя", category: "Категория", price: 0)
     
     @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

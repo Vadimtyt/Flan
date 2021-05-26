@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 
 class MapManager {
+    
     let locationManager = CLLocationManager()
     
     var placeCoordinate: CLLocationCoordinate2D?

@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 
 class MapVC: UIViewController {
+    
     let mapManager = MapManager()
     
     var bakery: Bakery!

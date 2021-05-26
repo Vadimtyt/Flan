@@ -11,8 +11,9 @@ private let reuseIdentifier = "MenuCell"
 
 class MenuVC: UITableViewController {
     
-    let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
+//    let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
     
+    var categories: [(category: String, items: [MenuItem])] { get { return ListOfMenuItems.shared.categories }}
     var items: [MenuItem] { get { return ListOfMenuItems.shared.items } }
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -28,11 +29,13 @@ class MenuVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
-        ListOfMenuItems.shared.items = generateItems(count: Int.random(in: 30...50))
+        //ListOfMenuItems.shared.items = generateItems(count: Int.random(in: 30...50))
         
         configureSearchController()
         configureNavigationBarLargeStyle()
         tableView.showsVerticalScrollIndicator = false
+        self.definesPresentationContext = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,23 +52,78 @@ class MenuVC: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = false
     }
+    
+//    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//            if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+//                changeTabBar(hidden: true, animated: true)
+//            }else{
+//                changeTabBar(hidden: false, animated: true)
+//            }
+//
+//        }
+//
+//    func changeTabBar(hidden:Bool, animated: Bool){
+//        guard let tabBar = self.tabBarController?.tabBar else { return; }
+//        if tabBar.isHidden == hidden{ return }
+//        let frame = tabBar.frame
+//        let offset = hidden ? frame.size.height : -frame.size.height
+//        let duration:TimeInterval = (animated ? 0.3 : 0.0)
+//        tabBar.isHidden = false
+//
+//        UIView.animate(withDuration: duration, animations: {
+//            tabBar.frame = frame.offsetBy(dx: 0, dy: offset)
+//        }, completion: { (true) in
+//            tabBar.isHidden = hidden
+//        })
+//    }
 
     // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if isFiltering {
+            return 1
+        }
+        return categories.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if isFiltering {
+            return 0
+        }
+        return 40
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if isFiltering {
+            return nil
+        }
+        return categories[section].category
+    }
+    
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 30
+//    }
+//
+//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let view = UIView()
+//        view.backgroundColor = .white
+//        return view
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return filtredItems.count
         }
-        return items.count
+        return categories[section].items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
-        var item = MenuItem(name: "Имя", price: 0)
+        var item = MenuItem(name: "Имя", category: "Категория", price: 0)
         
         if isFiltering {
             item = filtredItems[indexPath.row]
-        } else { item = items[indexPath.row] }
+        } else { item = categories[indexPath.section].items[indexPath.row] }
         
         cell.configureCell(with: item)
         cell.UpdateCellDelegate = self
@@ -73,20 +131,20 @@ class MenuVC: UITableViewController {
         return cell
     }
     
-    func generateItem() -> MenuItem {
-        return MenuItem(name: names.randomElement() ?? "Error", price: Int.random(in: 100...500))
-    }
-    
-    func generateItems(count: Int) -> [MenuItem] {
-        var items: [MenuItem] = []
-        
-        for _ in 0...count {
-            let newItem = generateItem()
-            items.append(newItem)
-        }
-        
-        return items
-    }
+//    func generateItem() -> MenuItem {
+//        return MenuItem(name: names.randomElement() ?? "Error", price: Int.random(in: 100...500))
+//    }
+//
+//    func generateItems(count: Int) -> [MenuItem] {
+//        var items: [MenuItem] = []
+//
+//        for _ in 0...count {
+//            let newItem = generateItem()
+//            items.append(newItem)
+//        }
+//
+//        return items
+//    }
     
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
         searchController.isActive = true
