@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d60-SR-Kxr">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--CategoriesVC-->
+        <scene sceneID="QBZ-vi-u1N">
+            <objects>
+                <viewController storyboardIdentifier="Categories" id="d60-SR-Kxr" customClass="CategoriesVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kQF-Fo-UnX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="539"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rko-Oq-KSf">
+                                <rect key="frame" x="0.0" y="36" width="414" height="503"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="d3m-pA-VgJ">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d3m-pA-VgJ" id="HR3-d2-COr">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4S-1H-156">
+                                <rect key="frame" x="177" y="16" width="60" height="4"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="4" id="9fJ-aF-E36"/>
+                                    <constraint firstAttribute="width" constant="60" id="AED-kj-aZl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4CM-tl-wbd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rko-Oq-KSf" firstAttribute="top" secondItem="B4S-1H-156" secondAttribute="bottom" constant="16" id="1Pe-CK-Uio"/>
+                            <constraint firstItem="Rko-Oq-KSf" firstAttribute="top" secondItem="kQF-Fo-UnX" secondAttribute="top" constant="36" id="7VX-Lh-h8n"/>
+                            <constraint firstItem="Rko-Oq-KSf" firstAttribute="leading" secondItem="4CM-tl-wbd" secondAttribute="leading" id="Eki-43-SgX"/>
+                            <constraint firstItem="B4S-1H-156" firstAttribute="centerX" secondItem="kQF-Fo-UnX" secondAttribute="centerX" id="FY9-MC-PsT"/>
+                            <constraint firstItem="B4S-1H-156" firstAttribute="centerX" secondItem="kQF-Fo-UnX" secondAttribute="centerX" id="H0v-U3-bxw"/>
+                            <constraint firstItem="Rko-Oq-KSf" firstAttribute="trailing" secondItem="4CM-tl-wbd" secondAttribute="trailing" id="HVf-uf-RaY"/>
+                            <constraint firstItem="B4S-1H-156" firstAttribute="top" secondItem="kQF-Fo-UnX" secondAttribute="top" constant="16" id="R93-PK-CsX"/>
+                            <constraint firstItem="Rko-Oq-KSf" firstAttribute="bottom" secondItem="4CM-tl-wbd" secondAttribute="bottom" id="RH2-CD-XBN"/>
+                            <constraint firstItem="Rko-Oq-KSf" firstAttribute="top" secondItem="kQF-Fo-UnX" secondAttribute="top" constant="36" id="u99-e9-52e"/>
+                            <constraint firstItem="Rko-Oq-KSf" firstAttribute="leading" secondItem="kQF-Fo-UnX" secondAttribute="leading" id="ubv-Xk-e22"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="414" height="539"/>
+                    <connections>
+                        <outlet property="slideIdicator" destination="B4S-1H-156" id="GLB-Qd-Oov"/>
+                        <outlet property="tableView" destination="Rko-Oq-KSf" id="vsm-xX-O0t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2tR-yD-1Xz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-270" y="-39"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

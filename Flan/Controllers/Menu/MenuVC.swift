@@ -149,6 +149,18 @@ class MenuVC: UITableViewController {
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
         searchController.isActive = true
     }
+    
+    @IBAction func categoriesButtonPressed(_ sender: UIBarButtonItem) {
+        
+        let storyboard = UIStoryboard(name: "Categories", bundle: nil)
+        
+        guard let categoriesVC = storyboard.instantiateViewController(withIdentifier: "Categories") as? CategoriesVC else { return }
+        
+        categoriesVC.modalPresentationStyle = .custom
+        categoriesVC.categories = categories
+        categoriesVC.transitioningDelegate = self
+        self.present(categoriesVC, animated: true, completion: nil)
+    }
 }
 
 extension MenuVC: UISearchResultsUpdating {
@@ -167,6 +179,12 @@ extension MenuVC: UISearchResultsUpdating {
     
     @objc func dismissKeyboard() {
         self.searchController.searchBar.endEditing(true)
+    }
+}
+
+extension MenuVC: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        PresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
 

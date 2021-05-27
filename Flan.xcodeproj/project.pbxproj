@@ -12,6 +12,8 @@
 		C125437C25D4C2FE0086ADD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C125437A25D4C2FE0086ADD2 /* LaunchScreen.storyboard */; };
 		C12543BF25E070F90086ADD2 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12543BE25E070F90086ADD2 /* FavoriteVC.swift */; };
 		C1573D82263103F5001C600B /* TapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1573D81263103F5001C600B /* TapBarController.swift */; };
+		C15AD175265F0F8F00E8E02F /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AD174265F0F8F00E8E02F /* CategoriesVC.swift */; };
+		C15AD17A265F1C5900E8E02F /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15AD179265F1C5900E8E02F /* Categories.storyboard */; };
 		C15C4087264589770053910A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15C4086264589770053910A /* Main.storyboard */; };
 		C15C408D2645C7C00053910A /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C408C2645C7C00053910A /* MoreVC.swift */; };
 		C15C40912645CA420053910A /* BakeryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C40902645CA420053910A /* BakeryModel.swift */; };
@@ -49,6 +51,8 @@
 		C125437D25D4C2FE0086ADD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C12543BE25E070F90086ADD2 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		C1573D81263103F5001C600B /* TapBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapBarController.swift; sourceTree = "<group>"; };
+		C15AD174265F0F8F00E8E02F /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
+		C15AD179265F1C5900E8E02F /* Categories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
 		C15C4086264589770053910A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C15C408C2645C7C00053910A /* MoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		C15C40902645CA420053910A /* BakeryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryModel.swift; sourceTree = "<group>"; };
@@ -172,6 +176,15 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		C15AD16E265F0C6300E8E02F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C15AD174265F0F8F00E8E02F /* CategoriesVC.swift */,
+				C15AD179265F1C5900E8E02F /* Categories.storyboard */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		C15C408B2645C79E0053910A /* More */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +220,7 @@
 				C19C8BEA261625EA0039CA79 /* MenuVC.swift */,
 				C19C8BEF261740670039CA79 /* MenuCell.swift */,
 				C19C8BF7261741050039CA79 /* MenuCell.xib */,
+				C15AD16E265F0C6300E8E02F /* Categories */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -307,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C125437C25D4C2FE0086ADD2 /* LaunchScreen.storyboard in Resources */,
+				C15AD17A265F1C5900E8E02F /* Categories.storyboard in Resources */,
 				C1600D242649F17700D06F31 /* Map.storyboard in Resources */,
 				C15C4087264589770053910A /* Main.storyboard in Resources */,
 				C125437925D4C2FE0086ADD2 /* Assets.xcassets in Resources */,
@@ -328,6 +343,7 @@
 				C1AD6A47265A7599007DFBE9 /* CustomizedHeaderView.swift in Sources */,
 				C1600D27264EF65700D06F31 /* ExtensionVC.swift in Sources */,
 				C19C8C06261DE6F60039CA79 /* ListVC.swift in Sources */,
+				C15AD175265F0F8F00E8E02F /* CategoriesVC.swift in Sources */,
 				C1AD6A422659223D007DFBE9 /* PresentationController.swift in Sources */,
 				C1AD6A3026585138007DFBE9 /* CustomizedCell.swift in Sources */,
 				C15C409A2645CD670053910A /* BakeryCell.swift in Sources */,
