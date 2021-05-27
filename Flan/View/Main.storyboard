@@ -135,13 +135,6 @@
         <!--Меню-->
         <scene sceneID="jRt-xN-ZvE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="r6d-N1-b8q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="OGE-FY-d1w">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <viewLayoutGuide key="safeArea" id="dGv-u0-dl2"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </view>
                 <tableViewController id="htg-z2-5ok" customClass="MenuVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ypg-pV-nLS">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
@@ -179,6 +172,13 @@
                         <outlet property="tableView" destination="Ypg-pV-nLS" id="gpG-15-txC"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r6d-N1-b8q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="OGE-FY-d1w">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <viewLayoutGuide key="safeArea" id="dGv-u0-dl2"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="1764" y="-794"/>
         </scene>

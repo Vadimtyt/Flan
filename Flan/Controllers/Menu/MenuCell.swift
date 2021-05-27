@@ -16,7 +16,7 @@ class MenuCell: UITableViewCell {
     
     let indexOfListVC = 2
     
-    weak var UpdateCellDelegate: UpdatingMenuCellDelegate?
+    weak var updateCellDelegate: UpdatingMenuCellDelegate?
     
     static let reuseId = "MenuCell"
     var item: MenuItem = MenuItem(name: "Имя", category: "Категория", price: 0)
@@ -74,7 +74,7 @@ class MenuCell: UITableViewCell {
             countItemLabel.text = "\(self.item.count)"
         } else { print("ошибка в countItemsLabel") }
         
-        UpdateCellDelegate?.updateListVCBadge()
+        updateCellDelegate?.updateListVCBadge()
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
@@ -94,7 +94,7 @@ class MenuCell: UITableViewCell {
             countItemLabel.text = "\(self.item.count)"
         } else { print("ошибка в countItemsLabel") }
         
-        UpdateCellDelegate?.updateListVCBadge()
+        updateCellDelegate?.updateListVCBadge()
     }
 
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
@@ -106,7 +106,7 @@ class MenuCell: UITableViewCell {
             favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
         } else { favoriteButton.setImage(UIImage(named: "addToFavorite"), for: .normal) }
         
-        UpdateCellDelegate?.updateFavorites()
+        updateCellDelegate?.updateFavorites()
     }
 }
 

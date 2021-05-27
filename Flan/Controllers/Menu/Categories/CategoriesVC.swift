@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol CategoriesVCDelegate: class {
+    func scrollTableToRow(at indexPath: IndexPath)
+}
+
 class CategoriesVC: UIViewController {
 
+    weak var categoriesVCDelegate: CategoriesVCDelegate?
     var categories: [(category: String, items: [MenuItem])] = []
     
     var hasSetPointOrigin = false
@@ -20,11 +25,7 @@ class CategoriesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.showsVerticalScrollIndicator = false
+        configureTableView()
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
         view.addGestureRecognizer(panGesture)
@@ -59,6 +60,20 @@ class CategoriesVC: UIViewController {
             }
         }
     }
+    
+    func configureTableView() {
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.alwaysBounceVertical = false
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < -90 {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
@@ -80,5 +95,13 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
         }
  
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
+        dismiss(animated: true)
+        let menuIndexPath = IndexPath(row: 0, section: indexPath.row)
+        categoriesVCDelegate?.scrollTableToRow(at: menuIndexPath)
     }
 }

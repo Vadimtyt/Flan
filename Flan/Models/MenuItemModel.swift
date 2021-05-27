@@ -83,7 +83,17 @@ let allItems: [MenuItem] = [
     MenuItem(name: "Зевиф из натурального пюре", category: "Кендибар", price: 100),
     MenuItem(name: "Маршмеллоу", category: "Кендибар", price: 80),
     MenuItem(name: "Гимов", category: "Кендибар", price: 30),
-    MenuItem(name: "Безе", category: "Кендибар", price: 40)
+    MenuItem(name: "Безе", category: "Кендибар", price: 40),
+    MenuItem(name: "Безе", category: "Суфле", price: 40),
+    MenuItem(name: "Безе", category: "Пироги", price: 40),
+    MenuItem(name: "Безе", category: "Печенье", price: 40),
+    MenuItem(name: "Безе", category: "Кондитерка", price: 40),
+    MenuItem(name: "Безе", category: "Пицца", price: 40),
+    MenuItem(name: "Безе", category: "Киши", price: 40),
+    MenuItem(name: "Безе", category: "Супы", price: 40),
+    MenuItem(name: "Безе", category: "Конфеты", price: 40),
+    MenuItem(name: "Безе", category: "Кексы", price: 40),
+    MenuItem(name: "Безе", category: "Салаты", price: 40),
 ]
 
 extension RangeReplaceableCollection where Element: Hashable {

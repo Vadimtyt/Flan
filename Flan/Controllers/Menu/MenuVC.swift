@@ -126,7 +126,7 @@ class MenuVC: UITableViewController {
         } else { item = categories[indexPath.section].items[indexPath.row] }
         
         cell.configureCell(with: item)
-        cell.UpdateCellDelegate = self
+        cell.updateCellDelegate = self
  
         return cell
     }
@@ -156,6 +156,7 @@ class MenuVC: UITableViewController {
         
         guard let categoriesVC = storyboard.instantiateViewController(withIdentifier: "Categories") as? CategoriesVC else { return }
         
+        categoriesVC.categoriesVCDelegate = self
         categoriesVC.modalPresentationStyle = .custom
         categoriesVC.categories = categories
         categoriesVC.transitioningDelegate = self
@@ -196,5 +197,11 @@ extension MenuVC: UpdatingMenuCellDelegate {
     
     func updateFavorites() {
         ListOfMenuItems.shared.updateFavorites()
+    }
+}
+
+extension MenuVC: CategoriesVCDelegate{
+    func scrollTableToRow(at indexPath: IndexPath) {
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }

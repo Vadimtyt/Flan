@@ -32,7 +32,8 @@ class TapBarController: UITabBarController, UITabBarControllerDelegate {
             guard let height = menulVC.navigationController?.navigationBar.frame.height else { return }
 
             guard currentPosition > -height else { return }
-            menulVC.tableView.scrollRectToVisible(CGRect(x: 0, y: -height - 10, width: 1, height: 1), animated: true)
+            menulVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            //menulVC.tableView.scrollRectToVisible(CGRect(x: 0, y: -height - 10, width: 1, height: 1), animated: true)
         }
         
         if tabBarIndex == 3 && previousController == viewController {

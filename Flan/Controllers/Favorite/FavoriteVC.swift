@@ -36,7 +36,7 @@ class FavoriteVC: UITableViewController {
  
         let item = items[indexPath.row]
         cell.configureCell(with: item)
-        cell.UpdateCellDelegate = self
+        cell.updateCellDelegate = self
  
         return cell
     }
