@@ -42,9 +42,6 @@ class CategoriesVC: UIViewController {
     @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
-        // Not allowing the user to drag the view upward
-        guard translation.y >= 0 else { return }
-        
         // setting x as 0 because we don't want users to move the frame side ways!! Only want straight up or down
         view.frame.origin = CGPoint(x: 0, y: self.pointOrigin!.y + translation.y)
         
@@ -69,10 +66,55 @@ class CategoriesVC: UIViewController {
         tableView.alwaysBounceVertical = false
     }
     
+    var isScrollViewAtTopPosition = true
+    var isScrollBeganFromTop = true
+    var isScrollingViewWithTable = false
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < -90 {
-            self.dismiss(animated: true, completion: nil)
+        
+        if !isScrollBeganFromTop && scrollView.contentOffset.y < 0 {
+            UIView.animate(withDuration: 0.2) {
+                self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
+            }
         }
+
+        if scrollView.contentOffset.y < 0 || self.view.frame.origin.y > self.pointOrigin?.y ?? CGPoint(x: 0, y: 400).y {
+            self.view.frame = CGRect(x: 0,
+                                     y: self.view.frame.minY - scrollView.contentOffset.y/2,
+                                     width: self.view.frame.width,
+                                     height: self.view.frame.height)
+            scrollView.contentOffset.y = 0
+            
+            isScrollingViewWithTable = true
+        }
+        
+        
+        if scrollView.contentOffset.y > 0 {
+            isScrollViewAtTopPosition = false
+        } else if scrollView.contentOffset.y <= 0 {
+            isScrollViewAtTopPosition = true
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isScrollBeganFromTop = isScrollViewAtTopPosition
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+
+        let scrollDownDistance = self.view.frame.origin.y - (self.pointOrigin?.y ?? CGPoint(x: 0, y: 400).y)
+        
+        if isScrollingViewWithTable && scrollDownDistance > 20 && (velocity.y < -1.5 || scrollDownDistance > 100) {
+            dismiss(animated: true)
+        }
+        
+        if scrollDownDistance != 0 {
+            UIView.animate(withDuration: 0.3) {
+                self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
+            }
+        }
+        
+        isScrollingViewWithTable = false
     }
 }
 

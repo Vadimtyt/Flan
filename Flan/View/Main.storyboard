@@ -211,7 +211,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pbh-2A-KDQ">
                                         <rect key="frame" x="0.0" y="616" width="390" height="57"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YQ-X3-vfD">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YQ-X3-vfD" userLabel="Share Button">
                                                 <rect key="frame" x="231" y="8" width="151" height="41"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="151" id="3TU-Ax-Wqm"/>
@@ -300,6 +300,7 @@
                         <outlet property="clearBarButton" destination="ocd-JX-a3Y" id="J1Q-GD-4d6"/>
                         <outlet property="infoButton" destination="KmW-UO-bgb" id="ZBt-AW-CPK"/>
                         <outlet property="listTableView" destination="LY4-ab-atz" id="iCw-3M-mD1"/>
+                        <outlet property="shareButton" destination="9YQ-X3-vfD" id="lYT-RB-Ibw"/>
                         <outlet property="totalSumLabel" destination="yZu-xn-pgQ" id="mM2-0S-Yzh"/>
                     </connections>
                 </viewController>

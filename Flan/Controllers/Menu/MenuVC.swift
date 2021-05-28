@@ -172,10 +172,32 @@ extension MenuVC: UISearchResultsUpdating {
     func filterContentForSearchText(_ searchText: String){
         //Uncomment to change filter strategy
         //filtredItems = items.filter{ $0.name.lowercased().contains(searchText.lowercased()) }
+        //filtredItems = items.filter{ $0.name.lowercased().hasPrefix(searchText.lowercased()) }
         
-        filtredItems = items.filter{ $0.name.lowercased().hasPrefix(searchText.lowercased()) }
+        filtredItems = items.filter{
+            var isFits: [Bool] = []
+            let itemWords = $0.name.lowercased().components(separatedBy: [" ", ".", ","])
+            let searchingWords = searchText.lowercased().components(separatedBy: [" ", "."])
+            
+            searchingWords.forEach {
+                var isThisSearchWordFits = false
+                for word in itemWords {
+                    if word.hasPrefix($0) { isThisSearchWordFits = true }
+                }
+                isFits.append(isThisSearchWordFits)
+            }
+            
+            return !(isFits.contains(false))
+        }
+        
+        if searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            filtredItems = []
+        }
         
         tableView.reloadData()
+        if !(filtredItems.isEmpty) {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     
     @objc func dismissKeyboard() {

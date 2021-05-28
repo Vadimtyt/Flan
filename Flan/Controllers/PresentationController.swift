@@ -26,14 +26,14 @@ class PresentationController: UIPresentationController {
     }
   
     override var frameOfPresentedViewInContainerView: CGRect {
-        var indent: CGFloat = 70
+        var indent: CGFloat = 80
         let aspectRatio = self.containerView!.frame.height/self.containerView!.frame.width
         if aspectRatio > 16/9 {
-            indent += 40
+            indent += 30
         }
         
         return CGRect(origin: CGPoint(x: 0, y: self.containerView!.frame.height - (self.containerView!.frame.width + indent)),
-                      size: CGSize(width: self.containerView!.frame.width, height: self.containerView!.frame.width + indent))
+                      size: CGSize(width: self.containerView!.frame.width, height: self.containerView!.frame.width + indent + 1000))
     }
 
     override func presentationTransitionWillBegin() {

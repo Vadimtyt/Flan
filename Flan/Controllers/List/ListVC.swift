@@ -17,9 +17,10 @@ class ListVC: UIViewController {
     private let popUpTextFontSize: CGFloat = 18
     
     @IBOutlet weak var listTableView: UITableView!
+    @IBOutlet weak var clearBarButton: UIBarButtonItem!
     @IBOutlet weak var totalSumLabel: UILabel!
     @IBOutlet weak var infoButton: UIButton!
-    @IBOutlet weak var clearBarButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -129,12 +130,11 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         changeTotalSumLabel()
         
         if items.count == 0 {
-            clearBarButton.image = nil
-            clearBarButton.title = ""
+            clearBarButton.isEnabled = false
+            shareButton.isEnabled = false
         } else {
-            if #available(iOS 13.0, *) {
-                clearBarButton.image = UIImage(systemName: "trash")
-            } else { clearBarButton.title = "Очистить"}
+            clearBarButton.isEnabled = true
+            shareButton.isEnabled = true
         }
         
         return items.count
