@@ -47,12 +47,14 @@ class CategoriesVC: UIViewController {
         
         if sender.state == .ended {
             let dragVelocity = sender.velocity(in: view)
-            if dragVelocity.y >= 1300 {
+            if dragVelocity.y >= 1300 || translation.y > 200 {
                 self.dismiss(animated: true, completion: nil)
             } else {
                 // Set back to original position of the view controller
-                UIView.animate(withDuration: 0.3) {
-                    self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction) {
+                        self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
+                    }
                 }
             }
         }
@@ -73,8 +75,10 @@ class CategoriesVC: UIViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if !isScrollBeganFromTop && scrollView.contentOffset.y < 0 {
-            UIView.animate(withDuration: 0.2) {
-                self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction) {
+                    self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
+                }
             }
         }
 
@@ -109,7 +113,7 @@ class CategoriesVC: UIViewController {
         }
         
         if scrollDownDistance != 0 {
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction) {
                 self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
             }
         }

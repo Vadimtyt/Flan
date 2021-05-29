@@ -48,7 +48,7 @@ class CustomizedDetailVC: UIViewController {
                 self.dismiss(animated: true, completion: nil)
             } else {
                 // Set back to original position of the view controller
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction) {
                     self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
                 }
             }
