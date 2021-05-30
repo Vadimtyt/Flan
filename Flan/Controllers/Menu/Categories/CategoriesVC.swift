@@ -18,6 +18,9 @@ class CategoriesVC: UIViewController {
     
     var hasSetPointOrigin = false
     var pointOrigin: CGPoint?
+    var isScrollViewAtTopPosition = true
+    var isScrollBeganFromTop = true
+    var isScrollingViewWithTable = false
     
     @IBOutlet weak var slideIdicator: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -35,8 +38,8 @@ class CategoriesVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         if !hasSetPointOrigin {
-            hasSetPointOrigin = true
             pointOrigin = self.view.frame.origin
+            hasSetPointOrigin = true
         }
     }
     @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
@@ -51,11 +54,7 @@ class CategoriesVC: UIViewController {
                 self.dismiss(animated: true, completion: nil)
             } else {
                 // Set back to original position of the view controller
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction) {
-                        self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
-                    }
-                }
+                backToPointOrigin()
             }
         }
     }
@@ -68,18 +67,10 @@ class CategoriesVC: UIViewController {
         tableView.alwaysBounceVertical = false
     }
     
-    var isScrollViewAtTopPosition = true
-    var isScrollBeganFromTop = true
-    var isScrollingViewWithTable = false
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if !isScrollBeganFromTop && scrollView.contentOffset.y < 0 {
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction) {
-                    self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
-                }
-            }
+            backToPointOrigin()
         }
 
         if scrollView.contentOffset.y < 0 || self.view.frame.origin.y > self.pointOrigin?.y ?? CGPoint(x: 0, y: 400).y {
@@ -113,13 +104,18 @@ class CategoriesVC: UIViewController {
         }
         
         if scrollDownDistance != 0 {
-            UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction) {
-                self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
-            }
+            backToPointOrigin()
         }
         
         isScrollingViewWithTable = false
     }
+    
+    func backToPointOrigin() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction) {
+            self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
+        }
+    }
+    
 }
 
 extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
