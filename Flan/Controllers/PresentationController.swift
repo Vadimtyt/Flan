@@ -10,8 +10,9 @@ import UIKit
 class PresentationController: UIPresentationController {
     
     let blurEffectView: UIVisualEffectView!
+    let blurEffectValue: CGFloat = 0.8
     var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
-  
+    
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
         var blurEffect = UIBlurEffect(style: .extraLight)
         if #available(iOS 13.0, *) {
@@ -31,16 +32,17 @@ class PresentationController: UIPresentationController {
         if aspectRatio > 16/9 {
             indent += 30
         }
-        
-        return CGRect(origin: CGPoint(x: 0, y: self.containerView!.frame.height - (self.containerView!.frame.width + indent)),
-                      size: CGSize(width: self.containerView!.frame.width, height: self.containerView!.frame.width + indent + 1000))
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        return CGRect(origin: CGPoint(x: 0, y: height - (width + indent)),
+                      size: CGSize(width: width, height: height))
     }
 
     override func presentationTransitionWillBegin() {
         self.blurEffectView.alpha = 0
         self.containerView?.addSubview(blurEffectView)
         self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
-            self.blurEffectView.alpha = 0.8
+            self.blurEffectView.alpha = self.blurEffectValue
         }, completion: { (UIViewControllerTransitionCoordinatorContext) in })
     }
   
