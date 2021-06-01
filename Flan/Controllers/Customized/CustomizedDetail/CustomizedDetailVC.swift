@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class CustomizedDetailVC: UIViewController {
     
@@ -61,6 +62,16 @@ class CustomizedDetailVC: UIViewController {
         guard let image = cake.image else { return }
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop,UIActivity.ActivityType.addToReadingList]
+        
+        activityVC.completionWithItemsHandler = { activity, success, items, error in
+            guard activity == .saveToCameraRoll else { return }
+                PHPhotoLibrary.requestAuthorization({ _ in
+                    if PHPhotoLibrary.authorizationStatus() != .authorized {
+                        print("Kek")
+                    }
+                })
+        }
+       
         self.present(activityVC, animated: true, completion: nil)
     }
 }
