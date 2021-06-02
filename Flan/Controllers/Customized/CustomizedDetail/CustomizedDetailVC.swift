@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import PhotosUI
+import Photos
 
 class CustomizedDetailVC: UIViewController {
     
@@ -61,17 +61,49 @@ class CustomizedDetailVC: UIViewController {
         
         guard let image = cake.image else { return }
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop,UIActivity.ActivityType.addToReadingList]
+        activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
         
-        activityVC.completionWithItemsHandler = { activity, success, items, error in
-            guard activity == .saveToCameraRoll else { return }
-                PHPhotoLibrary.requestAuthorization({ _ in
-                    if PHPhotoLibrary.authorizationStatus() != .authorized {
-                        print("Kek")
-                    }
-                })
+        if PHPhotoLibrary.authorizationStatus() != .notDetermined {
+            activityVC.completionWithItemsHandler = { [weak self] activity, success, _, _ in
+                guard activity == .saveToCameraRoll else { return }
+                if success {
+                    print("Успешно!")
+                } else {
+//                    if PHPhotoLibrary.authorizationStatus() == .notDetermined {
+//                        print("Kek")
+//                    } else {
+                        print("Не очень!")
+                        self?.permissionDeniedAlert()
+//                    }
+                }
+            }
         }
+//                    PHPhotoLibrary.requestAuthorization({ _ in
+//                        if PHPhotoLibrary.authorizationStatus() != .authorized {
+//                            print("Kek")
+//                        }
+//                    })
+//                }
        
         self.present(activityVC, animated: true, completion: nil)
+    }
+    
+    func permissionDeniedAlert() {
+        let title = "Запись изображения в галерею недоступна"
+        let message = "Вероятно, вы запретили приложению добавлять изображения в ваши фото. Чтобы воспользоваться этой функцией, перейдите в настройки приложения и разрешите доступ к фото."
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // OpenSettingsAction action
+        let openSettingsAction = UIAlertAction(title: "Настройки", style: .default) {  _ in
+            UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
+        }
+        
+        // Cancel action
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(openSettingsAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }

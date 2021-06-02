@@ -4,6 +4,8 @@
 <dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Приложению требуется разрешение на сохранение фото в галерею.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Приложению требуется разрешение на сохранение фото в галерею.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Приложению требуется геопозиция пользователя, чтобы показывать на карте текущее местоположение и прокладывать от него пеший маршрут.</string>
 	<key>CFBundleDevelopmentRegion</key>
