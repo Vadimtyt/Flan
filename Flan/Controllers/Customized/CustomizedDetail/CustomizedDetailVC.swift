@@ -63,29 +63,14 @@ class CustomizedDetailVC: UIViewController {
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
         
-        if PHPhotoLibrary.authorizationStatus() != .notDetermined {
+        defer { self.present(activityVC, animated: true, completion: nil) }
+        
+        if #available(iOS 14, *) {
+            guard PHPhotoLibrary.authorizationStatus(for: .addOnly) != .notDetermined else { return }
             activityVC.completionWithItemsHandler = { [weak self] activity, success, _, _ in
-                guard activity == .saveToCameraRoll else { return }
-                if success {
-                    print("Успешно!")
-                } else {
-//                    if PHPhotoLibrary.authorizationStatus() == .notDetermined {
-//                        print("Kek")
-//                    } else {
-                        print("Не очень!")
-                        self?.permissionDeniedAlert()
-//                    }
-                }
+                if activity == .saveToCameraRoll && !success { self?.permissionDeniedAlert() }
             }
         }
-//                    PHPhotoLibrary.requestAuthorization({ _ in
-//                        if PHPhotoLibrary.authorizationStatus() != .authorized {
-//                            print("Kek")
-//                        }
-//                    })
-//                }
-       
-        self.present(activityVC, animated: true, completion: nil)
     }
     
     func permissionDeniedAlert() {
