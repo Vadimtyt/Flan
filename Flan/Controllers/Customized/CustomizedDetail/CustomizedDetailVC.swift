@@ -70,12 +70,17 @@ class CustomizedDetailVC: UIViewController {
             activityVC.completionWithItemsHandler = { [weak self] activity, success, _, _ in
                 if activity == .saveToCameraRoll && !success { self?.permissionDeniedAlert() }
             }
+        } else {
+            activityVC.completionWithItemsHandler = { [weak self] activity, success, _, _ in
+                if activity == .saveToCameraRoll && !success { self?.permissionDeniedAlert() }
+            }
         }
+        
     }
     
     func permissionDeniedAlert() {
         let title = "Запись изображения в галерею недоступна"
-        let message = "Вероятно, вы запретили приложению добавлять изображения в ваши фото. Чтобы воспользоваться этой функцией, перейдите в настройки приложения и разрешите доступ к фото."
+        let message = "Вероятно, вы запретили приложению добавлять изображения в ваши фото. Если вы сделали это случайно или передумали, вы можете перейти в настройки приложения и разрешите доступ к фото."
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -84,9 +89,9 @@ class CustomizedDetailVC: UIViewController {
             UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
         }
         
-        // Cancel action
-        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
-        alert.addAction(cancelAction)
+        // Close action
+        let closelAction = UIAlertAction(title: "Закрыть", style: .cancel)
+        alert.addAction(closelAction)
         alert.addAction(openSettingsAction)
         
         self.present(alert, animated: true, completion: nil)
