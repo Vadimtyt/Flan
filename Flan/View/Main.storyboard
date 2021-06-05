@@ -135,7 +135,7 @@
         <!--Меню-->
         <scene sceneID="jRt-xN-ZvE">
             <objects>
-                <tableViewController id="htg-z2-5ok" customClass="MenuVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="htg-z2-5ok" customClass="MenuVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ypg-pV-nLS">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

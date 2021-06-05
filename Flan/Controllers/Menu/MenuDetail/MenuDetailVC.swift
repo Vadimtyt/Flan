@@ -8,7 +8,11 @@
 import UIKit
 
 class MenuDetailVC: UIViewController {
+    
+    var item: MenuItem!
+    
     override func viewDidLoad() {
-        //
+        super.viewDidLoad()
+        print(item.name)
     }
 }

@@ -131,6 +131,18 @@ class MenuVC: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "MenuDetail", bundle: nil)
+            print("Выбран")
+            
+            guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
+            menuDetailVC.item = self.items[indexPath.row]
+
+            self.present(menuDetailVC, animated: true, completion: nil)
+        }
+    }
+    
 //    func generateItem() -> MenuItem {
 //        return MenuItem(name: names.randomElement() ?? "Error", price: Int.random(in: 100...500))
 //    }
