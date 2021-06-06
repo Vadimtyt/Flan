@@ -11,8 +11,14 @@ class MenuDetailVC: UIViewController {
     
     var item: MenuItem!
     
+    @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(item.name)
+        itemImage.image = item.image
+        nameLabel.text = item.name
+        priceLabel.text = "\(item.price)"
     }
 }

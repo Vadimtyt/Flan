@@ -123,6 +123,11 @@
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" id="uQz-TK-a11"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="itemImage" destination="MKe-uL-GAh" id="L0w-G7-feP"/>
+                        <outlet property="nameLabel" destination="XVC-XG-z45" id="WDi-Tn-bjK"/>
+                        <outlet property="priceLabel" destination="9gi-67-Yng" id="Lga-GD-tbJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBg-Xd-jud" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,14 +11,17 @@ class MenuItem {
     let name: String
     let price: Int
     let category: String
+    let imageName: String
     var image = UIImage(named: "Кекс")
     var count = 0
     var isFavorite = false
     
-    init(name: String, category: String, price: Int) {
+    init(name: String, category: String, price: Int, imageName: String) {
         self.name = name
         self.category = category
         self.price = price
+        self.imageName = imageName
+        self.image = UIImage(named: imageName)
     }
 }
 
@@ -74,26 +77,26 @@ class ListOfMenuItems {
 }
 
 let allItems: [MenuItem] = [
-    MenuItem(name: "Нежность", category: "Торты", price: 170),
-    MenuItem(name: "Киевский", category: "Торты", price: 190),
-    MenuItem(name: "Тирамису", category: "Торты", price: 230),
-    MenuItem(name: "Сочник с творогом", category: "Выпечка", price: 70),
-    MenuItem(name: "Плюшка", category: "Выпечка", price: 50),
-    MenuItem(name: "Кекс творожный", category: "Выпечка", price: 55),
-    MenuItem(name: "Зевиф из натурального пюре", category: "Кендибар", price: 100),
-    MenuItem(name: "Маршмеллоу", category: "Кендибар", price: 80),
-    MenuItem(name: "Гимов", category: "Кендибар", price: 30),
-    MenuItem(name: "Безе", category: "Кендибар", price: 40),
-    MenuItem(name: "Безе", category: "Суфле", price: 40),
-    MenuItem(name: "Безе", category: "Пироги", price: 40),
-    MenuItem(name: "Безе", category: "Печенье", price: 40),
-    MenuItem(name: "Безе", category: "Кондитерка", price: 40),
-    MenuItem(name: "Безе", category: "Пицца", price: 40),
-    MenuItem(name: "Безе", category: "Киши", price: 40),
-    MenuItem(name: "Безе", category: "Супы", price: 40),
-    MenuItem(name: "Безе", category: "Конфеты", price: 40),
-    MenuItem(name: "Безе", category: "Кексы", price: 40),
-    MenuItem(name: "Безе", category: "Салаты", price: 40),
+    MenuItem(name: "Нежность", category: "Торты", price: 170, imageName: "Киш1"),
+    MenuItem(name: "Киевский", category: "Торты", price: 190, imageName: "Киш2"),
+    MenuItem(name: "Тирамису", category: "Торты", price: 230, imageName: "Киш3"),
+    MenuItem(name: "Сочник с творогом", category: "Выпечка", price: 70, imageName: "Слойка"),
+    MenuItem(name: "Плюшка", category: "Выпечка", price: 50, imageName: "Эклер1"),
+    MenuItem(name: "Кекс творожный", category: "Выпечка", price: 55, imageName: "Эклер2"),
+    MenuItem(name: "Зефир из натурального пюре", category: "Кендибар", price: 100, imageName: "Эклер3"),
+    MenuItem(name: "Маршмеллоу", category: "Кендибар", price: 80, imageName: "Эклер4"),
+    MenuItem(name: "Гимов", category: "Кендибар", price: 30, imageName: "Капкейк1"),
+    MenuItem(name: "Безе", category: "Кендибар", price: 40, imageName: "Капкейк2"),
+    MenuItem(name: "Безе", category: "Суфле", price: 40, imageName: "Капкейк3"),
+    MenuItem(name: "Безе", category: "Пироги", price: 40, imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Печенье", price: 40, imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Кондитерка", price: 40, imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Пицца", price: 40, imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Киши", price: 40, imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Супы", price: 40, imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Конфеты", price: 40, imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Кексы", price: 40, imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Салаты", price: 40, imageName: "Кекс")
 ]
 
 extension RangeReplaceableCollection where Element: Hashable {

@@ -119,7 +119,7 @@ class MenuVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
-        var item = MenuItem(name: "Имя", category: "Категория", price: 0)
+        var item = MenuItem(name: "Имя", category: "Категория", price: 0, imageName: "Кекс")
         
         if isFiltering {
             item = filtredItems[indexPath.row]

@@ -25,6 +25,7 @@ class CustomizedDetailVC: UIViewController {
         view.addGestureRecognizer(panGesture)
         
         cakeImage.image = cake.image
+        cakeImage.contentMode = .scaleAspectFill
         cakeNumberLabel.text = "#\(cake.number)"
         
         cakeImage.layer.cornerRadius = 10
