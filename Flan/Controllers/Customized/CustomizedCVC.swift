@@ -50,7 +50,7 @@ class CustomizedCVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CustomizedCell
     
-        cell.cakeImage.image = UIImage(named: "КексКвадрат")
+        cell.cakeImage.image = UIImage(named: "Кекс")
         cell.backgroundColor = .red
         
         return cell

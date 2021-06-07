@@ -46,6 +46,7 @@ class FavoriteVC: UITableViewController {
             
         guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
         menuDetailVC.item = self.items[indexPath.row]
+        menuDetailVC.updateCellDelegate = self
 
         self.present(menuDetailVC, animated: true, completion: nil)
     }

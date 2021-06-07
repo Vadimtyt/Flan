@@ -42,7 +42,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGD-Pm-l4D">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGD-Pm-l4D" userLabel="Add Button">
                                                 <rect key="frame" x="353" y="18" width="37" height="37"/>
                                                 <color key="backgroundColor" systemColor="labelColor"/>
                                                 <constraints>
@@ -51,6 +51,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" image="plus" catalog="system"/>
+                                                <connections>
+                                                    <action selector="addButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="tYq-am-NXs"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gi-67-Yng">
                                                 <rect key="frame" x="8" y="17.5" width="90" height="38"/>
@@ -67,6 +70,9 @@
                                                 <rect key="frame" x="279" y="18" width="37" height="37"/>
                                                 <color key="backgroundColor" systemColor="labelColor"/>
                                                 <state key="normal" image="minus" catalog="system"/>
+                                                <connections>
+                                                    <action selector="removeButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="NFp-qw-fkc"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -104,14 +110,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zVZ-m5-2jP">
+                                <rect key="frame" x="16" y="749" width="382" height="32"/>
+                                <segments>
+                                    <segment title="По 100г."/>
+                                    <segment title="Целый"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yYH-Y0-N2A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cWU-Yk-6D3" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" id="0sz-v8-ohp"/>
                             <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="eip-EP-xfm" secondAttribute="trailing" constant="16" id="1KO-xa-Lh8"/>
+                            <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="zVZ-m5-2jP" secondAttribute="trailing" constant="16" id="6LU-9v-V0Y"/>
                             <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="XVC-XG-z45" secondAttribute="trailing" constant="8" id="6uL-dQ-VX9"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="top" secondItem="W94-64-xo6" secondAttribute="top" id="FCf-Rc-QQo"/>
+                            <constraint firstItem="zVZ-m5-2jP" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="16" id="KZ6-tM-tgF"/>
                             <constraint firstAttribute="bottom" secondItem="cWU-Yk-6D3" secondAttribute="bottom" id="MHz-RI-yDN"/>
                             <constraint firstItem="eip-EP-xfm" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="16" id="Typ-YV-7T3"/>
                             <constraint firstItem="XVC-XG-z45" firstAttribute="top" secondItem="MKe-uL-GAh" secondAttribute="bottom" constant="16" id="XLr-yg-lzu"/>
@@ -121,12 +136,15 @@
                             <constraint firstItem="XVC-XG-z45" firstAttribute="centerX" secondItem="yYH-Y0-N2A" secondAttribute="centerX" id="q4W-J8-oQM"/>
                             <constraint firstItem="XVC-XG-z45" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="8" id="q9s-1N-YK9"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" id="uQz-TK-a11"/>
+                            <constraint firstItem="cWU-Yk-6D3" firstAttribute="top" secondItem="zVZ-m5-2jP" secondAttribute="bottom" constant="16" id="xx6-TY-Hd3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="countItemLabel" destination="Fiz-mU-BNb" id="WtR-Ej-83J"/>
                         <outlet property="itemImage" destination="MKe-uL-GAh" id="L0w-G7-feP"/>
                         <outlet property="nameLabel" destination="XVC-XG-z45" id="WDi-Tn-bjK"/>
                         <outlet property="priceLabel" destination="9gi-67-Yng" id="Lga-GD-tbJ"/>
+                        <outlet property="removeButton" destination="ldm-hT-X7W" id="2cl-jB-gx8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBg-Xd-jud" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
