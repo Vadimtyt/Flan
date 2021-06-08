@@ -17,6 +17,8 @@ class MenuDetailVC: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var countItemLabel: UILabel!
     @IBOutlet weak var removeButton: UIButton!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,5 +71,20 @@ class MenuDetailVC: UIViewController {
         } else { print("ошибка в countItemsLabel") }
         
         updateCellDelegate?.updateListVCBadge()
+    }
+    
+    
+    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex
+            {
+            case 0:
+                print("first segment selected")
+                //by 100g
+            case 1:
+                print("second segment selected")
+                //by count
+            default:
+                break
+            }
     }
 }

@@ -116,6 +116,9 @@
                                     <segment title="По 100г."/>
                                     <segment title="Целый"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="nUc-xs-zVD" eventType="valueChanged" id="i7a-Dc-Y9e"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yYH-Y0-N2A"/>
@@ -145,6 +148,7 @@
                         <outlet property="nameLabel" destination="XVC-XG-z45" id="WDi-Tn-bjK"/>
                         <outlet property="priceLabel" destination="9gi-67-Yng" id="Lga-GD-tbJ"/>
                         <outlet property="removeButton" destination="ldm-hT-X7W" id="2cl-jB-gx8"/>
+                        <outlet property="segmentedControl" destination="zVZ-m5-2jP" id="53u-il-6jE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBg-Xd-jud" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

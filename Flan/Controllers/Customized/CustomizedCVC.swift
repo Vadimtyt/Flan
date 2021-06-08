@@ -51,6 +51,7 @@ class CustomizedCVC: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CustomizedCell
     
         cell.cakeImage.image = UIImage(named: "Кекс")
+        cell.cakeImage.contentMode = .scaleAspectFill
         cell.backgroundColor = .red
         
         return cell
