@@ -46,6 +46,7 @@ class FavoriteVC: UITableViewController {
             
         guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
         menuDetailVC.item = self.items[indexPath.row]
+        menuDetailVC.indexPath = indexPath
         menuDetailVC.updateCellDelegate = self
 
         self.present(menuDetailVC, animated: true, completion: nil)
@@ -67,5 +68,9 @@ extension FavoriteVC: UpdatingMenuCellDelegate {
         }
         
         self.tableView.reloadData()
+    }
+    
+    func updateCellAt(indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }

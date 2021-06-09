@@ -10,6 +10,7 @@ import UIKit
 class MenuDetailVC: UIViewController {
     
     var item: MenuItem!
+    var indexPath: IndexPath!
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
     
     @IBOutlet weak var itemImage: UIImageView!
@@ -51,6 +52,7 @@ class MenuDetailVC: UIViewController {
         } else { print("ошибка в countItemsLabel") }
         
         updateCellDelegate?.updateListVCBadge()
+        updateCellDelegate?.updateCellAt(indexPath: indexPath)
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
@@ -71,6 +73,7 @@ class MenuDetailVC: UIViewController {
         } else { print("ошибка в countItemsLabel") }
         
         updateCellDelegate?.updateListVCBadge()
+        updateCellDelegate?.updateCellAt(indexPath: indexPath)
     }
     
     

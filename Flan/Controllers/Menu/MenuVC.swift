@@ -134,10 +134,10 @@ class MenuVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "MenuDetail", bundle: nil)
-            print("Выбран")
             
             guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
             menuDetailVC.item = self.categories[indexPath.section].items[indexPath.row]
+            menuDetailVC.indexPath = indexPath
             menuDetailVC.updateCellDelegate = self
 
             self.present(menuDetailVC, animated: true, completion: nil)
@@ -225,6 +225,7 @@ extension MenuVC: UIViewControllerTransitioningDelegate {
 }
 
 extension MenuVC: UpdatingMenuCellDelegate {
+    
     func updateListVCBadge() {
         let badgeValue = ListOfMenuItems.shared.getValueForListBadge()
         updateListVCBadge(with: badgeValue)
@@ -232,6 +233,10 @@ extension MenuVC: UpdatingMenuCellDelegate {
     
     func updateFavorites() {
         ListOfMenuItems.shared.updateFavorites()
+    }
+    
+    func updateCellAt(indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
 

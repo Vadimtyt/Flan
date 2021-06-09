@@ -10,6 +10,7 @@ import UIKit
 protocol UpdatingMenuCellDelegate: class {
     func updateListVCBadge()
     func updateFavorites()
+    func updateCellAt(indexPath: IndexPath)
 }
 
 class MenuCell: UITableViewCell {
