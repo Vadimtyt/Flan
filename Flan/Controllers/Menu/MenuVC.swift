@@ -25,6 +25,7 @@ class MenuVC: UITableViewController {
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
+    var isKeyboardPresented = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,15 @@ class MenuVC: UITableViewController {
     }
     
     func configureSearchController() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification,
+                                               object:nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification,
+                                               object:nil)
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MenuVC.dismissKeyboard))
+        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
         searchController.searchResultsUpdater = self
@@ -51,6 +60,19 @@ class MenuVC: UITableViewController {
         searchController.searchBar.placeholder = "Введите название"
         navigationItem.searchController = searchController
         definesPresentationContext = false
+    }
+    
+    @objc func keyboardDidShow(notification: NSNotification) {
+        isKeyboardPresented = true
+    }
+
+
+    @objc func keyboardDidHide(notification: NSNotification) {
+        isKeyboardPresented = false
+    }
+    
+    @objc func dismissKeyboard() {
+        self.searchController.searchBar.endEditing(true)
     }
     
 //    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -132,16 +154,19 @@ class MenuVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        DispatchQueue.main.async {
-            let storyboard = UIStoryboard(name: "MenuDetail", bundle: nil)
+        guard !isKeyboardPresented else { return }
+        let storyboard = UIStoryboard(name: "MenuDetail", bundle: nil)
             
-            guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
+        guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
+        if isFiltering {
+            menuDetailVC.item = self.filtredItems[indexPath.row]
+        } else {
             menuDetailVC.item = self.categories[indexPath.section].items[indexPath.row]
-            menuDetailVC.indexPath = indexPath
-            menuDetailVC.updateCellDelegate = self
-
-            self.present(menuDetailVC, animated: true, completion: nil)
         }
+        menuDetailVC.indexPath = indexPath
+        menuDetailVC.updateCellDelegate = self
+
+        self.present(menuDetailVC, animated: true, completion: nil)
     }
     
 //    func generateItem() -> MenuItem {
@@ -211,10 +236,6 @@ extension MenuVC: UISearchResultsUpdating {
         if !(filtredItems.isEmpty) {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
-    }
-    
-    @objc func dismissKeyboard() {
-        self.searchController.searchBar.endEditing(true)
     }
 }
 
