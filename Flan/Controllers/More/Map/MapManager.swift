@@ -19,7 +19,7 @@ class MapManager {
         let address = bakery.address
         
         let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString("Москва, " + address) { [weak self, weak bakery] (placemarks, error) in
+        geocoder.geocodeAddressString("Славянск-на-Кубани, " + address) { [weak self, weak bakery] (placemarks, error) in
             
             if let error = error {
                 print(error)

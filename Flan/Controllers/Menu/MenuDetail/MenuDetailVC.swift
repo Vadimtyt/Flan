@@ -19,6 +19,7 @@ class MenuDetailVC: UIViewController {
     @IBOutlet weak var countItemLabel: UILabel!
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var countItemTextField: UITextField!
     
     
     override func viewDidLoad() {
@@ -32,6 +33,14 @@ class MenuDetailVC: UIViewController {
             countItemLabel.isHidden = true
             removeButton.isHidden = true
         }
+        
+        //
+        countItemTextField.text = "\(item.count)"
+        if item.count == 0 {
+            countItemTextField.isHidden = true
+            removeButton.isHidden = true
+        }
+        //
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
@@ -42,13 +51,26 @@ class MenuDetailVC: UIViewController {
         if itemsCount == 1 {
             self.item.count = 0
             countItemLabel.text = "\(self.item.count)"
+            
+            //
+            countItemTextField.text = "\(self.item.count)"
+            //
+            
             ListOfMenuItems.shared.removeFromList(item: self.item)
             
             removeButton.isHidden = true
             countItemLabel.isHidden = true
+            
+            //
+            countItemTextField.isHidden = true
+            //
         } else if itemsCount > 1 {
             self.item.count -= 1
             countItemLabel.text = "\(self.item.count)"
+            
+            //
+            countItemTextField.text = "\(self.item.count)"
+            //
         } else { print("ошибка в countItemsLabel") }
         
         updateCellDelegate?.updateListVCBadge()
@@ -63,13 +85,26 @@ class MenuDetailVC: UIViewController {
         if itemsCount == 0 {
             self.item.count += 1
             countItemLabel.text = "\(self.item.count)"
+            
+            //
+            countItemTextField.text = "\(self.item.count)"
+            //
+            
             ListOfMenuItems.shared.addToList(item: item)
             
             removeButton.isHidden = false
             countItemLabel.isHidden = false
+            
+            //
+            countItemTextField.isHidden = false
+            //
         } else if itemsCount > 0 {
             self.item.count += 1
             countItemLabel.text = "\(self.item.count)"
+            
+            //
+            countItemTextField.text = "\(self.item.count)"
+            //
         } else { print("ошибка в countItemsLabel") }
         
         updateCellDelegate?.updateListVCBadge()

@@ -74,6 +74,14 @@
                                                     <action selector="removeButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="NFp-qw-fkc"/>
                                                 </connections>
                                             </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vyS-IT-47h" userLabel="Count Item TextField">
+                                                <rect key="frame" x="237" y="19.5" width="34" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="34" id="jzI-EK-ETU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -82,6 +90,8 @@
                                             <constraint firstItem="Fiz-mU-BNb" firstAttribute="height" secondItem="nGD-Pm-l4D" secondAttribute="height" id="D9X-Zx-OSa"/>
                                             <constraint firstItem="nGD-Pm-l4D" firstAttribute="centerY" secondItem="W8O-xA-Q6w" secondAttribute="centerY" id="E3b-Uq-8OY"/>
                                             <constraint firstItem="ldm-hT-X7W" firstAttribute="height" secondItem="Fiz-mU-BNb" secondAttribute="height" id="KEg-RY-ovd"/>
+                                            <constraint firstItem="vyS-IT-47h" firstAttribute="centerY" secondItem="W8O-xA-Q6w" secondAttribute="centerY" id="Q3B-cI-GZO"/>
+                                            <constraint firstItem="ldm-hT-X7W" firstAttribute="leading" secondItem="vyS-IT-47h" secondAttribute="trailing" constant="8" id="RpA-7m-pqz"/>
                                             <constraint firstItem="Fiz-mU-BNb" firstAttribute="width" secondItem="nGD-Pm-l4D" secondAttribute="width" id="Rz3-H5-nCE"/>
                                             <constraint firstItem="nGD-Pm-l4D" firstAttribute="leading" secondItem="Fiz-mU-BNb" secondAttribute="trailing" id="Vjq-lM-4kD"/>
                                             <constraint firstItem="ldm-hT-X7W" firstAttribute="centerY" secondItem="W8O-xA-Q6w" secondAttribute="centerY" id="Vpl-bQ-1jd"/>
@@ -144,6 +154,7 @@
                     </view>
                     <connections>
                         <outlet property="countItemLabel" destination="Fiz-mU-BNb" id="WtR-Ej-83J"/>
+                        <outlet property="countItemTextField" destination="vyS-IT-47h" id="hD1-1B-M8W"/>
                         <outlet property="itemImage" destination="MKe-uL-GAh" id="L0w-G7-feP"/>
                         <outlet property="nameLabel" destination="XVC-XG-z45" id="WDi-Tn-bjK"/>
                         <outlet property="priceLabel" destination="9gi-67-Yng" id="Lga-GD-tbJ"/>
