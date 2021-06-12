@@ -24,6 +24,8 @@ class MenuDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTextField()
+        
         itemImage.image = item.image
         nameLabel.text = item.name
         priceLabel.text = "\(item.price)Р"
@@ -42,6 +44,23 @@ class MenuDetailVC: UIViewController {
         }
         //
     }
+    
+    func setupTextField() {
+            let toolbar = UIToolbar()
+            let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                            target: nil, action: nil)
+            let doneButton = UIBarButtonItem(title: "Готово", style: .done,
+                                             target: self, action: #selector(doneButtonTapped))
+            
+            toolbar.setItems([flexSpace, doneButton], animated: true)
+            toolbar.sizeToFit()
+            
+        countItemTextField.inputAccessoryView = toolbar
+        }
+        
+        @objc func doneButtonTapped() {
+            view.endEditing(true)
+        }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
