@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CountPickerPopover" customModule="Flan" customModuleProvider="target">
+            <connections>
+                <outlet property="countPicker" destination="v9G-RP-ab4" id="T2w-Tc-NYR"/>
+                <outlet property="view" destination="KQs-88-JFe" id="6q9-08-S2R"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="KQs-88-JFe">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9G-RP-ab4">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                </pickerView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="gGt-yk-F9Z"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="v9G-RP-ab4" firstAttribute="leading" secondItem="gGt-yk-F9Z" secondAttribute="leading" id="B0G-km-17Y"/>
+                <constraint firstItem="v9G-RP-ab4" firstAttribute="centerY" secondItem="KQs-88-JFe" secondAttribute="centerY" id="gPk-YE-ekO"/>
+                <constraint firstItem="v9G-RP-ab4" firstAttribute="bottom" secondItem="gGt-yk-F9Z" secondAttribute="bottom" id="gUj-Iy-N5V"/>
+                <constraint firstItem="v9G-RP-ab4" firstAttribute="centerX" secondItem="KQs-88-JFe" secondAttribute="centerX" id="vm3-Gl-Bna"/>
+                <constraint firstItem="v9G-RP-ab4" firstAttribute="top" secondItem="KQs-88-JFe" secondAttribute="top" id="wj5-Ha-i3b"/>
+                <constraint firstItem="v9G-RP-ab4" firstAttribute="trailing" secondItem="gGt-yk-F9Z" secondAttribute="trailing" id="zuq-kn-KJ9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-102.89855072463769" y="-266.51785714285711"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

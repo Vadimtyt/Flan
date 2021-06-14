@@ -80,12 +80,28 @@
                                                     <constraint firstAttribute="width" constant="34" id="jzI-EK-ETU"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="countFieldTapped:" destination="nUc-xs-zVD" eventType="touchUpInside" id="iNG-CG-dR4"/>
+                                                </connections>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBg-7I-JyO">
+                                                <rect key="frame" x="176" y="21.5" width="46" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="G2f-DJ-bye"/>
+                                                    <constraint firstAttribute="width" constant="46" id="J7Q-ft-8i8"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="wSQ-LI-BUk"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="HBg-7I-JyO" firstAttribute="centerY" secondItem="W8O-xA-Q6w" secondAttribute="centerY" id="19k-jr-n2T"/>
                                             <constraint firstItem="ldm-hT-X7W" firstAttribute="width" secondItem="Fiz-mU-BNb" secondAttribute="width" multiplier="0.486486" constant="19" id="5Ij-cj-qf9"/>
+                                            <constraint firstItem="vyS-IT-47h" firstAttribute="leading" secondItem="HBg-7I-JyO" secondAttribute="trailing" constant="15" id="6RC-bo-LEm"/>
                                             <constraint firstAttribute="height" constant="73" id="7bK-N2-x6t"/>
                                             <constraint firstItem="Fiz-mU-BNb" firstAttribute="height" secondItem="nGD-Pm-l4D" secondAttribute="height" id="D9X-Zx-OSa"/>
                                             <constraint firstItem="nGD-Pm-l4D" firstAttribute="centerY" secondItem="W8O-xA-Q6w" secondAttribute="centerY" id="E3b-Uq-8OY"/>

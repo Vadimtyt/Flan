@@ -62,6 +62,25 @@ class MenuDetailVC: UIViewController {
             view.endEditing(true)
         }
     
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
+        let popoverWidth = 290
+        let popoverHeight = 175
+        
+        let vc = CountPickerPopover(currentCount: item.count)
+        vc.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+        
+        popover.permittedArrowDirections = .up
+        vc.preferredContentSize = CGSize(width: popoverWidth, height: popoverHeight)
+        
+        popover.sourceRect = CGRect(x: sender.bounds.midX, y: sender.bounds.size.height, width: 0, height: 0)
+        popover.delegate = self
+        popover.sourceView = sender
+        present(vc, animated: true, completion:nil)
+    }
+    
     @IBAction func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
@@ -143,5 +162,11 @@ class MenuDetailVC: UIViewController {
             default:
                 break
             }
+    }
+}
+
+extension MenuDetailVC: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 }
