@@ -19,12 +19,13 @@ class MenuDetailVC: UIViewController {
     @IBOutlet weak var countItemLabel: UILabel!
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var countItemTextField: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTextField()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(MenuDetailVC.tapFunction))
+        countItemLabel.isUserInteractionEnabled = true
+        countItemLabel.addGestureRecognizer(tap)
         
         itemImage.image = item.image
         nameLabel.text = item.name
@@ -35,49 +36,28 @@ class MenuDetailVC: UIViewController {
             countItemLabel.isHidden = true
             removeButton.isHidden = true
         }
+    }
         
-        //
-        countItemTextField.text = "\(item.count)"
-        if item.count == 0 {
-            countItemTextField.isHidden = true
-            removeButton.isHidden = true
-        }
-        //
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
     }
     
-    func setupTextField() {
-            let toolbar = UIToolbar()
-            let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                            target: nil, action: nil)
-            let doneButton = UIBarButtonItem(title: "Готово", style: .done,
-                                             target: self, action: #selector(doneButtonTapped))
-            
-            toolbar.setItems([flexSpace, doneButton], animated: true)
-            toolbar.sizeToFit()
-            
-        countItemTextField.inputAccessoryView = toolbar
-        }
-        
-        @objc func doneButtonTapped() {
-            view.endEditing(true)
-        }
-    
-    @IBAction func buttonPressed(_ sender: UIButton) {
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        let popoverWidth = 290
-        let popoverHeight = 175
+        let popoverWidth = 300
+        let popoverHeight = 200
         
-        let vc = CountPickerPopover(currentCount: item.count)
+        let vc = CountPickerPopover(currentCount: item.count, updatingDelegate: self)
         vc.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover: UIPopoverPresentationController = vc.popoverPresentationController!
         
-        popover.permittedArrowDirections = .up
+        popover.permittedArrowDirections = .down
         vc.preferredContentSize = CGSize(width: popoverWidth, height: popoverHeight)
         
-        popover.sourceRect = CGRect(x: sender.bounds.midX, y: sender.bounds.size.height, width: 0, height: 0)
+        popover.sourceRect = CGRect(x: countItemLabel.bounds.midX, y: countItemLabel.bounds.minY - 3, width: 0, height: 0)
         popover.delegate = self
-        popover.sourceView = sender
+        popover.sourceView = countItemLabel
         present(vc, animated: true, completion:nil)
     }
     
@@ -90,25 +70,13 @@ class MenuDetailVC: UIViewController {
             self.item.count = 0
             countItemLabel.text = "\(self.item.count)"
             
-            //
-            countItemTextField.text = "\(self.item.count)"
-            //
-            
             ListOfMenuItems.shared.removeFromList(item: self.item)
             
             removeButton.isHidden = true
             countItemLabel.isHidden = true
-            
-            //
-            countItemTextField.isHidden = true
-            //
         } else if itemsCount > 1 {
             self.item.count -= 1
             countItemLabel.text = "\(self.item.count)"
-            
-            //
-            countItemTextField.text = "\(self.item.count)"
-            //
         } else { print("ошибка в countItemsLabel") }
         
         updateCellDelegate?.updateListVCBadge()
@@ -124,25 +92,13 @@ class MenuDetailVC: UIViewController {
             self.item.count += 1
             countItemLabel.text = "\(self.item.count)"
             
-            //
-            countItemTextField.text = "\(self.item.count)"
-            //
-            
             ListOfMenuItems.shared.addToList(item: item)
             
             removeButton.isHidden = false
             countItemLabel.isHidden = false
-            
-            //
-            countItemTextField.isHidden = false
-            //
         } else if itemsCount > 0 {
             self.item.count += 1
             countItemLabel.text = "\(self.item.count)"
-            
-            //
-            countItemTextField.text = "\(self.item.count)"
-            //
         } else { print("ошибка в countItemsLabel") }
         
         updateCellDelegate?.updateListVCBadge()
@@ -162,6 +118,16 @@ class MenuDetailVC: UIViewController {
             default:
                 break
             }
+    }
+}
+
+extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
+
+    func update(itemCount: Int) {
+        item.count = itemCount
+        countItemLabel.text = "\(itemCount)"
+        updateCellDelegate?.updateListVCBadge()
+        updateCellDelegate?.updateCellAt(indexPath: indexPath)
     }
 }
 
