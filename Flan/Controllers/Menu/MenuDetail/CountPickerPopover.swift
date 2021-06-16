@@ -14,7 +14,7 @@ protocol UpdatingMenuDetailVCDelegate: class {
 class CountPickerPopover: UIViewController {
     
     private let currentCount: Int
-    let pickerData = Array(1...50)
+    let pickerData = Array(0...99)
     
     weak var updatingMenuDetailVCDelegate: UpdatingMenuDetailVCDelegate!
     
@@ -26,7 +26,7 @@ class CountPickerPopover: UIViewController {
         countPicker.delegate = self
         countPicker.dataSource = self
         
-        countPicker.selectRow(currentCount - 1, inComponent: 0, animated: true)
+        countPicker.selectRow(currentCount, inComponent: 0, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,7 +45,7 @@ class CountPickerPopover: UIViewController {
     }
     
     func updateItem() {
-        let count = countPicker.selectedRow(inComponent: 0) + 1
+        let count = countPicker.selectedRow(inComponent: 0)
         updatingMenuDetailVCDelegate.update(itemCount: count)
     }
     

@@ -33,8 +33,7 @@ class MenuDetailVC: UIViewController {
         
         countItemLabel.text = "\(item.count)"
         if item.count == 0 {
-            countItemLabel.isHidden = true
-            removeButton.isHidden = true
+            removeButton.isEnabled = false
         }
     }
         
@@ -72,8 +71,7 @@ class MenuDetailVC: UIViewController {
             
             ListOfMenuItems.shared.removeFromList(item: self.item)
             
-            removeButton.isHidden = true
-            countItemLabel.isHidden = true
+            removeButton.isEnabled = false
         } else if itemsCount > 1 {
             self.item.count -= 1
             countItemLabel.text = "\(self.item.count)"
@@ -94,8 +92,7 @@ class MenuDetailVC: UIViewController {
             
             ListOfMenuItems.shared.addToList(item: item)
             
-            removeButton.isHidden = false
-            countItemLabel.isHidden = false
+            removeButton.isEnabled = true
         } else if itemsCount > 0 {
             self.item.count += 1
             countItemLabel.text = "\(self.item.count)"
@@ -126,6 +123,13 @@ extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
     func update(itemCount: Int) {
         item.count = itemCount
         countItemLabel.text = "\(itemCount)"
+        if itemCount != 0 {
+            ListOfMenuItems.shared.addToList(item: item)
+            removeButton.isEnabled = true
+        } else {
+            ListOfMenuItems.shared.removeFromList(item: self.item)
+            removeButton.isEnabled = false
+        }
         updateCellDelegate?.updateListVCBadge()
         updateCellDelegate?.updateCellAt(indexPath: indexPath)
     }

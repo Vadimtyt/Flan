@@ -167,6 +167,17 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
 
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "MenuDetail", bundle: nil)
+            
+        guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
+        menuDetailVC.item = self.items[indexPath.row]
+        menuDetailVC.indexPath = indexPath
+        menuDetailVC.updateCellDelegate = self
+
+        self.present(menuDetailVC, animated: true, completion: nil)
+    }
 }
 
 extension ListVC: UpdatingListCellDelegate {
@@ -187,6 +198,22 @@ extension ListVC: UpdatingListCellDelegate {
     }
 }
 
+extension ListVC: UpdatingMenuCellDelegate {
+    func updateListVCBadge() {
+        updateListBadge()
+    }
+    
+    func updateFavorites() {
+        //
+    }
+    
+    func updateCellAt(indexPath: IndexPath) {
+        
+        listTableView.reloadData()
+    }
+    
+    
+}
 
 extension ListVC: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {

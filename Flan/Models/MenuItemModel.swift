@@ -34,6 +34,7 @@ class ListOfMenuItems {
     lazy var categories = configureCategories()
     
     func addToList(item: MenuItem) {
+        guard (list.firstIndex(where: { $0 === item }) == nil) else { return }
         list.append(item)
     }
     
