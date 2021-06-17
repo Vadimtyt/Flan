@@ -11,20 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="113" id="rce-az-Obd" userLabel="MenuTableCell" customClass="ListCell" customModule="Flan" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="113"/>
+            <rect key="frame" x="0.0" y="0.0" width="492" height="113"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rce-az-Obd" id="GTH-cQ-xYx">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="113"/>
+                <rect key="frame" x="0.0" y="0.0" width="492" height="113"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Кекс" translatesAutoresizingMaskIntoConstraints="NO" id="PEd-GX-r45">
-                        <rect key="frame" x="0.0" y="0.0" width="113" height="113"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="PEd-GX-r45" secondAttribute="height" multiplier="1:1" id="1wV-qx-HPw"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YZ-Sh-SZc">
-                        <rect key="frame" x="121" y="0.0" width="293" height="45"/>
+                        <rect key="frame" x="171" y="0.0" width="321" height="45"/>
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="uzH-jr-17f"/>
@@ -34,10 +28,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUH-LN-uJC">
-                        <rect key="frame" x="121" y="67" width="293" height="46"/>
+                        <rect key="frame" x="171" y="67" width="321" height="46"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lr6-RC-BtM">
-                                <rect key="frame" x="193" y="8" width="30" height="30"/>
+                                <rect key="frame" x="271" y="8" width="30" height="30"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="wnt-8h-Guc"/>
@@ -50,7 +44,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhZ-0q-zkj">
-                                <rect key="frame" x="223" y="8" width="32" height="30"/>
+                                <rect key="frame" x="301" y="8" width="32" height="30"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="Pbd-GG-4q3"/>
@@ -61,7 +55,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Kc-R3-zwe">
-                                <rect key="frame" x="255" y="8" width="30" height="30"/>
+                                <rect key="frame" x="333" y="8" width="30" height="30"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0k5-VV-xlx"/>
@@ -88,42 +82,58 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="a5O-Fl-vgw" firstAttribute="leading" secondItem="AUH-LN-uJC" secondAttribute="leading" id="1UF-tp-uIr"/>
-                            <constraint firstAttribute="trailing" secondItem="7Kc-R3-zwe" secondAttribute="trailing" constant="8" id="4hZ-MK-ruE"/>
+                            <constraint firstAttribute="trailing" secondItem="7Kc-R3-zwe" secondAttribute="trailing" constant="-42" id="4hZ-MK-ruE"/>
                             <constraint firstAttribute="bottom" secondItem="fhZ-0q-zkj" secondAttribute="bottom" constant="8" id="Ef9-Ea-mMH"/>
                             <constraint firstAttribute="bottom" secondItem="lr6-RC-BtM" secondAttribute="bottom" constant="8" id="P9I-Ri-P2b"/>
                             <constraint firstAttribute="bottom" secondItem="7Kc-R3-zwe" secondAttribute="bottom" constant="8" id="dII-IU-sxY"/>
                             <constraint firstAttribute="height" constant="46" id="esA-cU-soQ"/>
                             <constraint firstItem="a5O-Fl-vgw" firstAttribute="top" secondItem="AUH-LN-uJC" secondAttribute="top" constant="4" id="f3q-vn-1oE"/>
-                            <constraint firstAttribute="trailing" secondItem="lr6-RC-BtM" secondAttribute="trailing" constant="70" id="kTH-kM-fYe"/>
-                            <constraint firstAttribute="trailing" secondItem="fhZ-0q-zkj" secondAttribute="trailing" constant="38" id="li3-Ng-agR"/>
+                            <constraint firstAttribute="trailing" secondItem="lr6-RC-BtM" secondAttribute="trailing" constant="20" id="kTH-kM-fYe"/>
+                            <constraint firstAttribute="trailing" secondItem="fhZ-0q-zkj" secondAttribute="trailing" constant="-12" id="li3-Ng-agR"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybf-Hk-sHr" userLabel="Checkmark Button">
+                        <rect key="frame" x="10" y="45.5" width="20" height="22"/>
+                        <color key="tintColor" systemColor="systemGrayColor"/>
+                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                    </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Кекс" translatesAutoresizingMaskIntoConstraints="NO" id="PEd-GX-r45">
+                        <rect key="frame" x="40" y="0.0" width="113" height="113"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="PEd-GX-r45" secondAttribute="height" multiplier="1:1" id="1wV-qx-HPw"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="4YZ-Sh-SZc" firstAttribute="leading" secondItem="PEd-GX-r45" secondAttribute="trailing" constant="8" symbolic="YES" id="EaB-vD-0gL"/>
-                    <constraint firstItem="PEd-GX-r45" firstAttribute="leading" secondItem="GTH-cQ-xYx" secondAttribute="leading" id="YPP-2b-6sL"/>
+                    <constraint firstItem="PEd-GX-r45" firstAttribute="leading" secondItem="ybf-Hk-sHr" secondAttribute="trailing" constant="10" id="2Rj-Fv-fI2"/>
+                    <constraint firstItem="4YZ-Sh-SZc" firstAttribute="leading" secondItem="PEd-GX-r45" secondAttribute="trailing" constant="18" id="EaB-vD-0gL"/>
+                    <constraint firstItem="ybf-Hk-sHr" firstAttribute="leading" secondItem="GTH-cQ-xYx" secondAttribute="leading" constant="10" id="GlH-eR-UmY"/>
+                    <constraint firstItem="ybf-Hk-sHr" firstAttribute="centerY" secondItem="GTH-cQ-xYx" secondAttribute="centerY" id="V1b-YW-8s5"/>
+                    <constraint firstItem="PEd-GX-r45" firstAttribute="leading" secondItem="GTH-cQ-xYx" secondAttribute="leading" constant="40" id="YPP-2b-6sL"/>
                     <constraint firstItem="PEd-GX-r45" firstAttribute="top" secondItem="GTH-cQ-xYx" secondAttribute="top" id="dwQ-mK-WbG"/>
                     <constraint firstAttribute="trailing" secondItem="AUH-LN-uJC" secondAttribute="trailing" id="ket-ym-nXB"/>
                     <constraint firstAttribute="trailing" secondItem="4YZ-Sh-SZc" secondAttribute="trailing" id="q35-u4-Nwc"/>
                     <constraint firstAttribute="bottom" secondItem="AUH-LN-uJC" secondAttribute="bottom" id="s7K-Z5-91B"/>
                     <constraint firstItem="4YZ-Sh-SZc" firstAttribute="top" secondItem="GTH-cQ-xYx" secondAttribute="top" id="uWT-Vl-9Gc"/>
                     <constraint firstAttribute="bottom" secondItem="PEd-GX-r45" secondAttribute="bottom" id="vkT-Us-KPw"/>
-                    <constraint firstItem="AUH-LN-uJC" firstAttribute="leading" secondItem="PEd-GX-r45" secondAttribute="trailing" constant="8" symbolic="YES" id="w2J-Rv-0xX"/>
+                    <constraint firstItem="AUH-LN-uJC" firstAttribute="leading" secondItem="PEd-GX-r45" secondAttribute="trailing" constant="18" id="w2J-Rv-0xX"/>
                 </constraints>
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="ListCell"/>
             <connections>
                 <outlet property="addButton" destination="7Kc-R3-zwe" id="rtR-QR-Dfi"/>
+                <outlet property="checkmarkButton" destination="ybf-Hk-sHr" id="cbs-5I-bOF"/>
                 <outlet property="countItemLabel" destination="fhZ-0q-zkj" id="aL8-lE-WX3"/>
                 <outlet property="imageItemView" destination="PEd-GX-r45" id="fmY-p5-yEu"/>
                 <outlet property="nameLabel" destination="4YZ-Sh-SZc" id="Cvv-rE-qso"/>
                 <outlet property="priceLabel" destination="a5O-Fl-vgw" id="1dk-qW-MRA"/>
                 <outlet property="removeButton" destination="lr6-RC-BtM" id="NcP-9n-emg"/>
             </connections>
-            <point key="canvasLocation" x="-50.724637681159422" y="65.959821428571431"/>
+            <point key="canvasLocation" x="-107.24637681159422" y="65.959821428571431"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="Кекс" width="1632" height="1224"/>
@@ -135,6 +145,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

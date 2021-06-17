@@ -19,6 +19,8 @@ class ListCell: UITableViewCell {
     static let reuseId = "ListCell"
     var item: MenuItem = MenuItem(name: "Имя", category: "Категория", price: 0, imageName: "Кекс")
     
+    @IBOutlet weak var checkmarkButton: UIButton!
+    
     @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
