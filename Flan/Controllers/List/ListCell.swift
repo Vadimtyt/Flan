@@ -17,6 +17,7 @@ class ListCell: UITableViewCell {
     weak var listDelegate: UpdatingListCellDelegate?
     
     static let reuseId = "ListCell"
+    var checkmark = false
     var item: MenuItem = MenuItem(name: "Имя", category: "Категория", price: 0, imageName: "Кекс")
     
     @IBOutlet weak var checkmarkButton: UIButton!
@@ -66,5 +67,14 @@ class ListCell: UITableViewCell {
         
         self.listDelegate?.updateList()
         self.listDelegate?.updateListBadge()
+    }
+    
+    @available(iOS 13.0, *)
+    @IBAction func checkmarkButtonPressed(_ sender: UIButton) {
+        checkmark = !checkmark
+        if checkmark {
+            checkmarkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+        } else { checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        }
     }
 }

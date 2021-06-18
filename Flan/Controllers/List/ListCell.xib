@@ -109,6 +109,9 @@
                         <state key="normal">
                             <imageReference key="image" image="checkmark.circle" catalog="system" symbolScale="large"/>
                         </state>
+                        <connections>
+                            <action selector="checkmarkButtonPressed:" destination="rce-az-Obd" eventType="touchUpInside" id="9o7-JC-eaH"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
