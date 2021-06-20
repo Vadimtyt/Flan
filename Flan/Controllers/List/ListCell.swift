@@ -10,6 +10,8 @@ import UIKit
 protocol UpdatingListCellDelegate: class {
     func updateList()
     func updateListBadge()
+    func addToCompleted(item: MenuItem)
+    func removeFromCompleted(item: MenuItem, at indexPath: IndexPath)
 }
 
 class ListCell: UITableViewCell {

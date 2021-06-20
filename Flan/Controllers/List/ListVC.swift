@@ -12,6 +12,8 @@ private let reuseIdentifier = "ListCell"
 class ListVC: UIViewController {
     
     var items: [MenuItem] { get { return ListOfMenuItems.shared.list } }
+    var uncompleted: [MenuItem] = []
+    var completed: [MenuItem] = []
     
     private let popUpText = "В этом поле указывается приблизительная сумма, она не учитывает фактический вес всех позиций, цену упаковочных изделий и т.п. Эта сумма отображается исключительно в ознакомительных целях."
     private let popUpTextFontSize: CGFloat = 18
@@ -181,6 +183,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ListVC: UpdatingListCellDelegate {
+
     func updateList() {
         for index in 0..<items.count {
             if items[index].count == 0 {
@@ -195,6 +198,14 @@ extension ListVC: UpdatingListCellDelegate {
     func updateListBadge() {
         let badgeValue = ListOfMenuItems.shared.getValueForListBadge()
         updateListVCBadge(with: badgeValue)
+    }
+    
+    func addToCompleted(item: MenuItem) {
+        completed.append(item)
+    }
+    
+    func removeFromCompleted(item: MenuItem, at indexPath: IndexPath) {
+        completed.remove(at: indexPath.row)
     }
 }
 
