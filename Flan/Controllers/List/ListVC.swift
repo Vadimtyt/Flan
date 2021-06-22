@@ -12,7 +12,6 @@ private let reuseIdentifier = "ListCell"
 class ListVC: UIViewController {
     
     var items: [MenuItem] { get { return ListOfMenuItems.shared.list } }
-    var uncompletedList: [MenuItem] = []
     var completedList: [MenuItem] = []
     
     private let popUpText = "В этом поле указывается приблизительная сумма, она не учитывает фактический вес всех позиций, цену упаковочных изделий и т.п. Эта сумма отображается исключительно в ознакомительных целях."
@@ -30,8 +29,6 @@ class ListVC: UIViewController {
         
         listTableView.delegate = self
         listTableView.dataSource = self
-        
-        uncompletedList = items
         
         listTableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         
@@ -67,31 +64,51 @@ class ListVC: UIViewController {
     func clearListAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        // Save action
-        let clearAction = UIAlertAction(title: "Очистить cписок", style: .destructive) { [weak self] _ in
-            for item in ListOfMenuItems.shared.list {
-                item.count = 0
+        // Crear buy action
+        if !(items.isEmpty) {
+            let clearBuyAction = UIAlertAction(title: "Очистить категорию Купить", style: .destructive) { [weak self] _ in
+                for item in ListOfMenuItems.shared.list {
+                    item.count = 0
+                }
+                ListOfMenuItems.shared.list.removeAll()
+                
+                self?.updateList()
+                self?.updateListBadge()
             }
-            ListOfMenuItems.shared.list.removeAll()
-            self?.updateList()
-            self?.updateListBadge()
+            alert.addAction(clearBuyAction)
+        }
+        
+        // Crear buyed action
+        if !(completedList.isEmpty) {
+            let clearBuyedAction = UIAlertAction(title: "Очистить категорию Куплено", style: .destructive) { [weak self] _ in
+                self?.completedList.removeAll()
+                
+                self?.updateList()
+                self?.updateListBadge()
+            }
+            alert.addAction(clearBuyedAction)
+        }
+        
+        // Crear all action
+        if !(items.isEmpty || completedList.isEmpty) {
+            let clearAllAction = UIAlertAction(title: "Очистить всё", style: .destructive) { [weak self] _ in
+                for item in ListOfMenuItems.shared.list {
+                    item.count = 0
+                }
+                ListOfMenuItems.shared.list.removeAll()
+                self?.completedList.removeAll()
+                
+                self?.updateList()
+                self?.updateListBadge()
+            }
+            alert.addAction(clearAllAction)
         }
         
         // Cancel action
         let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
-
-        alert.addAction(clearAction)
         alert.addAction(cancelAction)
         
         present(alert, animated: true)
-    }
-    
-    func updateUncompletedList() {
-        uncompletedList = items
-        for item in items {
-            guard let index = completedList.firstIndex(where: {$0 === item}) else { return }
-            uncompletedList.remove(at: index)
-        }
     }
     
     @IBAction func infoButtonPressed(_ sender: UIButton) {
@@ -131,9 +148,7 @@ class ListVC: UIViewController {
     @IBAction func clearListButtonPressed(_ sender: UIBarButtonItem) {
         TapticFeedback.shared.tapticFeedback(.medium)
         
-        if items.count != 0 {
-            clearListAlert()
-        }
+        clearListAlert()
     }
 }
 
@@ -146,17 +161,19 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         changeTotalSumLabel()
         
-        if items.count == 0 {
+        if items.isEmpty && completedList.isEmpty {
             clearBarButton.isEnabled = false
+        } else { clearBarButton.isEnabled = true }
+        
+        if items.count == 0 {
             shareButton.isEnabled = false
         } else {
-            clearBarButton.isEnabled = true
             shareButton.isEnabled = true
         }
         
         var numberOfRows = 0
         if section == 0 {
-            numberOfRows = uncompletedList.count
+            numberOfRows = items.count
         } else if section == 1 { numberOfRows = completedList.count}
         return numberOfRows
     }
@@ -178,7 +195,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         
         var list: [MenuItem] = []
         if indexPath.section == 0 {
-            list = uncompletedList
+            list = items
         } else if indexPath.section == 1 { list = completedList }
         let item = list[indexPath.row]
         var isCompleted = false
@@ -191,12 +208,16 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
 
+            if indexPath.section == 0 {
                 ListOfMenuItems.shared.removeFromList(item: self.items[indexPath.row])
-                tableView.deleteRows(at: [indexPath], with: .left)
-                self.updateListBadge()
+            } else if indexPath.section == 1 {
+                self.completedList.remove(at: indexPath.row)
+            }
+            tableView.deleteRows(at: [indexPath], with: .left)
+            self.updateListBadge()
 
-                success(true)
-            })
+            success(true)
+        })
 
         deleteAction.title = "Удалить"
         if #available(iOS 13.0, *) {
@@ -207,6 +228,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.section == 0 else { return }
         let storyboard = UIStoryboard(name: "MenuDetail", bundle: nil)
             
         guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
@@ -228,6 +250,7 @@ extension ListVC: UpdatingListCellDelegate {
                 return
              }
         }
+
         self.listTableView.reloadData()
     }
     
@@ -237,12 +260,16 @@ extension ListVC: UpdatingListCellDelegate {
     }
     
     func addToCompleted(item: MenuItem, indexPath: IndexPath) {
-        guard let index = uncompletedList.firstIndex(where: {$0 === item}) else { return }
-        uncompletedList.remove(at: index)
+        let completedItem = MenuItem(item: item)
+        
+        completedList.insert(completedItem, at: 0)
+        listTableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        
+        guard let index = items.firstIndex(where: {$0 === item}) else { return }
+        ListOfMenuItems.shared.removeFromList(item: item)
         listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         
-        completedList.append(item)
-        listTableView.insertRows(at: [IndexPath(row: completedList.count - 1, section: 1)], with: .automatic)
+        updateListBadge()
     }
     
     func removeFromCompleted(item: MenuItem, indexPath: IndexPath) {
@@ -250,13 +277,19 @@ extension ListVC: UpdatingListCellDelegate {
         completedList.remove(at: completedIndex)
         listTableView.deleteRows(at: [IndexPath(row: completedIndex, section: 1)], with: .automatic)
         
-        var index = 0
-        for item in items {
-            if !(completedList.contains(where: {$0 === item})) && uncompletedList.firstIndex(where: {$0 === item}) == nil {
-                uncompletedList.insert(item, at: index)
-                listTableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-            } else if uncompletedList.contains(where: {$0 === item}) { index += 1; print("add index")}
+        guard let itemIndex = ListOfMenuItems.shared.items.firstIndex(where: {$0.name == item.name}) else { return }
+        
+        if !(items.contains(where: {$0.name == item.name})) {
+            ListOfMenuItems.shared.addToList(item: ListOfMenuItems.shared.items[itemIndex])
+            items.first?.count = item.count
+            listTableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        } else {
+            guard let index = ListOfMenuItems.shared.items.firstIndex(where: {$0.name == item.name}) else { return }
+            items[index].count += item.count
+            listTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         }
+        
+        updateListBadge()
     }
 }
 
@@ -270,7 +303,6 @@ extension ListVC: UpdatingMenuCellDelegate {
     }
     
     func updateCellAt(indexPath: IndexPath) {
-        
         listTableView.reloadData()
     }
     

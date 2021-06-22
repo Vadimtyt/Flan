@@ -54,8 +54,14 @@ class ListCell: UITableViewCell {
         self.checkmark = isCompleted
         if #available(iOS 13.0, *) {
             if checkmark {
+                removeButton.isEnabled = false
+                addButton.isEnabled = false
                 checkmarkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-            } else { checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal) }
+            } else {
+                removeButton.isEnabled = true
+                addButton.isEnabled = true
+                checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+            }
         }
         
         self.listDelegate = listDelegate

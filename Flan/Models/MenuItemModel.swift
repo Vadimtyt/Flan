@@ -23,6 +23,16 @@ class MenuItem {
         self.imageName = imageName
         self.image = UIImage(named: imageName)
     }
+    
+    init(item: MenuItem) {
+        self.name = item.name
+        self.price = item.price
+        self.category = item.category
+        self.imageName = item.imageName
+        self.image = UIImage(named: imageName)
+        self.count = item.count
+        self.isFavorite = item.isFavorite
+    }
 }
 
 class ListOfMenuItems {
@@ -35,7 +45,7 @@ class ListOfMenuItems {
     
     func addToList(item: MenuItem) {
         guard (list.firstIndex(where: { $0 === item }) == nil) else { return }
-        list.append(item)
+        list.insert(item, at: 0)
     }
     
     func removeFromList(item: MenuItem) {
