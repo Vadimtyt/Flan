@@ -9,24 +9,29 @@ import UIKit
 
 class MenuItem {
     let name: String
-    let price: Int
+    let prices: [Int]
+    let measurements: [String]
+    var selectedMeasurment = 0
     let category: String
     let imageName: String
     var image = UIImage(named: "Кекс")
     var count = 0
     var isFavorite = false
     
-    init(name: String, category: String, price: Int, imageName: String) {
+    init(name: String, category: String, prices: [Int], measurements: [String], imageName: String) {
         self.name = name
         self.category = category
-        self.price = price
+        self.prices = prices
+        self.measurements = measurements
         self.imageName = imageName
         self.image = UIImage(named: imageName)
     }
     
     init(item: MenuItem) {
         self.name = item.name
-        self.price = item.price
+        self.prices = item.prices
+        self.measurements = item.measurements
+        self.selectedMeasurment = item.selectedMeasurment
         self.category = item.category
         self.imageName = item.imageName
         self.image = UIImage(named: imageName)
@@ -52,6 +57,7 @@ class ListOfMenuItems {
         if let index = list.firstIndex(where: { $0 === item }) {
             list[index].count = 0
             list.remove(at: index)
+            item.selectedMeasurment = 0
         }
     }
     
@@ -88,26 +94,26 @@ class ListOfMenuItems {
 }
 
 let allItems: [MenuItem] = [
-    MenuItem(name: "Нежность", category: "Торты", price: 170, imageName: "Киш1"),
-    MenuItem(name: "Киевский", category: "Торты", price: 190, imageName: "Киш2"),
-    MenuItem(name: "Тирамису", category: "Торты", price: 230, imageName: "Киш3"),
-    MenuItem(name: "Сочник с творогом", category: "Выпечка", price: 70, imageName: "Слойка"),
-    MenuItem(name: "Плюшка", category: "Выпечка", price: 50, imageName: "Эклер1"),
-    MenuItem(name: "Кекс творожный", category: "Выпечка", price: 55, imageName: "Эклер2"),
-    MenuItem(name: "Зефир из натурального пюре", category: "Кендибар", price: 100, imageName: "Эклер3"),
-    MenuItem(name: "Маршмеллоу", category: "Кендибар", price: 80, imageName: "Эклер4"),
-    MenuItem(name: "Гимов", category: "Кендибар", price: 30, imageName: "Капкейк1"),
-    MenuItem(name: "Безе", category: "Кендибар", price: 40, imageName: "Капкейк2"),
-    MenuItem(name: "Безе", category: "Суфле", price: 40, imageName: "Капкейк3"),
-    MenuItem(name: "Безе", category: "Пироги", price: 40, imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Печенье", price: 40, imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Кондитерка", price: 40, imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Пицца", price: 40, imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Киши", price: 40, imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Супы", price: 40, imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Конфеты", price: 40, imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Кексы", price: 40, imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Салаты", price: 40, imageName: "Кекс")
+    MenuItem(name: "Нежность", category: "Торты", prices: [170], measurements: ["100г"], imageName: "Киш1"),
+    MenuItem(name: "Киевский", category: "Торты", prices: [190], measurements: ["100г"], imageName: "Киш2"),
+    MenuItem(name: "Тирамису", category: "Торты", prices: [230], measurements: ["100г"], imageName: "Киш3"),
+    MenuItem(name: "Сочник с творогом", category: "Выпечка", prices: [70], measurements: ["шт"], imageName: "Слойка"),
+    MenuItem(name: "Плюшка", category: "Выпечка", prices: [50, 300], measurements: ["шт", "целый"], imageName: "Эклер1"),
+    MenuItem(name: "Кекс творожный", category: "Выпечка", prices: [55], measurements: ["шт"], imageName: "Эклер2"),
+    MenuItem(name: "Зефир из натурального пюре", category: "Кендибар", prices: [100], measurements: ["шт"], imageName: "Эклер3"),
+    MenuItem(name: "Маршмеллоу", category: "Кендибар", prices: [80], measurements: ["шт"], imageName: "Эклер4"),
+    MenuItem(name: "Гимов", category: "Кендибар", prices: [30], measurements: ["шт"], imageName: "Капкейк1"),
+    MenuItem(name: "Безе", category: "Кендибар", prices: [40], measurements: ["шт"], imageName: "Капкейк2"),
+    MenuItem(name: "Безе", category: "Суфле", prices: [40], measurements: ["шт"], imageName: "Капкейк3"),
+    MenuItem(name: "Безе", category: "Пироги", prices: [40], measurements: ["шт"], imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Печенье", prices: [40], measurements: ["шт"], imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Кондитерка", prices: [40], measurements: ["шт"], imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Пицца", prices: [40], measurements: ["шт"], imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Киши", prices: [40], measurements: ["шт"], imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Супы", prices: [40], measurements: ["шт"], imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Конфеты", prices: [40], measurements: ["шт"], imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Кексы", prices: [40], measurements: ["шт"], imageName: "Кекс"),
+    MenuItem(name: "Безе", category: "Салаты", prices: [40], measurements: ["шт"], imageName: "Кекс")
 ]
 
 extension RangeReplaceableCollection where Element: Hashable {

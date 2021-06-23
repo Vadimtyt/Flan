@@ -43,7 +43,7 @@ class ListVC: UIViewController {
     func changeTotalSumLabel() {
         var newSum = 0
         for item in items {
-            newSum += item.price * item.count
+            newSum += (item.prices[item.selectedMeasurment]) * item.count
         }
         
         if newSum == 0 {
@@ -279,16 +279,16 @@ extension ListVC: UpdatingListCellDelegate {
         
         guard let itemIndex = ListOfMenuItems.shared.items.firstIndex(where: {$0.name == item.name}) else { return }
         
-        if !(items.contains(where: {$0.name == item.name})) {
+        if !(items.contains(where: {$0.name == item.name })) {
             ListOfMenuItems.shared.addToList(item: ListOfMenuItems.shared.items[itemIndex])
             items.first?.count = item.count
+            items.first?.selectedMeasurment = item.selectedMeasurment
             listTableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-        } else {
+        } else if items.contains(where: {$0.name == item.name && $0.selectedMeasurment == item.selectedMeasurment}) {
             guard let index = ListOfMenuItems.shared.items.firstIndex(where: {$0.name == item.name}) else { return }
             items[index].count += item.count
             listTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         }
-        
         updateListBadge()
     }
 }

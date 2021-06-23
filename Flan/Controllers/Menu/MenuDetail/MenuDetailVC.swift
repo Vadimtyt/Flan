@@ -27,16 +27,23 @@ class MenuDetailVC: UIViewController {
         countItemLabel.isUserInteractionEnabled = true
         countItemLabel.addGestureRecognizer(tap)
         
+        segmentedControl.isHidden = true
+        
         itemImage.image = item.image
         nameLabel.text = item.name
-        priceLabel.text = "\(item.price)Р"
+        priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\("" + item.measurements[item.selectedMeasurment])"
+        
+        if item.measurements.count > 1 {
+            segmentedControl.isHidden = false
+            configureSegmentedControl()
+        }
         
         countItemLabel.text = "\(item.count)"
         if item.count == 0 {
             removeButton.isEnabled = false
         }
     }
-        
+    
     @objc func doneButtonTapped() {
         view.endEditing(true)
     }
@@ -58,6 +65,17 @@ class MenuDetailVC: UIViewController {
         popover.delegate = self
         popover.sourceView = countItemLabel
         present(vc, animated: true, completion:nil)
+    }
+    
+    func  configureSegmentedControl() {
+        segmentedControl.removeAllSegments()
+        for index in 0..<item.measurements.count {
+            segmentedControl.insertSegment(withTitle: item.measurements[index], at: index, animated: true)
+        }
+        //if item.count != 0 {
+            segmentedControl.selectedSegmentIndex = item.selectedMeasurment
+        //} else { segmentedControl.selectedSegmentIndex = 0 }
+        
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
@@ -84,6 +102,8 @@ class MenuDetailVC: UIViewController {
     @IBAction func addButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
+        item.selectedMeasurment = segmentedControl.selectedSegmentIndex
+        
         let itemsCount = self.item.count
         
         if itemsCount == 0 {
@@ -104,17 +124,16 @@ class MenuDetailVC: UIViewController {
     
     
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex
-            {
-            case 0:
-                print("first segment selected")
-                //by 100g
-            case 1:
-                print("second segment selected")
-                //by count
-            default:
-                break
-            }
+        let index = sender.selectedSegmentIndex
+        item.selectedMeasurment = index
+        priceLabel.text = "\(item.prices[index])Р/\("" + item.measurements[index])"
+        
+        ListOfMenuItems.shared.removeFromList(item: item)
+        countItemLabel.text = "\(item.count)"
+        removeButton.isEnabled = false
+        
+        updateCellDelegate?.updateCellAt(indexPath: indexPath)
+        updateCellDelegate?.updateListVCBadge()
     }
 }
 

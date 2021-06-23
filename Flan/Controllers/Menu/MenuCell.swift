@@ -20,7 +20,7 @@ class MenuCell: UITableViewCell {
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
     
     static let reuseId = "MenuCell"
-    var item: MenuItem = MenuItem(name: "Имя", category: "Категория", price: 0, imageName: "Кекс")
+    var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс")
     
     @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -52,7 +52,9 @@ class MenuCell: UITableViewCell {
         
         imageItemView.image = item.image
         nameLabel.text = item.name
-        priceLabel.text = "\(item.price)Р"
+        priceLabel.text = "\(item.prices[0])Р/\("" + item.measurements[0])"
+        if item.prices.count > 1 { priceLabel.text = "от " + (priceLabel.text ?? "") }
+        
         if item.isFavorite == true {
             favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
         } else { favoriteButton.setImage(UIImage(named: "addToFavorite"), for: .normal) }

@@ -20,7 +20,7 @@ class ListCell: UITableViewCell {
     
     static let reuseId = "ListCell"
     var checkmark = false
-    var item: MenuItem = MenuItem(name: "Имя", category: "Категория", price: 0, imageName: "Кекс")
+    var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс")
     var indexPath = IndexPath()
     
     @IBOutlet weak var checkmarkButton: UIButton!
@@ -49,7 +49,7 @@ class ListCell: UITableViewCell {
         
         imageItemView.image = item.image
         nameLabel.text = item.name
-        priceLabel.text = "\(item.price)Р"
+        priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\(item.measurements[item.selectedMeasurment])"
         
         self.checkmark = isCompleted
         if #available(iOS 13.0, *) {

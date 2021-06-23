@@ -56,11 +56,11 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gi-67-Yng">
-                                                <rect key="frame" x="8" y="17.5" width="90" height="38"/>
+                                                <rect key="frame" x="8" y="17.5" width="120" height="38"/>
                                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="tKU-hg-zvq"/>
-                                                    <constraint firstAttribute="width" constant="90" id="tqL-yD-YcQ"/>
+                                                    <constraint firstAttribute="width" constant="120" id="tqL-yD-YcQ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
