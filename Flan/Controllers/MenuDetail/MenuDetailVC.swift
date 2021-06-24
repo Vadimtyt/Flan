@@ -139,7 +139,7 @@ class MenuDetailVC: UIViewController {
 
 extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
 
-    func update(itemCount: Int) {
+    func update(with itemCount: Int) {
         item.count = itemCount
         countItemLabel.text = "\(itemCount)"
         if itemCount != 0 {

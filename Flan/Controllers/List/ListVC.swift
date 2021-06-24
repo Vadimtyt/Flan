@@ -70,7 +70,7 @@ class ListVC: UIViewController {
                 for item in ListOfMenuItems.shared.list {
                     item.count = 0
                 }
-                ListOfMenuItems.shared.list.removeAll()
+                ListOfMenuItems.shared.clearList()
                 
                 self?.updateList()
                 self?.updateListBadge()
@@ -92,10 +92,7 @@ class ListVC: UIViewController {
         // Crear all action
         if !(items.isEmpty || completedList.isEmpty) {
             let clearAllAction = UIAlertAction(title: "Очистить всё", style: .destructive) { [weak self] _ in
-                for item in ListOfMenuItems.shared.list {
-                    item.count = 0
-                }
-                ListOfMenuItems.shared.list.removeAll()
+                ListOfMenuItems.shared.clearList()
                 self?.completedList.removeAll()
                 
                 self?.updateList()
@@ -200,7 +197,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         let item = list[indexPath.row]
         var isCompleted = false
         if indexPath.section == 1 { isCompleted = true }
-        cell.configureCell(with: item, isCompleted: isCompleted, listDelegate: self, indexPath: indexPath)
+        cell.configureCell(with: item, isCompleted: isCompleted, listDelegate: self)
  
         return cell
     }
@@ -245,7 +242,7 @@ extension ListVC: UpdatingListCellDelegate {
     func updateList() {
         for index in 0..<items.count {
             if items[index].count == 0 {
-                ListOfMenuItems.shared.list.remove(at: index)
+                ListOfMenuItems.shared.removeFromList(item: items[index])
                 listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle)
                 return
              }
@@ -259,7 +256,7 @@ extension ListVC: UpdatingListCellDelegate {
         updateListVCBadge(with: badgeValue)
     }
     
-    func addToCompleted(item: MenuItem, indexPath: IndexPath) {
+    func addToCompleted(item: MenuItem) {
         let completedItem = MenuItem(item: item)
         
         completedList.insert(completedItem, at: 0)
@@ -272,22 +269,23 @@ extension ListVC: UpdatingListCellDelegate {
         updateListBadge()
     }
     
-    func removeFromCompleted(item: MenuItem, indexPath: IndexPath) {
-        guard let completedIndex = completedList.firstIndex(where: {$0 === item}) else { return }
+    func removeFromCompleted(completedItem: MenuItem) {
+        guard let completedIndex = completedList.firstIndex(where: {$0 === completedItem}) else { return }
         completedList.remove(at: completedIndex)
         listTableView.deleteRows(at: [IndexPath(row: completedIndex, section: 1)], with: .automatic)
         
-        guard let itemIndex = ListOfMenuItems.shared.items.firstIndex(where: {$0.name == item.name}) else { return }
+        guard let index = ListOfMenuItems.shared.items.firstIndex(where: {$0.name == completedItem.name}) else { return }
+        let item = ListOfMenuItems.shared.items[index]
         
-        if !(items.contains(where: {$0.name == item.name })) {
-            ListOfMenuItems.shared.addToList(item: ListOfMenuItems.shared.items[itemIndex])
-            items.first?.count = item.count
-            items.first?.selectedMeasurment = item.selectedMeasurment
+        if !(items.contains(where: {$0.name == completedItem.name })) {
+            item.count = completedItem.count
+            item.selectedMeasurment = completedItem.selectedMeasurment
+            ListOfMenuItems.shared.addToList(item: item)
             listTableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-        } else if items.contains(where: {$0.name == item.name && $0.selectedMeasurment == item.selectedMeasurment}) {
-            guard let index = ListOfMenuItems.shared.items.firstIndex(where: {$0.name == item.name}) else { return }
-            items[index].count += item.count
-            listTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        } else if items.contains(where: {$0.name == completedItem.name && $0.selectedMeasurment == completedItem.selectedMeasurment}) {
+            item.count += completedItem.count
+            guard let indexAtList = items.firstIndex(where: {$0.name == completedItem.name}) else { return }
+            listTableView.reloadRows(at: [IndexPath(row: indexAtList, section: 0)], with: .automatic)
         }
         updateListBadge()
     }
@@ -299,11 +297,11 @@ extension ListVC: UpdatingMenuCellDelegate {
     }
     
     func updateFavorites() {
-        //
+        ListOfMenuItems.shared.updateFavorites()
     }
     
     func updateCellAt(indexPath: IndexPath) {
-        listTableView.reloadData()
+        updateList()
     }
     
     

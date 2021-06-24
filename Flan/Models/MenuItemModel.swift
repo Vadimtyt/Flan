@@ -61,6 +61,12 @@ class ListOfMenuItems {
         }
     }
     
+    func clearList() {
+        for item in list {
+            removeFromList(item: item)
+        }
+    }
+    
     func updateFavorites() {
         favorites.removeAll()
         for item in items {

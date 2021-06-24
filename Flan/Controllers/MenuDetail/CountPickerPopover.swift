@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UpdatingMenuDetailVCDelegate: class {
-    func update(itemCount: Int)
+    func update(with itemCount: Int)
 }
     
 class CountPickerPopover: UIViewController {
@@ -30,7 +30,7 @@ class CountPickerPopover: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        updateItem()
+        updateItemCount()
     }
     
     init(currentCount: Int, updatingDelegate: UpdatingMenuDetailVCDelegate) {
@@ -44,13 +44,13 @@ class CountPickerPopover: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateItem() {
-        let count = countPicker.selectedRow(inComponent: 0)
-        updatingMenuDetailVCDelegate.update(itemCount: count)
+    func updateItemCount() {
+        let itemCount = countPicker.selectedRow(inComponent: 0)
+        updatingMenuDetailVCDelegate.update(with: itemCount)
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        updateItem()
+        updateItemCount()
         dismiss(animated: true)
     }
 }

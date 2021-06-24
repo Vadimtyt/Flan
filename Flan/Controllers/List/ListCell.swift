@@ -10,8 +10,8 @@ import UIKit
 protocol UpdatingListCellDelegate: class {
     func updateList()
     func updateListBadge()
-    func addToCompleted(item: MenuItem, indexPath: IndexPath)
-    func removeFromCompleted(item: MenuItem, indexPath: IndexPath)
+    func addToCompleted(item: MenuItem)
+    func removeFromCompleted(completedItem: MenuItem)
 }
 
 class ListCell: UITableViewCell {
@@ -21,7 +21,6 @@ class ListCell: UITableViewCell {
     static let reuseId = "ListCell"
     var checkmark = false
     var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс")
-    var indexPath = IndexPath()
     
     @IBOutlet weak var checkmarkButton: UIButton!
     
@@ -37,7 +36,7 @@ class ListCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func configureCell(with item: MenuItem, isCompleted: Bool, listDelegate: UpdatingListCellDelegate, indexPath: IndexPath) {
+    func configureCell(with item: MenuItem, isCompleted: Bool, listDelegate: UpdatingListCellDelegate) {
         self.item = item
         selectionStyle = .none
         
@@ -65,7 +64,6 @@ class ListCell: UITableViewCell {
         }
         
         self.listDelegate = listDelegate
-        self.indexPath = indexPath
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
@@ -93,10 +91,10 @@ class ListCell: UITableViewCell {
         checkmark = !checkmark
         if checkmark {
             checkmarkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-            listDelegate?.addToCompleted(item: item, indexPath: indexPath)
+            listDelegate?.addToCompleted(item: item)
         } else {
             checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
-            listDelegate?.removeFromCompleted(item: item, indexPath: indexPath)
+            listDelegate?.removeFromCompleted(completedItem: item)
         }
     }
 }
