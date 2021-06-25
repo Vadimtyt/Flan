@@ -14,6 +14,7 @@ class MenuDetailVC: UIViewController {
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
     
     @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var countItemLabel: UILabel!
@@ -28,6 +29,7 @@ class MenuDetailVC: UIViewController {
         countItemLabel.addGestureRecognizer(tap)
         
         segmentedControl.isHidden = true
+        if #available(iOS 13.0, *) { closeButton.isHidden = true }
         
         itemImage.image = item.image
         nameLabel.text = item.name
@@ -134,6 +136,11 @@ class MenuDetailVC: UIViewController {
         
         updateCellDelegate?.updateCellAt(indexPath: indexPath)
         updateCellDelegate?.updateListVCBadge()
+    }
+    
+    @IBAction func closeButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.medium)
+        dismiss(animated: true)
     }
 }
 

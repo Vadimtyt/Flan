@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C11F36C22666CE1200D1E14A /* MenuDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11F36C12666CE1200D1E14A /* MenuDetailVC.swift */; };
 		C11F36C62666CE2300D1E14A /* MenuDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C11F36C52666CE2300D1E14A /* MenuDetail.storyboard */; };
+		C11F36CD2677E83C00D1E14A /* CountPickerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11F36CC2677E83B00D1E14A /* CountPickerPopover.swift */; };
+		C11F36D02677E9D700D1E14A /* CountPickerPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = C11F36CF2677E9D700D1E14A /* CountPickerPopover.xib */; };
 		C125437025D4C2FD0086ADD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125436F25D4C2FD0086ADD2 /* AppDelegate.swift */; };
 		C125437925D4C2FE0086ADD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C125437825D4C2FE0086ADD2 /* Assets.xcassets */; };
 		C125437C25D4C2FE0086ADD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C125437A25D4C2FE0086ADD2 /* LaunchScreen.storyboard */; };
@@ -48,6 +50,8 @@
 /* Begin PBXFileReference section */
 		C11F36C12666CE1200D1E14A /* MenuDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailVC.swift; sourceTree = "<group>"; };
 		C11F36C52666CE2300D1E14A /* MenuDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MenuDetail.storyboard; sourceTree = "<group>"; };
+		C11F36CC2677E83B00D1E14A /* CountPickerPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountPickerPopover.swift; sourceTree = "<group>"; };
+		C11F36CF2677E9D700D1E14A /* CountPickerPopover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountPickerPopover.xib; sourceTree = "<group>"; };
 		C125436C25D4C2FD0086ADD2 /* Flan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C125436F25D4C2FD0086ADD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C125437825D4C2FE0086ADD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 			children = (
 				C11F36C12666CE1200D1E14A /* MenuDetailVC.swift */,
 				C11F36C52666CE2300D1E14A /* MenuDetail.storyboard */,
+				C11F36CC2677E83B00D1E14A /* CountPickerPopover.swift */,
+				C11F36CF2677E9D700D1E14A /* CountPickerPopover.xib */,
 			);
 			path = MenuDetail;
 			sourceTree = "<group>";
@@ -163,6 +169,7 @@
 				C1AD6A54265BC6DF007DFBE9 /* InfoPopover.swift */,
 				C1AD6A50265BC3FF007DFBE9 /* InfoPopover.xib */,
 				C19C8BEE261740100039CA79 /* Menu */,
+				C11F36C02666CDE600D1E14A /* MenuDetail */,
 				C19C8C13261E5CF00039CA79 /* Favorite */,
 				C19C8BFB2618E6020039CA79 /* List */,
 				C1AD6A2726584AD2007DFBE9 /* Customized */,
@@ -233,7 +240,6 @@
 				C19C8BEA261625EA0039CA79 /* MenuVC.swift */,
 				C19C8BEF261740670039CA79 /* MenuCell.swift */,
 				C19C8BF7261741050039CA79 /* MenuCell.xib */,
-				C11F36C02666CDE600D1E14A /* MenuDetail */,
 				C15AD16E265F0C6300E8E02F /* Categories */,
 			);
 			path = Menu;
@@ -343,6 +349,7 @@
 				C1AD6A3A26586EE1007DFBE9 /* CustomizedDetail.storyboard in Resources */,
 				C1AD6A51265BC3FF007DFBE9 /* InfoPopover.xib in Resources */,
 				C19C8BF8261741050039CA79 /* MenuCell.xib in Resources */,
+				C11F36D02677E9D700D1E14A /* CountPickerPopover.xib in Resources */,
 				C19C8C09261E06520039CA79 /* ListCell.xib in Resources */,
 				C15C40972645CCC40053910A /* BakeryCell.xib in Resources */,
 			);
@@ -356,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1AD6A47265A7599007DFBE9 /* CustomizedHeaderView.swift in Sources */,
+				C11F36CD2677E83C00D1E14A /* CountPickerPopover.swift in Sources */,
 				C1600D27264EF65700D06F31 /* ExtensionVC.swift in Sources */,
 				C19C8C06261DE6F60039CA79 /* ListVC.swift in Sources */,
 				C15AD175265F0F8F00E8E02F /* CategoriesVC.swift in Sources */,

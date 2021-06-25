@@ -26,6 +26,7 @@ class MenuCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var secondPriceLabel: UILabel!
     
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var countItemLabel: UILabel!
@@ -33,10 +34,18 @@ class MenuCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let tapPriceLabel = UITapGestureRecognizer(target: self, action: #selector(MenuCell.tapPriceLabel))
+        priceLabel.isUserInteractionEnabled = true
+        priceLabel.addGestureRecognizer(tapPriceLabel)
+        
+        let tapSecondPriceLabel = UITapGestureRecognizer(target: self, action: #selector(MenuCell.tapSecondPriceLabel))
+        secondPriceLabel.isUserInteractionEnabled = true
+        secondPriceLabel.addGestureRecognizer(tapSecondPriceLabel)
     }
     
     func configureCell(with item: MenuItem) {
         self.item = item
+        secondPriceLabel.isHidden = true
         
         selectionStyle = .none
         
@@ -52,12 +61,51 @@ class MenuCell: UITableViewCell {
         
         imageItemView.image = item.image
         nameLabel.text = item.name
-        priceLabel.text = "\(item.prices[0])Р/\("" + item.measurements[0])"
-        if item.prices.count > 1 { priceLabel.text = "от " + (priceLabel.text ?? "") }
+        priceLabel.text = "\(item.prices[0])Р/\(item.measurements[0])"
+        updatePriceLabels()
         
         if item.isFavorite == true {
             favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
         } else { favoriteButton.setImage(UIImage(named: "addToFavorite"), for: .normal) }
+    }
+    
+    func updatePriceLabels() {
+        if item.prices.count > 1 && item.count == 0 {
+            priceLabel.text = "\(item.prices[0])Р/\(item.measurements[0])"
+            secondPriceLabel.text = "\(item.prices[1])Р/\(item.measurements[1])"
+            secondPriceLabel.isHidden = false
+            removeButton.isHidden = true
+            countItemLabel.isHidden = true
+            addButton.isHidden = true
+        } else if item.prices.count > 1 && item.count > 0 {
+            priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\(item.measurements[item.selectedMeasurment])"
+            secondPriceLabel.isHidden = true
+            removeButton.isHidden = false
+            countItemLabel.isHidden = false
+            addButton.isHidden = false
+        }
+    }
+    
+    @objc func tapPriceLabel(sender:UITapGestureRecognizer) {
+        if item.count == 0 {
+            item.selectedMeasurment = 0
+            removeButton.isHidden = false
+            countItemLabel.isHidden = false
+            addButton.isHidden = false
+            secondPriceLabel.isHidden = true
+            addButtonPressed(addButton)
+        }
+    }
+    
+    @objc func tapSecondPriceLabel(sender:UITapGestureRecognizer) {
+        if item.count == 0 {
+            item.selectedMeasurment = 1
+            removeButton.isHidden = false
+            countItemLabel.isHidden = false
+            addButton.isHidden = false
+            secondPriceLabel.isHidden = true
+            addButtonPressed(addButton)
+        }
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
@@ -77,6 +125,7 @@ class MenuCell: UITableViewCell {
             countItemLabel.text = "\(self.item.count)"
         } else { print("ошибка в countItemsLabel") }
         
+        updatePriceLabels()
         updateCellDelegate?.updateListVCBadge()
     }
     
@@ -97,6 +146,7 @@ class MenuCell: UITableViewCell {
             countItemLabel.text = "\(self.item.count)"
         } else { print("ошибка в countItemsLabel") }
         
+        updatePriceLabels()
         updateCellDelegate?.updateListVCBadge()
     }
 

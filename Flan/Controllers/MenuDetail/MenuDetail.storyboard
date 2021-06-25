@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -120,6 +121,26 @@
                                     <action selector="segmentedControlChanged:" destination="nUc-xs-zVD" eventType="valueChanged" id="i7a-Dc-Y9e"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-pL-uYd" userLabel="Close Button">
+                                <rect key="frame" x="364" y="64" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="GBe-ri-hm2"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="X14-RN-kXx"/>
+                                    <constraint firstAttribute="width" constant="30" id="rN4-vc-n2s"/>
+                                    <constraint firstAttribute="height" constant="30" id="sE6-PF-A4b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </state>
+                                <state key="highlighted" title="X">
+                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="3pE-KT-Czb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yYH-Y0-N2A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -128,6 +149,7 @@
                             <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="eip-EP-xfm" secondAttribute="trailing" constant="16" id="1KO-xa-Lh8"/>
                             <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="zVZ-m5-2jP" secondAttribute="trailing" constant="16" id="6LU-9v-V0Y"/>
                             <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="XVC-XG-z45" secondAttribute="trailing" constant="8" id="6uL-dQ-VX9"/>
+                            <constraint firstItem="oK3-pL-uYd" firstAttribute="top" secondItem="yYH-Y0-N2A" secondAttribute="top" constant="20" id="Dez-fk-wAL"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="top" secondItem="W94-64-xo6" secondAttribute="top" id="FCf-Rc-QQo"/>
                             <constraint firstItem="zVZ-m5-2jP" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="16" id="KZ6-tM-tgF"/>
                             <constraint firstAttribute="bottom" secondItem="cWU-Yk-6D3" secondAttribute="bottom" id="MHz-RI-yDN"/>
@@ -135,6 +157,7 @@
                             <constraint firstItem="XVC-XG-z45" firstAttribute="top" secondItem="MKe-uL-GAh" secondAttribute="bottom" constant="16" id="XLr-yg-lzu"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="trailing" secondItem="yYH-Y0-N2A" secondAttribute="trailing" id="d94-in-hZj"/>
                             <constraint firstItem="eip-EP-xfm" firstAttribute="top" secondItem="XVC-XG-z45" secondAttribute="bottom" constant="8" id="iK2-Bg-M8V"/>
+                            <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="oK3-pL-uYd" secondAttribute="trailing" constant="20" id="jJU-3p-nmW"/>
                             <constraint firstItem="cWU-Yk-6D3" firstAttribute="trailing" secondItem="yYH-Y0-N2A" secondAttribute="trailing" id="lho-9Z-PGe"/>
                             <constraint firstItem="XVC-XG-z45" firstAttribute="centerX" secondItem="yYH-Y0-N2A" secondAttribute="centerX" id="q4W-J8-oQM"/>
                             <constraint firstItem="XVC-XG-z45" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="8" id="q9s-1N-YK9"/>
@@ -143,6 +166,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="oK3-pL-uYd" id="MNB-Gz-fnD"/>
                         <outlet property="countItemLabel" destination="Fiz-mU-BNb" id="WtR-Ej-83J"/>
                         <outlet property="itemImage" destination="MKe-uL-GAh" id="L0w-G7-feP"/>
                         <outlet property="nameLabel" destination="XVC-XG-z45" id="WDi-Tn-bjK"/>
@@ -159,6 +183,7 @@
     <resources>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -47,6 +47,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fG9-Vv-lsZ" userLabel="Second Price Label">
+                                <rect key="frame" x="147" y="0.0" width="100" height="38"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="UBd-Ps-hCH"/>
+                                    <constraint firstAttribute="height" constant="38" id="ipM-Rt-Ull"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7b-ed-jeg">
                                 <rect key="frame" x="155" y="4" width="30" height="30"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
@@ -87,9 +98,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="H7b-ed-jeg" secondAttribute="trailing" constant="70" id="4VX-s4-Yz7"/>
+                            <constraint firstItem="fG9-Vv-lsZ" firstAttribute="width" secondItem="TiK-cc-1sx" secondAttribute="width" id="EUx-Ou-0ZD"/>
                             <constraint firstAttribute="bottom" secondItem="ytp-pN-ag1" secondAttribute="bottom" constant="12" id="I5A-HI-8v8"/>
                             <constraint firstAttribute="trailing" secondItem="ytp-pN-ag1" secondAttribute="trailing" constant="38" id="NPg-DM-YWp"/>
+                            <constraint firstAttribute="trailing" secondItem="fG9-Vv-lsZ" secondAttribute="trailing" constant="8" id="UC2-c9-eDR"/>
+                            <constraint firstAttribute="bottom" secondItem="fG9-Vv-lsZ" secondAttribute="bottom" constant="8" id="WP7-YQ-Ae0"/>
+                            <constraint firstItem="fG9-Vv-lsZ" firstAttribute="height" secondItem="TiK-cc-1sx" secondAttribute="height" id="XGd-NJ-28f"/>
                             <constraint firstItem="TiK-cc-1sx" firstAttribute="leading" secondItem="Hr9-7C-MjJ" secondAttribute="leading" id="Xtk-aB-b4Z"/>
+                            <constraint firstItem="fG9-Vv-lsZ" firstAttribute="top" secondItem="Hr9-7C-MjJ" secondAttribute="top" id="Y21-bq-cc9"/>
                             <constraint firstAttribute="bottom" secondItem="TiK-cc-1sx" secondAttribute="bottom" constant="8" id="aPT-fX-DpH"/>
                             <constraint firstItem="TiK-cc-1sx" firstAttribute="top" secondItem="Hr9-7C-MjJ" secondAttribute="top" id="dIC-lW-Czd"/>
                             <constraint firstAttribute="bottom" secondItem="E3V-Fb-cEn" secondAttribute="bottom" constant="12" id="f3E-mc-SES"/>
@@ -135,6 +151,7 @@
                 <outlet property="nameLabel" destination="Euu-Am-soA" id="qwC-Pu-OyI"/>
                 <outlet property="priceLabel" destination="TiK-cc-1sx" id="guH-UK-ClW"/>
                 <outlet property="removeButton" destination="H7b-ed-jeg" id="ryH-md-PEK"/>
+                <outlet property="secondPriceLabel" destination="fG9-Vv-lsZ" id="gaE-zu-Pv5"/>
             </connections>
             <point key="canvasLocation" x="-50.724637681159422" y="84.375"/>
         </tableViewCell>
