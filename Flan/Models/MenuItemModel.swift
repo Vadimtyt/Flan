@@ -56,8 +56,8 @@ class ListOfMenuItems {
     func removeFromList(item: MenuItem) {
         if let index = list.firstIndex(where: { $0 === item }) {
             list[index].count = 0
-            list.remove(at: index)
             item.selectedMeasurment = 0
+            list.remove(at: index)
         }
     }
     

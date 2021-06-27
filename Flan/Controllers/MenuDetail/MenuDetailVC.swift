@@ -46,6 +46,10 @@ class MenuDetailVC: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        if item.count == 0 { item.selectedMeasurment = 0 }
+    }
+    
     @objc func doneButtonTapped() {
         view.endEditing(true)
     }
@@ -74,10 +78,9 @@ class MenuDetailVC: UIViewController {
         for index in 0..<item.measurements.count {
             segmentedControl.insertSegment(withTitle: item.measurements[index], at: index, animated: true)
         }
-        //if item.count != 0 {
-            segmentedControl.selectedSegmentIndex = item.selectedMeasurment
-        //} else { segmentedControl.selectedSegmentIndex = 0 }
         
+        segmentedControl.selectedSegmentIndex = item.selectedMeasurment
+        print(item.selectedMeasurment)
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {

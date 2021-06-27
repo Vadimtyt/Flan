@@ -34,6 +34,7 @@ class MenuCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         let tapPriceLabel = UITapGestureRecognizer(target: self, action: #selector(MenuCell.tapPriceLabel))
         priceLabel.isUserInteractionEnabled = true
         priceLabel.addGestureRecognizer(tapPriceLabel)
@@ -70,14 +71,15 @@ class MenuCell: UITableViewCell {
     }
     
     func updatePriceLabels() {
-        if item.prices.count > 1 && item.count == 0 {
+        guard item.prices.count > 1 else { return }
+        if item.count == 0 {
             priceLabel.text = "\(item.prices[0])Р/\(item.measurements[0])"
             secondPriceLabel.text = "\(item.prices[1])Р/\(item.measurements[1])"
             secondPriceLabel.isHidden = false
             removeButton.isHidden = true
             countItemLabel.isHidden = true
             addButton.isHidden = true
-        } else if item.prices.count > 1 && item.count > 0 {
+        } else if item.count > 0 {
             priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\(item.measurements[item.selectedMeasurment])"
             secondPriceLabel.isHidden = true
             removeButton.isHidden = false
@@ -89,9 +91,6 @@ class MenuCell: UITableViewCell {
     @objc func tapPriceLabel(sender:UITapGestureRecognizer) {
         if item.count == 0 {
             item.selectedMeasurment = 0
-            removeButton.isHidden = false
-            countItemLabel.isHidden = false
-            addButton.isHidden = false
             secondPriceLabel.isHidden = true
             addButtonPressed(addButton)
         }
@@ -100,9 +99,6 @@ class MenuCell: UITableViewCell {
     @objc func tapSecondPriceLabel(sender:UITapGestureRecognizer) {
         if item.count == 0 {
             item.selectedMeasurment = 1
-            removeButton.isHidden = false
-            countItemLabel.isHidden = false
-            addButton.isHidden = false
             secondPriceLabel.isHidden = true
             addButtonPressed(addButton)
         }

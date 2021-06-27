@@ -297,7 +297,7 @@ extension ListVC: UpdatingMenuCellDelegate {
     }
     
     func updateFavorites() {
-        ListOfMenuItems.shared.updateFavorites()
+        //ListOfMenuItems.shared.updateFavorites()
     }
     
     func updateCellAt(indexPath: IndexPath) {
