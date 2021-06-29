@@ -169,6 +169,10 @@ class MenuVC: UITableViewController {
         self.present(menuDetailVC, animated: true, completion: nil)
     }
     
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if isKeyboardPresented { dismissKeyboard() }
+    }
+    
 //    func generateItem() -> MenuItem {
 //        return MenuItem(name: names.randomElement() ?? "Error", price: Int.random(in: 100...500))
 //    }
