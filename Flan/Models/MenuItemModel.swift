@@ -50,7 +50,8 @@ class ListOfMenuItems {
     
     func addToList(item: MenuItem) {
         guard (list.firstIndex(where: { $0 === item }) == nil) else { return }
-        list.insert(item, at: 0)
+        //list.insert(item, at: list.count - 1)
+        list.append(item)
     }
     
     func removeFromList(item: MenuItem) {

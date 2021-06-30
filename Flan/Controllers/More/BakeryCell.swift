@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol BakeryCellDelegate: class {
+protocol BakeryCellDelegate: AnyObject {
     func callPhone(with tag: Int)
     func openMap(with tag: Int)
 }

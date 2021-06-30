@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol UpdatingListCellDelegate: class {
+protocol UpdatingListCellDelegate: AnyObject {
     func updateList()
     func updateListBadge()
     func addToCompleted(item: MenuItem)

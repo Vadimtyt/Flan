@@ -281,7 +281,7 @@ extension ListVC: UpdatingListCellDelegate {
             item.count = completedItem.count
             item.selectedMeasurment = completedItem.selectedMeasurment
             ListOfMenuItems.shared.addToList(item: item)
-            listTableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            listTableView.insertRows(at: [IndexPath(row: (items.count - 1), section: 0)], with: .bottom)
         } else if items.contains(where: {$0.name == completedItem.name && $0.selectedMeasurment == completedItem.selectedMeasurment}) {
             item.count += completedItem.count
             guard let indexAtList = items.firstIndex(where: {$0.name == completedItem.name}) else { return }

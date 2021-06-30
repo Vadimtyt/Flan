@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol UpdatingMenuCellDelegate: class {
+protocol UpdatingMenuCellDelegate: AnyObject {
     func updateListVCBadge()
     func updateFavorites()
     func updateCellAt(indexPath: IndexPath)

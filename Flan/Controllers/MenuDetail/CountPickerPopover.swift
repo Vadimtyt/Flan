@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol UpdatingMenuDetailVCDelegate: class {
+protocol UpdatingMenuDetailVCDelegate: AnyObject {
     func update(with itemCount: Int)
 }
     

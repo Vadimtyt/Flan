@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CategoriesVCDelegate: class {
+protocol CategoriesVCDelegate: AnyObject {
     func scrollTableToRow(at indexPath: IndexPath)
 }
 
