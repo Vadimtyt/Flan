@@ -45,6 +45,8 @@
 		C1AD6A47265A7599007DFBE9 /* CustomizedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD6A46265A7599007DFBE9 /* CustomizedHeaderView.swift */; };
 		C1AD6A51265BC3FF007DFBE9 /* InfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1AD6A50265BC3FF007DFBE9 /* InfoPopover.xib */; };
 		C1AD6A55265BC6DF007DFBE9 /* InfoPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD6A54265BC6DF007DFBE9 /* InfoPopover.swift */; };
+		C1EE51B4268E7FA2001126DA /* MenuSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE51B3268E7FA2001126DA /* MenuSectionCell.swift */; };
+		C1EE51B6268E8069001126DA /* MenuSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EE51B5268E8069001126DA /* MenuSectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,8 @@
 		C1AD6A46265A7599007DFBE9 /* CustomizedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedHeaderView.swift; sourceTree = "<group>"; };
 		C1AD6A50265BC3FF007DFBE9 /* InfoPopover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPopover.xib; sourceTree = "<group>"; };
 		C1AD6A54265BC6DF007DFBE9 /* InfoPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopover.swift; sourceTree = "<group>"; };
+		C1EE51B3268E7FA2001126DA /* MenuSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSectionCell.swift; sourceTree = "<group>"; };
+		C1EE51B5268E8069001126DA /* MenuSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuSectionCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +244,8 @@
 				C19C8BEA261625EA0039CA79 /* MenuVC.swift */,
 				C19C8BEF261740670039CA79 /* MenuCell.swift */,
 				C19C8BF7261741050039CA79 /* MenuCell.xib */,
+				C1EE51B3268E7FA2001126DA /* MenuSectionCell.swift */,
+				C1EE51B5268E8069001126DA /* MenuSectionCell.xib */,
 				C15AD16E265F0C6300E8E02F /* Categories */,
 			);
 			path = Menu;
@@ -345,6 +351,7 @@
 				C15AD17A265F1C5900E8E02F /* Categories.storyboard in Resources */,
 				C1600D242649F17700D06F31 /* Map.storyboard in Resources */,
 				C15C4087264589770053910A /* Main.storyboard in Resources */,
+				C1EE51B6268E8069001126DA /* MenuSectionCell.xib in Resources */,
 				C125437925D4C2FE0086ADD2 /* Assets.xcassets in Resources */,
 				C1AD6A3A26586EE1007DFBE9 /* CustomizedDetail.storyboard in Resources */,
 				C1AD6A51265BC3FF007DFBE9 /* InfoPopover.xib in Resources */,
@@ -384,6 +391,7 @@
 				C1AD6A2A26584B1D007DFBE9 /* CustomizedCVC.swift in Sources */,
 				C1AD6A3D26586F6C007DFBE9 /* CustomizedDetailVC.swift in Sources */,
 				C125437025D4C2FD0086ADD2 /* AppDelegate.swift in Sources */,
+				C1EE51B4268E7FA2001126DA /* MenuSectionCell.swift in Sources */,
 				C15C40D226480FBD0053910A /* MapVC.swift in Sources */,
 				C19C8C0C261E07190039CA79 /* ListCell.swift in Sources */,
 				C15C408D2645C7C00053910A /* MoreVC.swift in Sources */,

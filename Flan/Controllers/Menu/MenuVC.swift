@@ -7,7 +7,8 @@
 
 import UIKit
 
-private let reuseIdentifier = "MenuCell"
+private let reuseSectionID = "MenuSectionCell"
+private let reuseCellID = "MenuCell"
 
 class MenuVC: UITableViewController {
     
@@ -27,7 +28,8 @@ class MenuVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
+        tableView.register(UINib(nibName: reuseSectionID, bundle: nil), forCellReuseIdentifier: MenuSectionCell.reuseId)
+        tableView.register(UINib(nibName: reuseCellID, bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
         
         configureSearchController()
         configureNavigationBarLargeStyle()
@@ -81,11 +83,17 @@ class MenuVC: UITableViewController {
         return categories.count
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseSectionID) as! MenuSectionCell
+        cell.configureCell(with: categories[section].category)
+        return cell.contentView
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if isFiltering {
             return 0
         }
-        return 40
+        return 60
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -113,7 +121,7 @@ class MenuVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseCellID, for: indexPath) as! MenuCell
         var item = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс")
         
         if isFiltering {
