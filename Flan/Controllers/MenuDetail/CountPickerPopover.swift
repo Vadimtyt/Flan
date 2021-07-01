@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UpdatingMenuDetailVCDelegate: AnyObject {
-    func update(with itemCount: Int)
+    func updateCell(with itemCount: Int)
 }
     
 class CountPickerPopover: UIViewController {
@@ -46,7 +46,7 @@ class CountPickerPopover: UIViewController {
     
     func updateItemCount() {
         let itemCount = countPicker.selectedRow(inComponent: 0)
-        updatingMenuDetailVCDelegate.update(with: itemCount)
+        updatingMenuDetailVCDelegate.updateCell(with: itemCount)
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {

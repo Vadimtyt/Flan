@@ -50,7 +50,7 @@ class ListOfMenuItems {
     
     func addToList(item: MenuItem) {
         guard (list.firstIndex(where: { $0 === item }) == nil) else { return }
-        //list.insert(item, at: list.count - 1)
+        //list.insert(item, at: 0)
         list.append(item)
     }
     
@@ -122,14 +122,3 @@ let allItems: [MenuItem] = [
     MenuItem(name: "Безе", category: "Кексы", prices: [40], measurements: ["шт"], imageName: "Кекс"),
     MenuItem(name: "Безе", category: "Салаты", prices: [40], measurements: ["шт"], imageName: "Кекс")
 ]
-
-extension RangeReplaceableCollection where Element: Hashable {
-    var orderedSet: Self {
-        var set = Set<Element>()
-        return filter { set.insert($0).inserted }
-    }
-    mutating func removeDuplicates() {
-        var set = Set<Element>()
-        removeAll { !set.insert($0).inserted }
-    }
-}

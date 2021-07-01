@@ -11,8 +11,6 @@ private let reuseIdentifier = "MenuCell"
 
 class MenuVC: UITableViewController {
     
-//    let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
-    
     var categories: [(category: String, items: [MenuItem])] { get { return ListOfMenuItems.shared.categories }}
     var items: [MenuItem] { get { return ListOfMenuItems.shared.items } }
     
@@ -30,7 +28,6 @@ class MenuVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
-        //ListOfMenuItems.shared.items = generateItems(count: Int.random(in: 30...50))
         
         configureSearchController()
         configureNavigationBarLargeStyle()
@@ -74,30 +71,6 @@ class MenuVC: UITableViewController {
     @objc func dismissKeyboard() {
         self.searchController.searchBar.endEditing(true)
     }
-    
-//    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//            if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-//                changeTabBar(hidden: true, animated: true)
-//            }else{
-//                changeTabBar(hidden: false, animated: true)
-//            }
-//
-//        }
-//
-//    func changeTabBar(hidden:Bool, animated: Bool){
-//        guard let tabBar = self.tabBarController?.tabBar else { return; }
-//        if tabBar.isHidden == hidden{ return }
-//        let frame = tabBar.frame
-//        let offset = hidden ? frame.size.height : -frame.size.height
-//        let duration:TimeInterval = (animated ? 0.3 : 0.0)
-//        tabBar.isHidden = false
-//
-//        UIView.animate(withDuration: duration, animations: {
-//            tabBar.frame = frame.offsetBy(dx: 0, dy: offset)
-//        }, completion: { (true) in
-//            tabBar.isHidden = hidden
-//        })
-//    }
 
     // MARK: - Table view data source
     
@@ -172,21 +145,6 @@ class MenuVC: UITableViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isKeyboardPresented { dismissKeyboard() }
     }
-    
-//    func generateItem() -> MenuItem {
-//        return MenuItem(name: names.randomElement() ?? "Error", price: Int.random(in: 100...500))
-//    }
-//
-//    func generateItems(count: Int) -> [MenuItem] {
-//        var items: [MenuItem] = []
-//
-//        for _ in 0...count {
-//            let newItem = generateItem()
-//            items.append(newItem)
-//        }
-//
-//        return items
-//    }
     
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
         searchController.isActive = true

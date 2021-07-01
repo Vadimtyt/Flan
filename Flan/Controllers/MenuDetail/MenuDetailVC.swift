@@ -80,7 +80,6 @@ class MenuDetailVC: UIViewController {
         }
         
         segmentedControl.selectedSegmentIndex = item.selectedMeasurment
-        print(item.selectedMeasurment)
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
@@ -149,7 +148,7 @@ class MenuDetailVC: UIViewController {
 
 extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
 
-    func update(with itemCount: Int) {
+    func updateCell(with itemCount: Int) {
         item.count = itemCount
         countItemLabel.text = "\(itemCount)"
         if itemCount != 0 {
