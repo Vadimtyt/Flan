@@ -9,9 +9,10 @@ import UIKit
 
 class Cake {
     let number: Int
-    let image = UIImage(named: "Кекс")
+    let image: UIImage
     
-    init(number: Int) {
+    init(number: Int, image: UIImage) {
         self.number = number
+        self.image = image
     }
 }

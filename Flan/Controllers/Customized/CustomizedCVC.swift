@@ -11,6 +11,8 @@ private let reuseIdentifier = "customizedCell"
 
 class CustomizedCVC: UICollectionViewController {
     
+    var cakes: [Cake] = []
+    
     private let itemsPerRow: CGFloat = 2
     private let sectionPadding: CGFloat = 16
     
@@ -46,11 +48,16 @@ class CustomizedCVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Int.random(in: 30...40)
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cakesNames = ["Кекс", "Киш3", "Капкейк1", "Эклер3", "Киш3", "Слойка", "Эклер2", "Эклер1"]
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CustomizedCell
     
-        cell.cakeImage.image = UIImage(named: "Кекс")
+        let cake = Cake(number: indexPath.row + 1, image: UIImage.init(named: cakesNames.randomElement()!)!)
+        cakes.append(cake)
+        
+        cell.configureWith(cake: cakes[indexPath.row])
         cell.cakeImage.contentMode = .scaleAspectFill
         cell.backgroundColor = .red
         
@@ -63,7 +70,7 @@ class CustomizedCVC: UICollectionViewController {
         let storyboard = UIStoryboard(name: "CustomizedDetail", bundle: nil)
         
         guard let customizedDetailVC = storyboard.instantiateViewController(withIdentifier: "customizedDetail") as? CustomizedDetailVC else { return }
-        customizedDetailVC.cake = Cake(number: indexPath.row + 1)
+        customizedDetailVC.cake = cakes[indexPath.row]
         
         customizedDetailVC.modalPresentationStyle = .custom
         customizedDetailVC.transitioningDelegate = self

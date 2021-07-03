@@ -220,8 +220,25 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         if #available(iOS 13.0, *) {
             deleteAction.image = UIImage(systemName: "trash")
         }
+        
+        let completeAction = UIContextualAction(style: .normal, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
 
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+            if indexPath.section == 0 {
+                self.addToCompleted(item: self.items[indexPath.row])
+            } else if indexPath.section == 1 {
+                self.removeFromCompleted(completedItem: self.completedList[indexPath.row])
+            }
+
+            success(true)
+        })
+        
+        if indexPath.section == 0 {
+            completeAction.title = "Куплено"
+        } else if indexPath.section == 1 {
+            completeAction.title = "Купить"
+        }
+
+        return UISwipeActionsConfiguration(actions: [completeAction, deleteAction])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -260,11 +277,11 @@ extension ListVC: UpdatingListCellDelegate {
         let completedItem = MenuItem(item: item)
         
         completedList.insert(completedItem, at: 0)
-        listTableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        listTableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .left)
         
         guard let index = items.firstIndex(where: {$0 === item}) else { return }
         ListOfMenuItems.shared.removeFromList(item: item)
-        listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
         
         updateListBadge()
     }
@@ -272,7 +289,7 @@ extension ListVC: UpdatingListCellDelegate {
     func removeFromCompleted(completedItem: MenuItem) {
         guard let completedIndex = completedList.firstIndex(where: {$0 === completedItem}) else { return }
         completedList.remove(at: completedIndex)
-        listTableView.deleteRows(at: [IndexPath(row: completedIndex, section: 1)], with: .automatic)
+        listTableView.deleteRows(at: [IndexPath(row: completedIndex, section: 1)], with: .left)
         
         guard let index = ListOfMenuItems.shared.items.firstIndex(where: {$0.name == completedItem.name}) else { return }
         let item = ListOfMenuItems.shared.items[index]
@@ -281,11 +298,11 @@ extension ListVC: UpdatingListCellDelegate {
             item.count = completedItem.count
             item.selectedMeasurment = completedItem.selectedMeasurment
             ListOfMenuItems.shared.addToList(item: item)
-            listTableView.insertRows(at: [IndexPath(row: (items.count - 1), section: 0)], with: .bottom)
+            listTableView.insertRows(at: [IndexPath(row: (items.count - 1), section: 0)], with: .left)
         } else if items.contains(where: {$0.name == completedItem.name && $0.selectedMeasurment == completedItem.selectedMeasurment}) {
             item.count += completedItem.count
             guard let indexAtList = items.firstIndex(where: {$0.name == completedItem.name}) else { return }
-            listTableView.reloadRows(at: [IndexPath(row: indexAtList, section: 0)], with: .automatic)
+            listTableView.reloadRows(at: [IndexPath(row: indexAtList, section: 0)], with: .left)
         }
         updateListBadge()
     }
