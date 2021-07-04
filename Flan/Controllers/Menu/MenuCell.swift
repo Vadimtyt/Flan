@@ -137,9 +137,13 @@ class MenuCell: UITableViewCell {
             
             removeButton.isHidden = false
             countItemLabel.isHidden = false
-        } else if itemsCount > 0 {
+        } else if itemsCount > 0 && itemsCount < 98 {
             self.item.count += 1
             countItemLabel.text = "\(self.item.count)"
+        } else if itemsCount == 98 {
+            self.item.count += 1
+            countItemLabel.text = "\(self.item.count)"
+            addButton.isEnabled = false
         } else { print("ошибка в countItemsLabel") }
         
         updatePriceLabels()

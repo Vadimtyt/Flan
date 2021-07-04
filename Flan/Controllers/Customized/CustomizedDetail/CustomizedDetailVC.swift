@@ -60,7 +60,7 @@ class CustomizedDetailVC: UIViewController {
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        guard let image = cake.image else { return }
+        let image = cake.image
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
         

@@ -55,10 +55,12 @@ class ListCell: UITableViewCell {
             if checkmark {
                 removeButton.isEnabled = false
                 addButton.isEnabled = false
+                imageItemView.alpha = 0.7
                 checkmarkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             } else {
                 removeButton.isEnabled = true
                 addButton.isEnabled = true
+                imageItemView.alpha = 1
                 checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
             }
         }
@@ -70,6 +72,9 @@ class ListCell: UITableViewCell {
         TapticFeedback.shared.tapticFeedback(.light)
         
         self.item.count -= 1
+        if item.count < 99  {
+            addButton.isEnabled = true
+        }
         countItemLabel.text = "\(self.item.count)"
         
         self.listDelegate?.updateList()
@@ -80,6 +85,9 @@ class ListCell: UITableViewCell {
         TapticFeedback.shared.tapticFeedback(.light)
         
         self.item.count += 1
+        if item.count == 99 {
+            addButton.isEnabled = false
+        }
         countItemLabel.text = "\(self.item.count)"
         
         self.listDelegate?.updateList()

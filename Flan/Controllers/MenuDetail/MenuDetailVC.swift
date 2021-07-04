@@ -17,9 +17,10 @@ class MenuDetailVC: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var countItemLabel: UILabel!
-    @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var removeButton: UIButton!
+    @IBOutlet weak var countItemLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -117,9 +118,13 @@ class MenuDetailVC: UIViewController {
             ListOfMenuItems.shared.addToList(item: item)
             
             removeButton.isEnabled = true
-        } else if itemsCount > 0 {
+        } else if itemsCount > 0 && itemsCount < 98{
             self.item.count += 1
             countItemLabel.text = "\(self.item.count)"
+        } else if itemsCount == 98 {
+            self.item.count += 1
+            countItemLabel.text = "\(self.item.count)"
+            addButton.isEnabled = false
         } else { print("ошибка в countItemsLabel") }
         
         updateCellDelegate?.updateListVCBadge()
