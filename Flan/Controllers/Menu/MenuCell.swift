@@ -54,10 +54,17 @@ class MenuCell: UITableViewCell {
             removeButton.isHidden = true
             countItemLabel.isHidden = true
             countItemLabel.text = "0"
+            addButton.isEnabled = true
+        } else if item.count == 99 {
+            removeButton.isHidden = false
+            countItemLabel.isHidden = false
+            countItemLabel.text = "\(item.count)"
+            addButton.isEnabled = false
         } else {
             removeButton.isHidden = false
             countItemLabel.isHidden = false
             countItemLabel.text = "\(item.count)"
+            addButton.isEnabled = true
         }
         
         imageItemView.image = item.image
@@ -116,9 +123,10 @@ class MenuCell: UITableViewCell {
             
             removeButton.isHidden = true
             countItemLabel.isHidden = true
-        } else if itemsCount > 1 {
+        } else if itemsCount > 1 && itemsCount < 100{
             self.item.count -= 1
             countItemLabel.text = "\(self.item.count)"
+            addButton.isEnabled = true
         } else { print("ошибка в countItemsLabel") }
         
         updatePriceLabels()

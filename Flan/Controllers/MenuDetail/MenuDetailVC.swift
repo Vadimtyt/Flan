@@ -44,6 +44,13 @@ class MenuDetailVC: UIViewController {
         countItemLabel.text = "\(item.count)"
         if item.count == 0 {
             removeButton.isEnabled = false
+            addButton.isEnabled = true
+        } else if item.count > 0 && item.count < 99 {
+            removeButton.isEnabled = true
+            addButton.isEnabled = true
+        } else if item.count == 99 {
+            removeButton.isEnabled = true
+            addButton.isEnabled = false
         }
     }
     
@@ -156,12 +163,18 @@ extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
     func updateCell(with itemCount: Int) {
         item.count = itemCount
         countItemLabel.text = "\(itemCount)"
-        if itemCount != 0 {
-            ListOfMenuItems.shared.addToList(item: item)
-            removeButton.isEnabled = true
-        } else {
-            ListOfMenuItems.shared.removeFromList(item: self.item)
+        if itemCount == 0 {
             removeButton.isEnabled = false
+            addButton.isEnabled = true
+            ListOfMenuItems.shared.removeFromList(item: item)
+        } else if itemCount > 0 && itemCount < 99 {
+            removeButton.isEnabled = true
+            addButton.isEnabled = true
+            ListOfMenuItems.shared.addToList(item: item)
+        } else if itemCount == 99 {
+            removeButton.isEnabled = true
+            addButton.isEnabled = false
+            ListOfMenuItems.shared.addToList(item: item)
         }
         updateCellDelegate?.updateListVCBadge()
         updateCellDelegate?.updateCellAt(indexPath: indexPath)

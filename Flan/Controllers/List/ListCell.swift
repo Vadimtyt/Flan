@@ -43,12 +43,16 @@ class ListCell: UITableViewCell {
         if item.count > 0 {
             removeButton.isHidden = false
             countItemLabel.isHidden = false
-            countItemLabel.text = "\(item.count)"
+        }
+        if item.count >= 99 {
+            item.count = 99
+            addButton.isEnabled = false
         }
         
         imageItemView.image = item.image
         nameLabel.text = item.name
         priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\(item.measurements[item.selectedMeasurment])"
+        countItemLabel.text = "\(item.count)"
         
         self.checkmark = isCompleted
         if #available(iOS 13.0, *) {
@@ -58,8 +62,6 @@ class ListCell: UITableViewCell {
                 imageItemView.alpha = 0.7
                 checkmarkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             } else {
-                removeButton.isEnabled = true
-                addButton.isEnabled = true
                 imageItemView.alpha = 1
                 checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
             }
@@ -71,8 +73,8 @@ class ListCell: UITableViewCell {
     @IBAction func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        self.item.count -= 1
-        if item.count < 99  {
+         self.item.count -= 1
+        if self.item.count < 99  {
             addButton.isEnabled = true
         }
         countItemLabel.text = "\(self.item.count)"
@@ -85,7 +87,7 @@ class ListCell: UITableViewCell {
         TapticFeedback.shared.tapticFeedback(.light)
         
         self.item.count += 1
-        if item.count == 99 {
+        if self.item.count == 99 {
             addButton.isEnabled = false
         }
         countItemLabel.text = "\(self.item.count)"
