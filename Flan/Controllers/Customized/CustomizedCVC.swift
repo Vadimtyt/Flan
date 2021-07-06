@@ -58,8 +58,6 @@ class CustomizedCVC: UICollectionViewController {
         cakes.append(cake)
         
         cell.configureWith(cake: cakes[indexPath.row])
-        cell.cakeImage.contentMode = .scaleAspectFill
-        cell.backgroundColor = .red
         
         return cell
     }

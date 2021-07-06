@@ -16,5 +16,8 @@ class CustomizedCell: UICollectionViewCell {
     func configureWith(cake: Cake) {
         self.cake = cake
         cakeImage.image = cake.image
+        
+        cakeImage.contentMode = .scaleAspectFill
+        self.backgroundColor = .red
     }
 }
