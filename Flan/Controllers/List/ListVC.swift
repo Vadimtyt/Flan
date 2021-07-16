@@ -33,6 +33,9 @@ class ListVC: UIViewController {
         listTableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         
         changeTotalSumLabel()
+        
+        updateBackground()
+        
         listTableView.showsVerticalScrollIndicator = false
     }
     
@@ -49,6 +52,12 @@ class ListVC: UIViewController {
         if newSum == 0 {
             totalSumLabel.text = "Итого: 0Р"
         } else { totalSumLabel.text = "Итого: ≈\(newSum)Р" }
+    }
+    
+    func updateBackground() {
+        if items.isEmpty && completedList.isEmpty {
+            listTableView.setEmptyView(title: "Пусто", message: "Добавьте что-нибудь в список", messageImage: UIImage(named: "emptyList.png")!)
+        } else { listTableView.restore() }
     }
     
     func getTextList() -> String {
@@ -152,11 +161,15 @@ class ListVC: UIViewController {
 extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        changeTotalSumLabel()
+        updateBackground()
+        if items.isEmpty && completedList.isEmpty {
+            return 0
+        }
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        changeTotalSumLabel()
         
         if items.isEmpty && completedList.isEmpty {
             clearBarButton.isEnabled = false
@@ -210,7 +223,10 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
             } else if indexPath.section == 1 {
                 self.completedList.remove(at: indexPath.row)
             }
-            tableView.deleteRows(at: [indexPath], with: .left)
+            if self.items.isEmpty && self.completedList.isEmpty {
+                self.listTableView.deleteSections([0, 1], with: .top)
+            } else { tableView.deleteRows(at: [indexPath], with: .left) }
+            
             self.updateListBadge()
 
             success(true)
@@ -260,7 +276,9 @@ extension ListVC: UpdatingListCellDelegate {
         for index in 0..<items.count {
             if items[index].count == 0 {
                 ListOfMenuItems.shared.removeFromList(item: items[index])
-                listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle)
+                if items.isEmpty && completedList.isEmpty {
+                    listTableView.deleteSections([0, 1], with: .top)
+                } else { listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle) }
                 return
              }
         }
