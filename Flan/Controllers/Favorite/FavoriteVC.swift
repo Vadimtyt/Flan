@@ -28,6 +28,7 @@ class FavoriteVC: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        updateBackgound()
         return items.count
     }
 
@@ -51,6 +52,18 @@ class FavoriteVC: UITableViewController {
 
         self.present(menuDetailVC, animated: true, completion: nil)
     }
+    
+    func updateBackgound() {
+        if items.isEmpty {
+            tableView.setEmptyView(title: "Пусто",
+                                   message: "Чтобы добавить свою вкусняшку в избранное нажмите на сердечко в углу её изображения",
+                                   messageImage: UIImage(named: "emptyList.png")!)
+            tableView.isScrollEnabled = false
+        } else {
+            tableView.restore()
+            tableView.isScrollEnabled = true
+        }
+    }
 }
 
 extension FavoriteVC: UpdatingMenuCellDelegate {
@@ -63,7 +76,7 @@ extension FavoriteVC: UpdatingMenuCellDelegate {
         for index in 0..<items.count {
             guard items[index].isFavorite == false else { return }
             ListOfMenuItems.shared.favorites.remove(at: index)
-            tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle)
+            tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
             return
         }
         

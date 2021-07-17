@@ -12,7 +12,7 @@ private let reuseIdentifier = "ListCell"
 class ListVC: UIViewController {
     
     var items: [MenuItem] { get { return ListOfMenuItems.shared.list } }
-    var completedList: [MenuItem] = []
+    var completedItems: [MenuItem] = []
     
     private let popUpText = "В этом поле указывается приблизительная сумма, она не учитывает фактический вес всех позиций, цену упаковочных изделий и т.п. Эта сумма отображается исключительно в ознакомительных целях."
     private let popUpTextFontSize: CGFloat = 18
@@ -55,7 +55,7 @@ class ListVC: UIViewController {
     }
     
     func updateBackground() {
-        if items.isEmpty && completedList.isEmpty {
+        if items.isEmpty && completedItems.isEmpty {
             listTableView.setEmptyView(title: "Пусто", message: "Добавьте что-нибудь в список", messageImage: UIImage(named: "emptyList.png")!)
         } else { listTableView.restore() }
     }
@@ -88,9 +88,9 @@ class ListVC: UIViewController {
         }
         
         // Crear buyed action
-        if !(completedList.isEmpty) {
+        if !(completedItems.isEmpty) {
             let clearBuyedAction = UIAlertAction(title: "Очистить категорию Куплено", style: .destructive) { [weak self] _ in
-                self?.completedList.removeAll()
+                self?.completedItems.removeAll()
                 
                 self?.updateList()
                 self?.updateListBadge()
@@ -99,10 +99,10 @@ class ListVC: UIViewController {
         }
         
         // Crear all action
-        if !(items.isEmpty || completedList.isEmpty) {
+        if !(items.isEmpty || completedItems.isEmpty) {
             let clearAllAction = UIAlertAction(title: "Очистить всё", style: .destructive) { [weak self] _ in
                 ListOfMenuItems.shared.clearList()
-                self?.completedList.removeAll()
+                self?.completedItems.removeAll()
                 
                 self?.updateList()
                 self?.updateListBadge()
@@ -163,28 +163,33 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         changeTotalSumLabel()
         updateBackground()
-        if items.isEmpty && completedList.isEmpty {
+        configureButtons()
+        if items.isEmpty && completedItems.isEmpty {
             return 0
         }
         return 2
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if items.isEmpty && completedList.isEmpty {
+    func configureButtons() {
+        if items.isEmpty && completedItems.isEmpty {
             clearBarButton.isEnabled = false
-        } else { clearBarButton.isEnabled = true }
-        
-        if items.count == 0 {
-            shareButton.isEnabled = false
+            infoButton.isHidden = true
+            shareButton.isHidden = true
+            totalSumLabel.isHidden = true
         } else {
-            shareButton.isEnabled = true
+            clearBarButton.isEnabled = true
+            infoButton.isHidden = false
+            shareButton.isHidden = false
+            totalSumLabel.isHidden = false
         }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         var numberOfRows = 0
         if section == 0 {
             numberOfRows = items.count
-        } else if section == 1 { numberOfRows = completedList.count}
+        } else if section == 1 { numberOfRows = completedItems.count}
         return numberOfRows
     }
     
@@ -206,7 +211,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         var list: [MenuItem] = []
         if indexPath.section == 0 {
             list = items
-        } else if indexPath.section == 1 { list = completedList }
+        } else if indexPath.section == 1 { list = completedItems }
         let item = list[indexPath.row]
         var isCompleted = false
         if indexPath.section == 1 { isCompleted = true }
@@ -221,9 +226,9 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
             if indexPath.section == 0 {
                 ListOfMenuItems.shared.removeFromList(item: self.items[indexPath.row])
             } else if indexPath.section == 1 {
-                self.completedList.remove(at: indexPath.row)
+                self.completedItems.remove(at: indexPath.row)
             }
-            if self.items.isEmpty && self.completedList.isEmpty {
+            if self.items.isEmpty && self.completedItems.isEmpty {
                 self.listTableView.deleteSections([0, 1], with: .top)
             } else { tableView.deleteRows(at: [indexPath], with: .left) }
             
@@ -242,7 +247,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
             if indexPath.section == 0 {
                 self.addToCompleted(item: self.items[indexPath.row])
             } else if indexPath.section == 1 {
-                self.removeFromCompleted(completedItem: self.completedList[indexPath.row])
+                self.removeFromCompleted(completedItem: self.completedItems[indexPath.row])
             }
 
             success(true)
@@ -276,7 +281,7 @@ extension ListVC: UpdatingListCellDelegate {
         for index in 0..<items.count {
             if items[index].count == 0 {
                 ListOfMenuItems.shared.removeFromList(item: items[index])
-                if items.isEmpty && completedList.isEmpty {
+                if items.isEmpty && completedItems.isEmpty {
                     listTableView.deleteSections([0, 1], with: .top)
                 } else { listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle) }
                 return
@@ -294,7 +299,7 @@ extension ListVC: UpdatingListCellDelegate {
     func addToCompleted(item: MenuItem) {
         let completedItem = MenuItem(item: item)
         
-        completedList.insert(completedItem, at: 0)
+        completedItems.insert(completedItem, at: 0)
         listTableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .left)
         
         guard let index = items.firstIndex(where: {$0 === item}) else { return }
@@ -305,9 +310,6 @@ extension ListVC: UpdatingListCellDelegate {
     }
     
     func removeFromCompleted(completedItem: MenuItem) {
-        guard let completedIndex = completedList.firstIndex(where: {$0 === completedItem}) else { return }
-        completedList.remove(at: completedIndex)
-        listTableView.deleteRows(at: [IndexPath(row: completedIndex, section: 1)], with: .left)
         
         guard let index = ListOfMenuItems.shared.items.firstIndex(where: {$0.name == completedItem.name}) else { return }
         let item = ListOfMenuItems.shared.items[index]
@@ -322,6 +324,11 @@ extension ListVC: UpdatingListCellDelegate {
             guard let indexAtList = items.firstIndex(where: {$0.name == completedItem.name}) else { return }
             listTableView.reloadRows(at: [IndexPath(row: indexAtList, section: 0)], with: .left)
         }
+        
+        guard let completedIndex = completedItems.firstIndex(where: {$0 === completedItem}) else { return }
+        completedItems.remove(at: completedIndex)
+        listTableView.deleteRows(at: [IndexPath(row: completedIndex, section: 1)], with: .left)
+        
         updateListBadge()
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Network
 
 private let reuseSectionID = "MenuSectionCell"
 private let reuseCellID = "MenuCell"
@@ -14,6 +15,8 @@ class MenuVC: UITableViewController {
     
     var categories: [(category: String, items: [MenuItem])] { get { return ListOfMenuItems.shared.categories }}
     var items: [MenuItem] { get { return ListOfMenuItems.shared.items } }
+    
+    var networkCheck = NetworkCheck.sharedInstance()
     
     let searchController = UISearchController(searchResultsController: nil)
     private var filtredItems: [MenuItem] = []
@@ -36,10 +39,21 @@ class MenuVC: UITableViewController {
         tableView.showsVerticalScrollIndicator = false
         self.definesPresentationContext = true
         
+        checkNetworkConnecion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        checkNetworkConnecion()
         self.tableView.reloadData()
+    }
+    
+    func checkNetworkConnecion() {
+        if networkCheck.currentStatus == .satisfied{
+            //Do nothing
+        } else if networkCheck.currentStatus == .unsatisfied {
+            statusDidChange(status: networkCheck.currentStatus)
+        }
+        networkCheck.addObserver(observer: self)
     }
     
     func configureSearchController() {
@@ -169,6 +183,17 @@ class MenuVC: UITableViewController {
         categoriesVC.categories = categories
         categoriesVC.transitioningDelegate = self
         self.present(categoriesVC, animated: true, completion: nil)
+    }
+}
+
+extension MenuVC: NetworkCheckObserver {
+    
+    func statusDidChange(status: NWPath.Status) {
+        if status == .satisfied {
+            //Do nothing
+        }else if status == .unsatisfied {
+            showNetworkAlert(title: "Упс...", message: "Кажется пропало соединение с интернетом. Пожалуйста, проверьте wi-fi или сотовую связь")
+        }
     }
 }
 

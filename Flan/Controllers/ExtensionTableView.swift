@@ -33,7 +33,7 @@ extension UITableView {
         emptyView.addSubview(messageImageView)
         emptyView.addSubview(messageLabel)
         
-        messageImageView.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
+        messageImageView.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor, constant: 0).isActive = true
         messageImageView.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor, constant: -20).isActive = true
         messageImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         messageImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
@@ -43,6 +43,8 @@ extension UITableView {
         
         messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
         messageLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
+        messageLabel.leftAnchor.constraint(equalTo: emptyView.leftAnchor, constant: 40).isActive = true
+        messageLabel.rightAnchor.constraint(equalTo: emptyView.rightAnchor, constant: -40).isActive = true
         
         messageImageView.image = messageImage
         titleLabel.text = title
@@ -50,18 +52,17 @@ extension UITableView {
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         
-        UIView.animate(withDuration: 1, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             
-            messageImageView.transform = CGAffineTransform(rotationAngle: .pi / 10)
+            messageImageView.transform = CGAffineTransform(rotationAngle: .pi / 20)
         }, completion: { (finish) in
-            UIView.animate(withDuration: 1, animations: {
-                messageImageView.transform = CGAffineTransform(rotationAngle: -1 * (.pi / 10))
+            UIView.animate(withDuration: 0.5, animations: {
+                messageImageView.transform = CGAffineTransform(rotationAngle: -1 * (.pi / 20))
             }, completion: { (finishh) in
-                UIView.animate(withDuration: 1, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
                     messageImageView.transform = CGAffineTransform.identity
                 })
             })
-            
         })
         
         self.backgroundView = emptyView
