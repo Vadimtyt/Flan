@@ -24,7 +24,7 @@ class ListCell: UITableViewCell {
     
     @IBOutlet weak var checkmarkButton: UIButton!
     
-    @IBOutlet weak var imageItemView: UIImageView!
+//    @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
@@ -49,7 +49,7 @@ class ListCell: UITableViewCell {
             addButton.isEnabled = false
         }
         
-        imageItemView.image = item.image
+//        imageItemView.image = item.image
         nameLabel.text = item.name
         priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\(item.measurements[item.selectedMeasurment])"
         countItemLabel.text = "\(item.count)"
@@ -59,12 +59,12 @@ class ListCell: UITableViewCell {
             if checkmark {
                 removeButton.isEnabled = false
                 addButton.isEnabled = false
-                imageItemView.alpha = 0.7
+//                imageItemView.alpha = 0.7
                 checkmarkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             } else {
                 removeButton.isEnabled = true
                 addButton.isEnabled = true
-                imageItemView.alpha = 1
+//                imageItemView.alpha = 1
                 checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
             }
         }
