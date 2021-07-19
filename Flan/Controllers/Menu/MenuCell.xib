@@ -116,13 +116,14 @@
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eR4-js-LSQ">
                         <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                        <color key="backgroundColor" red="0.63561437547821353" green="0.14421374652084992" blue="0.11306701151579938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="33" id="aMz-6e-bGn"/>
                             <constraint firstAttribute="width" constant="33" id="w1J-UC-nAX"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="29"/>
                         <color key="tintColor" systemColor="systemRedColor"/>
-                        <state key="normal" image="addToFavorite"/>
+                        <state key="normal" image="heart"/>
                         <connections>
                             <action selector="favoriteButtonPressed:" destination="kXm-Ya-DaH" eventType="touchUpInside" id="NC7-wz-fYj"/>
                         </connections>
@@ -157,7 +158,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="addToFavorite" width="860" height="921"/>
+        <image name="heart" width="19.5" height="18.5"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="Кекс" width="1632" height="1224"/>

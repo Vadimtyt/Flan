@@ -73,8 +73,7 @@ extension FavoriteVC: UpdatingMenuCellDelegate {
     }
     
     func updateFavorites() {
-        for index in 0..<items.count {
-            guard items[index].isFavorite == false else { return }
+        if let index = items.firstIndex(where: { $0.isFavorite == false }) {
             ListOfMenuItems.shared.favorites.remove(at: index)
             tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
             return

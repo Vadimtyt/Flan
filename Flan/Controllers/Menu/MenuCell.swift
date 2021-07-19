@@ -73,8 +73,8 @@ class MenuCell: UITableViewCell {
         updatePriceLabels()
         
         if item.isFavorite == true {
-            favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
-        } else { favoriteButton.setImage(UIImage(named: "addToFavorite"), for: .normal) }
+            favoriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
+        } else { favoriteButton.setImage(UIImage(named: "heart"), for: .normal) }
     }
     
     func updatePriceLabels() {
@@ -164,8 +164,8 @@ class MenuCell: UITableViewCell {
         item.isFavorite = !item.isFavorite
         
         if item.isFavorite == true {
-            favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
-        } else { favoriteButton.setImage(UIImage(named: "addToFavorite"), for: .normal) }
+            favoriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
+        } else if item.isFavorite == false { favoriteButton.setImage(UIImage(named: "heart"), for: .normal) }
         
         updateCellDelegate?.updateFavorites()
     }

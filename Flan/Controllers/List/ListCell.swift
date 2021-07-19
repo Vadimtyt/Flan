@@ -98,14 +98,13 @@ class ListCell: UITableViewCell {
         self.listDelegate?.updateListBadge()
     }
     
-    @available(iOS 13.0, *)
     @IBAction func checkmarkButtonPressed(_ sender: UIButton) {
         checkmark = !checkmark
         if checkmark {
-            checkmarkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+            checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill"), for: .normal)
             listDelegate?.addToCompleted(item: item)
         } else {
-            checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+            checkmarkButton.setImage(UIImage(named: "checkmark.circle"), for: .normal)
             listDelegate?.removeFromCompleted(completedItem: item)
         }
     }

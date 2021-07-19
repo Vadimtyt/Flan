@@ -238,9 +238,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         })
 
         deleteAction.title = "Удалить"
-        if #available(iOS 13.0, *) {
-            deleteAction.image = UIImage(systemName: "trash")
-        }
+        deleteAction.image = UIImage(named: "trash")
         
         let completeAction = UIContextualAction(style: .normal, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
 

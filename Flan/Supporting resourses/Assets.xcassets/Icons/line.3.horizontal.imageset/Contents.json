@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "КексКвадрат.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "line.3.horizontal@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

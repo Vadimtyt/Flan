@@ -130,9 +130,9 @@
                                     <constraint firstAttribute="height" constant="30" id="sE6-PF-A4b"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="X">
+                                <state key="normal">
                                     <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="large" renderingMode="original"/>
+                                    <imageReference key="image" image="xmark" symbolScale="large" renderingMode="original"/>
                                 </state>
                                 <state key="highlighted" title="X">
                                     <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -184,7 +184,7 @@
     <resources>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="xmark" width="15.5" height="15.5"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

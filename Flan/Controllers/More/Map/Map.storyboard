@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -27,13 +27,8 @@
                                     <constraint firstAttribute="height" constant="30" id="1S5-rh-LNc"/>
                                     <constraint firstAttribute="width" constant="30" id="tvy-uC-t9o"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="X">
-                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="large" renderingMode="original"/>
-                                </state>
-                                <state key="highlighted" title="X">
-                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="xmark" symbolScale="large" renderingMode="original"/>
                                 </state>
                                 <connections>
                                     <action selector="closeVC:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="Z4B-BN-Gx9"/>
@@ -46,9 +41,9 @@
                                     <constraint firstAttribute="width" constant="15" id="hle-N7-5tn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <state key="normal" title="Go">
+                                <state key="normal">
                                     <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <imageReference key="image" image="chevron.right" catalog="system" symbolScale="large" renderingMode="original"/>
+                                    <imageReference key="image" image="chevron.right" symbolScale="large" renderingMode="original"/>
                                 </state>
                                 <connections>
                                     <action selector="startRouteButtonPressed:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="nxV-8m-PgR"/>
@@ -61,9 +56,9 @@
                                     <constraint firstAttribute="height" constant="24" id="gIk-Xb-jQN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Me">
+                                <state key="normal">
                                     <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <imageReference key="image" image="location.fill" catalog="system" symbolScale="large"/>
+                                    <imageReference key="image" image="location.fill" symbolScale="large"/>
                                 </state>
                                 <connections>
                                     <action selector="myPositionButtonPressed:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="7d6-Pq-41X"/>
@@ -110,9 +105,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.right" catalog="system" width="96" height="128"/>
-        <image name="location.fill" catalog="system" width="128" height="121"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="chevron.right" width="9.5" height="17"/>
+        <image name="location.fill" width="18.5" height="18.5"/>
+        <image name="xmark" width="15.5" height="15.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
