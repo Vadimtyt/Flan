@@ -31,10 +31,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWU-Yk-6D3">
-                                <rect key="frame" x="0.0" y="796" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="756" width="414" height="140"/>
                                 <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zVZ-m5-2jP">
+                                        <rect key="frame" x="16" y="8" width="382" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="По 100г."/>
+                                            <segment title="Целый"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentedControlChanged:" destination="nUc-xs-zVD" eventType="valueChanged" id="i7a-Dc-Y9e"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W8O-xA-Q6w">
-                                        <rect key="frame" x="8" y="13.5" width="398" height="73"/>
+                                        <rect key="frame" x="8" y="47" width="398" height="73"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fiz-mU-BNb">
                                                 <rect key="frame" x="316" y="18" width="37" height="37"/>
@@ -97,9 +108,9 @@
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstItem="W8O-xA-Q6w" firstAttribute="leading" secondItem="cWU-Yk-6D3" secondAttribute="leading" constant="8" id="FaZ-uJ-kqI"/>
+                                    <constraint firstAttribute="bottom" secondItem="W8O-xA-Q6w" secondAttribute="bottom" constant="20" id="U19-DE-VfI"/>
                                     <constraint firstAttribute="trailing" secondItem="W8O-xA-Q6w" secondAttribute="trailing" constant="8" id="Zv9-wr-Gge"/>
-                                    <constraint firstItem="W8O-xA-Q6w" firstAttribute="centerY" secondItem="cWU-Yk-6D3" secondAttribute="centerY" id="ahb-I5-Eio"/>
-                                    <constraint firstAttribute="height" constant="100" id="my7-14-h7p"/>
+                                    <constraint firstAttribute="height" constant="140" id="my7-14-h7p"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание позиции" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eip-EP-xfm">
@@ -111,16 +122,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zVZ-m5-2jP">
-                                <rect key="frame" x="16" y="749" width="382" height="32"/>
-                                <segments>
-                                    <segment title="По 100г."/>
-                                    <segment title="Целый"/>
-                                </segments>
-                                <connections>
-                                    <action selector="segmentedControlChanged:" destination="nUc-xs-zVD" eventType="valueChanged" id="i7a-Dc-Y9e"/>
-                                </connections>
-                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-pL-uYd" userLabel="Close Button">
                                 <rect key="frame" x="364" y="64" width="30" height="30"/>
                                 <constraints>
@@ -147,11 +148,9 @@
                         <constraints>
                             <constraint firstItem="cWU-Yk-6D3" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" id="0sz-v8-ohp"/>
                             <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="eip-EP-xfm" secondAttribute="trailing" constant="16" id="1KO-xa-Lh8"/>
-                            <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="zVZ-m5-2jP" secondAttribute="trailing" constant="16" id="6LU-9v-V0Y"/>
                             <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="XVC-XG-z45" secondAttribute="trailing" constant="8" id="6uL-dQ-VX9"/>
                             <constraint firstItem="oK3-pL-uYd" firstAttribute="top" secondItem="yYH-Y0-N2A" secondAttribute="top" constant="20" id="Dez-fk-wAL"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="top" secondItem="W94-64-xo6" secondAttribute="top" id="FCf-Rc-QQo"/>
-                            <constraint firstItem="zVZ-m5-2jP" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="16" id="KZ6-tM-tgF"/>
                             <constraint firstAttribute="bottom" secondItem="cWU-Yk-6D3" secondAttribute="bottom" id="MHz-RI-yDN"/>
                             <constraint firstItem="eip-EP-xfm" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="16" id="Typ-YV-7T3"/>
                             <constraint firstItem="XVC-XG-z45" firstAttribute="top" secondItem="MKe-uL-GAh" secondAttribute="bottom" constant="16" id="XLr-yg-lzu"/>
@@ -162,7 +161,6 @@
                             <constraint firstItem="XVC-XG-z45" firstAttribute="centerX" secondItem="yYH-Y0-N2A" secondAttribute="centerX" id="q4W-J8-oQM"/>
                             <constraint firstItem="XVC-XG-z45" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="8" id="q9s-1N-YK9"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" id="uQz-TK-a11"/>
-                            <constraint firstItem="cWU-Yk-6D3" firstAttribute="top" secondItem="zVZ-m5-2jP" secondAttribute="bottom" constant="16" id="xx6-TY-Hd3"/>
                         </constraints>
                     </view>
                     <connections>
