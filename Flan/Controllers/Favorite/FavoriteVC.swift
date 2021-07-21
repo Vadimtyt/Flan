@@ -78,6 +78,7 @@ extension FavoriteVC: UpdatingMenuCellDelegate {
             tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
             return
         }
+        ListOfMenuItems.shared.updateFavorites()
         
         self.tableView.reloadData()
     }

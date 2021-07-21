@@ -13,6 +13,7 @@ class MenuDetailVC: UIViewController {
     var indexPath: IndexPath!
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
     
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
@@ -31,6 +32,10 @@ class MenuDetailVC: UIViewController {
         
         segmentedControl.isHidden = true
         if #available(iOS 13.0, *) { closeButton.isHidden = true }
+        
+        if item.isFavorite {
+            favoriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
+        } else { favoriteButton.setImage(UIImage(named: "heart"), for: .normal) }
         
         itemImage.image = item.image
         nameLabel.text = item.name
@@ -88,6 +93,18 @@ class MenuDetailVC: UIViewController {
         }
         
         segmentedControl.selectedSegmentIndex = item.selectedMeasurment
+    }
+    
+    @IBAction func favoriteButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
+        item.isFavorite = !item.isFavorite
+        
+        if item.isFavorite == true {
+            favoriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
+        } else if item.isFavorite == false { favoriteButton.setImage(UIImage(named: "heart"), for: .normal) }
+        
+        updateCellDelegate?.updateFavorites()
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {

@@ -116,7 +116,7 @@
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eR4-js-LSQ">
                         <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
-                        <color key="backgroundColor" red="0.63561437547821353" green="0.14421374652084992" blue="0.11306701151579938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.63451051709999995" green="0.13441574570000001" blue="0.1447354555" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="33" id="aMz-6e-bGn"/>
                             <constraint firstAttribute="width" constant="33" id="w1J-UC-nAX"/>
