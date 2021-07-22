@@ -68,6 +68,13 @@ class ListOfMenuItems {
         }
     }
     
+    func removeFromFavorites(item: MenuItem) {
+        if let index = favorites.firstIndex(where: {$0 === item}) {
+            favorites[index].isFavorite = false
+        }
+        updateFavorites()
+    }
+    
     func updateFavorites() {
         favorites.removeAll()
         for item in items {

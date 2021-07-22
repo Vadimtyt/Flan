@@ -53,6 +53,23 @@ class FavoriteVC: UITableViewController {
         self.present(menuDetailVC, animated: true, completion: nil)
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let removeAction = UIContextualAction(style: .normal, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+
+            ListOfMenuItems.shared.removeFromFavorites(item: self.items[indexPath.row])
+            tableView.deleteRows(at: [indexPath], with: .left)
+            
+            self.updateFavorites()
+
+            success(true)
+        })
+
+        removeAction.title = "Убрать"
+        removeAction.image = UIImage(named: "heart.slash.fill")
+
+        return UISwipeActionsConfiguration(actions: [removeAction])
+    }
+    
     func updateBackgound() {
         if items.isEmpty {
             tableView.setEmptyView(title: "Пусто",
@@ -74,7 +91,7 @@ extension FavoriteVC: UpdatingMenuCellDelegate {
     
     func updateFavorites() {
         if let index = items.firstIndex(where: { $0.isFavorite == false }) {
-            ListOfMenuItems.shared.favorites.remove(at: index)
+            ListOfMenuItems.shared.removeFromFavorites(item: items[index])
             tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
             return
         }
