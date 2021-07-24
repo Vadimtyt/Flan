@@ -51,18 +51,18 @@ class MenuCell: UITableViewCell {
         selectionStyle = .none
         
         if item.count == 0 {
-            removeButton.isHidden = true
-            countItemLabel.isHidden = true
+            removeButton.isEnabled = false
+            //countItemLabel.isHidden = true
             countItemLabel.text = "0"
             addButton.isEnabled = true
         } else if item.count == 99 {
-            removeButton.isHidden = false
-            countItemLabel.isHidden = false
+            removeButton.isEnabled = true
+            //countItemLabel.isHidden = false
             countItemLabel.text = "\(item.count)"
             addButton.isEnabled = false
         } else {
-            removeButton.isHidden = false
-            countItemLabel.isHidden = false
+            removeButton.isEnabled = true
+            //countItemLabel.isHidden = false
             countItemLabel.text = "\(item.count)"
             addButton.isEnabled = true
         }
@@ -121,8 +121,8 @@ class MenuCell: UITableViewCell {
             countItemLabel.text = "\(self.item.count)"
             ListOfMenuItems.shared.removeFromList(item: self.item)
             
-            removeButton.isHidden = true
-            countItemLabel.isHidden = true
+            removeButton.isEnabled = false
+            //countItemLabel.isHidden = true
         } else if itemsCount > 1 && itemsCount < 100{
             self.item.count -= 1
             countItemLabel.text = "\(self.item.count)"
@@ -143,8 +143,8 @@ class MenuCell: UITableViewCell {
             countItemLabel.text = "\(self.item.count)"
             ListOfMenuItems.shared.addToList(item: item)
             
-            removeButton.isHidden = false
-            countItemLabel.isHidden = false
+            removeButton.isEnabled = true
+            //countItemLabel.isHidden = false
         } else if itemsCount > 0 && itemsCount < 98 {
             self.item.count += 1
             countItemLabel.text = "\(self.item.count)"
