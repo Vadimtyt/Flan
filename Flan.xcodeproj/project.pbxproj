@@ -49,6 +49,7 @@
 		C1EE51B6268E8069001126DA /* MenuSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EE51B5268E8069001126DA /* MenuSectionCell.xib */; };
 		C1EE51BA26A1EF9C001126DA /* ExtensionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE51B926A1EF9C001126DA /* ExtensionTableView.swift */; };
 		C1EE51BE26A310AD001126DA /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE51BD26A310AD001126DA /* NetworkMonitor.swift */; };
+		C1F8706A26ADFE9900341B1C /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F8706926ADFE9900341B1C /* ShadowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		C1EE51B5268E8069001126DA /* MenuSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuSectionCell.xib; sourceTree = "<group>"; };
 		C1EE51B926A1EF9C001126DA /* ExtensionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTableView.swift; sourceTree = "<group>"; };
 		C1EE51BD26A310AD001126DA /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		C1F8706926ADFE9900341B1C /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				C1EE51B926A1EF9C001126DA /* ExtensionTableView.swift */,
 				C1AD6A54265BC6DF007DFBE9 /* InfoPopover.swift */,
 				C1AD6A50265BC3FF007DFBE9 /* InfoPopover.xib */,
+				C1F8706926ADFE9900341B1C /* ShadowView.swift */,
 				C19C8BEE261740100039CA79 /* Menu */,
 				C11F36C02666CDE600D1E14A /* MenuDetail */,
 				C19C8C13261E5CF00039CA79 /* Favorite */,
@@ -399,6 +402,7 @@
 				C1AD6A2A26584B1D007DFBE9 /* CustomizedCVC.swift in Sources */,
 				C1AD6A3D26586F6C007DFBE9 /* CustomizedDetailVC.swift in Sources */,
 				C125437025D4C2FD0086ADD2 /* AppDelegate.swift in Sources */,
+				C1F8706A26ADFE9900341B1C /* ShadowView.swift in Sources */,
 				C1EE51B4268E7FA2001126DA /* MenuSectionCell.swift in Sources */,
 				C15C40D226480FBD0053910A /* MapVC.swift in Sources */,
 				C19C8C0C261E07190039CA79 /* ListCell.swift in Sources */,

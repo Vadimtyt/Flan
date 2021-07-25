@@ -22,6 +22,7 @@ class MenuCell: UITableViewCell {
     static let reuseId = "MenuCell"
     var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс")
     
+    @IBOutlet weak var grayBackgoundView: UIView!
     @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
@@ -49,6 +50,38 @@ class MenuCell: UITableViewCell {
         secondPriceLabel.isHidden = true
         
         selectionStyle = .none
+        countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
+        countItemLabel.layer.borderWidth = 3
+        countItemLabel.layer.cornerRadius = 16
+        priceLabel.layer.borderColor =  UIColor.yellow.cgColor
+        priceLabel.layer.borderWidth = 3
+        priceLabel.layer.cornerRadius = 16
+        grayBackgoundView.roundCorners([.topRight,.bottomRight], radius: 20)
+        //imageItemView.roundCorners([.topRight, .bottomRight], radius: 20)
+        countItemLabel.roundCorners(.allCorners, radius: 16)
+        priceLabel.roundCorners(.allCorners, radius: 16)
+        
+        
+        imageItemView.layer.cornerRadius = 15
+        imageItemView.clipsToBounds = true
+        imageItemView.layer.masksToBounds = false
+        imageItemView.layer.shadowRadius = 7
+        imageItemView.layer.shadowOpacity = 0.6
+        imageItemView.layer.shadowOffset = CGSize(width: 0, height: 5)
+        imageItemView.layer.shadowColor = UIColor.red.cgColor
+        
+//        let shadow = UIBezierPath(roundedRect: imageItemView.bounds, cornerRadius: 20).cgPath
+//        imageItemView.layer.shadowRadius = 4
+//        imageItemView.layer.shadowOffset = .init(width: 12, height: 4)
+//        imageItemView.layer.shadowColor = UIColor.black.cgColor
+//        imageItemView.layer.masksToBounds = false
+//        imageItemView.layer.shadowOpacity = 0.2
+//
+//        imageItemView.layer.shadowPath = shadow
+//        imageItemView.layer.masksToBounds = false
+//        imageItemView.layer.shadowRadius = 20
+        //imageItemView.layer.shadowOpacity = 0.5
+        //imageItemView.layer.shadowOffset = .init(width: 4, height: 4)
         
         if item.count == 0 {
             removeButton.isEnabled = false
@@ -157,16 +190,16 @@ class MenuCell: UITableViewCell {
         updatePriceLabels()
         updateCellDelegate?.updateListVCBadge()
     }
-
+    
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
-        
+
         item.isFavorite = !item.isFavorite
-        
+
         if item.isFavorite == true {
             favoriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
         } else if item.isFavorite == false { favoriteButton.setImage(UIImage(named: "heart"), for: .normal) }
-        
+
         updateCellDelegate?.updateFavorites()
     }
 }

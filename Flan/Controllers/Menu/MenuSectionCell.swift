@@ -19,6 +19,7 @@ class MenuSectionCell: UITableViewCell {
     }
     
     func configureCell(with header: String) {
+        labelBackgroundView.layer.cornerRadius = 16
         sectionNameLabel.text = header
         sectionNameLabel.backgroundColor = labelBackgroundView.backgroundColor
         self.backgroundView?.alpha = 0.0
