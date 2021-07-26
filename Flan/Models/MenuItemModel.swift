@@ -110,7 +110,7 @@ class ListOfMenuItems {
 let allItems: [MenuItem] = [
     MenuItem(name: "Нежность", category: "Торты", prices: [170], measurements: ["100г"], imageName: "Киш1"),
     MenuItem(name: "Киевский", category: "Торты", prices: [190], measurements: ["100г"], imageName: "Киш2"),
-    MenuItem(name: "Тирамису", category: "Торты", prices: [230], measurements: ["100г"], imageName: "Киш3"),
+    MenuItem(name: "Тирамису", category: "Торты", prices: [1500], measurements: ["100г"], imageName: "Киш3"),
     MenuItem(name: "Сочник с творогом", category: "Выпечка", prices: [70], measurements: ["шт"], imageName: "Слойка"),
     MenuItem(name: "Плюшка", category: "Выпечка", prices: [50, 300], measurements: ["шт", "целый"], imageName: "Эклер1"),
     MenuItem(name: "Кекс творожный", category: "Выпечка", prices: [55], measurements: ["шт"], imageName: "Эклер2"),

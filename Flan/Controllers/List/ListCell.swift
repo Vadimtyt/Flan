@@ -55,18 +55,16 @@ class ListCell: UITableViewCell {
         countItemLabel.text = "\(item.count)"
         
         self.checkmark = isCompleted
-        if #available(iOS 13.0, *) {
-            if checkmark {
-                removeButton.isEnabled = false
-                addButton.isEnabled = false
-//                imageItemView.alpha = 0.7
-                checkmarkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-            } else {
-                removeButton.isEnabled = true
-                addButton.isEnabled = true
-//                imageItemView.alpha = 1
-                checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
-            }
+        if checkmark {
+            removeButton.isEnabled = false
+            addButton.isEnabled = false
+//          imageItemView.alpha = 0.7
+            checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill.png"), for: .normal)
+        } else {
+            removeButton.isEnabled = true
+            addButton.isEnabled = true
+//          imageItemView.alpha = 1
+            checkmarkButton.setImage(UIImage(named: "checkmark.circle.png"), for: .normal)
         }
         
         self.listDelegate = listDelegate
@@ -101,11 +99,15 @@ class ListCell: UITableViewCell {
     @IBAction func checkmarkButtonPressed(_ sender: UIButton) {
         checkmark = !checkmark
         if checkmark {
-            checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill"), for: .normal)
-            listDelegate?.addToCompleted(item: item)
+            checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill.png"), for: .normal)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                self?.listDelegate?.addToCompleted(item: self!.item)
+            }
         } else {
-            checkmarkButton.setImage(UIImage(named: "checkmark.circle"), for: .normal)
-            listDelegate?.removeFromCompleted(completedItem: item)
+            checkmarkButton.setImage(UIImage(named: "checkmark.circle.png"), for: .normal)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                self?.listDelegate?.removeFromCompleted(completedItem: self!.item)
+            }
         }
     }
 }

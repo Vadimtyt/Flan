@@ -238,16 +238,15 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         })
 
         deleteAction.title = "Удалить"
-        deleteAction.image = UIImage(named: "trash")
         
-        let completeAction = UIContextualAction(style: .normal, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-
+        
+        let completeAction = UIContextualAction(style: .destructive, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             if indexPath.section == 0 {
-                self.addToCompleted(item: self.items[indexPath.row])
+                self.addToCompleted(item: (self.items[indexPath.row]))
             } else if indexPath.section == 1 {
-                self.removeFromCompleted(completedItem: self.completedItems[indexPath.row])
+                self.removeFromCompleted(completedItem: (self.completedItems[indexPath.row]))
             }
-
+            
             success(true)
         })
         
@@ -256,6 +255,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             completeAction.title = "Купить"
         }
+        
+        completeAction.backgroundColor = .lightGray
 
         return UISwipeActionsConfiguration(actions: [completeAction, deleteAction])
     }

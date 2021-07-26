@@ -46,7 +46,9 @@ class MenuVC: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         checkNetworkConnecion()
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+                self.tableView.reloadData()
+        }
     }
     
     func checkNetworkConnecion() {

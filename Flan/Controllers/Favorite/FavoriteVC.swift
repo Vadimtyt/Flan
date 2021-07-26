@@ -18,13 +18,35 @@ class FavoriteVC: UITableViewController {
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
         
         configureNavigationBarLargeStyle()
-        tableView.showsVerticalScrollIndicator = false
+        setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        tableView.reloadData()
+    }
+    
+    func setupTableView() {
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = .groupTableViewBackground
+        tableView.separatorInset = .zero
+        tableView.separatorColor = tableView.backgroundColor
     }
 
+    func updateBackgound() {
+        if items.isEmpty {
+            tableView.setEmptyView(title: "Пусто",
+                                   message: "Чтобы добавить свою вкусняшку в избранное нажмите на сердечко в углу её изображения",
+                                   messageImage: UIImage(named: "emptyList.png")!)
+            tableView.isScrollEnabled = false
+        } else {
+            tableView.restore()
+            tableView.isScrollEnabled = true
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,11 +76,10 @@ class FavoriteVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let removeAction = UIContextualAction(style: .normal, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+        let removeAction = UIContextualAction(style: .destructive, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
 
             ListOfMenuItems.shared.removeFromFavorites(item: self.items[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .left)
-            
             self.updateFavorites()
 
             success(true)
@@ -68,18 +89,6 @@ class FavoriteVC: UITableViewController {
         removeAction.image = UIImage(named: "heart.slash.fill")
 
         return UISwipeActionsConfiguration(actions: [removeAction])
-    }
-    
-    func updateBackgound() {
-        if items.isEmpty {
-            tableView.setEmptyView(title: "Пусто",
-                                   message: "Чтобы добавить свою вкусняшку в избранное нажмите на сердечко в углу её изображения",
-                                   messageImage: UIImage(named: "emptyList.png")!)
-            tableView.isScrollEnabled = false
-        } else {
-            tableView.restore()
-            tableView.isScrollEnabled = true
-        }
     }
 }
 

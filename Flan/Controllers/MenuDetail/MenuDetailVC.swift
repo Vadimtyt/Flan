@@ -34,8 +34,8 @@ class MenuDetailVC: UIViewController {
         if #available(iOS 13.0, *) { closeButton.isHidden = true }
         
         if item.isFavorite {
-            favoriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
-        } else { favoriteButton.setImage(UIImage(named: "heart"), for: .normal) }
+            favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
+        } else { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
         
         itemImage.image = item.image
         nameLabel.text = item.name
@@ -101,8 +101,8 @@ class MenuDetailVC: UIViewController {
         item.isFavorite = !item.isFavorite
         
         if item.isFavorite == true {
-            favoriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
-        } else if item.isFavorite == false { favoriteButton.setImage(UIImage(named: "heart"), for: .normal) }
+            favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
+        } else if item.isFavorite == false { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
         
         updateCellDelegate?.updateFavorites()
     }

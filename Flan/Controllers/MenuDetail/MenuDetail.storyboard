@@ -56,13 +56,12 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGD-Pm-l4D" userLabel="Add Button">
                                                 <rect key="frame" x="353" y="18" width="37" height="37"/>
-                                                <color key="backgroundColor" systemColor="labelColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="37" id="0mi-DW-WOl"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="37" id="fcl-LW-PgO"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" image="plus" catalog="system"/>
+                                                <state key="normal" image="plus"/>
                                                 <connections>
                                                     <action selector="addButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="tYq-am-NXs"/>
                                                 </connections>
@@ -80,8 +79,7 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldm-hT-X7W">
                                                 <rect key="frame" x="279" y="18" width="37" height="37"/>
-                                                <color key="backgroundColor" systemColor="labelColor"/>
-                                                <state key="normal" image="minus" catalog="system"/>
+                                                <state key="normal" image="minus"/>
                                                 <connections>
                                                     <action selector="removeButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="NFp-qw-fkc"/>
                                                 </connections>
@@ -122,60 +120,74 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-pL-uYd" userLabel="Close Button">
-                                <rect key="frame" x="368" y="60" width="30" height="30"/>
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQp-Hz-M73" userLabel="Favorite Button">
+                                <rect key="frame" x="362" y="60" width="36" height="36"/>
+                                <color key="backgroundColor" red="0.63451051709999995" green="0.13441574570000001" blue="0.1447354555" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="GBe-ri-hm2"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="X14-RN-kXx"/>
-                                    <constraint firstAttribute="width" constant="30" id="rN4-vc-n2s"/>
-                                    <constraint firstAttribute="height" constant="30" id="sE6-PF-A4b"/>
+                                    <constraint firstAttribute="width" constant="36" id="LIW-Y4-2Uc"/>
+                                    <constraint firstAttribute="height" constant="36" id="h0j-qT-b5o"/>
+                                </constraints>
+                                <state key="normal" image="heart"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="favoriteButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="K8G-GY-3Ho"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-pL-uYd" userLabel="Close Button">
+                                <rect key="frame" x="16" y="60" width="36" height="36"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="rN4-vc-n2s"/>
+                                    <constraint firstAttribute="height" constant="36" id="sE6-PF-A4b"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <imageReference key="image" image="xmark" symbolScale="large" renderingMode="original"/>
+                                    <imageReference key="image" image="chevron.down" symbolScale="large" renderingMode="original"/>
                                 </state>
                                 <state key="highlighted" title="X">
                                     <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="closeButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="3pE-KT-Czb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQp-Hz-M73" userLabel="Favorite Button">
-                                <rect key="frame" x="16" y="60" width="32" height="32"/>
-                                <color key="backgroundColor" red="0.63451051709999995" green="0.13441574570000001" blue="0.1447354555" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="oPt-dJ-3pM"/>
-                                    <constraint firstAttribute="height" constant="32" id="sb4-L5-vLb"/>
-                                </constraints>
-                                <state key="normal" image="heart"/>
-                                <connections>
-                                    <action selector="favoriteButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="K8G-GY-3Ho"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yYH-Y0-N2A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="lQp-Hz-M73" firstAttribute="top" secondItem="yYH-Y0-N2A" secondAttribute="top" constant="16" id="09o-dG-twB"/>
                             <constraint firstItem="cWU-Yk-6D3" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" id="0sz-v8-ohp"/>
                             <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="eip-EP-xfm" secondAttribute="trailing" constant="16" id="1KO-xa-Lh8"/>
                             <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="XVC-XG-z45" secondAttribute="trailing" constant="8" id="6uL-dQ-VX9"/>
                             <constraint firstItem="oK3-pL-uYd" firstAttribute="top" secondItem="yYH-Y0-N2A" secondAttribute="top" constant="16" id="Dez-fk-wAL"/>
-                            <constraint firstItem="lQp-Hz-M73" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="16" id="EXx-YX-IbZ"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="top" secondItem="W94-64-xo6" secondAttribute="top" id="FCf-Rc-QQo"/>
+                            <constraint firstItem="lQp-Hz-M73" firstAttribute="top" secondItem="yYH-Y0-N2A" secondAttribute="top" constant="16" id="Hhz-TV-RkB"/>
                             <constraint firstAttribute="bottom" secondItem="cWU-Yk-6D3" secondAttribute="bottom" id="MHz-RI-yDN"/>
+                            <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="lQp-Hz-M73" secondAttribute="trailing" constant="16" id="Nag-Ps-4jr"/>
                             <constraint firstItem="eip-EP-xfm" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="16" id="Typ-YV-7T3"/>
                             <constraint firstItem="XVC-XG-z45" firstAttribute="top" secondItem="MKe-uL-GAh" secondAttribute="bottom" constant="16" id="XLr-yg-lzu"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="trailing" secondItem="yYH-Y0-N2A" secondAttribute="trailing" id="d94-in-hZj"/>
                             <constraint firstItem="eip-EP-xfm" firstAttribute="top" secondItem="XVC-XG-z45" secondAttribute="bottom" constant="8" id="iK2-Bg-M8V"/>
-                            <constraint firstItem="yYH-Y0-N2A" firstAttribute="trailing" secondItem="oK3-pL-uYd" secondAttribute="trailing" constant="16" id="jJU-3p-nmW"/>
                             <constraint firstItem="cWU-Yk-6D3" firstAttribute="trailing" secondItem="yYH-Y0-N2A" secondAttribute="trailing" id="lho-9Z-PGe"/>
                             <constraint firstItem="XVC-XG-z45" firstAttribute="centerX" secondItem="yYH-Y0-N2A" secondAttribute="centerX" id="q4W-J8-oQM"/>
                             <constraint firstItem="XVC-XG-z45" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="8" id="q9s-1N-YK9"/>
+                            <constraint firstItem="oK3-pL-uYd" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="16" id="re7-Uh-Zf2"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" id="uQz-TK-a11"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="nGD-Pm-l4D" id="Pvh-Ra-leo"/>
@@ -195,13 +207,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.down" width="17" height="10.5"/>
         <image name="heart" width="19.5" height="18.5"/>
-        <image name="minus" catalog="system" width="128" height="24"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="xmark" width="15.5" height="15.5"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="minus" width="16" height="2"/>
+        <image name="plus" width="16" height="16"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -22,16 +22,21 @@ class MenuCell: UITableViewCell {
     static let reuseId = "MenuCell"
     var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс")
     
-    @IBOutlet weak var grayBackgoundView: UIView!
+    @IBOutlet weak var backgoundSubwiew: UIView!
     @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var secondPriceLabel: UILabel!
+    @IBOutlet weak var measurmentLabel: UILabel!
+    @IBOutlet weak var secondMeasurmentLabel: UILabel!
     
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var countItemLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
+    
+    @IBOutlet weak var priceLabelWidth: NSLayoutConstraint!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,40 +53,14 @@ class MenuCell: UITableViewCell {
     func configureCell(with item: MenuItem) {
         self.item = item
         secondPriceLabel.isHidden = true
+        secondMeasurmentLabel.isHidden = true
         
         selectionStyle = .none
-        countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
-        countItemLabel.layer.borderWidth = 3
-        countItemLabel.layer.cornerRadius = 16
-        priceLabel.layer.borderColor =  UIColor.yellow.cgColor
-        priceLabel.layer.borderWidth = 3
-        priceLabel.layer.cornerRadius = 16
-        grayBackgoundView.roundCorners([.topRight,.bottomRight], radius: 20)
-        //imageItemView.roundCorners([.topRight, .bottomRight], radius: 20)
-        countItemLabel.roundCorners(.allCorners, radius: 16)
-        priceLabel.roundCorners(.allCorners, radius: 16)
+        setupViews()
         
-        
-        imageItemView.layer.cornerRadius = 15
-        imageItemView.clipsToBounds = true
-        imageItemView.layer.masksToBounds = false
-        imageItemView.layer.shadowRadius = 7
-        imageItemView.layer.shadowOpacity = 0.6
-        imageItemView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        imageItemView.layer.shadowColor = UIColor.red.cgColor
-        
-//        let shadow = UIBezierPath(roundedRect: imageItemView.bounds, cornerRadius: 20).cgPath
-//        imageItemView.layer.shadowRadius = 4
-//        imageItemView.layer.shadowOffset = .init(width: 12, height: 4)
-//        imageItemView.layer.shadowColor = UIColor.black.cgColor
-//        imageItemView.layer.masksToBounds = false
-//        imageItemView.layer.shadowOpacity = 0.2
-//
-//        imageItemView.layer.shadowPath = shadow
-//        imageItemView.layer.masksToBounds = false
-//        imageItemView.layer.shadowRadius = 20
-        //imageItemView.layer.shadowOpacity = 0.5
-        //imageItemView.layer.shadowOffset = .init(width: 4, height: 4)
+        if item.isFavorite {
+            favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
+        } else { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
         
         if item.count == 0 {
             removeButton.isEnabled = false
@@ -102,26 +81,44 @@ class MenuCell: UITableViewCell {
         
         imageItemView.image = item.image
         nameLabel.text = item.name
-        priceLabel.text = "\(item.prices[0])Р/\(item.measurements[0])"
+        priceLabel.text = "\(item.prices[0])Р"
+        measurmentLabel.text = item.measurements[0]
         updatePriceLabels()
-        
-        if item.isFavorite == true {
-            favoriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
-        } else { favoriteButton.setImage(UIImage(named: "heart"), for: .normal) }
+    }
+    
+    func setupViews() {
+        if UIScreen.main.bounds.width <= 320 { priceLabelWidth.constant = 82 }
+        countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
+        countItemLabel.layer.borderWidth = 2.5
+        countItemLabel.layer.cornerRadius = 16
+        priceLabel.layer.borderColor =  UIColor.yellow.cgColor
+        priceLabel.layer.borderWidth = 2.5
+        priceLabel.layer.cornerRadius = 16
+        secondPriceLabel.layer.borderColor =  UIColor.yellow.cgColor
+        secondPriceLabel.layer.borderWidth = 2.5
+        secondPriceLabel.layer.cornerRadius = 16
+        backgoundSubwiew.roundCorners([.topRight,.bottomRight], radius: 20)
+        imageItemView.roundCorners([.topRight, .bottomRight], radius: 20)
+        countItemLabel.roundCorners(.allCorners, radius: 12)
     }
     
     func updatePriceLabels() {
         guard item.prices.count > 1 else { return }
         if item.count == 0 {
-            priceLabel.text = "\(item.prices[0])Р/\(item.measurements[0])"
-            secondPriceLabel.text = "\(item.prices[1])Р/\(item.measurements[1])"
+            priceLabel.text = "\(item.prices[0])Р"
+            measurmentLabel.text = item.measurements[0]
+            secondPriceLabel.text = "\(item.prices[1])Р"
+            secondMeasurmentLabel.text = item.measurements[1]
             secondPriceLabel.isHidden = false
+            secondMeasurmentLabel.isHidden = false
             removeButton.isHidden = true
             countItemLabel.isHidden = true
             addButton.isHidden = true
         } else if item.count > 0 {
-            priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\(item.measurements[item.selectedMeasurment])"
+            priceLabel.text = "\(item.prices[item.selectedMeasurment])Р"
+            measurmentLabel.text = item.measurements[item.selectedMeasurment]
             secondPriceLabel.isHidden = true
+            secondMeasurmentLabel.isHidden = true
             removeButton.isHidden = false
             countItemLabel.isHidden = false
             addButton.isHidden = false
@@ -132,6 +129,7 @@ class MenuCell: UITableViewCell {
         if item.count == 0 {
             item.selectedMeasurment = 0
             secondPriceLabel.isHidden = true
+            secondMeasurmentLabel.isHidden = true
             addButtonPressed(addButton)
         }
     }
@@ -140,6 +138,7 @@ class MenuCell: UITableViewCell {
         if item.count == 0 {
             item.selectedMeasurment = 1
             secondPriceLabel.isHidden = true
+            secondMeasurmentLabel.isHidden = true
             addButtonPressed(addButton)
         }
     }
@@ -197,10 +196,12 @@ class MenuCell: UITableViewCell {
         item.isFavorite = !item.isFavorite
 
         if item.isFavorite == true {
-            favoriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
-        } else if item.isFavorite == false { favoriteButton.setImage(UIImage(named: "heart"), for: .normal) }
+            favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
+        } else if item.isFavorite == false { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
 
-        updateCellDelegate?.updateFavorites()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.updateCellDelegate?.updateFavorites()
+        }
     }
 }
 
