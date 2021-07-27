@@ -14,17 +14,19 @@ class MenuItem {
     var selectedMeasurment = 0
     let category: String
     let imageName: String
+    let description: String
     var image = UIImage(named: "Кекс")
     var count = 0
     var isFavorite = false
     
-    init(name: String, category: String, prices: [Int], measurements: [String], imageName: String) {
+    init(name: String, category: String, prices: [Int], measurements: [String], imageName: String, description: String) {
         self.name = name
         self.category = category
         self.prices = prices
         self.measurements = measurements
         self.imageName = imageName
         self.image = UIImage(named: imageName)
+        self.description = description
     }
     
     init(item: MenuItem) {
@@ -37,6 +39,7 @@ class MenuItem {
         self.image = UIImage(named: imageName)
         self.count = item.count
         self.isFavorite = item.isFavorite
+        self.description = item.description
     }
 }
 
@@ -108,24 +111,24 @@ class ListOfMenuItems {
 }
 
 let allItems: [MenuItem] = [
-    MenuItem(name: "Нежность", category: "Торты", prices: [170], measurements: ["100г"], imageName: "Киш1"),
-    MenuItem(name: "Киевский", category: "Торты", prices: [190], measurements: ["100г"], imageName: "Киш2"),
-    MenuItem(name: "Тирамису", category: "Торты", prices: [1500], measurements: ["100г"], imageName: "Киш3"),
-    MenuItem(name: "Сочник с творогом", category: "Выпечка", prices: [70], measurements: ["шт"], imageName: "Слойка"),
-    MenuItem(name: "Плюшка", category: "Выпечка", prices: [50, 300], measurements: ["шт", "целый"], imageName: "Эклер1"),
-    MenuItem(name: "Кекс творожный", category: "Выпечка", prices: [55], measurements: ["шт"], imageName: "Эклер2"),
-    MenuItem(name: "Зефир из натурального пюре", category: "Кендибар", prices: [100], measurements: ["шт"], imageName: "Эклер3"),
-    MenuItem(name: "Маршмеллоу", category: "Кендибар", prices: [80], measurements: ["шт"], imageName: "Эклер4"),
-    MenuItem(name: "Гимов", category: "Кендибар", prices: [30], measurements: ["шт"], imageName: "Капкейк1"),
-    MenuItem(name: "Корзиночка с йогуртовым кремом", category: "Кендибар", prices: [40], measurements: ["шт"], imageName: "Капкейк2"),
-    MenuItem(name: "Торт бисквитный со сметанным кремом", category: "Суфле", prices: [40], measurements: ["шт"], imageName: "Капкейк3"),
-    MenuItem(name: "Безе", category: "Пироги", prices: [40], measurements: ["шт"], imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Печенье", prices: [40], measurements: ["шт"], imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Кондитерка", prices: [40], measurements: ["шт"], imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Пицца", prices: [40], measurements: ["шт"], imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Киши", prices: [40], measurements: ["шт"], imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Супы", prices: [40], measurements: ["шт"], imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Конфеты", prices: [40], measurements: ["шт"], imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Кексы", prices: [40], measurements: ["шт"], imageName: "Кекс"),
-    MenuItem(name: "Безе", category: "Салаты", prices: [40], measurements: ["шт"], imageName: "Кекс")
+    MenuItem(name: "Нежность", category: "Торты", prices: [170], measurements: ["100г"], imageName: "Киш1", description: "Описание"),
+    MenuItem(name: "Киевский", category: "Торты", prices: [190], measurements: ["100г"], imageName: "Киш2", description: "Описание"),
+    MenuItem(name: "Тирамису", category: "Торты", prices: [1500], measurements: ["100г"], imageName: "Киш3", description: "Описание"),
+    MenuItem(name: "Сочник с творогом", category: "Выпечка", prices: [70], measurements: ["шт"], imageName: "Слойка", description: "Описание"),
+    MenuItem(name: "Плюшка", category: "Выпечка", prices: [50, 300], measurements: ["шт", "целый"], imageName: "Эклер1", description: "Он родился как ремейк на тему  детских воспоминаний о вкуснейшем бабушкином торте, выполненном из качественнейших ( как и все домашнее) продуктов по современной технологии. В нем нежнейшие шоколадные бисквиты чередуются с белым сливочным бисквитом , которые прослоены сметано-творожным кремом, тающим во рту."),
+    MenuItem(name: "Кекс творожный", category: "Выпечка", prices: [55], measurements: ["шт"], imageName: "Эклер2", description: "Описание"),
+    MenuItem(name: "Зефир из натурального пюре", category: "Кендибар", prices: [100], measurements: ["шт"], imageName: "Эклер3", description: "Описание"),
+    MenuItem(name: "Маршмеллоу", category: "Кендибар", prices: [80], measurements: ["шт"], imageName: "Эклер4", description: "Описание"),
+    MenuItem(name: "Гимов", category: "Кендибар", prices: [30], measurements: ["шт"], imageName: "Капкейк1", description: "Описание"),
+    MenuItem(name: "Корзиночка с йогуртовым кремом", category: "Кендибар", prices: [40], measurements: ["шт"], imageName: "Капкейк2", description: "Описание"),
+    MenuItem(name: "Торт бисквитный со сметанным кремом", category: "Суфле", prices: [40], measurements: ["шт"], imageName: "Капкейк3", description: "Он родился как ремейк на тему  детских воспоминаний о вкуснейшем бабушкином торте, выполненном из качественнейших ( как и все домашнее) продуктов по современной технологии. В нем нежнейшие шоколадные бисквиты чередуются с белым сливочным бисквитом , которые прослоены сметано-творожным кремом, тающим во рту."),
+    MenuItem(name: "Безе", category: "Пироги", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+    MenuItem(name: "Безе", category: "Печенье", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+    MenuItem(name: "Безе", category: "Кондитерка", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+    MenuItem(name: "Безе", category: "Пицца", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+    MenuItem(name: "Безе", category: "Киши", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+    MenuItem(name: "Безе", category: "Супы", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+    MenuItem(name: "Безе", category: "Конфеты", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+    MenuItem(name: "Безе", category: "Кексы", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+    MenuItem(name: "Безе", category: "Салаты", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание")
 ]

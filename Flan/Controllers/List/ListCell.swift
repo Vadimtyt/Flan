@@ -20,7 +20,7 @@ class ListCell: UITableViewCell {
     
     static let reuseId = "ListCell"
     var checkmark = false
-    var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс")
+    var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
     
     @IBOutlet weak var checkmarkButton: UIButton!
     

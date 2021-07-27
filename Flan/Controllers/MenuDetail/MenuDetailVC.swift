@@ -17,12 +17,20 @@ class MenuDetailVC: UIViewController {
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var measurmentLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var countItemLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
+    @IBOutlet weak var nameView: UIView!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var priceAndCountView: UIView!
+    
+    @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomViewIdent: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +47,9 @@ class MenuDetailVC: UIViewController {
         
         itemImage.image = item.image
         nameLabel.text = item.name
-        priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\("" + item.measurements[item.selectedMeasurment])"
+        descriptionLabel.text = item.description
+        priceLabel.text = "\(item.prices[item.selectedMeasurment])Р"
+        measurmentLabel.text = item.measurements[item.selectedMeasurment]
         
         if item.measurements.count > 1 {
             segmentedControl.isHidden = false
@@ -57,6 +67,10 @@ class MenuDetailVC: UIViewController {
             removeButton.isEnabled = true
             addButton.isEnabled = false
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        setupViews()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -84,6 +98,29 @@ class MenuDetailVC: UIViewController {
         popover.delegate = self
         popover.sourceView = countItemLabel
         present(vc, animated: true, completion:nil)
+    }
+    
+    func setupViews() {
+        if item.measurements.count < 2 {
+            bottomViewHeight.constant = priceAndCountView.bounds.height + 32
+        }
+        let aspectRatio = UIScreen.main.bounds.height / UIScreen.main.bounds.width
+        if aspectRatio <= 16/9 {
+            bottomViewIdent.constant = 8
+        }
+        
+        if #available(*, iOS 12.0) { segmentedControl.tintColor = .systemGray }
+        
+        itemImage.roundCorners([.topLeft, .topRight], radius: 24)
+        nameView.roundCorners([.bottomLeft, .bottomRight], radius: 24)
+        countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
+        countItemLabel.layer.borderWidth = 2.5
+        countItemLabel.layer.cornerRadius = 16
+        priceLabel.layer.borderColor =  UIColor.yellow.cgColor
+        priceLabel.layer.borderWidth = 2.5
+        priceLabel.layer.cornerRadius = 16
+        bottomView.layer.cornerRadius = 24
+        priceAndCountView.layer.cornerRadius = 16
     }
     
     func  configureSegmentedControl() {
@@ -159,7 +196,8 @@ class MenuDetailVC: UIViewController {
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         item.selectedMeasurment = index
-        priceLabel.text = "\(item.prices[index])Р/\("" + item.measurements[index])"
+        priceLabel.text = "\(item.prices[index])Р"
+        measurmentLabel.text = item.measurements[index]
         
         ListOfMenuItems.shared.removeFromList(item: item)
         countItemLabel.text = "\(item.count)"
