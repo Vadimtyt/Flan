@@ -17,6 +17,7 @@ class CustomizedDetailVC: UIViewController {
     
     @IBOutlet weak var cakeImage: UIImageView!
     @IBOutlet weak var cakeNumberLabel: UILabel!
+    
     @IBOutlet weak var topView: UIView!
     
     override func viewDidLoad() {
@@ -28,7 +29,7 @@ class CustomizedDetailVC: UIViewController {
         cakeImage.contentMode = .scaleAspectFill
         cakeNumberLabel.text = "#\(cake.number)"
         
-        cakeImage.layer.cornerRadius = 10
+        cakeImage.layer.cornerRadius = 20
         topView.layer.cornerRadius = 3
     }
     

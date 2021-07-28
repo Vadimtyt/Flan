@@ -11,14 +11,12 @@ class Bakery {
     let name: String
     let address: String
     let phone: String
-    let openTime: Int
-    let closeTime: Int
+    let workTime: String
     
-    init(name: String, address: String, phone: String, openTime: Int, closeTime: Int) {
+    init(name: String, address: String, phone: String, workTime: String) {
         self.name = name
         self.address = address
         self.phone = phone
-        self.openTime = openTime
-        self.closeTime = closeTime
+        self.workTime = workTime
     }
 }

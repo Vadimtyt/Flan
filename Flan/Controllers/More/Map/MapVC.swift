@@ -19,9 +19,11 @@ class MapVC: UIViewController {
     @IBOutlet weak var distanceAndTimeLabel: UILabel!
     @IBOutlet weak var startRouteButton: UIButton!
     
+    @IBOutlet weak var distanceAndTimeView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        distanceAndTimeLabel.isHidden = true
+        distanceAndTimeView.isHidden = true
         
         mapView.delegate = self
         setupMapView()
@@ -50,10 +52,11 @@ class MapVC: UIViewController {
         mapManager.getDirection(mapView: mapView, distanceAndTimeLabel: distanceAndTimeLabel)
         
         startRouteButton.isHidden = true
-        distanceAndTimeLabel.isHidden = false
+        distanceAndTimeView.layer.cornerRadius = 16
+        distanceAndTimeView.isHidden = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.distanceAndTimeLabel.isHidden = true
+            self?.distanceAndTimeView.isHidden = true
             self?.mapManager.showUserLocation(mapView: (self?.mapView)!)
         }
     }

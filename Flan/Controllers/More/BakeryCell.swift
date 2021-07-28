@@ -21,17 +21,28 @@ class BakeryCell: UITableViewCell {
     @IBOutlet weak var workTimeLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     
+    @IBOutlet weak var phoneButton: UIButton!
+    @IBOutlet weak var mapButton: UIButton!
+    
+    @IBOutlet weak var mainView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.text = "Название пекарни"
         addressLabel.text = "Адрес пекарни"
+    }
+    
+    override func layoutSubviews() {
+        phoneButton.layer.cornerRadius = 8
+        mapButton.layer.cornerRadius = 8
+        mainView.layer.cornerRadius = 16
     }
 
     func configureCell(with bakery: Bakery, and tag: Int) {
         selectionStyle = .none
         
         nameLabel.text = bakery.name
-        workTimeLabel.text = "\(bakery.openTime):00-\(bakery.closeTime):00"
+        workTimeLabel.text = bakery.workTime
         addressLabel.text = bakery.address
         
         self.tag = tag

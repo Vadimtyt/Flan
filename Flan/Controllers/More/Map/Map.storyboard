@@ -64,23 +64,35 @@
                                     <action selector="myPositionButtonPressed:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="7d6-Pq-41X"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Расстояние и время" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygk-ED-9zH" userLabel="Distance">
-                                <rect key="frame" x="131.33333333333331" y="705" width="165.33333333333331" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.31014114754277244" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ceh-6m-y0O" userLabel="Distance And Time View">
+                                <rect key="frame" x="123.33333333333333" y="705" width="181.33333333333337" height="58"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Расстояние и время" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygk-ED-9zH" userLabel="Distance">
+                                        <rect key="frame" x="8.0000000000000142" y="4" width="165.33333333333337" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="a7l-k4-R4v"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="a7l-k4-R4v"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="xrW-Sx-fJU"/>
+                                    <constraint firstItem="ygk-ED-9zH" firstAttribute="leading" secondItem="Ceh-6m-y0O" secondAttribute="leading" constant="8" id="2Kh-vV-i2H"/>
+                                    <constraint firstItem="ygk-ED-9zH" firstAttribute="top" secondItem="Ceh-6m-y0O" secondAttribute="top" constant="4" id="b1O-Ud-d3d"/>
+                                    <constraint firstAttribute="height" secondItem="ygk-ED-9zH" secondAttribute="height" constant="8" id="cro-UD-HsB"/>
+                                    <constraint firstAttribute="bottom" secondItem="ygk-ED-9zH" secondAttribute="bottom" constant="4" id="edB-FX-kWW"/>
+                                    <constraint firstAttribute="trailing" secondItem="ygk-ED-9zH" secondAttribute="trailing" constant="8" id="uMG-4J-xAo"/>
+                                    <constraint firstAttribute="width" secondItem="ygk-ED-9zH" secondAttribute="width" constant="16" id="waM-bJ-wBN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6n8-cs-dZl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6n8-cs-dZl" firstAttribute="bottom" secondItem="ygk-ED-9zH" secondAttribute="bottom" constant="137" id="2XM-5H-Zqw"/>
-                            <constraint firstItem="ygk-ED-9zH" firstAttribute="centerX" secondItem="fRO-8h-EFn" secondAttribute="centerX" id="4R4-RW-BJj"/>
+                            <constraint firstItem="Ceh-6m-y0O" firstAttribute="centerX" secondItem="6n8-cs-dZl" secondAttribute="centerX" id="A1u-Zk-hON"/>
+                            <constraint firstItem="7sh-LC-UAj" firstAttribute="top" secondItem="Ceh-6m-y0O" secondAttribute="bottom" constant="40" id="CEH-5y-CAu"/>
                             <constraint firstAttribute="trailing" secondItem="fRO-8h-EFn" secondAttribute="trailing" id="PhV-Yh-1Ro"/>
                             <constraint firstItem="U45-oG-a0g" firstAttribute="top" secondItem="6n8-cs-dZl" secondAttribute="top" constant="32" id="QYb-pw-PFU"/>
                             <constraint firstAttribute="bottom" secondItem="fRO-8h-EFn" secondAttribute="bottom" id="R2O-1z-RdK"/>
@@ -95,13 +107,14 @@
                     </view>
                     <connections>
                         <outlet property="distanceAndTimeLabel" destination="ygk-ED-9zH" id="3yg-hW-uPl"/>
+                        <outlet property="distanceAndTimeView" destination="Ceh-6m-y0O" id="OsR-di-3ek"/>
                         <outlet property="mapView" destination="fRO-8h-EFn" id="jmB-Xj-EOw"/>
                         <outlet property="startRouteButton" destination="7sh-LC-UAj" id="U2H-2u-Cog"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qOp-Nz-Uhw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2524.6376811594205" y="1299.1071428571429"/>
+            <point key="canvasLocation" x="2523.3644859813085" y="1298.4881209503242"/>
         </scene>
     </scenes>
     <resources>
@@ -110,6 +123,9 @@
         <image name="xmark" width="15.5" height="15.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

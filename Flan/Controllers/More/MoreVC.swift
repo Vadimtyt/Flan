@@ -11,10 +11,10 @@ import MessageUI
 private let reuseIdentifier = "BakeryCell"
 private let bakeries = [
     //Bakery(name: "Флан на Новой", address: "ул.Дорожная, 5 к1", phone: "+7(989)248-14-14", openTime: 8, closeTime: 21),
-    Bakery(name: "Флан на Новой", address: "ул.Новая, 14А", phone: "+7(989)248-14-14", openTime: 8, closeTime: 21),
-    Bakery(name: "Флан на Отдельской", address: "ул.Отдельская 324/7", phone: "+7(988)135-07-07", openTime: 9, closeTime: 22),
-    Bakery(name: "Флан на Школьной", address: "ул.Школьная, 301А", phone: "+7(918)123-45-67", openTime: 8, closeTime: 20),
-    Bakery(name: "Флан на Лермонтова", address: "ул.Лермонтова, 216Г", phone: "+7(988)316-21-21", openTime: 8, closeTime: 21)
+    Bakery(name: "Флан на Новой", address: "ул.Новая, 14А", phone: "+7(989)248-14-14", workTime: "10:00-20:00 ежедневно"),
+    Bakery(name: "Флан на Отдельской", address: "ул.Отдельская 324/7", phone: "+7(988)135-07-07", workTime: "9:00-22:00 ежедневно"),
+    Bakery(name: "Флан на Школьной", address: "ул.Школьная, 301А", phone: "+7(918)123-45-67", workTime: "8:00-20:00 пн-пт"),
+    Bakery(name: "Флан на Лермонтова", address: "ул.Лермонтова, 216Г", phone: "+7(988)316-21-21", workTime: "8:00-22:00 ежедневно")
 ]
 
 class MoreVC: UIViewController {
@@ -23,6 +23,7 @@ class MoreVC: UIViewController {
     let countOfbakeries = 4
     
     @IBOutlet weak var bakeriesTableView: UITableView!
+    @IBOutlet weak var feedbackButton: UIButton!
     
     override func viewDidLoad() {
         bakeriesTableView.delegate = self
@@ -30,6 +31,13 @@ class MoreVC: UIViewController {
         bakeriesTableView.isScrollEnabled = false
         
         bakeriesTableView.register(UINib(nibName: "BakeryCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+        bakeriesTableView.layer.cornerRadius = 16
+        
+        feedbackButton.layer.cornerRadius = 16
+        
+        bakeriesTableView.separatorColor = .black
+        bakeriesTableView.separatorStyle = .singleLine
+        bakeriesTableView.separatorInset = .zero
     }
     
     @IBAction func instagramButtonPressed(_ sender: UIButton) {

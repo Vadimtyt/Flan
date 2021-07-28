@@ -59,6 +59,8 @@ class CustomizedCVC: UICollectionViewController {
         
         cell.configureWith(cake: cakes[indexPath.row])
         
+        cell.roundCorners(.allCorners, radius: 20)
+        
         return cell
     }
     

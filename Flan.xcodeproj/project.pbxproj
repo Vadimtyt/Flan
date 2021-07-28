@@ -161,8 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				C19DD6FE26080E3600D00BFD /* MenuItemModel.swift */,
-				C15C40902645CA420053910A /* BakeryModel.swift */,
 				C1AD6A34265862C1007DFBE9 /* CakeModel.swift */,
+				C15C40902645CA420053910A /* BakeryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

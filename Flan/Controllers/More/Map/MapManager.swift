@@ -78,7 +78,6 @@ class MapManager {
         checkLocationAuthorisation(mapView: mapView)
         guard let location = locationManager.location?.coordinate else {
             showAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
-            print("kek")
             return
         }
         let region = MKCoordinateRegion(center: location,
@@ -121,8 +120,8 @@ class MapManager {
                 let distance = String(Int(route.distance))
                 let timeInterval = Int(route.expectedTravelTime/60)
                 
-                distanceAndTimeLabel.text! = " \(distance)м.\n"
-                distanceAndTimeLabel.text! += " \(timeInterval)мин."
+                distanceAndTimeLabel.text! = "Расстояние - \(distance)м.\n"
+                distanceAndTimeLabel.text! += "Время - \(timeInterval)мин."
             }
         }
     }
