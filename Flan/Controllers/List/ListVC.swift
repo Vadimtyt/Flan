@@ -22,6 +22,8 @@ class ListVC: UIViewController {
     @IBOutlet weak var listTableView: UITableView!
     @IBOutlet weak var clearBarButton: UIBarButtonItem!
     
+    weak var totalSumLabel: UILabel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,11 +57,10 @@ class ListVC: UIViewController {
     }
     
     func changeTotalSumLabel() {
-
-//        if newSum == 0 {
-//            totalSumLabel.text = "Итого: 0Р"
-//        } else { totalSumLabel.text = "Итого: ≈\(newSum)Р" }
-
+        let totalSum = getTotalSum()
+        if totalSum > 9999 {
+            totalSumLabel?.text = "Итого: 9999+Р"
+        } else { totalSumLabel?.text = "Итого: ≈\(totalSum)Р" }
     }
     
     func updateBackground() {
@@ -195,14 +196,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func configureButtons() {
         if items.isEmpty && completedItems.isEmpty {
             clearBarButton.isEnabled = false
-//            infoButton.isHidden = true
-//            shareButton.isHidden = true
-//            totalSumLabel.isHidden = true
         } else {
             clearBarButton.isEnabled = true
-//            infoButton.isHidden = false
-//            shareButton.isHidden = false
-//            totalSumLabel.isHidden = false
         }
     }
     
@@ -242,15 +237,11 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseFooterID) as! ListFooterCell
         let totalSum = getTotalSum()
-        cell.configureCellWith(totalSum: totalSum, listDelegate: self)
+        cell.configureCellWith(totalSum: totalSum)
+        totalSumLabel = cell.totalSumLabel
         
         return cell.contentView
     }
-    
-    func invalidateSupplementaryElements(ofKind elementKind: String, at indexPaths: [IndexPath]) {
-        //kind = UICollectionElementKindSectionFooter
-    }
-
     
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //        var sectionTitle = ""
@@ -337,15 +328,14 @@ extension ListVC: UpdatingListCellDelegate {
             if items[index].count == 0 {
                 ListOfMenuItems.shared.removeFromList(item: items[index])
                 if items.isEmpty && completedItems.isEmpty {
-                    listTableView.deleteSections([0, 1], with: .top)
+                    listTableView.deleteSections([0, 1], with: .left)
                 } else { listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle) }
                 return
+                //break
              }
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            self?.listTableView.reloadData()
-        }
+        self.listTableView.reloadData()
     }
     
     func updateListBadge() {
@@ -404,57 +394,6 @@ extension ListVC: UpdatingMenuCellDelegate {
     
     func updateCellAt(indexPath: IndexPath) {
         updateList()
-    }
-    
-    
-}
-
-extension ListVC: UpdatingListFooterDelegate {
-    func footerInfoButtonPressed(button: UIButton) {
-        TapticFeedback.shared.tapticFeedback(.light)
-        
-        var textTopConstraint: CGFloat = 6
-        let popUpWidth: CGFloat = 294
-        let popUpHeight: CGFloat = 163
-        
-        var arrowY: CGFloat = 0
-        let rectOfCell = listTableView.rectForRow(at: IndexPath(row: items.count - 1, section: 0))
-        let rectOfCellInSuperview = listTableView.convert(rectOfCell, to: listTableView.superview)
-        if rectOfCellInSuperview.maxY < popUpHeight {
-            arrowY = button.bounds.maxY
-            textTopConstraint = 20
-        } else {
-            arrowY = button.bounds.minY
-        }
-        
-        let vc = InfoPopover(text: popUpText, fontSize: popUpTextFontSize, topConstraint: textTopConstraint)
-        vc.modalPresentationStyle = UIModalPresentationStyle.popover
-        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
-        
-        if rectOfCellInSuperview.maxY < popUpHeight {
-            popover.permittedArrowDirections = .up
-        } else { popover.permittedArrowDirections = .down }
-        
-        popover.sourceView = button
-        popover.delegate = self
-        popover.sourceRect = CGRect(x: button.bounds.minX - 19,
-                                    y: arrowY,
-                                    width: 0,
-                                    height: 0)
-        
-        vc.preferredContentSize = CGSize(width: popUpWidth, height: popUpHeight)
-        
-        present(vc, animated: true, completion:nil)
-    }
-    
-    func shareButtonPressed() {
-        TapticFeedback.shared.tapticFeedback(.light)
-        
-        let message = getTextList()
-        let objectsToShare = [message]
-        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
-        self.present(activityVC, animated: true, completion: nil)
     }
 }
 

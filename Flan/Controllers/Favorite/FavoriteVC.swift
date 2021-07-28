@@ -38,7 +38,7 @@ class FavoriteVC: UITableViewController {
     func updateBackgound() {
         if items.isEmpty {
             tableView.setEmptyView(title: "Пусто",
-                                   message: "Чтобы добавить свою вкусняшку в избранное нажмите на сердечко в углу её изображения",
+                                   message: "Чтобы добавить свою вкусняшку в избранное нажмите на иконку сердечка",
                                    messageImage: UIImage(named: "emptyList.png")!)
             tableView.isScrollEnabled = false
         } else {

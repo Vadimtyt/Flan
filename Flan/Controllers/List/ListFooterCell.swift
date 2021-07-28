@@ -7,16 +7,9 @@
 
 import UIKit
 
-protocol UpdatingListFooterDelegate: AnyObject {
-    func footerInfoButtonPressed(button: UIButton)
-    func shareButtonPressed()
-}
-
 class ListFooterCell: UITableViewCell {
     
     static let reuseId = "ListFooterCell"
-    
-    weak var listDelegate: UpdatingListFooterDelegate?
     
     @IBOutlet weak var totalSumLabel: UILabel!
     
@@ -24,16 +17,15 @@ class ListFooterCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func configureCellWith(totalSum: Int, listDelegate: UpdatingListFooterDelegate) {
+    func configureCellWith(totalSum: Int) {
         totalSumLabel.text = "Итого: ≈\(totalSum)Р"
-        self.listDelegate = listDelegate
     }
-    
-    @IBAction func infoButtonPressed(_ sender: UIButton) {
-        listDelegate?.footerInfoButtonPressed(button: sender)
-    }
-    
-    @IBAction func shareButtonPressed(_ sender: UIButton) {
-        listDelegate?.shareButtonPressed()
-    }
+//
+//    @IBAction func infoButtonPressed(_ sender: UIButton) {
+//        listDelegate?.footerInfoButtonPressed(button: sender)
+//    }
+//
+//    @IBAction func shareButtonPressed(_ sender: UIButton) {
+//        listDelegate?.shareButtonPressed()
+//    }
 }

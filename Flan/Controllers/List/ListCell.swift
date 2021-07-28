@@ -22,7 +22,6 @@ class ListCell: UITableViewCell {
     var checkmark = false
     var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
     
-    @IBOutlet weak var checkmarkButton: UIButton!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -30,6 +29,8 @@ class ListCell: UITableViewCell {
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var countItemLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
+    
+    @IBOutlet weak var checkmarkButton: UIButton!
     
     @IBOutlet weak var mainView: UIView!
     
@@ -125,12 +126,12 @@ class ListCell: UITableViewCell {
         checkmark = !checkmark
         if checkmark {
             checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill.png"), for: .normal)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.listDelegate?.addToCompleted(item: self!.item)
             }
         } else {
             checkmarkButton.setImage(UIImage(named: "checkmark.circle.png"), for: .normal)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.listDelegate?.removeFromCompleted(completedItem: self!.item)
             }
         }
