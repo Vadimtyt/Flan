@@ -8,7 +8,7 @@
 import UIKit
 import Network
 
-private let reuseSectionID = "MenuSectionCell"
+private let reuseHeaderID = "MenuHeaderCell"
 private let reuseCellID = "MenuCell"
 
 class MenuVC: UITableViewController {
@@ -31,7 +31,7 @@ class MenuVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: reuseSectionID, bundle: nil), forCellReuseIdentifier: MenuSectionCell.reuseId)
+        tableView.register(UINib(nibName: reuseHeaderID, bundle: nil), forCellReuseIdentifier: MenuHeaderCell.reuseId)
         tableView.register(UINib(nibName: reuseCellID, bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
         
         configureSearchController()
@@ -102,7 +102,7 @@ class MenuVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseSectionID) as! MenuSectionCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseHeaderID) as! MenuHeaderCell
         cell.configureCell(with: categories[section].category)
         return cell.contentView
     }

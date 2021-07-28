@@ -24,7 +24,6 @@ class ListCell: UITableViewCell {
     
     @IBOutlet weak var checkmarkButton: UIButton!
     
-//    @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
@@ -32,8 +31,18 @@ class ListCell: UITableViewCell {
     @IBOutlet weak var countItemLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
+    @IBOutlet weak var mainView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    override func layoutSubviews() {
+        setupViews()
+    }
+    
+    override func prepareForReuse() {
+        resetAll()
     }
     
     func configureCell(with item: MenuItem, isCompleted: Bool, listDelegate: UpdatingListCellDelegate) {
@@ -49,7 +58,6 @@ class ListCell: UITableViewCell {
             addButton.isEnabled = false
         }
         
-//        imageItemView.image = item.image
         nameLabel.text = item.name
         priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\(item.measurements[item.selectedMeasurment])"
         countItemLabel.text = "\(item.count)"
@@ -58,16 +66,33 @@ class ListCell: UITableViewCell {
         if checkmark {
             removeButton.isEnabled = false
             addButton.isEnabled = false
-//          imageItemView.alpha = 0.7
+            mainView.alpha = 0.7
+            checkmarkButton.alpha = 0.7
             checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill.png"), for: .normal)
         } else {
             removeButton.isEnabled = true
             addButton.isEnabled = true
-//          imageItemView.alpha = 1
+            mainView.alpha = 1
+            checkmarkButton.alpha = 1
             checkmarkButton.setImage(UIImage(named: "checkmark.circle.png"), for: .normal)
         }
         
         self.listDelegate = listDelegate
+    }
+    
+    func setupViews() {
+        checkmarkButton.layer.cornerRadius = 12
+        countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
+        countItemLabel.layer.borderWidth = 2.5
+        countItemLabel.layer.cornerRadius = 16
+        countItemLabel.roundCorners(.allCorners, radius: 16)
+    }
+    
+    func resetAll() {
+        checkmarkButton.imageView?.image = nil
+        
+        nameLabel.text = nil
+        priceLabel.text = nil
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
@@ -100,12 +125,12 @@ class ListCell: UITableViewCell {
         checkmark = !checkmark
         if checkmark {
             checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill.png"), for: .normal)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
                 self?.listDelegate?.addToCompleted(item: self!.item)
             }
         } else {
             checkmarkButton.setImage(UIImage(named: "checkmark.circle.png"), for: .normal)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
                 self?.listDelegate?.removeFromCompleted(completedItem: self!.item)
             }
         }

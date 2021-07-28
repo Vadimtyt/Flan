@@ -50,13 +50,40 @@ class MenuCell: UITableViewCell {
         secondPriceLabel.addGestureRecognizer(tapSecondPriceLabel)
     }
     
+    override func prepareForReuse() {
+        resetAll()
+    }
+    
+    override func layoutSubviews() {
+        setupViews()
+        setupElements()
+    }
+    
     func configureCell(with item: MenuItem) {
         self.item = item
+    }
+    
+    func setupViews() {
+        if UIScreen.main.bounds.width <= 320 { priceLabelWidth.constant = 82 }
+        countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
+        countItemLabel.layer.borderWidth = 2.5
+        countItemLabel.layer.cornerRadius = 16
+        priceLabel.layer.borderColor =  UIColor.yellow.cgColor
+        priceLabel.layer.borderWidth = 2.5
+        priceLabel.layer.cornerRadius = 16
+        secondPriceLabel.layer.borderColor =  UIColor.yellow.cgColor
+        secondPriceLabel.layer.borderWidth = 2.5
+        secondPriceLabel.layer.cornerRadius = 16
+        backgoundSubwiew.roundCorners([.topRight,.bottomRight], radius: 20)
+        imageItemView.roundCorners([.topRight, .bottomRight], radius: 20)
+        countItemLabel.roundCorners(.allCorners, radius: 12)
+    }
+    
+    func setupElements() {
         secondPriceLabel.isHidden = true
         secondMeasurmentLabel.isHidden = true
         
         selectionStyle = .none
-        setupViews()
         
         if item.isFavorite {
             favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
@@ -86,22 +113,6 @@ class MenuCell: UITableViewCell {
         updatePriceLabels()
     }
     
-    func setupViews() {
-        if UIScreen.main.bounds.width <= 320 { priceLabelWidth.constant = 82 }
-        countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
-        countItemLabel.layer.borderWidth = 2.5
-        countItemLabel.layer.cornerRadius = 16
-        priceLabel.layer.borderColor =  UIColor.yellow.cgColor
-        priceLabel.layer.borderWidth = 2.5
-        priceLabel.layer.cornerRadius = 16
-        secondPriceLabel.layer.borderColor =  UIColor.yellow.cgColor
-        secondPriceLabel.layer.borderWidth = 2.5
-        secondPriceLabel.layer.cornerRadius = 16
-        backgoundSubwiew.roundCorners([.topRight,.bottomRight], radius: 20)
-        imageItemView.roundCorners([.topRight, .bottomRight], radius: 20)
-        countItemLabel.roundCorners(.allCorners, radius: 12)
-    }
-    
     func updatePriceLabels() {
         guard item.prices.count > 1 else { return }
         if item.count == 0 {
@@ -123,6 +134,21 @@ class MenuCell: UITableViewCell {
             countItemLabel.isHidden = false
             addButton.isHidden = false
         }
+    }
+    
+    func resetAll() {
+        imageItemView.image = nil
+        nameLabel.text = nil
+        favoriteButton.imageView?.image = nil
+        priceLabel.text = nil
+        secondPriceLabel.text = nil
+        measurmentLabel.text = nil
+        secondMeasurmentLabel.text = nil
+        
+        removeButton.isHidden = false
+        countItemLabel.isHidden = false
+        addButton.isHidden = false
+        secondPriceLabel.isHidden = false
     }
     
     @objc func tapPriceLabel(sender:UITapGestureRecognizer) {
@@ -199,7 +225,7 @@ class MenuCell: UITableViewCell {
             favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
         } else if item.isFavorite == false { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
             self?.updateCellDelegate?.updateFavorites()
         }
     }

@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuSectionCell" rowHeight="70" id="PWE-By-ZSB" userLabel="MenuTableCell" customClass="MenuSectionCell" customModule="Flan" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuHeaderCell" rowHeight="70" id="PWE-By-ZSB" userLabel="MenuTableCell" customClass="MenuHeaderCell" customModule="Flan" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PWE-By-ZSB" id="4SJ-dn-1tj">
@@ -41,10 +41,10 @@
                     <constraint firstItem="Qna-Dp-H91" firstAttribute="leading" secondItem="4SJ-dn-1tj" secondAttribute="leading" constant="20" id="jxa-ZO-ZVz"/>
                 </constraints>
             </tableViewCellContentView>
-            <accessibility key="accessibilityConfiguration" identifier="MenuSectionCell"/>
+            <accessibility key="accessibilityConfiguration" identifier="MenuHeaderCell"/>
             <connections>
                 <outlet property="labelBackgroundView" destination="Qna-Dp-H91" id="3Ns-BG-Q02"/>
-                <outlet property="sectionNameLabel" destination="AJv-t4-d17" id="wKo-H3-hci"/>
+                <outlet property="nameLabel" destination="AJv-t4-d17" id="073-kq-I23"/>
             </connections>
             <point key="canvasLocation" x="-50.724637681159422" y="57.589285714285708"/>
         </tableViewCell>

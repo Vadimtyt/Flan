@@ -1,5 +1,5 @@
 //
-//  MenuSectionCell.swift
+//  MenuHeaderCell.swift
 //  Flan
 //
 //  Created by Вадим on 02.07.2021.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-class MenuSectionCell: UITableViewCell {
+class MenuHeaderCell: UITableViewCell {
     
-    static let reuseId = "MenuSectionCell"
+    static let reuseId = "MenuHeaderCell"
     
     @IBOutlet weak var labelBackgroundView: UIView!
-    @IBOutlet weak var sectionNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,8 +20,8 @@ class MenuSectionCell: UITableViewCell {
     
     func configureCell(with header: String) {
         labelBackgroundView.layer.cornerRadius = 16
-        sectionNameLabel.text = header
-        sectionNameLabel.backgroundColor = labelBackgroundView.backgroundColor
+        nameLabel.text = header
+        nameLabel.backgroundColor = labelBackgroundView.backgroundColor
         self.backgroundView?.alpha = 0.0
     }
 }

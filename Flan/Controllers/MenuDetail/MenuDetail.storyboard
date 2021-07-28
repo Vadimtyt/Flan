@@ -28,7 +28,7 @@
                                 <rect key="frame" x="20" y="340.5" width="374" height="383.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание позиции" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eip-EP-xfm">
-                                        <rect key="frame" x="0.0" y="20" width="374" height="19.5"/>
+                                        <rect key="frame" x="0.0" y="24" width="374" height="19.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="vin-1p-P02"/>
                                         </constraints>
@@ -42,7 +42,7 @@
                                     <constraint firstAttribute="trailing" secondItem="eip-EP-xfm" secondAttribute="trailing" id="FGL-Py-E3e"/>
                                     <constraint firstItem="eip-EP-xfm" firstAttribute="leading" secondItem="cZU-Qj-s9Z" secondAttribute="leading" id="QuN-ON-JRO"/>
                                     <constraint firstAttribute="bottom" secondItem="eip-EP-xfm" secondAttribute="bottom" constant="24" id="dOW-rv-7Ob"/>
-                                    <constraint firstItem="eip-EP-xfm" firstAttribute="top" secondItem="cZU-Qj-s9Z" secondAttribute="top" constant="20" id="h1V-4z-gCm"/>
+                                    <constraint firstItem="eip-EP-xfm" firstAttribute="top" secondItem="cZU-Qj-s9Z" secondAttribute="top" constant="24" id="h1V-4z-gCm"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Ygc-rH-JOz"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="LMX-Ex-LIZ"/>

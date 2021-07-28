@@ -7,7 +7,9 @@
 
 import UIKit
 
-private let reuseIdentifier = "ListCell"
+private let reuseCellID = "ListCell"
+private let reuseHeaderID = "ListHeaderCell"
+private let reuseFooterID = "ListFooterCell"
 
 class ListVC: UIViewController {
     
@@ -19,39 +21,45 @@ class ListVC: UIViewController {
     
     @IBOutlet weak var listTableView: UITableView!
     @IBOutlet weak var clearBarButton: UIBarButtonItem!
-    @IBOutlet weak var totalSumLabel: UILabel!
-    @IBOutlet weak var infoButton: UIButton!
-    @IBOutlet weak var shareButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        listTableView.delegate = self
-        listTableView.dataSource = self
-        
-        listTableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
-        
+        setupTableView()
         changeTotalSumLabel()
-        
         updateBackground()
-        
-        listTableView.showsVerticalScrollIndicator = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateList()
     }
     
-    func changeTotalSumLabel() {
+    func setupTableView() {
+        listTableView.delegate = self
+        listTableView.dataSource = self
+        listTableView.showsVerticalScrollIndicator = false
+        listTableView.separatorInset = .zero
+        listTableView.separatorColor = listTableView.backgroundColor
+        listTableView.register(UINib(nibName: reuseCellID, bundle: nil), forCellReuseIdentifier: ListCell.reuseId)
+        listTableView.register(UINib(nibName: reuseHeaderID, bundle: nil), forCellReuseIdentifier: ListHeaderCell.reuseId)
+        listTableView.register(UINib(nibName: reuseFooterID, bundle: nil), forCellReuseIdentifier: ListFooterCell.reuseId)
+    }
+    
+    func getTotalSum() -> Int {
         var newSum = 0
         for item in items {
             newSum += (item.prices[item.selectedMeasurment]) * item.count
         }
         
-        if newSum == 0 {
-            totalSumLabel.text = "Итого: 0Р"
-        } else { totalSumLabel.text = "Итого: ≈\(newSum)Р" }
+        return newSum
+    }
+    
+    func changeTotalSumLabel() {
+
+//        if newSum == 0 {
+//            totalSumLabel.text = "Итого: 0Р"
+//        } else { totalSumLabel.text = "Итого: ≈\(newSum)Р" }
+
     }
     
     func updateBackground() {
@@ -66,7 +74,8 @@ class ListVC: UIViewController {
             list += "\n\(item.name) - \(item.count) шт.,"
         }
         list.removeLast()
-        list += "\n\(totalSumLabel.text ?? "")"
+        let sum = String(getTotalSum())
+        list += "\n" + sum
         return list
     }
     
@@ -75,7 +84,7 @@ class ListVC: UIViewController {
         
         // Crear buy action
         if !(items.isEmpty) {
-            let clearBuyAction = UIAlertAction(title: "Очистить категорию Купить", style: .destructive) { [weak self] _ in
+            let clearBuyAction = UIAlertAction(title: "Очистить список Купить", style: .destructive) { [weak self] _ in
                 for item in ListOfMenuItems.shared.list {
                     item.count = 0
                 }
@@ -89,7 +98,7 @@ class ListVC: UIViewController {
         
         // Crear buyed action
         if !(completedItems.isEmpty) {
-            let clearBuyedAction = UIAlertAction(title: "Очистить категорию Куплено", style: .destructive) { [weak self] _ in
+            let clearBuyedAction = UIAlertAction(title: "Очистить список Куплено", style: .destructive) { [weak self] _ in
                 self?.completedItems.removeAll()
                 
                 self?.updateList()
@@ -119,31 +128,44 @@ class ListVC: UIViewController {
     
     @IBAction func infoButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
-        
-        let textTopConstraint: CGFloat = 6
-        let popUpWidth = 294
-        let popUpHeight = 163
-        
+
+        var textTopConstraint: CGFloat = 6
+        let popUpWidth: CGFloat = 294
+        let popUpHeight: CGFloat = 163
+
+        var arrowY: CGFloat = 0
+        let rectOfCell = listTableView.rectForRow(at: IndexPath(row: items.count - 1, section: 0))
+        let rectOfCellInSuperview = listTableView.convert(rectOfCell, to: listTableView.superview)
+        if rectOfCellInSuperview.maxY < popUpHeight {
+            arrowY = sender.bounds.maxY
+            textTopConstraint = 16
+        } else {
+            arrowY = sender.bounds.minY
+        }
+
         let vc = InfoPopover(text: popUpText, fontSize: popUpTextFontSize, topConstraint: textTopConstraint)
         vc.modalPresentationStyle = UIModalPresentationStyle.popover
-        
         let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+
+        if rectOfCellInSuperview.maxY < popUpHeight {
+            popover.permittedArrowDirections = .up
+        } else { popover.permittedArrowDirections = .down }
+
         popover.sourceView = sender
         popover.delegate = self
-        
-        popover.sourceRect = CGRect(x: self.infoButton.bounds.minX - 19,
-                                       y: self.infoButton.bounds.minY,
+        popover.sourceRect = CGRect(x: sender.bounds.minX - 19,
+                                       y: arrowY,
                                        width: 0,
                                        height: 0)
-        popover.permittedArrowDirections = .down
+
         vc.preferredContentSize = CGSize(width: popUpWidth, height: popUpHeight)
-        
+
         present(vc, animated: true, completion:nil)
     }
-    
+
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
-        
+
         let message = getTextList()
         let objectsToShare = [message]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
@@ -173,14 +195,14 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func configureButtons() {
         if items.isEmpty && completedItems.isEmpty {
             clearBarButton.isEnabled = false
-            infoButton.isHidden = true
-            shareButton.isHidden = true
-            totalSumLabel.isHidden = true
+//            infoButton.isHidden = true
+//            shareButton.isHidden = true
+//            totalSumLabel.isHidden = true
         } else {
             clearBarButton.isEnabled = true
-            infoButton.isHidden = false
-            shareButton.isHidden = false
-            totalSumLabel.isHidden = false
+//            infoButton.isHidden = false
+//            shareButton.isHidden = false
+//            totalSumLabel.isHidden = false
         }
     }
     
@@ -194,19 +216,52 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 60
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseHeaderID) as! ListHeaderCell
         var sectionTitle = ""
         if section == 0 {
             sectionTitle = "Купить"
         } else if section == 1 { sectionTitle = "Куплено" }
-        return sectionTitle
+        
+        cell.configureCell(with: sectionTitle)
+        
+        return cell.contentView
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        var height: CGFloat = 0
+        if section == 0 {
+            height = 66
+        }
+        return height
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseFooterID) as! ListFooterCell
+        let totalSum = getTotalSum()
+        cell.configureCellWith(totalSum: totalSum, listDelegate: self)
+        
+        return cell.contentView
+    }
+    
+    func invalidateSupplementaryElements(ofKind elementKind: String, at indexPaths: [IndexPath]) {
+        //kind = UICollectionElementKindSectionFooter
+    }
+
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        var sectionTitle = ""
+//        if section == 0 {
+//            sectionTitle = "Купить"
+//        } else if section == 1 { sectionTitle = "Куплено" }
+//        return sectionTitle
+//    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseCellID, for: indexPath) as! ListCell
         
         var list: [MenuItem] = []
         if indexPath.section == 0 {
@@ -233,6 +288,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
             } else { tableView.deleteRows(at: [indexPath], with: .left) }
             
             self.updateListBadge()
+            self.updateList()
 
             success(true)
         })
@@ -256,7 +312,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
             completeAction.title = "Купить"
         }
         
-        completeAction.backgroundColor = .lightGray
+        completeAction.backgroundColor = .systemGreen
 
         return UISwipeActionsConfiguration(actions: [completeAction, deleteAction])
     }
@@ -287,7 +343,9 @@ extension ListVC: UpdatingListCellDelegate {
              }
         }
 
-        self.listTableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.listTableView.reloadData()
+        }
     }
     
     func updateListBadge() {
@@ -296,6 +354,7 @@ extension ListVC: UpdatingListCellDelegate {
     }
     
     func addToCompleted(item: MenuItem) {
+        
         let completedItem = MenuItem(item: item)
         
         completedItems.insert(completedItem, at: 0)
@@ -306,6 +365,7 @@ extension ListVC: UpdatingListCellDelegate {
         listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
         
         updateListBadge()
+        updateList()
     }
     
     func removeFromCompleted(completedItem: MenuItem) {
@@ -329,6 +389,7 @@ extension ListVC: UpdatingListCellDelegate {
         listTableView.deleteRows(at: [IndexPath(row: completedIndex, section: 1)], with: .left)
         
         updateListBadge()
+        updateList()
     }
 }
 
@@ -346,6 +407,55 @@ extension ListVC: UpdatingMenuCellDelegate {
     }
     
     
+}
+
+extension ListVC: UpdatingListFooterDelegate {
+    func footerInfoButtonPressed(button: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
+        var textTopConstraint: CGFloat = 6
+        let popUpWidth: CGFloat = 294
+        let popUpHeight: CGFloat = 163
+        
+        var arrowY: CGFloat = 0
+        let rectOfCell = listTableView.rectForRow(at: IndexPath(row: items.count - 1, section: 0))
+        let rectOfCellInSuperview = listTableView.convert(rectOfCell, to: listTableView.superview)
+        if rectOfCellInSuperview.maxY < popUpHeight {
+            arrowY = button.bounds.maxY
+            textTopConstraint = 20
+        } else {
+            arrowY = button.bounds.minY
+        }
+        
+        let vc = InfoPopover(text: popUpText, fontSize: popUpTextFontSize, topConstraint: textTopConstraint)
+        vc.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+        
+        if rectOfCellInSuperview.maxY < popUpHeight {
+            popover.permittedArrowDirections = .up
+        } else { popover.permittedArrowDirections = .down }
+        
+        popover.sourceView = button
+        popover.delegate = self
+        popover.sourceRect = CGRect(x: button.bounds.minX - 19,
+                                    y: arrowY,
+                                    width: 0,
+                                    height: 0)
+        
+        vc.preferredContentSize = CGSize(width: popUpWidth, height: popUpHeight)
+        
+        present(vc, animated: true, completion:nil)
+    }
+    
+    func shareButtonPressed() {
+        TapticFeedback.shared.tapticFeedback(.light)
+        
+        let message = getTextList()
+        let objectsToShare = [message]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+        self.present(activityVC, animated: true, completion: nil)
+    }
 }
 
 extension ListVC: UIPopoverPresentationControllerDelegate {
