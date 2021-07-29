@@ -28,7 +28,7 @@ class ListVC: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
-        changeTotalSumLabel()
+        updateTotalSumLabel()
         updateBackground()
     }
     
@@ -56,7 +56,7 @@ class ListVC: UIViewController {
         return newSum
     }
     
-    func changeTotalSumLabel() {
+    func updateTotalSumLabel() {
         let totalSum = getTotalSum()
         if totalSum > 9999 {
             totalSumLabel?.text = "Итого: 9999+Р"
@@ -184,7 +184,7 @@ class ListVC: UIViewController {
 extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        changeTotalSumLabel()
+        updateTotalSumLabel()
         updateBackground()
         configureButtons()
         if items.isEmpty && completedItems.isEmpty {
@@ -236,20 +236,12 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseFooterID) as! ListFooterCell
-        let totalSum = getTotalSum()
-        cell.configureCellWith(totalSum: totalSum)
+        
         totalSumLabel = cell.totalSumLabel
+        updateTotalSumLabel()
         
         return cell.contentView
     }
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        var sectionTitle = ""
-//        if section == 0 {
-//            sectionTitle = "Купить"
-//        } else if section == 1 { sectionTitle = "Куплено" }
-//        return sectionTitle
-//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseCellID, for: indexPath) as! ListCell
@@ -279,7 +271,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
             } else { tableView.deleteRows(at: [indexPath], with: .left) }
             
             self.updateListBadge()
-            self.updateList()
+            self.updateTotalSumLabel()
 
             success(true)
         })
@@ -355,7 +347,7 @@ extension ListVC: UpdatingListCellDelegate {
         listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
         
         updateListBadge()
-        updateList()
+        updateTotalSumLabel()
     }
     
     func removeFromCompleted(completedItem: MenuItem) {
@@ -379,7 +371,7 @@ extension ListVC: UpdatingListCellDelegate {
         listTableView.deleteRows(at: [IndexPath(row: completedIndex, section: 1)], with: .left)
         
         updateListBadge()
-        updateList()
+        updateTotalSumLabel()
     }
 }
 
