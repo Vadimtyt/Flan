@@ -94,6 +94,7 @@ class ListCell: UITableViewCell {
         
         nameLabel.text = nil
         priceLabel.text = nil
+        countItemLabel.text = nil
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {

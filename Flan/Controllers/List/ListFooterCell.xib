@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,16 +21,16 @@
                         <rect key="frame" x="8" y="4" width="398" height="58"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Итого: 0Р" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7M-OE-MbY" userLabel="Total Sum Label">
-                                <rect key="frame" x="8" y="8" width="81" height="42"/>
+                                <rect key="frame" x="4" y="8" width="81" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="126" id="rDI-7i-qMC"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="140" id="rDI-7i-qMC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0H-ns-Bcw" userLabel="Info Button">
-                                <rect key="frame" x="89" y="18" width="22" height="22"/>
+                                <rect key="frame" x="87" y="18" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="DgM-hF-zoY"/>
                                     <constraint firstAttribute="height" constant="22" id="LHk-KJ-5C0"/>
@@ -39,25 +40,44 @@
                                     <action selector="infoButtonPressed:" destination="pYe-ZF-cyK" eventType="touchUpInside" id="dAs-WQ-Ie9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Kv-ku-aJh" userLabel="Share Button">
-                                <rect key="frame" x="240" y="8" width="150" height="42"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <state key="normal" title="Поделиться списком"/>
-                                <connections>
-                                    <action selector="shareButtonPressed:" destination="pYe-ZF-cyK" eventType="touchUpInside" id="bxb-ar-v4o"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCF-DM-6az" userLabel="Share View">
+                                <rect key="frame" x="260" y="8" width="134" height="42"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Поделиться списком" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opY-pz-hLT">
+                                        <rect key="frame" x="4" y="0.0" width="103" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tU-bw-Yfc" userLabel="Share Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="134" height="42"/>
+                                        <state key="normal" title=" " image="square.and.arrow.up"/>
+                                        <connections>
+                                            <action selector="shareButtonPressed:" destination="pYe-ZF-cyK" eventType="touchUpInside" id="gtc-4a-540"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="134" id="5Lk-gg-YQB"/>
+                                    <constraint firstItem="7tU-bw-Yfc" firstAttribute="leading" secondItem="aCF-DM-6az" secondAttribute="leading" id="EzQ-BN-VXR"/>
+                                    <constraint firstItem="7tU-bw-Yfc" firstAttribute="top" secondItem="aCF-DM-6az" secondAttribute="top" id="PgE-AH-H4J"/>
+                                    <constraint firstAttribute="trailing" secondItem="7tU-bw-Yfc" secondAttribute="trailing" id="YWm-oT-aJh"/>
+                                    <constraint firstAttribute="bottom" secondItem="7tU-bw-Yfc" secondAttribute="bottom" id="lIV-sG-sQk"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99856287239999997" green="0.92149561639999999" blue="0.62666600939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aCF-DM-6az" secondAttribute="trailing" constant="4" id="6mL-kc-xYi"/>
                             <constraint firstItem="G7M-OE-MbY" firstAttribute="top" secondItem="tDv-gG-Yyy" secondAttribute="top" constant="8" id="Exj-jv-iEA"/>
-                            <constraint firstAttribute="bottom" secondItem="4Kv-ku-aJh" secondAttribute="bottom" constant="8" id="Owa-V0-2CU"/>
-                            <constraint firstItem="4Kv-ku-aJh" firstAttribute="top" secondItem="tDv-gG-Yyy" secondAttribute="top" constant="8" id="WY6-ZI-xHk"/>
                             <constraint firstItem="p0H-ns-Bcw" firstAttribute="centerY" secondItem="G7M-OE-MbY" secondAttribute="centerY" id="ZMM-FU-0oO"/>
-                            <constraint firstAttribute="trailing" secondItem="4Kv-ku-aJh" secondAttribute="trailing" constant="8" id="Zjg-eF-uEE"/>
-                            <constraint firstItem="p0H-ns-Bcw" firstAttribute="leading" secondItem="G7M-OE-MbY" secondAttribute="trailing" id="a3e-au-h3d"/>
-                            <constraint firstItem="G7M-OE-MbY" firstAttribute="leading" secondItem="tDv-gG-Yyy" secondAttribute="leading" constant="8" id="afm-4f-UpR"/>
+                            <constraint firstItem="p0H-ns-Bcw" firstAttribute="leading" secondItem="G7M-OE-MbY" secondAttribute="trailing" constant="2" id="a3e-au-h3d"/>
+                            <constraint firstItem="G7M-OE-MbY" firstAttribute="leading" secondItem="tDv-gG-Yyy" secondAttribute="leading" constant="4" id="afm-4f-UpR"/>
+                            <constraint firstAttribute="bottom" secondItem="aCF-DM-6az" secondAttribute="bottom" constant="8" id="b9z-32-4aN"/>
                             <constraint firstAttribute="bottom" secondItem="G7M-OE-MbY" secondAttribute="bottom" constant="8" id="d4D-Qy-TeV"/>
+                            <constraint firstItem="aCF-DM-6az" firstAttribute="top" secondItem="tDv-gG-Yyy" secondAttribute="top" constant="8" id="tTb-D8-p8E"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -75,6 +95,7 @@
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="ListFooterCell"/>
             <connections>
+                <outlet property="shareView" destination="aCF-DM-6az" id="sc8-4Z-V6N"/>
                 <outlet property="totalSumLabel" destination="G7M-OE-MbY" id="toU-dn-ED9"/>
             </connections>
             <point key="canvasLocation" x="-226.08695652173915" y="-147.32142857142856"/>
@@ -82,5 +103,9 @@
     </objects>
     <resources>
         <image name="questionmark.circle" width="20" height="20"/>
+        <image name="square.and.arrow.up" width="17.5" height="23.5"/>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

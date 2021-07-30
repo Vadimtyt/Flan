@@ -14,7 +14,7 @@ class CustomizedCVC: UICollectionViewController {
     var cakes: [Cake] = []
     
     private let itemsPerRow: CGFloat = 2
-    private let sectionPadding: CGFloat = 16
+    private let sectionPadding: CGFloat = 12
     
     private let popoverText = "Здесь находится лишь небольшая часть наших работ, но мы надеемся, что одна из них поможет вам найти идею для индивидуального заказа."
     private let popoverTextFontSize: CGFloat = 22

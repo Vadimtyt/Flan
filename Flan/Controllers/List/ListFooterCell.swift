@@ -13,7 +13,10 @@ class ListFooterCell: UITableViewCell {
     
     @IBOutlet weak var totalSumLabel: UILabel!
     
+    @IBOutlet weak var shareView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        shareView.layer.cornerRadius = 12
     }
 }

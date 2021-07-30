@@ -58,8 +58,8 @@ class ListVC: UIViewController {
     
     func updateTotalSumLabel() {
         let totalSum = getTotalSum()
-        if totalSum > 9999 {
-            totalSumLabel?.text = "Итого: 9999+Р"
+        if totalSum > 99999 {
+            totalSumLabel?.text = "Итого: 99999+Р"
         } else { totalSumLabel?.text = "Итого: ≈\(totalSum)Р" }
     }
     
