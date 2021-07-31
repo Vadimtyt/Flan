@@ -90,8 +90,9 @@ class ListVC: UIViewController {
                     item.count = 0
                 }
                 ListOfMenuItems.shared.clearList()
+                self?.listTableView.deleteSections([0], with: .fade)
                 
-                self?.updateList()
+//                self?.updateList()
                 self?.updateListBadge()
             }
             alert.addAction(clearBuyAction)
@@ -101,8 +102,10 @@ class ListVC: UIViewController {
         if !(completedItems.isEmpty) {
             let clearBuyedAction = UIAlertAction(title: "Очистить список Куплено", style: .destructive) { [weak self] _ in
                 self?.completedItems.removeAll()
+                guard let sectionsCount = self?.listTableView.numberOfSections else { return }
+                self?.listTableView.deleteSections([sectionsCount - 1], with: .fade)
                 
-                self?.updateList()
+//                self?.updateList()
                 self?.updateListBadge()
             }
             alert.addAction(clearBuyedAction)
@@ -113,8 +116,9 @@ class ListVC: UIViewController {
             let clearAllAction = UIAlertAction(title: "Очистить всё", style: .destructive) { [weak self] _ in
                 ListOfMenuItems.shared.clearList()
                 self?.completedItems.removeAll()
+                self?.listTableView.deleteSections([0, 1], with: .fade)
                 
-                self?.updateList()
+                //self?.updateList()
                 self?.updateListBadge()
             }
             alert.addAction(clearAllAction)
@@ -189,6 +193,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         configureButtons()
         if items.isEmpty && completedItems.isEmpty {
             return 0
+        } else if items.isEmpty || completedItems.isEmpty {
+            return 1
         }
         return 2
     }
@@ -203,10 +209,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var numberOfRows = 0
-        if section == 0 {
-            numberOfRows = items.count
-        } else if section == 1 { numberOfRows = completedItems.count}
+        var numberOfRows = items.count
+        if section == 1 || items.isEmpty { numberOfRows = completedItems.count }
         return numberOfRows
     }
     
@@ -216,10 +220,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseHeaderID) as! ListHeaderCell
-        var sectionTitle = ""
-        if section == 0 {
-            sectionTitle = "Купить"
-        } else if section == 1 { sectionTitle = "Куплено" }
+        var sectionTitle = "Купить"
+        if section == 1 || items.isEmpty { sectionTitle = "Куплено" }
         
         cell.configureCell(with: sectionTitle)
         
@@ -227,10 +229,9 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        var height: CGFloat = 0
-        if section == 0 {
-            height = 66
-        }
+        var height: CGFloat = 66
+        if section == 1 || items.isEmpty { height = 0 }
+        
         return height
     }
     
@@ -246,13 +247,12 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseCellID, for: indexPath) as! ListCell
         
-        var list: [MenuItem] = []
-        if indexPath.section == 0 {
-            list = items
-        } else if indexPath.section == 1 { list = completedItems }
+        var list: [MenuItem] = items
+        if indexPath.section == 1 || items.isEmpty { list = completedItems }
+        
         let item = list[indexPath.row]
         var isCompleted = false
-        if indexPath.section == 1 { isCompleted = true }
+        if completedItems.contains(where: {$0 === item}) { isCompleted = true }
         cell.configureCell(with: item, isCompleted: isCompleted, listDelegate: self)
  
         return cell
@@ -261,14 +261,22 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
 
-            if indexPath.section == 0 {
+            if self.items.isEmpty {
+                self.completedItems.remove(at: indexPath.row)
+                if self.completedItems.isEmpty {
+                    self.listTableView.deleteSections([0], with: .fade)
+                } else { self.listTableView.deleteRows(at: [indexPath], with: .left)}
+            } else if indexPath.section == 0 {
                 ListOfMenuItems.shared.removeFromList(item: self.items[indexPath.row])
+                if self.items.isEmpty {
+                    self.listTableView.deleteSections([0], with: .fade)
+                } else { self.listTableView.deleteRows(at: [indexPath], with: .left)}
             } else if indexPath.section == 1 {
                 self.completedItems.remove(at: indexPath.row)
+                if self.completedItems.isEmpty {
+                    self.listTableView.deleteSections([1], with: .fade)
+                } else { self.listTableView.deleteRows(at: [indexPath], with: .left)}
             }
-            if self.items.isEmpty && self.completedItems.isEmpty {
-                self.listTableView.deleteSections([0, 1], with: .top)
-            } else { tableView.deleteRows(at: [indexPath], with: .left) }
             
             self.updateListBadge()
             self.updateTotalSumLabel()
@@ -280,7 +288,10 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         
         
         let completeAction = UIContextualAction(style: .destructive, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            if indexPath.section == 0 {
+            
+            if self.items.isEmpty {
+                self.removeFromCompleted(completedItem: (self.completedItems[indexPath.row]))
+            } else if indexPath.section == 0 {
                 self.addToCompleted(item: (self.items[indexPath.row]))
             } else if indexPath.section == 1 {
                 self.removeFromCompleted(completedItem: (self.completedItems[indexPath.row]))
@@ -289,9 +300,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
             success(true)
         })
         
-        if indexPath.section == 0 {
-            completeAction.title = "Куплено"
-        } else if indexPath.section == 1 {
+        completeAction.title = "Куплено"
+        if items.isEmpty || indexPath.section == 1 {
             completeAction.title = "Купить"
         }
         
@@ -301,7 +311,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.section == 0 else { return }
+        guard indexPath.section == 0 && !items.isEmpty else { return }
         let storyboard = UIStoryboard(name: "MenuDetail", bundle: nil)
             
         guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
@@ -319,11 +329,10 @@ extension ListVC: UpdatingListCellDelegate {
         for index in 0..<items.count {
             if items[index].count == 0 {
                 ListOfMenuItems.shared.removeFromList(item: items[index])
-                if items.isEmpty && completedItems.isEmpty {
-                    listTableView.deleteSections([0, 1], with: .left)
+                if items.isEmpty {
+                    listTableView.deleteSections([0], with: .fade)
                 } else { listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle) }
                 return
-                //break
              }
         }
 
@@ -340,11 +349,15 @@ extension ListVC: UpdatingListCellDelegate {
         let completedItem = MenuItem(item: item)
         
         completedItems.insert(completedItem, at: 0)
-        listTableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .left)
+        if completedItems.count == 1 {
+            listTableView.insertSections([1], with: .automatic)
+        } else { listTableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .left) }
         
         guard let index = items.firstIndex(where: {$0 === item}) else { return }
         ListOfMenuItems.shared.removeFromList(item: item)
-        listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
+        if items.isEmpty {
+            listTableView.deleteSections([0], with: .fade)
+        } else { listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left) }
         
         updateListBadge()
         updateTotalSumLabel()
@@ -359,7 +372,9 @@ extension ListVC: UpdatingListCellDelegate {
             item.count = completedItem.count
             item.selectedMeasurment = completedItem.selectedMeasurment
             ListOfMenuItems.shared.addToList(item: item)
-            listTableView.insertRows(at: [IndexPath(row: (items.count - 1), section: 0)], with: .left)
+            if items.count == 1 {
+                listTableView.insertSections([0], with: .left)
+            } else { listTableView.insertRows(at: [IndexPath(row: (items.count - 1), section: 0)], with: .left) }
         } else if items.contains(where: {$0.name == completedItem.name && $0.selectedMeasurment == completedItem.selectedMeasurment}) {
             item.count += completedItem.count
             guard let indexAtList = items.firstIndex(where: {$0.name == completedItem.name}) else { return }
@@ -368,7 +383,9 @@ extension ListVC: UpdatingListCellDelegate {
         
         guard let completedIndex = completedItems.firstIndex(where: {$0 === completedItem}) else { return }
         completedItems.remove(at: completedIndex)
-        listTableView.deleteRows(at: [IndexPath(row: completedIndex, section: 1)], with: .left)
+        if completedItems.isEmpty {
+            listTableView.deleteSections([1], with: .fade)
+        } else { listTableView.deleteRows(at: [IndexPath(row: completedIndex, section: 1)], with: .left) }
         
         updateListBadge()
         updateTotalSumLabel()

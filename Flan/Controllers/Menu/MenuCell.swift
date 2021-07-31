@@ -64,6 +64,7 @@ class MenuCell: UITableViewCell {
     }
     
     func setupViews() {
+        
         if UIScreen.main.bounds.width <= 320 { priceLabelWidth.constant = 82 }
         countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
         countItemLabel.layer.borderWidth = 2.5
@@ -154,19 +155,19 @@ class MenuCell: UITableViewCell {
     @objc func tapPriceLabel(sender:UITapGestureRecognizer) {
         if item.count == 0 {
             item.selectedMeasurment = 0
-            secondPriceLabel.isHidden = true
-            secondMeasurmentLabel.isHidden = true
-            addButtonPressed(addButton)
         }
+        secondPriceLabel.isHidden = true
+        secondMeasurmentLabel.isHidden = true
+        addButtonPressed(addButton)
     }
     
     @objc func tapSecondPriceLabel(sender:UITapGestureRecognizer) {
         if item.count == 0 {
             item.selectedMeasurment = 1
-            secondPriceLabel.isHidden = true
-            secondMeasurmentLabel.isHidden = true
-            addButtonPressed(addButton)
         }
+        secondPriceLabel.isHidden = true
+        secondMeasurmentLabel.isHidden = true
+        addButtonPressed(addButton)
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {

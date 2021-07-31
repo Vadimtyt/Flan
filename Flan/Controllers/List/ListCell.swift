@@ -67,14 +67,12 @@ class ListCell: UITableViewCell {
         if checkmark {
             removeButton.isEnabled = false
             addButton.isEnabled = false
-            mainView.alpha = 0.7
-            checkmarkButton.alpha = 0.7
+            mainView.alpha = 0.5
             checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill.png"), for: .normal)
         } else {
             removeButton.isEnabled = true
             addButton.isEnabled = true
             mainView.alpha = 1
-            checkmarkButton.alpha = 1
             checkmarkButton.setImage(UIImage(named: "checkmark.circle.png"), for: .normal)
         }
         

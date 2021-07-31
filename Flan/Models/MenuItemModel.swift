@@ -9,13 +9,13 @@ import UIKit
 
 class MenuItem {
     let name: String
+    let category: String
     let prices: [Int]
     let measurements: [String]
-    var selectedMeasurment = 0
-    let category: String
     let imageName: String
     let description: String
     var image = UIImage(named: "Кекс")
+    var selectedMeasurment = 0
     var count = 0
     var isFavorite = false
     
