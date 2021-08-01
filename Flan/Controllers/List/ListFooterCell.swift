@@ -17,6 +17,8 @@ class ListFooterCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        shareView.layer.borderColor =  UIColor.lightGray.cgColor
+        shareView.layer.borderWidth = 2.5
         shareView.layer.cornerRadius = 12
     }
 }

@@ -39,9 +39,10 @@ class ListVC: UIViewController {
     func setupTableView() {
         listTableView.delegate = self
         listTableView.dataSource = self
-        listTableView.showsVerticalScrollIndicator = false
-        listTableView.separatorInset = .zero
-        listTableView.separatorColor = listTableView.backgroundColor
+        //listTableView.showsVerticalScrollIndicator = false
+        listTableView.separatorStyle = .none
+//        listTableView.separatorInset = .zero
+//        listTableView.separatorColor = listTableView.backgroundColor
         listTableView.register(UINib(nibName: reuseCellID, bundle: nil), forCellReuseIdentifier: ListCell.reuseId)
         listTableView.register(UINib(nibName: reuseHeaderID, bundle: nil), forCellReuseIdentifier: ListHeaderCell.reuseId)
         listTableView.register(UINib(nibName: reuseFooterID, bundle: nil), forCellReuseIdentifier: ListFooterCell.reuseId)
@@ -78,57 +79,6 @@ class ListVC: UIViewController {
         let sum = String(getTotalSum())
         list += "\n" + sum
         return list
-    }
-    
-    func clearListAlert() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        // Crear buy action
-        if !(items.isEmpty) {
-            let clearBuyAction = UIAlertAction(title: "Очистить список Купить", style: .destructive) { [weak self] _ in
-                for item in ListOfMenuItems.shared.list {
-                    item.count = 0
-                }
-                ListOfMenuItems.shared.clearList()
-                self?.listTableView.deleteSections([0], with: .fade)
-                
-//                self?.updateList()
-                self?.updateListBadge()
-            }
-            alert.addAction(clearBuyAction)
-        }
-        
-        // Crear buyed action
-        if !(completedItems.isEmpty) {
-            let clearBuyedAction = UIAlertAction(title: "Очистить список Куплено", style: .destructive) { [weak self] _ in
-                self?.completedItems.removeAll()
-                guard let sectionsCount = self?.listTableView.numberOfSections else { return }
-                self?.listTableView.deleteSections([sectionsCount - 1], with: .fade)
-                
-//                self?.updateList()
-                self?.updateListBadge()
-            }
-            alert.addAction(clearBuyedAction)
-        }
-        
-        // Crear all action
-        if !(items.isEmpty || completedItems.isEmpty) {
-            let clearAllAction = UIAlertAction(title: "Очистить всё", style: .destructive) { [weak self] _ in
-                ListOfMenuItems.shared.clearList()
-                self?.completedItems.removeAll()
-                self?.listTableView.deleteSections([0, 1], with: .fade)
-                
-                //self?.updateList()
-                self?.updateListBadge()
-            }
-            alert.addAction(clearAllAction)
-        }
-        
-        // Cancel action
-        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true)
     }
     
     @IBAction func infoButtonPressed(_ sender: UIButton) {
@@ -175,13 +125,64 @@ class ListVC: UIViewController {
         let objectsToShare = [message]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+        activityVC.popoverPresentationController?.sourceView = sender
         self.present(activityVC, animated: true, completion: nil)
     }
     
     @IBAction func clearListButtonPressed(_ sender: UIBarButtonItem) {
         TapticFeedback.shared.tapticFeedback(.medium)
         
-        clearListAlert()
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Crear buy action
+        if !(items.isEmpty) {
+            let clearBuyAction = UIAlertAction(title: "Очистить список Купить", style: .destructive) { [weak self] _ in
+                for item in ListOfMenuItems.shared.list {
+                    item.count = 0
+                }
+                ListOfMenuItems.shared.clearList()
+                self?.listTableView.deleteSections([0], with: .fade)
+                
+                self?.updateListBadge()
+            }
+            alert.addAction(clearBuyAction)
+        }
+        
+        // Crear buyed action
+        if !(completedItems.isEmpty) {
+            let clearBuyedAction = UIAlertAction(title: "Очистить список Куплено", style: .destructive) { [weak self] _ in
+                self?.completedItems.removeAll()
+                guard let sectionsCount = self?.listTableView.numberOfSections else { return }
+                self?.listTableView.deleteSections([sectionsCount - 1], with: .fade)
+                
+                self?.updateListBadge()
+            }
+            alert.addAction(clearBuyedAction)
+        }
+        
+        // Crear all action
+        if !(items.isEmpty || completedItems.isEmpty) {
+            let clearAllAction = UIAlertAction(title: "Очистить всё", style: .destructive) { [weak self] _ in
+                ListOfMenuItems.shared.clearList()
+                self?.completedItems.removeAll()
+                self?.listTableView.deleteSections([0, 1], with: .fade)
+                
+                //self?.updateList()
+                self?.updateListBadge()
+            }
+            alert.addAction(clearAllAction)
+        }
+        
+        // Cancel action
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+        alert.addAction(cancelAction)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverController = alert.popoverPresentationController {
+                popoverController.barButtonItem = sender
+            }
+            present(alert, animated: true, completion: nil)
+        } else { present(alert, animated: true) }
     }
 }
 
@@ -229,7 +230,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        var height: CGFloat = 66
+        var height: CGFloat = 74
         if section == 1 || items.isEmpty { height = 0 }
         
         return height

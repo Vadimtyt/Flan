@@ -72,12 +72,16 @@ class MenuCell: UITableViewCell {
         priceLabel.layer.borderColor =  UIColor.yellow.cgColor
         priceLabel.layer.borderWidth = 2.5
         priceLabel.layer.cornerRadius = 16
+        priceLabel.roundCorners(.allCorners, radius: 16)
         secondPriceLabel.layer.borderColor =  UIColor.yellow.cgColor
         secondPriceLabel.layer.borderWidth = 2.5
         secondPriceLabel.layer.cornerRadius = 16
         backgoundSubwiew.roundCorners([.topRight,.bottomRight], radius: 20)
         imageItemView.roundCorners([.topRight, .bottomRight], radius: 20)
         countItemLabel.roundCorners(.allCorners, radius: 12)
+        
+        removeButton.layer.cornerRadius = 16
+        addButton.layer.cornerRadius = 16
     }
     
     func setupElements() {
@@ -92,17 +96,14 @@ class MenuCell: UITableViewCell {
         
         if item.count == 0 {
             removeButton.isEnabled = false
-            //countItemLabel.isHidden = true
             countItemLabel.text = "0"
             addButton.isEnabled = true
         } else if item.count == 99 {
             removeButton.isEnabled = true
-            //countItemLabel.isHidden = false
             countItemLabel.text = "\(item.count)"
             addButton.isEnabled = false
         } else {
             removeButton.isEnabled = true
-            //countItemLabel.isHidden = false
             countItemLabel.text = "\(item.count)"
             addButton.isEnabled = true
         }
@@ -159,6 +160,11 @@ class MenuCell: UITableViewCell {
         secondPriceLabel.isHidden = true
         secondMeasurmentLabel.isHidden = true
         addButtonPressed(addButton)
+        
+        priceLabel.backgroundColor = .yellow
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.priceLabel.backgroundColor = nil
+        }
     }
     
     @objc func tapSecondPriceLabel(sender:UITapGestureRecognizer) {
@@ -168,6 +174,11 @@ class MenuCell: UITableViewCell {
         secondPriceLabel.isHidden = true
         secondMeasurmentLabel.isHidden = true
         addButtonPressed(addButton)
+        
+        priceLabel.backgroundColor = .yellow
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.priceLabel.backgroundColor = nil
+        }
     }
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
@@ -181,12 +192,17 @@ class MenuCell: UITableViewCell {
             ListOfMenuItems.shared.removeFromList(item: self.item)
             
             removeButton.isEnabled = false
-            //countItemLabel.isHidden = true
+            removeButton.backgroundColor = .yellow
         } else if itemsCount > 1 && itemsCount < 100{
             self.item.count -= 1
             countItemLabel.text = "\(self.item.count)"
             addButton.isEnabled = true
+            removeButton.backgroundColor = .yellow
         } else { print("ошибка в countItemsLabel") }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.removeButton.backgroundColor = nil
+        }
         
         updatePriceLabels()
         updateCellDelegate?.updateListVCBadge()
@@ -199,19 +215,25 @@ class MenuCell: UITableViewCell {
         
         if itemsCount == 0 {
             self.item.count += 1
+            addButton.backgroundColor = .yellow
             countItemLabel.text = "\(self.item.count)"
             ListOfMenuItems.shared.addToList(item: item)
             
             removeButton.isEnabled = true
-            //countItemLabel.isHidden = false
         } else if itemsCount > 0 && itemsCount < 98 {
             self.item.count += 1
+            addButton.backgroundColor = .yellow
             countItemLabel.text = "\(self.item.count)"
         } else if itemsCount == 98 {
             self.item.count += 1
+            addButton.backgroundColor = .yellow
             countItemLabel.text = "\(self.item.count)"
             addButton.isEnabled = false
         } else { print("ошибка в countItemsLabel") }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.addButton.backgroundColor = nil
+        }
         
         updatePriceLabels()
         updateCellDelegate?.updateListVCBadge()
@@ -219,15 +241,18 @@ class MenuCell: UITableViewCell {
     
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
+        animatePressingView(sender)
 
         item.isFavorite = !item.isFavorite
 
-        if item.isFavorite == true {
-            favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
-        } else if item.isFavorite == false { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            if self?.item.isFavorite == true {
+                self?.favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
+            } else if self?.item.isFavorite == false { self?.favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            self?.updateCellDelegate?.updateFavorites()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+                self?.updateCellDelegate?.updateFavorites()
+            }
         }
     }
 }

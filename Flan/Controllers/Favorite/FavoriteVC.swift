@@ -29,10 +29,11 @@ class FavoriteVC: UITableViewController {
     }
     
     func setupTableView() {
-        tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = .groupTableViewBackground
-        tableView.separatorInset = .zero
-        tableView.separatorColor = tableView.backgroundColor
+        tableView.separatorStyle = .none
+//        tableView.showsVerticalScrollIndicator = false
+//        tableView.separatorInset = .zero
+//        tableView.separatorColor = tableView.backgroundColor
     }
 
     func updateBackgound() {

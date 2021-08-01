@@ -53,7 +53,6 @@ extension UITableView {
         messageLabel.textAlignment = .center
         
         UIView.animate(withDuration: 0.5, animations: {
-            
             messageImageView.transform = CGAffineTransform(rotationAngle: .pi / 20)
         }, completion: { (finish) in
             UIView.animate(withDuration: 0.5, animations: {
@@ -70,8 +69,6 @@ extension UITableView {
     }
     
     func restore() {
-        
         self.backgroundView = nil
-        //self.separatorStyle = .singleLine
     }
 }

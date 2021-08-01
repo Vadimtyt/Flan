@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
                                 <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgp-7z-N4S" id="DIj-3k-2gD" customClass="UITextView">
@@ -313,8 +313,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-is-DzV">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="667"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пекарни" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khW-Ip-Xpz">
-                                                <rect key="frame" x="60.000000000000007" y="24" width="110.66666666666669" height="32"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пекарни     " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khW-Ip-Xpz">
+                                                <rect key="frame" x="60" y="16" width="141" height="48"/>
+                                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -366,9 +367,9 @@
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zCh-uR-4eD" secondAttribute="bottom" constant="18" id="Wdm-Ic-I1s"/>
                                             <constraint firstItem="khW-Ip-Xpz" firstAttribute="leading" secondItem="pLq-is-DzV" secondAttribute="leading" constant="60" id="djK-YW-kFC"/>
                                             <constraint firstItem="KCi-38-oeo" firstAttribute="centerX" secondItem="pLq-is-DzV" secondAttribute="centerX" id="gav-3X-nmP"/>
-                                            <constraint firstItem="khW-Ip-Xpz" firstAttribute="top" secondItem="pLq-is-DzV" secondAttribute="top" constant="24" id="puB-H0-fOg"/>
+                                            <constraint firstItem="khW-Ip-Xpz" firstAttribute="top" secondItem="pLq-is-DzV" secondAttribute="top" constant="16" id="puB-H0-fOg"/>
                                             <constraint firstItem="zCh-uR-4eD" firstAttribute="top" secondItem="KCi-38-oeo" secondAttribute="bottom" constant="24" id="rf8-v8-qGO"/>
-                                            <constraint firstItem="KCi-38-oeo" firstAttribute="top" secondItem="khW-Ip-Xpz" secondAttribute="bottom" constant="20" id="rqJ-dn-7Sb"/>
+                                            <constraint firstItem="KCi-38-oeo" firstAttribute="top" secondItem="khW-Ip-Xpz" secondAttribute="bottom" constant="12" id="rqJ-dn-7Sb"/>
                                             <constraint firstItem="KCi-38-oeo" firstAttribute="leading" secondItem="pLq-is-DzV" secondAttribute="leading" id="zxm-sE-LhQ"/>
                                         </constraints>
                                     </view>
@@ -397,6 +398,7 @@
                     <connections>
                         <outlet property="bakeriesTableView" destination="KCi-38-oeo" id="CvL-GS-jev"/>
                         <outlet property="feedbackButton" destination="zCh-uR-4eD" id="T9H-iv-5i1"/>
+                        <outlet property="headerLabel" destination="khW-Ip-Xpz" id="97t-bR-ik5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKa-xR-ig2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -457,6 +459,9 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>

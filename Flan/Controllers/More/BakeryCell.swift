@@ -50,11 +50,13 @@ class BakeryCell: UITableViewCell {
     
     @IBAction func phoneButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.medium)
+        animatePressingView(sender)
         bakeryCellDelegate?.callPhone(with: tag)
     }
     
     @IBAction func mapButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
+        animatePressingView(sender)
         bakeryCellDelegate?.openMap(with: tag)
     }
 }

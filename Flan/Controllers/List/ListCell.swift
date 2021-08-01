@@ -85,6 +85,9 @@ class ListCell: UITableViewCell {
         countItemLabel.layer.borderWidth = 2.5
         countItemLabel.layer.cornerRadius = 16
         countItemLabel.roundCorners(.allCorners, radius: 16)
+        
+        removeButton.layer.cornerRadius = 16
+        addButton.layer.cornerRadius = 16
     }
     
     func resetAll() {
@@ -99,10 +102,16 @@ class ListCell: UITableViewCell {
         TapticFeedback.shared.tapticFeedback(.light)
         
          self.item.count -= 1
+        removeButton.backgroundColor = .yellow
+        
         if self.item.count < 99  {
             addButton.isEnabled = true
         }
         countItemLabel.text = "\(self.item.count)"
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.removeButton.backgroundColor = nil
+        }
         
         self.listDelegate?.updateList()
         self.listDelegate?.updateListBadge()
@@ -112,16 +121,22 @@ class ListCell: UITableViewCell {
         TapticFeedback.shared.tapticFeedback(.light)
         
         self.item.count += 1
+        addButton.backgroundColor = .yellow
         if self.item.count == 99 {
             addButton.isEnabled = false
         }
         countItemLabel.text = "\(self.item.count)"
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.addButton.backgroundColor = nil
+        }
         
         self.listDelegate?.updateList()
         self.listDelegate?.updateListBadge()
     }
     
     @IBAction func checkmarkButtonPressed(_ sender: UIButton) {
+        animatePressingView(sender)
         checkmark = !checkmark
         if checkmark {
             checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill.png"), for: .normal)

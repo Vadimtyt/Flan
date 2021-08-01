@@ -134,12 +134,14 @@ class MenuDetailVC: UIViewController {
     
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
+        animatePressingView(sender)
         
         item.isFavorite = !item.isFavorite
-        
-        if item.isFavorite == true {
-            favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
-        } else if item.isFavorite == false { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            if self?.item.isFavorite == true {
+                self?.favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
+            } else if self?.item.isFavorite == false { self?.favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
+        }
         
         updateCellDelegate?.updateFavorites()
     }

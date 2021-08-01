@@ -22,17 +22,22 @@ class MoreVC: UIViewController {
     //var bakeries: [Bakery] = []
     let countOfbakeries = 4
     
+    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var bakeriesTableView: UITableView!
     @IBOutlet weak var feedbackButton: UIButton!
     
     override func viewDidLoad() {
+        
         bakeriesTableView.delegate = self
         bakeriesTableView.dataSource = self
         bakeriesTableView.isScrollEnabled = false
         
         bakeriesTableView.register(UINib(nibName: "BakeryCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        headerLabel.roundCorners(.allCorners, radius: 14)
         bakeriesTableView.layer.cornerRadius = 16
-        
         feedbackButton.layer.cornerRadius = 16
         
         bakeriesTableView.separatorColor = .black
@@ -41,6 +46,8 @@ class MoreVC: UIViewController {
     }
     
     @IBAction func instagramButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.medium)
+        animatePressingView(sender)
         let Username = "pekarnya_flan" // Instagram Username here
         let appURL = URL(string: "instagram://user?username=\(Username)")!
         let application = UIApplication.shared
@@ -55,6 +62,8 @@ class MoreVC: UIViewController {
     }
     
     @IBAction func feedbackButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
+        animatePressingView(sender)
         sendEmail(subject: NSLocalizedString("Идея для приложения Флан", comment: ""),
                   messageBody: NSLocalizedString("Напишите здесь Вашу идею или предложение по улучшению приложения Флан", comment: ""),
                   to: "vadimtyt@mail.ru")

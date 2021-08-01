@@ -13,7 +13,7 @@ class CustomizedCVC: UICollectionViewController {
     
     var cakes: [Cake] = []
     
-    private let itemsPerRow: CGFloat = 2
+    private var itemsPerRow: CGFloat = 2
     private let sectionPadding: CGFloat = 12
     
     private let popoverText = "Здесь находится лишь небольшая часть наших работ, но мы надеемся, что одна из них поможет вам найти идею для индивидуального заказа."
@@ -23,8 +23,12 @@ class CustomizedCVC: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            itemsPerRow = 3
+        }
 
-        collectionView.showsVerticalScrollIndicator = false
+        //collectionView.showsVerticalScrollIndicator = false
         configureNavigationBarLargeStyle()
     }
 

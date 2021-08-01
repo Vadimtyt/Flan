@@ -151,7 +151,7 @@
                                     <constraint firstAttribute="height" constant="168" id="my7-14-h7p"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQp-Hz-M73" userLabel="Favorite Button">
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQp-Hz-M73" userLabel="Favorite Button">
                                 <rect key="frame" x="350" y="40" width="36" height="36"/>
                                 <color key="backgroundColor" red="0.63451051709999995" green="0.13441574570000001" blue="0.1447354555" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>

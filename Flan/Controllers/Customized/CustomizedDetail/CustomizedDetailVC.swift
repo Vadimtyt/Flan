@@ -64,6 +64,7 @@ class CustomizedDetailVC: UIViewController {
         let image = cake.image
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
+        activityVC.popoverPresentationController?.sourceView = sender
         
         defer { self.present(activityVC, animated: true, completion: nil) }
         
