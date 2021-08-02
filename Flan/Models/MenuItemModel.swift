@@ -122,7 +122,7 @@ let allItems: [MenuItem] = [
     MenuItem(name: "Гимов", category: "Кендибар", prices: [30], measurements: ["шт"], imageName: "Капкейк1", description: "Описание"),
     MenuItem(name: "Корзиночка с йогуртовым кремом", category: "Кендибар", prices: [40], measurements: ["шт"], imageName: "Капкейк2", description: "Описание"),
     MenuItem(name: "Торт бисквитный со сметанным кремом", category: "Суфле", prices: [40], measurements: ["шт"], imageName: "Капкейк3", description: "Он родился как ремейк на тему  детских воспоминаний о вкуснейшем бабушкином торте, выполненном из качественнейших ( как и все домашнее) продуктов по современной технологии. В нем нежнейшие шоколадные бисквиты чередуются с белым сливочным бисквитом , которые прослоены сметано-творожным кремом, тающим во рту."),
-    MenuItem(name: "Безе", category: "Пироги", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+    MenuItem(name: "Безе", category: "Слоеная выпечка", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
     MenuItem(name: "Безе", category: "Печенье", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
     MenuItem(name: "Безе", category: "Кондитерка", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
     MenuItem(name: "Безе", category: "Пицца", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
