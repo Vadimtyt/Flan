@@ -9,12 +9,18 @@ import UIKit
 
 class TapBarController: UITabBarController, UITabBarControllerDelegate {
     
+    // MARK: - Props
+    
     var previousController: UIViewController?
+    
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
     }
+    
+    // MARK: - Funcs
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if previousController == nil {

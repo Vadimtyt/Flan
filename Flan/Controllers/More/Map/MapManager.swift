@@ -10,10 +10,14 @@ import MapKit
 
 class MapManager {
     
+    // MARK: - Props
+    
     let locationManager = CLLocationManager()
     
     var placeCoordinate: CLLocationCoordinate2D?
     let regionInMeters = 500.0
+    
+    // MARK: - Funcs
     
     func setupPlacemarkFor(_ bakery: Bakery, on mapView: MKMapView) {
         let address = bakery.address
@@ -140,6 +144,8 @@ class MapManager {
         return request
     }
 }
+
+// MARK: - Map manager
 
 extension MapManager {
     func turnOnLocationAlert(message: String) {

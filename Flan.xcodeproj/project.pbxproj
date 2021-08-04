@@ -30,6 +30,7 @@
 		C1600D27264EF65700D06F31 /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1600D26264EF65700D06F31 /* ExtensionViewController.swift */; };
 		C1600D2B26515B5900D06F31 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1600D2A26515B5900D06F31 /* MapManager.swift */; };
 		C195513726B57C5500B38B59 /* ExtensionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195513626B57C5500B38B59 /* ExtensionTableViewCell.swift */; };
+		C195513926BAD2EE00B38B59 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195513826BAD2EE00B38B59 /* ExtensionView.swift */; };
 		C19C8BEB261625EA0039CA79 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19C8BEA261625EA0039CA79 /* MenuVC.swift */; };
 		C19C8BF0261740670039CA79 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19C8BEF261740670039CA79 /* MenuCell.swift */; };
 		C19C8BF8261741050039CA79 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19C8BF7261741050039CA79 /* MenuCell.xib */; };
@@ -82,6 +83,7 @@
 		C1600D26264EF65700D06F31 /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
 		C1600D2A26515B5900D06F31 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		C195513626B57C5500B38B59 /* ExtensionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTableViewCell.swift; sourceTree = "<group>"; };
+		C195513826BAD2EE00B38B59 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		C19C8BEA261625EA0039CA79 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		C19C8BEF261740670039CA79 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		C19C8BF7261741050039CA79 /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				C1600D26264EF65700D06F31 /* ExtensionViewController.swift */,
 				C1EE51B926A1EF9C001126DA /* ExtensionTableView.swift */,
 				C195513626B57C5500B38B59 /* ExtensionTableViewCell.swift */,
+				C195513826BAD2EE00B38B59 /* ExtensionView.swift */,
 				C1AD6A54265BC6DF007DFBE9 /* InfoPopover.swift */,
 				C1AD6A50265BC3FF007DFBE9 /* InfoPopover.xib */,
 				C19C8BEE261740100039CA79 /* Menu */,
@@ -399,6 +402,7 @@
 				C15AD175265F0F8F00E8E02F /* CategoriesVC.swift in Sources */,
 				C1AD6A422659223D007DFBE9 /* PresentationController.swift in Sources */,
 				C1AD6A3026585138007DFBE9 /* CustomizedCell.swift in Sources */,
+				C195513926BAD2EE00B38B59 /* ExtensionView.swift in Sources */,
 				C15C409A2645CD670053910A /* BakeryCell.swift in Sources */,
 				C1C7BF6826B054620047DEF0 /* ListFooterCell.swift in Sources */,
 				C19C8BEB261625EA0039CA79 /* MenuVC.swift in Sources */,

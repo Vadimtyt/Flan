@@ -13,6 +13,8 @@ private let reuseCellID = "MenuCell"
 
 class MenuVC: UITableViewController {
     
+    // MARK: - Props
+    
     var categories: [(category: String, items: [MenuItem])] { get { return ListOfMenuItems.shared.categories }}
     var items: [MenuItem] { get { return ListOfMenuItems.shared.items } }
     
@@ -29,6 +31,8 @@ class MenuVC: UITableViewController {
     }
     var isKeyboardPresented = false
 
+    // MARK: - Initialization
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: reuseHeaderID, bundle: nil), forCellReuseIdentifier: MenuHeaderCell.reuseId)
@@ -50,6 +54,8 @@ class MenuVC: UITableViewController {
                 self.tableView.reloadData()
         }
     }
+    
+    // MARK: - Funcs
     
     func checkNetworkConnecion() {
         if networkCheck.currentStatus == .satisfied{
@@ -78,6 +84,8 @@ class MenuVC: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = false
     }
+    
+    // MARK: - @objc funcs
     
     @objc func keyboardDidShow(notification: NSNotification) {
         isKeyboardPresented = true
@@ -162,6 +170,8 @@ class MenuVC: UITableViewController {
         if isKeyboardPresented { dismissKeyboard() }
     }
     
+    // MARK: - @IBactions
+    
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
         searchController.isActive = true
     }
@@ -181,6 +191,7 @@ class MenuVC: UITableViewController {
 }
 
 extension MenuVC: NetworkCheckObserver {
+    // MARK: - Network check observer
     
     func statusDidChange(status: NWPath.Status) {
         if status == .satisfied {
@@ -192,6 +203,8 @@ extension MenuVC: NetworkCheckObserver {
 }
 
 extension MenuVC: UISearchResultsUpdating {
+    // MARK: - Search results
+    
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
@@ -234,7 +247,10 @@ extension MenuVC: UIViewControllerTransitioningDelegate {
     }
 }
 
+// MARK: - Updating menu cell delegate
+
 extension MenuVC: UpdatingMenuCellDelegate {
+    
     
     func updateListVCBadge() {
         let badgeValue = ListOfMenuItems.shared.getValueForListBadge()

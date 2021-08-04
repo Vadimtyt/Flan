@@ -8,10 +8,16 @@
 import UIKit
 
 class CustomizedCell: UICollectionViewCell {
+
+    // MARK: - Props
     
     var cake = Cake(number: 0, image: UIImage.init(named: "Кекс")!)
     
+    // MARK: - @IBOutlets
+    
     @IBOutlet weak var cakeImage: UIImageView!
+    
+    // MARK: - Funcs
     
     func configureWith(cake: Cake) {
         self.cake = cake

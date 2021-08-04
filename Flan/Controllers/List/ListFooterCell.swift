@@ -9,11 +9,17 @@ import UIKit
 
 class ListFooterCell: UITableViewCell {
     
+    // MARK: - Props
+    
     static let reuseId = "ListFooterCell"
+    
+    // MARK: - @IBOutlets
     
     @IBOutlet weak var totalSumLabel: UILabel!
     
     @IBOutlet weak var shareView: UIView!
+    
+    // MARK: - Initialization
     
     override func awakeFromNib() {
         super.awakeFromNib()

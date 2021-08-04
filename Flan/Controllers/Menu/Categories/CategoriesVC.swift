@@ -118,6 +118,8 @@ class CategoriesVC: UIViewController {
     
 }
 
+// MARK: - Table view data source
+
 extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

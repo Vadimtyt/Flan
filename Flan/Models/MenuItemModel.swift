@@ -8,6 +8,9 @@
 import UIKit
 
 class MenuItem {
+    
+    // MARK: - Props
+    
     let name: String
     let category: String
     let prices: [Int]
@@ -18,6 +21,8 @@ class MenuItem {
     var selectedMeasurment = 0
     var count = 0
     var isFavorite = false
+    
+    // MARK: - Initializations
     
     init(name: String, category: String, prices: [Int], measurements: [String], imageName: String, description: String) {
         self.name = name
@@ -44,12 +49,17 @@ class MenuItem {
 }
 
 class ListOfMenuItems {
+    
+    // MARK: - Props
+    
     static let shared = ListOfMenuItems()
     var items: [MenuItem] = allItems
     var favorites: [MenuItem] = []
     var list: [MenuItem] = []
     
     lazy var categories = configureCategories()
+    
+    // MARK: - Funcs
     
     func addToList(item: MenuItem) {
         guard (list.firstIndex(where: { $0 === item }) == nil) else { return }

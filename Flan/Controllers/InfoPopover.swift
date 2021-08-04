@@ -9,12 +9,18 @@ import UIKit
     
 class InfoPopover: UIViewController {
     
+    // MARK: - Props
+    
     private let text: String
     private let fontSize: CGFloat
     private let topConstraint: CGFloat
     
+    // MARK: - @IBOutet
+    
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var constraintTop: NSLayoutConstraint!
+    
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,12 +11,18 @@ class MenuHeaderCell: UITableViewCell {
     
     static let reuseId = "MenuHeaderCell"
     
+    // MARK: - @IBOutlets
+    
     @IBOutlet weak var labelBackgroundView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
+    
+    // MARK: - Initialization
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    // MARK: - Funcs
     
     func configureCell(with header: String) {
         labelBackgroundView.layer.cornerRadius = 16

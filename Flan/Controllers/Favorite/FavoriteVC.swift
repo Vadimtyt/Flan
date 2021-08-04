@@ -11,8 +11,12 @@ private let reuseIdentifier = "MenuCell"
 
 class FavoriteVC: UITableViewController {
     
+    // MARK: - Props
+    
     var items: [MenuItem] { get { return ListOfMenuItems.shared.favorites } }
 
+    // MARK: - Initialization
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
@@ -27,6 +31,8 @@ class FavoriteVC: UITableViewController {
         }
         tableView.reloadData()
     }
+    
+    // MARK: - Funcs
     
     func setupTableView() {
         tableView.backgroundColor = .groupTableViewBackground
@@ -93,7 +99,10 @@ class FavoriteVC: UITableViewController {
     }
 }
 
+// MARK: - Updating MenuCell delegate
+
 extension FavoriteVC: UpdatingMenuCellDelegate {
+    
     func updateListVCBadge() {
         let badgeValue = ListOfMenuItems.shared.getValueForListBadge()
         updateListVCBadge(with: badgeValue)

@@ -13,16 +13,22 @@ private let reuseFooterID = "ListFooterCell"
 
 class ListVC: UIViewController {
     
+    // MARK: - Props
+    
     var items: [MenuItem] { get { return ListOfMenuItems.shared.list } }
     var completedItems: [MenuItem] = []
     
     private let popUpText = "В этом поле указывается приблизительная сумма, она не учитывает фактический вес всех позиций, цену упаковочных изделий и т.п. Эта сумма отображается исключительно в ознакомительных целях."
     private let popUpTextFontSize: CGFloat = 18
     
+    // MARK: - @IBOutlets
+    
     @IBOutlet weak var listTableView: UITableView!
     @IBOutlet weak var clearBarButton: UIBarButtonItem!
     
     weak var totalSumLabel: UILabel?
+    
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +41,8 @@ class ListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         updateList()
     }
+    
+    // MARK: - Funcs
     
     func setupTableView() {
         listTableView.delegate = self
@@ -80,6 +88,8 @@ class ListVC: UIViewController {
         list += "\n" + sum
         return list
     }
+    
+    // MARK: - @IBActions
     
     @IBAction func infoButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
@@ -185,6 +195,8 @@ class ListVC: UIViewController {
         } else { present(alert, animated: true) }
     }
 }
+
+// MARK: - Table view data source
 
 extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -324,6 +336,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - Updationg ListCell delegate
+
 extension ListVC: UpdatingListCellDelegate {
 
     func updateList() {
@@ -392,6 +406,8 @@ extension ListVC: UpdatingListCellDelegate {
         updateTotalSumLabel()
     }
 }
+
+// MARK: - Updationg MenuCell delegate
 
 extension ListVC: UpdatingMenuCellDelegate {
     func updateListVCBadge() {

@@ -7,18 +7,26 @@
 
 import UIKit
 
+// MARK: - Protocol
+
 protocol UpdatingMenuDetailVCDelegate: AnyObject {
     func updateCell(with itemCount: Int)
 }
     
 class CountPickerPopover: UIViewController {
     
+    // MARK: - Protocol
+    
     private let currentCount: Int
     let pickerData = Array(0...99)
     
     weak var updatingMenuDetailVCDelegate: UpdatingMenuDetailVCDelegate!
     
+    // MARK: - @IBOutlets
+    
     @IBOutlet weak var countPicker: UIPickerView!
+    
+    // MARK: - Initialiszation
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +52,14 @@ class CountPickerPopover: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Funcs
+    
     func updateItemCount() {
         let itemCount = countPicker.selectedRow(inComponent: 0)
         updatingMenuDetailVCDelegate.updateCell(with: itemCount)
     }
+    
+    // MARK: - @IBActions
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         updateItemCount()
@@ -55,7 +67,10 @@ class CountPickerPopover: UIViewController {
     }
 }
 
+// MARK: - UIPickerView data sourse
+
 extension CountPickerPopover: UIPickerViewDelegate, UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Protocol
+
 protocol BakeryCellDelegate: AnyObject {
     func callPhone(with tag: Int)
     func openMap(with tag: Int)
@@ -14,8 +16,12 @@ protocol BakeryCellDelegate: AnyObject {
 
 class BakeryCell: UITableViewCell {
     
+    // MARK: - Props
+    
     static let reuseId = "BakeryCell"
     weak var bakeryCellDelegate: BakeryCellDelegate?
+    
+    // MARK: - @IBOutlets
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var workTimeLabel: UILabel!
@@ -25,6 +31,8 @@ class BakeryCell: UITableViewCell {
     @IBOutlet weak var mapButton: UIButton!
     
     @IBOutlet weak var mainView: UIView!
+    
+    // MARK: - Initialization
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,6 +45,8 @@ class BakeryCell: UITableViewCell {
         mapButton.layer.cornerRadius = 8
         mainView.layer.cornerRadius = 16
     }
+    
+    // MARK: - Funcs
 
     func configureCell(with bakery: Bakery, and tag: Int) {
         selectionStyle = .none
@@ -47,6 +57,8 @@ class BakeryCell: UITableViewCell {
         
         self.tag = tag
     }
+    
+    // MARK: - @IBActions
     
     @IBAction func phoneButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.medium)

@@ -10,16 +10,22 @@ import MapKit
 
 class MapVC: UIViewController {
     
+    // MARK: - Props
+    
     let mapManager = MapManager()
     
     var bakery: Bakery!
     let annotationID = "annotationID"
+    
+    // MARK: - @IBOutlets
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var distanceAndTimeLabel: UILabel!
     @IBOutlet weak var startRouteButton: UIButton!
     
     @IBOutlet weak var distanceAndTimeView: UIView!
+    
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +35,8 @@ class MapVC: UIViewController {
         setupMapView()
     }
     
+    // MARK: - funcs
+    
     private func setupMapView() {
         mapManager.checkLocationServices(mapView: mapView) {
             mapManager.locationManager.delegate = self
@@ -36,6 +44,8 @@ class MapVC: UIViewController {
         
         mapManager.setupPlacemarkFor(bakery, on: mapView)
     }
+    
+    // MARK: - @IBActions
     
     @IBAction func closeVC(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.medium)
@@ -63,6 +73,8 @@ class MapVC: UIViewController {
     
 }
 
+// MARK: - MKMap view delegate
+
 extension MapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else { return nil }
@@ -83,6 +95,8 @@ extension MapVC: MKMapViewDelegate {
         return renderer
     }
 }
+
+// MARK: - CLLocation manager delegate
 
 extension MapVC: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Protocol
+
 protocol UpdatingMenuCellDelegate: AnyObject {
     func updateListVCBadge()
     func updateFavorites()
@@ -15,6 +17,8 @@ protocol UpdatingMenuCellDelegate: AnyObject {
 
 class MenuCell: UITableViewCell {
     
+    // MARK: - Props
+    
     let indexOfListVC = 2
     
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
@@ -22,6 +26,7 @@ class MenuCell: UITableViewCell {
     static let reuseId = "MenuCell"
     var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
     
+    // MARK: - @IBOutlets
     @IBOutlet weak var backgoundSubwiew: UIView!
     @IBOutlet weak var imageItemView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -37,6 +42,7 @@ class MenuCell: UITableViewCell {
     
     @IBOutlet weak var priceLabelWidth: NSLayoutConstraint!
     
+    // MARK: - Initialization
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -58,6 +64,8 @@ class MenuCell: UITableViewCell {
         setupViews()
         setupElements()
     }
+    
+    // MARK: - Funcs
     
     func configureCell(with item: MenuItem) {
         self.item = item
@@ -152,6 +160,8 @@ class MenuCell: UITableViewCell {
         addButton.isHidden = false
         secondPriceLabel.isHidden = false
     }
+    
+    // MARK: - @objc funcs
     
     @objc func tapPriceLabel(sender:UITapGestureRecognizer) {
         if item.count == 0 {

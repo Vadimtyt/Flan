@@ -9,7 +9,11 @@ import UIKit
 
 extension UIViewController {
     
+    // MARK: - Props
+    
     static let indexOfListVC = 2
+    
+    // MARK: - Funcs
     
     func configureNavigationBarLargeStyle() {
         self.navigationController?.navigationBar.prefersLargeTitles = true

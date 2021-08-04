@@ -10,15 +10,21 @@ import Photos
 
 class CustomizedDetailVC: UIViewController {
     
+    // MARK: - Props
+    
     var cake: Cake!
     
     var hasSetPointOrigin = false
     var pointOrigin: CGPoint?
     
+    // MARK: - @IBOutlets
+    
     @IBOutlet weak var cakeImage: UIImageView!
     @IBOutlet weak var cakeNumberLabel: UILabel!
     
     @IBOutlet weak var topView: UIView!
+    
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +45,9 @@ class CustomizedDetailVC: UIViewController {
             pointOrigin = self.view.frame.origin
         }
     }
+    
+    // MARK: - @objc funcs
+    
     @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
@@ -57,6 +66,8 @@ class CustomizedDetailVC: UIViewController {
             }
         }
     }
+    
+    // MARK: - @IBActions
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
@@ -80,6 +91,8 @@ class CustomizedDetailVC: UIViewController {
         }
         
     }
+    
+    // MARK: - Funcs
     
     func permissionDeniedAlert() {
         let title = "Запись изображения в галерею недоступна"

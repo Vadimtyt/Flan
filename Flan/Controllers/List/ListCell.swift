@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Protocol
+
 protocol UpdatingListCellDelegate: AnyObject {
     func updateList()
     func updateListBadge()
@@ -16,12 +18,15 @@ protocol UpdatingListCellDelegate: AnyObject {
 
 class ListCell: UITableViewCell {
     
+    // MARK: - Props
+    
     weak var listDelegate: UpdatingListCellDelegate?
     
     static let reuseId = "ListCell"
     var checkmark = false
     var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
     
+    // MARK: - @IBOutlets
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -34,6 +39,8 @@ class ListCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
     
+    // MARK: - Initialization
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -45,6 +52,8 @@ class ListCell: UITableViewCell {
     override func prepareForReuse() {
         resetAll()
     }
+    
+    // MARK: - Funcs
     
     func configureCell(with item: MenuItem, isCompleted: Bool, listDelegate: UpdatingListCellDelegate) {
         self.item = item
@@ -97,6 +106,8 @@ class ListCell: UITableViewCell {
         priceLabel.text = nil
         countItemLabel.text = nil
     }
+    
+    // MARK: - @IBActions
     
     @IBAction func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)

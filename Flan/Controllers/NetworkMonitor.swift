@@ -8,6 +8,8 @@
 import Network
 import UIKit
 
+// MARK: - Protocol
+
 protocol NetworkCheckObserver: AnyObject {
     func statusDidChange(status: NWPath.Status)
 }
@@ -17,6 +19,8 @@ class NetworkCheck {
     struct NetworkChangeObservation {
         weak var observer: NetworkCheckObserver?
     }
+    
+    // MARK: - Props
 
     private var monitor = NWPathMonitor()
     private static let _sharedInstance = NetworkCheck()
@@ -30,6 +34,8 @@ class NetworkCheck {
     class func sharedInstance() -> NetworkCheck {
         return _sharedInstance
     }
+    
+    // MARK: - Initialization
 
     init() {
         monitor.pathUpdateHandler = { [unowned self] path in
@@ -48,6 +54,8 @@ class NetworkCheck {
         }
         monitor.start(queue: DispatchQueue.global(qos: .background))
     }
+    
+    // MARK: - Funcs
 
     func addObserver(observer: NetworkCheckObserver) {
         let id = ObjectIdentifier(observer)

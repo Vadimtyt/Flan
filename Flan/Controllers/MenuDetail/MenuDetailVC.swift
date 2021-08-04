@@ -9,9 +9,13 @@ import UIKit
 
 class MenuDetailVC: UIViewController {
     
+    // MARK: - Props
+    
     var item: MenuItem!
     var indexPath: IndexPath!
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
+    
+    // MARK: - @IBOutlets
     
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var itemImage: UIImageView!
@@ -31,6 +35,8 @@ class MenuDetailVC: UIViewController {
     
     @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
     @IBOutlet weak var bottomViewIdent: NSLayoutConstraint!
+    
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +83,8 @@ class MenuDetailVC: UIViewController {
         if item.count == 0 { item.selectedMeasurment = 0 }
     }
     
+    // MARK: - @objc funcs
+    
     @objc func doneButtonTapped() {
         view.endEditing(true)
     }
@@ -99,6 +107,8 @@ class MenuDetailVC: UIViewController {
         popover.sourceView = countItemLabel
         present(vc, animated: true, completion:nil)
     }
+    
+    // MARK: - Funcs
     
     func setupViews() {
         if item.measurements.count < 2 {
@@ -131,6 +141,8 @@ class MenuDetailVC: UIViewController {
         
         segmentedControl.selectedSegmentIndex = item.selectedMeasurment
     }
+    
+    // MARK: - @IBAction
     
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
@@ -215,8 +227,10 @@ class MenuDetailVC: UIViewController {
     }
 }
 
-extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
+// MARK: Updating MenuDetailVC delegate
 
+extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
+    
     func updateCell(with itemCount: Int) {
         item.count = itemCount
         countItemLabel.text = "\(itemCount)"

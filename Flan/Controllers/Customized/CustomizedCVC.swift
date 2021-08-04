@@ -11,6 +11,7 @@ private let reuseIdentifier = "customizedCell"
 
 class CustomizedCVC: UICollectionViewController {
     
+    // MARK: - Props
     var cakes: [Cake] = []
     
     private var itemsPerRow: CGFloat = 2
@@ -19,7 +20,11 @@ class CustomizedCVC: UICollectionViewController {
     private let popoverText = "Здесь находится лишь небольшая часть наших работ, но мы надеемся, что одна из них поможет вам найти идею для индивидуального заказа."
     private let popoverTextFontSize: CGFloat = 22
     
+    // MARK: - @IBOutlets
+    
     @IBOutlet weak var infoBarButton: UIBarButtonItem!
+    
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +37,7 @@ class CustomizedCVC: UICollectionViewController {
         configureNavigationBarLargeStyle()
     }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - Collection view data source
     
     override func collectionView(_ collectionView: UICollectionView,
                                  viewForSupplementaryElementOfKind kind: String,
@@ -81,6 +86,8 @@ class CustomizedCVC: UICollectionViewController {
         self.present(customizedDetailVC, animated: true, completion: nil)
     }
     
+    // MARK: - @IBActions
+    
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
         TapticFeedback.shared.tapticFeedback(.light)
         
@@ -102,6 +109,9 @@ class CustomizedCVC: UICollectionViewController {
 }
 
 extension CustomizedCVC: UICollectionViewDelegateFlowLayout {
+    
+    // MARK: - Collection view delegate flow layout
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (collectionView.frame.width - sectionPadding * (itemsPerRow + 1)) / itemsPerRow
         return CGSize(width: size, height: size)

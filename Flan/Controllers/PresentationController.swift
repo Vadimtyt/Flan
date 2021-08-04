@@ -9,9 +9,13 @@ import UIKit
 
 class PresentationController: UIPresentationController {
     
+    // MARK: - Props
+    
     let blurEffectView: UIVisualEffectView!
     let blurEffectValue: CGFloat = 0.8
     var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
+    
+    // MARK: - Initialization
     
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
         var blurEffect = UIBlurEffect(style: .extraLight)
@@ -25,6 +29,8 @@ class PresentationController: UIPresentationController {
         self.blurEffectView.isUserInteractionEnabled = true
         self.blurEffectView.addGestureRecognizer(tapGestureRecognizer)
     }
+    
+    // MARK: - Layout
   
     override var frameOfPresentedViewInContainerView: CGRect {
         var indent: CGFloat = 80
@@ -67,16 +73,5 @@ class PresentationController: UIPresentationController {
 
     @objc func dismissController(){
         self.presentedViewController.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension UIView {
-    
-    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners,
-                                cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        layer.mask = mask
     }
 }

@@ -19,12 +19,18 @@ private let bakeries = [
 
 class MoreVC: UIViewController {
     
+    // MARK: - Props
+    
     //var bakeries: [Bakery] = []
     let countOfbakeries = 4
+    
+    // MARK: - @IBOutlets
     
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var bakeriesTableView: UITableView!
     @IBOutlet weak var feedbackButton: UIButton!
+    
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         
@@ -44,6 +50,8 @@ class MoreVC: UIViewController {
         bakeriesTableView.separatorStyle = .singleLine
         bakeriesTableView.separatorInset = .zero
     }
+    
+    // MARK: - @IBActions
     
     @IBAction func instagramButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.medium)
@@ -70,7 +78,10 @@ class MoreVC: UIViewController {
     }
 }
 
+// MARK: - Table view data source
+
 extension MoreVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countOfbakeries
     }
@@ -85,6 +96,8 @@ extension MoreVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: - BaceryCell delegate
 
 extension MoreVC: BakeryCellDelegate {
     func callPhone(with tag: Int) {
@@ -105,6 +118,8 @@ extension MoreVC: BakeryCellDelegate {
         self.present(mapVC, animated: true)
     }
 }
+
+// MARK: - MFMail compose view controller delegate
 
 extension MoreVC: MFMailComposeViewControllerDelegate {
     func sendEmail(subject: String, messageBody: String, to: String){
