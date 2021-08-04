@@ -17,7 +17,7 @@ class ListFooterCell: UITableViewCell {
     
     @IBOutlet weak var totalSumLabel: UILabel!
     
-    @IBOutlet weak var shareView: UIView!
+    @IBOutlet private weak var shareView: UIView!
     
     // MARK: - Initialization
     

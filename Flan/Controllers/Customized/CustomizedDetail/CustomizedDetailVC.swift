@@ -14,8 +14,8 @@ class CustomizedDetailVC: UIViewController {
     
     var cake: Cake!
     
-    var hasSetPointOrigin = false
-    var pointOrigin: CGPoint?
+    private var hasSetPointOrigin = false
+    private var pointOrigin: CGPoint?
     
     // MARK: - @IBOutlets
     
@@ -48,7 +48,7 @@ class CustomizedDetailVC: UIViewController {
     
     // MARK: - @objc funcs
     
-    @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
+    @objc private func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
         // setting x as 0 because we don't want users to move the frame side ways!! Only want straight up or down
@@ -69,7 +69,7 @@ class CustomizedDetailVC: UIViewController {
     
     // MARK: - @IBActions
     
-    @IBAction func shareButtonPressed(_ sender: UIButton) {
+    @IBAction private func shareButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
         let image = cake.image
@@ -94,7 +94,7 @@ class CustomizedDetailVC: UIViewController {
     
     // MARK: - Funcs
     
-    func permissionDeniedAlert() {
+    private func permissionDeniedAlert() {
         let title = "Запись изображения в галерею недоступна"
         let message = "Вероятно, вы запретили приложению добавлять изображения в ваши фото. Если вы сделали это случайно или передумали, вы можете перейти в настройки приложения и разрешите доступ к фото."
         

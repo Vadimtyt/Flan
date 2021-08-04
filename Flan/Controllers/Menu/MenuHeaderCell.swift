@@ -13,8 +13,8 @@ class MenuHeaderCell: UITableViewCell {
     
     // MARK: - @IBOutlets
     
-    @IBOutlet weak var labelBackgroundView: UIView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet private weak var labelBackgroundView: UIView!
+    @IBOutlet private weak var nameLabel: UILabel!
     
     // MARK: - Initialization
     

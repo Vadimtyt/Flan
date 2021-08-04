@@ -12,18 +12,18 @@ class MapVC: UIViewController {
     
     // MARK: - Props
     
-    let mapManager = MapManager()
+    private let mapManager = MapManager()
     
     var bakery: Bakery!
-    let annotationID = "annotationID"
+    private let annotationID = "annotationID"
     
     // MARK: - @IBOutlets
     
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var distanceAndTimeLabel: UILabel!
-    @IBOutlet weak var startRouteButton: UIButton!
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var distanceAndTimeLabel: UILabel!
+    @IBOutlet private weak var startRouteButton: UIButton!
     
-    @IBOutlet weak var distanceAndTimeView: UIView!
+    @IBOutlet private weak var distanceAndTimeView: UIView!
     
     // MARK: - Initialization
     
@@ -47,17 +47,17 @@ class MapVC: UIViewController {
     
     // MARK: - @IBActions
     
-    @IBAction func closeVC(_ sender: UIButton) {
+    @IBAction private func closeVC(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.medium)
         dismiss(animated: true)
     }
     
-    @IBAction func myPositionButtonPressed(_ sender: UIButton) {
+    @IBAction private func myPositionButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         mapManager.showUserLocation(mapView: mapView)
     }
     
-    @IBAction func startRouteButtonPressed(_ sender: UIButton) {
+    @IBAction private func startRouteButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         mapManager.getDirection(mapView: mapView, distanceAndTimeLabel: distanceAndTimeLabel)
         
@@ -103,6 +103,3 @@ extension MapVC: CLLocationManagerDelegate {
         mapManager.checkLocationAuthorisation(mapView: mapView)
     }
 }
-
-
-

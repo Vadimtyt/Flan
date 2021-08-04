@@ -23,14 +23,14 @@ class BakeryCell: UITableViewCell {
     
     // MARK: - @IBOutlets
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var workTimeLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var workTimeLabel: UILabel!
+    @IBOutlet private weak var addressLabel: UILabel!
     
-    @IBOutlet weak var phoneButton: UIButton!
-    @IBOutlet weak var mapButton: UIButton!
+    @IBOutlet private weak var phoneButton: UIButton!
+    @IBOutlet private weak var mapButton: UIButton!
     
-    @IBOutlet weak var mainView: UIView!
+    @IBOutlet private weak var mainView: UIView!
     
     // MARK: - Initialization
     
@@ -60,13 +60,13 @@ class BakeryCell: UITableViewCell {
     
     // MARK: - @IBActions
     
-    @IBAction func phoneButtonPressed(_ sender: UIButton) {
+    @IBAction private func phoneButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.medium)
         animatePressingView(sender)
         bakeryCellDelegate?.callPhone(with: tag)
     }
     
-    @IBAction func mapButtonPressed(_ sender: UIButton) {
+    @IBAction private func mapButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
         bakeryCellDelegate?.openMap(with: tag)

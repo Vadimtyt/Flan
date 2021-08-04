@@ -13,7 +13,7 @@ class FavoriteVC: UITableViewController {
     
     // MARK: - Props
     
-    var items: [MenuItem] { get { return ListOfMenuItems.shared.favorites } }
+    private  var items: [MenuItem] { get { return DataManager.shared.getFavorites() } }
 
     // MARK: - Initialization
     
@@ -34,7 +34,7 @@ class FavoriteVC: UITableViewController {
     
     // MARK: - Funcs
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView.backgroundColor = .groupTableViewBackground
         tableView.separatorStyle = .none
 //        tableView.showsVerticalScrollIndicator = false
@@ -42,7 +42,7 @@ class FavoriteVC: UITableViewController {
 //        tableView.separatorColor = tableView.backgroundColor
     }
 
-    func updateBackgound() {
+    private func updateBackgound() {
         if items.isEmpty {
             tableView.setEmptyView(title: "Пусто",
                                    message: "Чтобы добавить свою вкусняшку в избранное нажмите на иконку сердечка",
@@ -85,7 +85,7 @@ class FavoriteVC: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let removeAction = UIContextualAction(style: .destructive, title:  nil, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
 
-            ListOfMenuItems.shared.removeFromFavorites(item: self.items[indexPath.row])
+            DataManager.shared.removeFromFavorites(item: self.items[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .left)
             self.updateFavorites()
 
@@ -104,17 +104,17 @@ class FavoriteVC: UITableViewController {
 extension FavoriteVC: UpdatingMenuCellDelegate {
     
     func updateListVCBadge() {
-        let badgeValue = ListOfMenuItems.shared.getValueForListBadge()
+        let badgeValue = DataManager.shared.getValueForListBadge()
         updateListVCBadge(with: badgeValue)
     }
     
     func updateFavorites() {
         if let index = items.firstIndex(where: { $0.isFavorite == false }) {
-            ListOfMenuItems.shared.removeFromFavorites(item: items[index])
+            DataManager.shared.removeFromFavorites(item: items[index])
             tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
             return
         }
-        ListOfMenuItems.shared.updateFavorites()
+        DataManager.shared.updateFavorites()
         
         self.tableView.reloadData()
     }

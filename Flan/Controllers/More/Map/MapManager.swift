@@ -14,8 +14,8 @@ class MapManager {
     
     let locationManager = CLLocationManager()
     
-    var placeCoordinate: CLLocationCoordinate2D?
-    let regionInMeters = 500.0
+    private var placeCoordinate: CLLocationCoordinate2D?
+    private let regionInMeters = 500.0
     
     // MARK: - Funcs
     
@@ -130,7 +130,7 @@ class MapManager {
         }
     }
     
-    func createDirectionRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
+    private func createDirectionRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
         guard let destinationCoordinate = self.placeCoordinate else { return nil }
         let startingLocation = MKPlacemark(coordinate: coordinate)
         let destination = MKPlacemark(coordinate: destinationCoordinate)

@@ -24,20 +24,20 @@ class ListCell: UITableViewCell {
     
     static let reuseId = "ListCell"
     var checkmark = false
-    var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
+    private var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
     
     // MARK: - @IBOutlets
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
     
-    @IBOutlet weak var removeButton: UIButton!
-    @IBOutlet weak var countItemLabel: UILabel!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet private weak var removeButton: UIButton!
+    @IBOutlet private weak var countItemLabel: UILabel!
+    @IBOutlet private weak var addButton: UIButton!
     
-    @IBOutlet weak var checkmarkButton: UIButton!
+    @IBOutlet private weak var checkmarkButton: UIButton!
     
-    @IBOutlet weak var mainView: UIView!
+    @IBOutlet private weak var mainView: UIView!
     
     // MARK: - Initialization
     
@@ -88,7 +88,7 @@ class ListCell: UITableViewCell {
         self.listDelegate = listDelegate
     }
     
-    func setupViews() {
+    private func setupViews() {
         checkmarkButton.layer.cornerRadius = 12
         countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
         countItemLabel.layer.borderWidth = 2.5
@@ -99,7 +99,7 @@ class ListCell: UITableViewCell {
         addButton.layer.cornerRadius = 16
     }
     
-    func resetAll() {
+    private func resetAll() {
         checkmarkButton.imageView?.image = nil
         
         nameLabel.text = nil
@@ -109,7 +109,7 @@ class ListCell: UITableViewCell {
     
     // MARK: - @IBActions
     
-    @IBAction func removeButtonPressed(_ sender: UIButton) {
+    @IBAction private func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
          self.item.count -= 1
@@ -128,7 +128,7 @@ class ListCell: UITableViewCell {
         self.listDelegate?.updateListBadge()
     }
     
-    @IBAction func addButtonPressed(_ sender: UIButton) {
+    @IBAction private func addButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
         self.item.count += 1
@@ -146,7 +146,7 @@ class ListCell: UITableViewCell {
         self.listDelegate?.updateListBadge()
     }
     
-    @IBAction func checkmarkButtonPressed(_ sender: UIButton) {
+    @IBAction private func checkmarkButtonPressed(_ sender: UIButton) {
         animatePressingView(sender)
         checkmark = !checkmark
         if checkmark {

@@ -17,24 +17,24 @@ class MenuDetailVC: UIViewController {
     
     // MARK: - @IBOutlets
     
-    @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var itemImage: UIImageView!
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var measurmentLabel: UILabel!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var removeButton: UIButton!
-    @IBOutlet weak var countItemLabel: UILabel!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet private weak var favoriteButton: UIButton!
+    @IBOutlet private weak var itemImage: UIImageView!
+    @IBOutlet private weak var closeButton: UIButton!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var measurmentLabel: UILabel!
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var removeButton: UIButton!
+    @IBOutlet private weak var countItemLabel: UILabel!
+    @IBOutlet private weak var addButton: UIButton!
     
-    @IBOutlet weak var nameView: UIView!
-    @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var priceAndCountView: UIView!
+    @IBOutlet private weak var nameView: UIView!
+    @IBOutlet private weak var bottomView: UIView!
+    @IBOutlet private weak var priceAndCountView: UIView!
     
-    @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var bottomViewIdent: NSLayoutConstraint!
+    @IBOutlet private weak var bottomViewHeight: NSLayoutConstraint!
+    @IBOutlet private weak var bottomViewIdent: NSLayoutConstraint!
     
     // MARK: - Initialization
     
@@ -85,11 +85,11 @@ class MenuDetailVC: UIViewController {
     
     // MARK: - @objc funcs
     
-    @objc func doneButtonTapped() {
+    @objc private func doneButtonTapped() {
         view.endEditing(true)
     }
     
-    @objc func tapFunction(sender:UITapGestureRecognizer) {
+    @objc private func tapFunction(sender:UITapGestureRecognizer) {
         TapticFeedback.shared.tapticFeedback(.light)
         
         let popoverWidth = 300
@@ -110,7 +110,7 @@ class MenuDetailVC: UIViewController {
     
     // MARK: - Funcs
     
-    func setupViews() {
+    private func setupViews() {
         if item.measurements.count < 2 {
             bottomViewHeight.constant = priceAndCountView.bounds.height + 32
         }
@@ -133,7 +133,7 @@ class MenuDetailVC: UIViewController {
         priceAndCountView.layer.cornerRadius = 16
     }
     
-    func  configureSegmentedControl() {
+    private func configureSegmentedControl() {
         segmentedControl.removeAllSegments()
         for index in 0..<item.measurements.count {
             segmentedControl.insertSegment(withTitle: item.measurements[index], at: index, animated: true)
@@ -144,7 +144,7 @@ class MenuDetailVC: UIViewController {
     
     // MARK: - @IBAction
     
-    @IBAction func favoriteButtonPressed(_ sender: UIButton) {
+    @IBAction private func favoriteButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
         
@@ -158,7 +158,7 @@ class MenuDetailVC: UIViewController {
         updateCellDelegate?.updateFavorites()
     }
     
-    @IBAction func removeButtonPressed(_ sender: UIButton) {
+    @IBAction private func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
         let itemsCount = self.item.count
@@ -167,7 +167,7 @@ class MenuDetailVC: UIViewController {
             self.item.count = 0
             countItemLabel.text = "\(self.item.count)"
             
-            ListOfMenuItems.shared.removeFromList(item: self.item)
+            DataManager.shared.removeFromList(item: self.item)
             
             removeButton.isEnabled = false
         } else if itemsCount > 1 {
@@ -179,7 +179,7 @@ class MenuDetailVC: UIViewController {
         updateCellDelegate?.updateCellAt(indexPath: indexPath)
     }
     
-    @IBAction func addButtonPressed(_ sender: UIButton) {
+    @IBAction private func addButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
         item.selectedMeasurment = segmentedControl.selectedSegmentIndex
@@ -190,7 +190,7 @@ class MenuDetailVC: UIViewController {
             self.item.count += 1
             countItemLabel.text = "\(self.item.count)"
             
-            ListOfMenuItems.shared.addToList(item: item)
+            DataManager.shared.addToList(item: item)
             
             removeButton.isEnabled = true
         } else if itemsCount > 0 && itemsCount < 98{
@@ -207,13 +207,13 @@ class MenuDetailVC: UIViewController {
     }
     
     
-    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+    @IBAction private func segmentedControlChanged(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         item.selectedMeasurment = index
         priceLabel.text = "\(item.prices[index])Р"
         measurmentLabel.text = item.measurements[index]
         
-        ListOfMenuItems.shared.removeFromList(item: item)
+        DataManager.shared.removeFromList(item: item)
         countItemLabel.text = "\(item.count)"
         removeButton.isEnabled = false
         
@@ -237,15 +237,15 @@ extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
         if itemCount == 0 {
             removeButton.isEnabled = false
             addButton.isEnabled = true
-            ListOfMenuItems.shared.removeFromList(item: item)
+            DataManager.shared.removeFromList(item: item)
         } else if itemCount > 0 && itemCount < 99 {
             removeButton.isEnabled = true
             addButton.isEnabled = true
-            ListOfMenuItems.shared.addToList(item: item)
+            DataManager.shared.addToList(item: item)
         } else if itemCount == 99 {
             removeButton.isEnabled = true
             addButton.isEnabled = false
-            ListOfMenuItems.shared.addToList(item: item)
+            DataManager.shared.addToList(item: item)
         }
         updateCellDelegate?.updateListVCBadge()
         updateCellDelegate?.updateCellAt(indexPath: indexPath)

@@ -12,7 +12,7 @@ private let reuseIdentifier = "customizedCell"
 class CustomizedCVC: UICollectionViewController {
     
     // MARK: - Props
-    var cakes: [Cake] = []
+    private var cakes: [Cake] = []
     
     private var itemsPerRow: CGFloat = 2
     private let sectionPadding: CGFloat = 12
@@ -22,7 +22,7 @@ class CustomizedCVC: UICollectionViewController {
     
     // MARK: - @IBOutlets
     
-    @IBOutlet weak var infoBarButton: UIBarButtonItem!
+    @IBOutlet private weak var infoBarButton: UIBarButtonItem!
     
     // MARK: - Initialization
     
@@ -88,7 +88,7 @@ class CustomizedCVC: UICollectionViewController {
     
     // MARK: - @IBActions
     
-    @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func infoBarButtonPressed(_ sender: UIBarButtonItem) {
         TapticFeedback.shared.tapticFeedback(.light)
         
         let popoverWidth = 290

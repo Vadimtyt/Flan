@@ -19,28 +19,26 @@ class MenuCell: UITableViewCell {
     
     // MARK: - Props
     
-    let indexOfListVC = 2
-    
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
     
     static let reuseId = "MenuCell"
-    var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
+    private var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
     
     // MARK: - @IBOutlets
-    @IBOutlet weak var backgoundSubwiew: UIView!
-    @IBOutlet weak var imageItemView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var secondPriceLabel: UILabel!
-    @IBOutlet weak var measurmentLabel: UILabel!
-    @IBOutlet weak var secondMeasurmentLabel: UILabel!
+    @IBOutlet private weak var backgoundSubwiew: UIView!
+    @IBOutlet private weak var imageItemView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var favoriteButton: UIButton!
+    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var secondPriceLabel: UILabel!
+    @IBOutlet private weak var measurmentLabel: UILabel!
+    @IBOutlet private weak var secondMeasurmentLabel: UILabel!
     
-    @IBOutlet weak var removeButton: UIButton!
-    @IBOutlet weak var countItemLabel: UILabel!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet private weak var removeButton: UIButton!
+    @IBOutlet private weak var countItemLabel: UILabel!
+    @IBOutlet private weak var addButton: UIButton!
     
-    @IBOutlet weak var priceLabelWidth: NSLayoutConstraint!
+    @IBOutlet private weak var priceLabelWidth: NSLayoutConstraint!
     
     // MARK: - Initialization
     
@@ -71,7 +69,7 @@ class MenuCell: UITableViewCell {
         self.item = item
     }
     
-    func setupViews() {
+    private func setupViews() {
         
         if UIScreen.main.bounds.width <= 320 { priceLabelWidth.constant = 82 }
         countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
@@ -92,7 +90,7 @@ class MenuCell: UITableViewCell {
         addButton.layer.cornerRadius = 16
     }
     
-    func setupElements() {
+    private func setupElements() {
         secondPriceLabel.isHidden = true
         secondMeasurmentLabel.isHidden = true
         
@@ -123,7 +121,7 @@ class MenuCell: UITableViewCell {
         updatePriceLabels()
     }
     
-    func updatePriceLabels() {
+    private func updatePriceLabels() {
         guard item.prices.count > 1 else { return }
         if item.count == 0 {
             priceLabel.text = "\(item.prices[0])Р"
@@ -146,7 +144,7 @@ class MenuCell: UITableViewCell {
         }
     }
     
-    func resetAll() {
+    private func resetAll() {
         imageItemView.image = nil
         nameLabel.text = nil
         favoriteButton.imageView?.image = nil
@@ -163,7 +161,7 @@ class MenuCell: UITableViewCell {
     
     // MARK: - @objc funcs
     
-    @objc func tapPriceLabel(sender:UITapGestureRecognizer) {
+    @objc private func tapPriceLabel(sender:UITapGestureRecognizer) {
         if item.count == 0 {
             item.selectedMeasurment = 0
         }
@@ -177,7 +175,7 @@ class MenuCell: UITableViewCell {
         }
     }
     
-    @objc func tapSecondPriceLabel(sender:UITapGestureRecognizer) {
+    @objc private func tapSecondPriceLabel(sender:UITapGestureRecognizer) {
         if item.count == 0 {
             item.selectedMeasurment = 1
         }
@@ -191,7 +189,7 @@ class MenuCell: UITableViewCell {
         }
     }
     
-    @IBAction func removeButtonPressed(_ sender: UIButton) {
+    @IBAction private func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
         let itemsCount = self.item.count
@@ -199,7 +197,7 @@ class MenuCell: UITableViewCell {
         if itemsCount == 1 {
             self.item.count = 0
             countItemLabel.text = "\(self.item.count)"
-            ListOfMenuItems.shared.removeFromList(item: self.item)
+            DataManager.shared.removeFromList(item: self.item)
             
             removeButton.isEnabled = false
             removeButton.backgroundColor = .yellow
@@ -218,7 +216,7 @@ class MenuCell: UITableViewCell {
         updateCellDelegate?.updateListVCBadge()
     }
     
-    @IBAction func addButtonPressed(_ sender: UIButton) {
+    @IBAction private func addButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
         let itemsCount = self.item.count
@@ -227,7 +225,7 @@ class MenuCell: UITableViewCell {
             self.item.count += 1
             addButton.backgroundColor = .yellow
             countItemLabel.text = "\(self.item.count)"
-            ListOfMenuItems.shared.addToList(item: item)
+            DataManager.shared.addToList(item: item)
             
             removeButton.isEnabled = true
         } else if itemsCount > 0 && itemsCount < 98 {
@@ -249,7 +247,7 @@ class MenuCell: UITableViewCell {
         updateCellDelegate?.updateListVCBadge()
     }
     
-    @IBAction func favoriteButtonPressed(_ sender: UIButton) {
+    @IBAction private func favoriteButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
 

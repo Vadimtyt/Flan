@@ -16,18 +16,19 @@ class CategoriesVC: UIViewController {
     weak var categoriesVCDelegate: CategoriesVCDelegate?
     var categories: [(category: String, items: [MenuItem])] = []
     
-    var hasSetPointOrigin = false
-    var pointOrigin: CGPoint?
-    var isScrollViewAtTopPosition = true
-    var isScrollBeganFromTop = true
-    var isScrollingViewWithTable = false
+    private var hasSetPointOrigin = false
+    private var pointOrigin: CGPoint?
+    private var isScrollViewAtTopPosition = true
+    private var isScrollBeganFromTop = true
+    private var isScrollingViewWithTable = false
     
-    @IBOutlet weak var slideIdicator: UIView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var slideIdicator: UIView!
+    @IBOutlet private weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        modalPresentationStyle = .custom
         configureTableView()
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
@@ -42,7 +43,8 @@ class CategoriesVC: UIViewController {
             hasSetPointOrigin = true
         }
     }
-    @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
+    
+    @objc private func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
         // setting x as 0 because we don't want users to move the frame side ways!! Only want straight up or down
@@ -59,7 +61,7 @@ class CategoriesVC: UIViewController {
         }
     }
     
-    func configureTableView() {
+    private func configureTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.delegate = self
         tableView.dataSource = self

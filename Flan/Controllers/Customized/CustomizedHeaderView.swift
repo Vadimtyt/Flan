@@ -8,5 +8,5 @@
 import UIKit
 
 class CustomizedHeaderView: UICollectionReusableView {
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet private weak var label: UILabel!
 }

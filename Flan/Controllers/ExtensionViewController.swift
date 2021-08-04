@@ -11,7 +11,7 @@ extension UIViewController {
     
     // MARK: - Props
     
-    static let indexOfListVC = 2
+    private static let indexOfListVC = 2
     
     // MARK: - Funcs
     

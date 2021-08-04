@@ -11,7 +11,7 @@ class TapBarController: UITabBarController, UITabBarControllerDelegate {
     
     // MARK: - Props
     
-    var previousController: UIViewController?
+    private var previousController: UIViewController?
     
     // MARK: - Initialization
     

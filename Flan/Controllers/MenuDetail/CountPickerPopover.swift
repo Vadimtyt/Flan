@@ -18,7 +18,7 @@ class CountPickerPopover: UIViewController {
     // MARK: - Protocol
     
     private let currentCount: Int
-    let pickerData = Array(0...99)
+    private let pickerData = Array(0...99)
     
     weak var updatingMenuDetailVCDelegate: UpdatingMenuDetailVCDelegate!
     
@@ -54,14 +54,14 @@ class CountPickerPopover: UIViewController {
     
     // MARK: - Funcs
     
-    func updateItemCount() {
+    private func updateItemCount() {
         let itemCount = countPicker.selectedRow(inComponent: 0)
         updatingMenuDetailVCDelegate.updateCell(with: itemCount)
     }
     
     // MARK: - @IBActions
     
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
+    @IBAction private func doneButtonPressed(_ sender: UIButton) {
         updateItemCount()
         dismiss(animated: true)
     }

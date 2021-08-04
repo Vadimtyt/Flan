@@ -11,11 +11,11 @@ class CustomizedCell: UICollectionViewCell {
 
     // MARK: - Props
     
-    var cake = Cake(number: 0, image: UIImage.init(named: "Кекс")!)
+    private var cake = Cake(number: 0, image: UIImage.init(named: "Кекс")!)
     
     // MARK: - @IBOutlets
     
-    @IBOutlet weak var cakeImage: UIImageView!
+    @IBOutlet private weak var cakeImage: UIImageView!
     
     // MARK: - Funcs
     

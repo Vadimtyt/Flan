@@ -21,14 +21,14 @@ class MoreVC: UIViewController {
     
     // MARK: - Props
     
-    //var bakeries: [Bakery] = []
-    let countOfbakeries = 4
+    //private var bakeries: [Bakery] = []
+    private let countOfbakeries = 4
     
     // MARK: - @IBOutlets
     
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var bakeriesTableView: UITableView!
-    @IBOutlet weak var feedbackButton: UIButton!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var bakeriesTableView: UITableView!
+    @IBOutlet private weak var feedbackButton: UIButton!
     
     // MARK: - Initialization
     
@@ -53,7 +53,7 @@ class MoreVC: UIViewController {
     
     // MARK: - @IBActions
     
-    @IBAction func instagramButtonPressed(_ sender: UIButton) {
+    @IBAction private func instagramButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.medium)
         animatePressingView(sender)
         let Username = "pekarnya_flan" // Instagram Username here
@@ -69,7 +69,7 @@ class MoreVC: UIViewController {
         }
     }
     
-    @IBAction func feedbackButtonPressed(_ sender: UIButton) {
+    @IBAction private func feedbackButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
         sendEmail(subject: NSLocalizedString("Идея для приложения Флан", comment: ""),

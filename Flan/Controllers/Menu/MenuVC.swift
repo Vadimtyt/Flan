@@ -15,12 +15,12 @@ class MenuVC: UITableViewController {
     
     // MARK: - Props
     
-    var categories: [(category: String, items: [MenuItem])] { get { return ListOfMenuItems.shared.categories }}
-    var items: [MenuItem] { get { return ListOfMenuItems.shared.items } }
+    private var categories: [(category: String, items: [MenuItem])] { get { return DataManager.shared.categories }}
+    private var items: [MenuItem] { get { return DataManager.shared.getItems()} }
     
-    var networkCheck = NetworkCheck.sharedInstance()
+    private var networkCheck = NetworkCheck.sharedInstance()
     
-    let searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: nil)
     private var filtredItems: [MenuItem] = []
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
@@ -29,7 +29,7 @@ class MenuVC: UITableViewController {
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
-    var isKeyboardPresented = false
+    private var isKeyboardPresented = false
 
     // MARK: - Initialization
     
@@ -57,7 +57,7 @@ class MenuVC: UITableViewController {
     
     // MARK: - Funcs
     
-    func checkNetworkConnecion() {
+    private func checkNetworkConnecion() {
         if networkCheck.currentStatus == .satisfied{
             //Do nothing
         } else if networkCheck.currentStatus == .unsatisfied {
@@ -66,7 +66,7 @@ class MenuVC: UITableViewController {
         networkCheck.addObserver(observer: self)
     }
     
-    func configureSearchController() {
+    private func configureSearchController() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification,
                                                object:nil)
@@ -87,16 +87,16 @@ class MenuVC: UITableViewController {
     
     // MARK: - @objc funcs
     
-    @objc func keyboardDidShow(notification: NSNotification) {
+    @objc private func keyboardDidShow(notification: NSNotification) {
         isKeyboardPresented = true
     }
 
 
-    @objc func keyboardDidHide(notification: NSNotification) {
+    @objc private func keyboardDidHide(notification: NSNotification) {
         isKeyboardPresented = false
     }
     
-    @objc func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         self.searchController.searchBar.endEditing(true)
     }
 
@@ -182,10 +182,9 @@ class MenuVC: UITableViewController {
         
         guard let categoriesVC = storyboard.instantiateViewController(withIdentifier: "Categories") as? CategoriesVC else { return }
         
-        categoriesVC.categoriesVCDelegate = self
-        categoriesVC.modalPresentationStyle = .custom
-        categoriesVC.categories = categories
         categoriesVC.transitioningDelegate = self
+        categoriesVC.categoriesVCDelegate = self
+        categoriesVC.categories = categories
         self.present(categoriesVC, animated: true, completion: nil)
     }
 }
@@ -253,12 +252,12 @@ extension MenuVC: UpdatingMenuCellDelegate {
     
     
     func updateListVCBadge() {
-        let badgeValue = ListOfMenuItems.shared.getValueForListBadge()
+        let badgeValue = DataManager.shared.getValueForListBadge()
         updateListVCBadge(with: badgeValue)
     }
     
     func updateFavorites() {
-        ListOfMenuItems.shared.updateFavorites()
+        DataManager.shared.updateFavorites()
     }
     
     func updateCellAt(indexPath: IndexPath) {
