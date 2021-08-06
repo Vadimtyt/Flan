@@ -12,7 +12,7 @@ private let reuseIdentifier = "customizedCell"
 class CustomizedCVC: UICollectionViewController {
     
     // MARK: - Props
-    private var cakes: [Cake] = []
+    private var cakes: [Cake] { get { return DataManager.shared.getCakes() } }
     
     private var itemsPerRow: CGFloat = 2
     private let sectionPadding: CGFloat = 12
@@ -55,18 +55,15 @@ class CustomizedCVC: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Int.random(in: 30...40)
+        return cakes.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cakesNames = ["Кекс", "Киш3", "Капкейк1", "Эклер3", "Киш3", "Слойка", "Эклер2", "Эклер1"]
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CustomizedCell
     
-        let cake = Cake(number: indexPath.row + 1, image: UIImage.init(named: cakesNames.randomElement()!)!)
-        cakes.append(cake)
-        
-        cell.configureWith(cake: cakes[indexPath.row])
+        let cake = cakes[indexPath.row]
+        cell.configureWith(cake: cake)
         
         cell.roundCorners(.allCorners, radius: 20)
         

@@ -24,7 +24,7 @@ class ListCell: UITableViewCell {
     
     static let reuseId = "ListCell"
     var checkmark = false
-    private var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
+    private var item: MenuItem = MenuItem(category: "Категория", name: "Имя", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
     
     // MARK: - @IBOutlets
     

@@ -22,7 +22,7 @@ class MenuCell: UITableViewCell {
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
     
     static let reuseId = "MenuCell"
-    private var item: MenuItem = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
+    private var item: MenuItem = MenuItem(category: "Категория", name: "Имя", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
     
     // MARK: - @IBOutlets
     @IBOutlet private weak var backgoundSubwiew: UIView!

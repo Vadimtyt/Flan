@@ -1,5 +1,5 @@
 //
-//  MenuItem.swift
+//  MenuItemModel.swift
 //  Flan
 //
 //  Created by Вадим on 22.03.2021.
@@ -11,8 +11,8 @@ class MenuItem {
     
     // MARK: - Props
     
-    let name: String
     let category: String
+    let name: String
     let prices: [Int]
     let measurements: [String]
     let imageName: String
@@ -24,9 +24,9 @@ class MenuItem {
     
     // MARK: - Initializations
     
-    init(name: String, category: String, prices: [Int], measurements: [String], imageName: String, description: String) {
-        self.name = name
+    init(category: String, name: String, prices: [Int], measurements: [String], imageName: String, description: String) {
         self.category = category
+        self.name = name
         self.prices = prices
         self.measurements = measurements
         self.imageName = imageName
@@ -35,15 +35,16 @@ class MenuItem {
     }
     
     init(item: MenuItem) {
+        self.category = item.category
         self.name = item.name
         self.prices = item.prices
         self.measurements = item.measurements
-        self.selectedMeasurment = item.selectedMeasurment
-        self.category = item.category
         self.imageName = item.imageName
+        self.description = item.description
         self.image = UIImage(named: imageName)
+        self.selectedMeasurment = item.selectedMeasurment
         self.count = item.count
         self.isFavorite = item.isFavorite
-        self.description = item.description
+        
     }
 }

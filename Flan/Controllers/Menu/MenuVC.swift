@@ -15,7 +15,7 @@ class MenuVC: UITableViewController {
     
     // MARK: - Props
     
-    private var categories: [(category: String, items: [MenuItem])] { get { return DataManager.shared.categories }}
+    private var categories: [(category: String, items: [MenuItem])] { get { return DataManager.shared.getCategories() }}
     private var items: [MenuItem] { get { return DataManager.shared.getItems()} }
     
     private var networkCheck = NetworkCheck.sharedInstance()
@@ -138,7 +138,7 @@ class MenuVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseCellID, for: indexPath) as! MenuCell
-        var item = MenuItem(name: "Имя", category: "Категория", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
+        var item = MenuItem(category: "Категория", name: "Имя", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
         
         if isFiltering {
             item = filtredItems[indexPath.row]
@@ -172,11 +172,11 @@ class MenuVC: UITableViewController {
     
     // MARK: - @IBactions
     
-    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func searchButtonPressed(_ sender: UIBarButtonItem) {
         searchController.isActive = true
     }
     
-    @IBAction func categoriesButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func categoriesButtonPressed(_ sender: UIBarButtonItem) {
         
         let storyboard = UIStoryboard(name: "Categories", bundle: nil)
         
@@ -185,6 +185,7 @@ class MenuVC: UITableViewController {
         categoriesVC.transitioningDelegate = self
         categoriesVC.categoriesVCDelegate = self
         categoriesVC.categories = categories
+        categoriesVC.modalPresentationStyle = .custom
         self.present(categoriesVC, animated: true, completion: nil)
     }
 }
