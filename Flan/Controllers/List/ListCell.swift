@@ -23,7 +23,21 @@ class ListCell: UITableViewCell {
     weak var listDelegate: UpdatingListCellDelegate?
     
     static let reuseId = "ListCell"
-    var checkmark = false
+    var checkmark = false {
+        didSet {
+            if checkmark {
+                removeButton.isEnabled = false
+                addButton.isEnabled = false
+                mainView.alpha = 0.5
+                checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill.png"), for: .normal)
+            } else {
+                removeButton.isEnabled = true
+                addButton.isEnabled = true
+                mainView.alpha = 1
+                checkmarkButton.setImage(UIImage(named: "checkmark.circle.png"), for: .normal)
+            }
+        }
+    }
     private var item: MenuItem = MenuItem(category: "Категория", name: "Имя", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
     
     // MARK: - @IBOutlets
@@ -73,17 +87,7 @@ class ListCell: UITableViewCell {
         countItemLabel.text = "\(item.count)"
         
         self.checkmark = isCompleted
-        if checkmark {
-            removeButton.isEnabled = false
-            addButton.isEnabled = false
-            mainView.alpha = 0.5
-            checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill.png"), for: .normal)
-        } else {
-            removeButton.isEnabled = true
-            addButton.isEnabled = true
-            mainView.alpha = 1
-            checkmarkButton.setImage(UIImage(named: "checkmark.circle.png"), for: .normal)
-        }
+        
         
         self.listDelegate = listDelegate
     }

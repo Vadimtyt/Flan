@@ -19,7 +19,7 @@
 		C15AD175265F0F8F00E8E02F /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AD174265F0F8F00E8E02F /* CategoriesVC.swift */; };
 		C15AD17A265F1C5900E8E02F /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15AD179265F1C5900E8E02F /* Categories.storyboard */; };
 		C15C4087264589770053910A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15C4086264589770053910A /* Main.storyboard */; };
-		C15C408D2645C7C00053910A /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C408C2645C7C00053910A /* MoreVC.swift */; };
+		C15C408D2645C7C00053910A /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C408C2645C7C00053910A /* ContactsVC.swift */; };
 		C15C40912645CA420053910A /* BakeryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C40902645CA420053910A /* BakeryModel.swift */; };
 		C15C40972645CCC40053910A /* BakeryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C15C40962645CCC40053910A /* BakeryCell.xib */; };
 		C15C409A2645CD670053910A /* BakeryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C40992645CD670053910A /* BakeryCell.swift */; };
@@ -73,7 +73,7 @@
 		C15AD174265F0F8F00E8E02F /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		C15AD179265F1C5900E8E02F /* Categories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
 		C15C4086264589770053910A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		C15C408C2645C7C00053910A /* MoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
+		C15C408C2645C7C00053910A /* ContactsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 		C15C40902645CA420053910A /* BakeryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryModel.swift; sourceTree = "<group>"; };
 		C15C40962645CCC40053910A /* BakeryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BakeryCell.xib; sourceTree = "<group>"; };
 		C15C40992645CD670053910A /* BakeryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryCell.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 		C15C408B2645C79E0053910A /* More */ = {
 			isa = PBXGroup;
 			children = (
-				C15C408C2645C7C00053910A /* MoreVC.swift */,
+				C15C408C2645C7C00053910A /* ContactsVC.swift */,
 				C15C40992645CD670053910A /* BakeryCell.swift */,
 				C15C40962645CCC40053910A /* BakeryCell.xib */,
 				C15C40CF26480C5B0053910A /* Map */,
@@ -430,7 +430,7 @@
 				C1EE51B4268E7FA2001126DA /* MenuHeaderCell.swift in Sources */,
 				C15C40D226480FBD0053910A /* MapVC.swift in Sources */,
 				C19C8C0C261E07190039CA79 /* ListCell.swift in Sources */,
-				C15C408D2645C7C00053910A /* MoreVC.swift in Sources */,
+				C15C408D2645C7C00053910A /* ContactsVC.swift in Sources */,
 				C11F36C22666CE1200D1E14A /* MenuDetailVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  MoreVC.swift
+//  ContactsVC.swift
 //  Flan
 //
 //  Created by Вадим on 07.05.2021.
@@ -10,7 +10,7 @@ import MessageUI
 
 private let reuseIdentifier = "BakeryCell"
 
-class MoreVC: UIViewController {
+class ContactsVC: UIViewController {
     
     // MARK: - Props
     
@@ -73,7 +73,7 @@ class MoreVC: UIViewController {
 
 // MARK: - Table view data source
 
-extension MoreVC: UITableViewDelegate, UITableViewDataSource {
+extension ContactsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countOfbakeries
@@ -92,7 +92,7 @@ extension MoreVC: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - BaceryCell delegate
 
-extension MoreVC: BakeryCellDelegate {
+extension ContactsVC: BakeryCellDelegate {
     func callPhone(with tag: Int) {
         let phoneNumber = bakeries[tag].phone
         if let phoneCallURL = URL(string: "tel://" + phoneNumber) {
@@ -114,7 +114,7 @@ extension MoreVC: BakeryCellDelegate {
 
 // MARK: - MFMail compose view controller delegate
 
-extension MoreVC: MFMailComposeViewControllerDelegate {
+extension ContactsVC: MFMailComposeViewControllerDelegate {
     func sendEmail(subject: String, messageBody: String, to: String){
         if !MFMailComposeViewController.canSendMail() {
             self.showAlert(title: "Ошибка", message: "Не найден аккаунт вашей почты")

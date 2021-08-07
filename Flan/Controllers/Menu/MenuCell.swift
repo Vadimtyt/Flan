@@ -28,6 +28,7 @@ class MenuCell: UITableViewCell {
     @IBOutlet private weak var backgoundSubwiew: UIView!
     @IBOutlet private weak var imageItemView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var secondPriceLabel: UILabel!
@@ -71,7 +72,10 @@ class MenuCell: UITableViewCell {
     
     private func setupViews() {
         
-        if UIScreen.main.bounds.width <= 320 { priceLabelWidth.constant = 82 }
+        if UIScreen.main.bounds.width <= 320 {
+            nameLabel.adjustsFontSizeToFitWidth = true
+            priceLabelWidth.constant = 82
+        }
         countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
         countItemLabel.layer.borderWidth = 2.5
         countItemLabel.layer.cornerRadius = 16
@@ -116,6 +120,8 @@ class MenuCell: UITableViewCell {
         
         imageItemView.image = item.image
         nameLabel.text = item.name
+        descriptionLabel.text = item.description
+        
         priceLabel.text = "\(item.prices[0])Р"
         measurmentLabel.text = item.measurements[0]
         updatePriceLabels()
@@ -147,12 +153,14 @@ class MenuCell: UITableViewCell {
     private func resetAll() {
         imageItemView.image = nil
         nameLabel.text = nil
+        descriptionLabel.text = nil
         favoriteButton.imageView?.image = nil
         priceLabel.text = nil
         secondPriceLabel.text = nil
         measurmentLabel.text = nil
         secondMeasurmentLabel.text = nil
         
+        descriptionLabel.isHidden = false
         removeButton.isHidden = false
         countItemLabel.isHidden = false
         addButton.isHidden = false

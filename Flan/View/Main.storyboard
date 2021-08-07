@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -19,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
                                 <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgp-7z-N4S" id="DIj-3k-2gD" customClass="UITextView">
@@ -42,11 +43,13 @@
             </objects>
             <point key="canvasLocation" x="1763.0769230769231" y="-145.02369668246445"/>
         </scene>
-        <!--Избранное-->
+        <!--Navigation Controller-->
         <scene sceneID="5c6-QO-MRp">
             <objects>
                 <navigationController id="E9S-NS-A2X" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Избранное" image="heart.fill" catalog="system" id="VLv-jL-gOa"/>
+                    <tabBarItem key="tabBarItem" title="" id="VLv-jL-gOa">
+                        <imageReference key="image" image="Favorites" symbolScale="large"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ilm-8K-hqE">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -67,6 +70,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="VLd-vW-yxZ" kind="relationship" relationship="viewControllers" id="smA-oH-7xI"/>
@@ -191,11 +195,11 @@
             </objects>
             <point key="canvasLocation" x="1759.3457943925232" y="519.65442764578836"/>
         </scene>
-        <!--Заказные-->
+        <!--Navigation Controller-->
         <scene sceneID="rOC-oe-Xu2">
             <objects>
                 <navigationController id="HfP-JA-bO7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Заказные" image="sparkles" catalog="system" id="DjM-6Q-ibA"/>
+                    <tabBarItem key="tabBarItem" title="" image="Customized" id="DjM-6Q-ibA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HDO-wV-ilI">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -282,11 +286,11 @@
             </objects>
             <point key="canvasLocation" x="1761.5384615384614" y="1291.7061611374406"/>
         </scene>
-        <!--Еще-->
+        <!--Navigation Controller-->
         <scene sceneID="i1U-Cy-CxF">
             <objects>
                 <navigationController id="nix-vX-Zqu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Еще" image="info.circle" catalog="system" id="123-K8-dgF"/>
+                    <tabBarItem key="tabBarItem" title="" image="Contacts" id="123-K8-dgF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Q6-8e-bax">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -299,10 +303,10 @@
             </objects>
             <point key="canvasLocation" x="749" y="2266"/>
         </scene>
-        <!--Еще-->
+        <!--Контакты-->
         <scene sceneID="Qmn-Pz-reT">
             <objects>
-                <viewController id="I8a-Tg-YTw" customClass="MoreVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="I8a-Tg-YTw" customClass="ContactsVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BzQ-kP-MuA">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="804"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -357,13 +361,25 @@
                                                     <action selector="feedbackButtonPressed:" destination="I8a-Tg-YTw" eventType="touchUpInside" id="MPk-PI-0IX"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Использованы материалы с ресурса icons8.ru" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CQ-cv-p5l">
+                                                <rect key="frame" x="58" y="644" width="274" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="15" id="KQO-sS-0jP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="KCi-38-oeo" firstAttribute="top" secondItem="BUD-JI-9wL" secondAttribute="bottom" constant="16" id="81Q-vB-itd"/>
                                             <constraint firstItem="zCh-uR-4eD" firstAttribute="leading" secondItem="pLq-is-DzV" secondAttribute="leading" constant="20" id="AD5-af-Y3r"/>
+                                            <constraint firstItem="8CQ-cv-p5l" firstAttribute="top" secondItem="zCh-uR-4eD" secondAttribute="bottom" constant="4" id="AUu-6U-T6J"/>
                                             <constraint firstAttribute="trailing" secondItem="zCh-uR-4eD" secondAttribute="trailing" constant="20" id="CF4-Hb-89m"/>
                                             <constraint firstItem="khW-Ip-Xpz" firstAttribute="centerY" secondItem="BUD-JI-9wL" secondAttribute="centerY" id="HTf-eW-ZUF"/>
+                                            <constraint firstItem="8CQ-cv-p5l" firstAttribute="centerX" secondItem="pLq-is-DzV" secondAttribute="centerX" id="Inc-s1-PDC"/>
+                                            <constraint firstAttribute="bottom" secondItem="8CQ-cv-p5l" secondAttribute="bottom" constant="8" id="Meu-bS-ZQP"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zCh-uR-4eD" secondAttribute="bottom" constant="18" id="Wdm-Ic-I1s"/>
                                             <constraint firstItem="khW-Ip-Xpz" firstAttribute="leading" secondItem="pLq-is-DzV" secondAttribute="leading" constant="60" id="djK-YW-kFC"/>
                                             <constraint firstItem="KCi-38-oeo" firstAttribute="centerX" secondItem="pLq-is-DzV" secondAttribute="centerX" id="gav-3X-nmP"/>
@@ -393,7 +409,7 @@
                             <constraint firstItem="jii-Ss-PFR" firstAttribute="top" secondItem="d8u-xw-R0F" secondAttribute="top" id="ova-It-M7j"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Еще" id="WAn-R4-OdS"/>
+                    <navigationItem key="navigationItem" title="Контакты" id="WAn-R4-OdS"/>
                     <size key="freeformSize" width="390" height="804"/>
                     <connections>
                         <outlet property="bakeriesTableView" destination="KCi-38-oeo" id="CvL-GS-jev"/>
@@ -405,11 +421,11 @@
             </objects>
             <point key="canvasLocation" x="1756.9230769230769" y="2263.507109004739"/>
         </scene>
-        <!--Список-->
+        <!--Navigation Controller-->
         <scene sceneID="8aj-5r-sBg">
             <objects>
                 <navigationController id="Ye6-XQ-66q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Список" image="list.number" catalog="system" id="aUk-rS-C4X"/>
+                    <tabBarItem key="tabBarItem" title="" image="List" id="aUk-rS-C4X"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hUA-Pz-thO">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -422,11 +438,13 @@
             </objects>
             <point key="canvasLocation" x="750" y="522"/>
         </scene>
-        <!--Меню-->
+        <!--Navigation Controller-->
         <scene sceneID="31R-rb-PLK">
             <objects>
                 <navigationController id="VLd-vW-yxZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Меню" image="filemenu.and.selection" catalog="system" id="RHJ-lq-8AD"/>
+                    <tabBarItem key="tabBarItem" title="" id="RHJ-lq-8AD">
+                        <imageReference key="image" image="Menu" renderingMode="template"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XGp-pN-Drt">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -444,17 +462,20 @@
         </scene>
     </scenes>
     <resources>
-        <image name="filemenu.and.selection" catalog="system" width="128" height="93"/>
-        <image name="heart.fill" catalog="system" width="128" height="109"/>
-        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="Contacts" width="30" height="30"/>
+        <image name="Customized" width="30" height="30"/>
+        <image name="Favorites" width="30" height="30"/>
+        <image name="List" width="30" height="30"/>
+        <image name="Menu" width="30" height="30"/>
         <image name="info.circle" width="20" height="20"/>
         <image name="instaIcon" width="512" height="512"/>
         <image name="line.3.horizontal" width="20" height="10"/>
-        <image name="list.number" catalog="system" width="128" height="97"/>
         <image name="magnifyingglass" width="19" height="19.5"/>
-        <image name="sparkles" catalog="system" width="112" height="128"/>
         <image name="trash" width="19" height="23.5"/>
         <image name="Кекс" width="1632" height="1224"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

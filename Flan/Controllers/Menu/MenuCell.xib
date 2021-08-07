@@ -122,13 +122,19 @@
                                     <constraint firstItem="UhF-PN-oZT" firstAttribute="height" secondItem="Hr9-7C-MjJ" secondAttribute="height" id="zu0-Zb-K5K"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euu-Am-soA">
-                                <rect key="frame" x="123" y="4" width="251" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euu-Am-soA">
+                                <rect key="frame" x="123" y="12" width="251" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="mBd-Mq-3N8"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="mBd-Mq-3N8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFq-FM-5Nq" userLabel="Description Label">
+                                <rect key="frame" x="125" y="36" width="273" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Measurment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmL-JV-CLD">
@@ -155,19 +161,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Hr9-7C-MjJ" secondAttribute="bottom" constant="18" id="9jS-ap-DrM"/>
+                            <constraint firstAttribute="trailing" secondItem="XFq-FM-5Nq" secondAttribute="trailing" constant="4" id="BTR-tw-USm"/>
                             <constraint firstItem="Euu-Am-soA" firstAttribute="leading" secondItem="qYp-v1-cKQ" secondAttribute="trailing" constant="8" symbolic="YES" id="J1t-24-eKH"/>
                             <constraint firstItem="qYp-v1-cKQ" firstAttribute="leading" secondItem="zr9-MP-qtO" secondAttribute="leading" id="NWC-8P-Tcw"/>
                             <constraint firstItem="CmL-JV-CLD" firstAttribute="centerX" secondItem="TiK-cc-1sx" secondAttribute="centerX" id="ShF-Le-hZ6"/>
                             <constraint firstItem="CmL-JV-CLD" firstAttribute="top" secondItem="Hr9-7C-MjJ" secondAttribute="bottom" id="WoS-bj-C4a"/>
+                            <constraint firstItem="XFq-FM-5Nq" firstAttribute="top" secondItem="Euu-Am-soA" secondAttribute="bottom" id="Ymh-hr-Bq4"/>
                             <constraint firstItem="qYp-v1-cKQ" firstAttribute="top" secondItem="zr9-MP-qtO" secondAttribute="top" constant="12" id="ZFh-Cl-HTE"/>
                             <constraint firstItem="MIl-zv-7Vk" firstAttribute="leading" secondItem="Euu-Am-soA" secondAttribute="trailing" id="cDj-GN-4ii"/>
                             <constraint firstItem="MIl-zv-7Vk" firstAttribute="top" secondItem="zr9-MP-qtO" secondAttribute="top" id="cFH-ss-ab4"/>
                             <constraint firstAttribute="bottom" secondItem="qYp-v1-cKQ" secondAttribute="bottom" constant="20" id="dIa-gP-RDB"/>
+                            <constraint firstItem="XFq-FM-5Nq" firstAttribute="leading" secondItem="qYp-v1-cKQ" secondAttribute="trailing" constant="10" id="dj0-XI-qig"/>
                             <constraint firstItem="Hr9-7C-MjJ" firstAttribute="leading" secondItem="qYp-v1-cKQ" secondAttribute="trailing" constant="8" symbolic="YES" id="fSY-8i-E7O"/>
                             <constraint firstAttribute="trailing" secondItem="MIl-zv-7Vk" secondAttribute="trailing" id="hsN-2f-RRy"/>
                             <constraint firstAttribute="trailing" secondItem="Hr9-7C-MjJ" secondAttribute="trailing" constant="8" id="hvS-5g-bjm"/>
                             <constraint firstItem="Wgy-AO-4sq" firstAttribute="centerX" secondItem="fG9-Vv-lsZ" secondAttribute="centerX" id="nXu-BA-xdK"/>
-                            <constraint firstItem="Euu-Am-soA" firstAttribute="top" secondItem="zr9-MP-qtO" secondAttribute="top" constant="4" id="rj3-ow-jV2"/>
+                            <constraint firstItem="Euu-Am-soA" firstAttribute="top" secondItem="zr9-MP-qtO" secondAttribute="top" constant="12" id="rj3-ow-jV2"/>
                             <constraint firstItem="Wgy-AO-4sq" firstAttribute="top" secondItem="Hr9-7C-MjJ" secondAttribute="bottom" id="slJ-bt-Gt9"/>
                         </constraints>
                     </view>
@@ -185,6 +194,7 @@
                 <outlet property="addButton" destination="E3V-Fb-cEn" id="TbY-Ze-CgY"/>
                 <outlet property="backgoundSubwiew" destination="zr9-MP-qtO" id="z1p-4S-RDX"/>
                 <outlet property="countItemLabel" destination="ytp-pN-ag1" id="kyz-Nq-FFz"/>
+                <outlet property="descriptionLabel" destination="XFq-FM-5Nq" id="4IJ-TG-nh9"/>
                 <outlet property="favoriteButton" destination="MIl-zv-7Vk" id="HxO-fU-JOx"/>
                 <outlet property="imageItemView" destination="qYp-v1-cKQ" id="Tv5-wx-KeS"/>
                 <outlet property="measurmentLabel" destination="CmL-JV-CLD" id="dTb-F7-Fix"/>
