@@ -47,10 +47,7 @@ class ListVC: UIViewController {
     private func setupTableView() {
         listTableView.delegate = self
         listTableView.dataSource = self
-        //listTableView.showsVerticalScrollIndicator = false
         listTableView.separatorStyle = .none
-//        listTableView.separatorInset = .zero
-//        listTableView.separatorColor = listTableView.backgroundColor
         listTableView.register(UINib(nibName: reuseCellID, bundle: nil), forCellReuseIdentifier: ListCell.reuseId)
         listTableView.register(UINib(nibName: reuseHeaderID, bundle: nil), forCellReuseIdentifier: ListHeaderCell.reuseId)
         listTableView.register(UINib(nibName: reuseFooterID, bundle: nil), forCellReuseIdentifier: ListFooterCell.reuseId)

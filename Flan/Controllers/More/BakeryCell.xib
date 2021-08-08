@@ -45,7 +45,8 @@
                                     <constraint firstAttribute="height" constant="40" id="bSI-b8-jwf"/>
                                     <constraint firstAttribute="width" constant="40" id="jPN-XG-rSv"/>
                                 </constraints>
-                                <state key="normal" image="phone" catalog="system"/>
+                                <color key="tintColor" systemColor="linkColor"/>
+                                <state key="normal" image="phone"/>
                                 <connections>
                                     <action selector="phoneButtonPressed:" destination="kwe-tE-TCk" eventType="touchUpInside" id="DIm-ds-dQ8"/>
                                 </connections>
@@ -57,7 +58,7 @@
                                     <constraint firstAttribute="height" constant="40" id="FNT-rt-4CD"/>
                                     <constraint firstAttribute="width" constant="40" id="Gmj-UQ-ggY"/>
                                 </constraints>
-                                <state key="normal" image="map" catalog="system"/>
+                                <state key="normal" image="map"/>
                                 <connections>
                                     <action selector="mapButtonPressed:" destination="kwe-tE-TCk" eventType="touchUpInside" id="sYN-M5-Qbd"/>
                                 </connections>
@@ -98,8 +99,11 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="map" catalog="system" width="128" height="110"/>
-        <image name="phone" catalog="system" width="128" height="115"/>
+        <image name="map" width="20.5" height="19.5"/>
+        <image name="phone" width="19" height="19"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

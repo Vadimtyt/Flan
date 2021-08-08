@@ -131,6 +131,8 @@ class MenuDetailVC: UIViewController {
         priceLabel.layer.cornerRadius = 16
         bottomView.layer.cornerRadius = 24
         priceAndCountView.layer.cornerRadius = 16
+        removeButton.layer.cornerRadius = 16
+        addButton.layer.cornerRadius = 16
     }
     
     private func configureSegmentedControl() {
@@ -155,6 +157,7 @@ class MenuDetailVC: UIViewController {
             } else if self?.item.isFavorite == false { self?.favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
         }
         
+        updateCellDelegate?.updateCellAt(indexPath: indexPath)
         updateCellDelegate?.updateFavorites()
     }
     
@@ -170,10 +173,16 @@ class MenuDetailVC: UIViewController {
             DataManager.shared.removeFromList(item: self.item)
             
             removeButton.isEnabled = false
+            removeButton.backgroundColor = .yellow
         } else if itemsCount > 1 {
             self.item.count -= 1
             countItemLabel.text = "\(self.item.count)"
+            removeButton.backgroundColor = .yellow
         } else { print("ошибка в countItemsLabel") }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.removeButton.backgroundColor = nil
+        }
         
         updateCellDelegate?.updateListVCBadge()
         updateCellDelegate?.updateCellAt(indexPath: indexPath)
@@ -188,19 +197,25 @@ class MenuDetailVC: UIViewController {
         
         if itemsCount == 0 {
             self.item.count += 1
+            addButton.backgroundColor = .yellow
             countItemLabel.text = "\(self.item.count)"
-            
             DataManager.shared.addToList(item: item)
             
             removeButton.isEnabled = true
         } else if itemsCount > 0 && itemsCount < 98{
             self.item.count += 1
+            addButton.backgroundColor = .yellow
             countItemLabel.text = "\(self.item.count)"
         } else if itemsCount == 98 {
             self.item.count += 1
+            addButton.backgroundColor = .yellow
             countItemLabel.text = "\(self.item.count)"
             addButton.isEnabled = false
         } else { print("ошибка в countItemsLabel") }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.addButton.backgroundColor = nil
+        }
         
         updateCellDelegate?.updateListVCBadge()
         updateCellDelegate?.updateCellAt(indexPath: indexPath)
