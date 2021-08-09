@@ -30,7 +30,9 @@ class MenuItem {
         self.prices = prices
         self.measurements = measurements
         self.imageName = imageName
-        self.image = UIImage(named: imageName)
+        if let image = UIImage(named: imageName) {
+            self.image = image
+        } else { self.image = UIImage(named: "Кекс.jpg")}
         self.description = description
     }
     
@@ -46,5 +48,39 @@ class MenuItem {
         self.count = item.count
         self.isFavorite = item.isFavorite
         
+    }
+    
+    init(menuItemJSON: MenuItemJSON) {
+        self.category = menuItemJSON.category
+        self.name = menuItemJSON.name
+        if menuItemJSON.prices.count == 0 {
+            self.prices = [0]
+        } else { self.prices = menuItemJSON.prices }
+        if menuItemJSON.measurements.count == 0 {
+            self.measurements = [""]
+        } else { self.measurements = menuItemJSON.measurements }
+        self.imageName = menuItemJSON.imageName
+        self.description = menuItemJSON.description
+        if let image = UIImage(named: imageName) {
+            self.image = image
+        } else { self.image = UIImage(named: "Кекс.jpg")}
+    }
+}
+
+class MenuItemJSON: Decodable {
+    let category: String
+    let name: String
+    let prices: [Int]
+    let measurements: [String]
+    let imageName: String
+    let description: String
+    
+    init(from MenuItemJSON: MenuItemJSON) {
+        category = MenuItemJSON.category
+        name = MenuItemJSON.name
+        prices = MenuItemJSON.prices
+        measurements = MenuItemJSON.measurements
+        imageName = MenuItemJSON.imageName
+        description = MenuItemJSON.description
     }
 }

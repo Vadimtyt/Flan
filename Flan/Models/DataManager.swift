@@ -12,18 +12,30 @@ class DataManager {
     // MARK: - Props
     
     static let shared = DataManager()
-    private var items: [MenuItem] = allItems
+    private var items: [MenuItem] = []
     private var favorites: [MenuItem] = []
     private var list: [MenuItem] = []
     private var completedList: [MenuItem] = []
     
-    private lazy var categories = configureCategories()
+    private lazy var categories: [(category: String, items: [MenuItem])] = []
     
     private var cakes: [Cake] = []
     
     private var bakeries: [Bakery] = bakeriesList
     
     // MARK: - Funcs for items
+    
+    func configureItems() {
+        var list: [MenuItem] = []
+        NetworkManager.fetchList { [] listOfItemsJSON in
+            for itemJSON in listOfItemsJSON {
+                let item = MenuItem(menuItemJSON: itemJSON)
+                list.append(item)
+            }
+            self.items = list
+            self.categories = self.configureCategories()
+        }
+    }
     
     func getItems() -> [MenuItem]{
         return items

@@ -67,7 +67,7 @@ class ContactsVC: UIViewController {
         animatePressingView(sender)
         sendEmail(subject: NSLocalizedString("Идея для приложения Флан", comment: ""),
                   messageBody: NSLocalizedString("Напишите здесь Вашу идею или предложение по улучшению приложения Флан", comment: ""),
-                  to: "vadimtyt@mail.ru")
+                  to: "PekarnyaFlanApp@gmail.com")
     }
 }
 

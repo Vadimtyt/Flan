@@ -40,7 +40,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FlanLogo" width="918" height="917"/>
+        <image name="FlanLogo" width="1096" height="930"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
