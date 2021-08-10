@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xye-eS-imu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wf6-Ai-2aa">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -65,7 +65,7 @@
         <!--Tap Bar Controller-->
         <scene sceneID="eWu-0q-S8a">
             <objects>
-                <tabBarController id="xye-eS-imu" customClass="TapBarController" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TapBar" modalPresentationStyle="fullScreen" id="xye-eS-imu" customClass="TapBarController" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bp6-e8-aXw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -460,11 +460,53 @@
             </objects>
             <point key="canvasLocation" x="750" y="-794"/>
         </scene>
+        <!--StartVC-->
+        <scene sceneID="4eS-hD-w55">
+            <objects>
+                <viewController id="wf6-Ai-2aa" customClass="StartVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vUl-eJ-b11">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlanLogo" translatesAutoresizingMaskIntoConstraints="NO" id="QGn-jt-nfr">
+                                <rect key="frame" x="40" y="245" width="310" height="260"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QGn-jt-nfr" secondAttribute="height" multiplier="414:347" id="cQr-aK-1u4"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="kHi-Z7-Ggr">
+                                <rect key="frame" x="185" y="537" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="DGJ-Fj-6u7"/>
+                                    <constraint firstAttribute="height" constant="20" id="hjT-0V-l4H"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pOE-ns-Qto"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kHi-Z7-Ggr" firstAttribute="top" secondItem="QGn-jt-nfr" secondAttribute="bottom" constant="32" id="5Kh-Ex-Wgg"/>
+                            <constraint firstItem="QGn-jt-nfr" firstAttribute="trailing" secondItem="pOE-ns-Qto" secondAttribute="trailing" constant="-40" id="8bx-40-b9C"/>
+                            <constraint firstItem="QGn-jt-nfr" firstAttribute="centerY" secondItem="pOE-ns-Qto" secondAttribute="centerY" constant="-52" id="V6z-nR-Nsa"/>
+                            <constraint firstItem="QGn-jt-nfr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="W4r-PG-IZk"/>
+                            <constraint firstItem="kHi-Z7-Ggr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="gzl-6e-6J9"/>
+                            <constraint firstItem="QGn-jt-nfr" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="40" id="viv-y0-AlX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="kHi-Z7-Ggr" id="xvB-dA-810"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AoH-fY-zQs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1766.1538461538462" y="186.96682464454975"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Contacts" width="30" height="30"/>
         <image name="Customized" width="30" height="30"/>
         <image name="Favorites" width="30" height="30"/>
+        <image name="FlanLogo" width="1096" height="930"/>
         <image name="List" width="30" height="30"/>
         <image name="Menu" width="30" height="30"/>
         <image name="info.circle" width="20" height="20"/>

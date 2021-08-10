@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 13.0, *) { window?.overrideUserInterfaceStyle = .light }
         
         FirebaseApp.configure()
-        DataManager.shared.configureItems()
+//        DataManager.shared.configureItems()
         
         return true
     }
