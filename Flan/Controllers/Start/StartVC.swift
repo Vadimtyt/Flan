@@ -13,11 +13,15 @@ class StartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.startAnimating()
-        DataManager.shared.configureItems()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            guard let tapBarVC = self?.storyboard?.instantiateViewController(withIdentifier: "TapBar") as? TapBarController else { return }
-            self?.present(tapBarVC, animated: true)
+        print("Началась загрузка")
+        DataManager.shared.configureItems {
+            print("Закончилась загрузка")
+            print(DataManager.shared.getItems().count)
         }
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+//            guard let tapBarVC = self?.storyboard?.instantiateViewController(withIdentifier: "TapBar") as? TapBarController else { return }
+//            self?.present(tapBarVC, animated: true)
+//        }
     }
 }

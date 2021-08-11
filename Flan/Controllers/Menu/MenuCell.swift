@@ -118,13 +118,20 @@ class MenuCell: UITableViewCell {
             addButton.isEnabled = true
         }
         
-        imageItemView.image = item.image
+        setPhoto()
+        
         nameLabel.text = item.name
         descriptionLabel.text = item.description
         
         priceLabel.text = "\(item.prices[0])Р"
         measurmentLabel.text = item.measurements[0]
         updatePriceLabels()
+    }
+    
+    private func setPhoto() {
+        if let image = UIImage(named: item.imageName + "CELL") {
+            imageItemView.image = image
+        } else { imageItemView.image = item.image }
     }
     
     private func updatePriceLabels() {

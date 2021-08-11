@@ -25,7 +25,7 @@ class DataManager {
     
     // MARK: - Funcs for items
     
-    func configureItems() {
+    func configureItems(completion: () -> ()) {
         var list: [MenuItem] = []
         NetworkManager.fetchList { [] listOfItemsJSON in
             for itemJSON in listOfItemsJSON {
@@ -35,6 +35,7 @@ class DataManager {
             self.items = list
             self.categories = self.configureCategories()
         }
+        completion()
     }
     
     func getItems() -> [MenuItem]{
