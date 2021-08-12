@@ -129,9 +129,9 @@ class MenuCell: UITableViewCell {
     }
     
     private func setPhoto() {
-        if let image = UIImage(named: item.imageName + "CELL") {
-            imageItemView.image = image
-        } else { imageItemView.image = item.image }
+        item.setImage { image in
+            self.imageItemView.image = image
+        }
     }
     
     private func updatePriceLabels() {

@@ -9,6 +9,8 @@ import UIKit
 
 class MenuItem {
     
+    private let standartImage = UIImage(named: "Кекс.jpg")!
+    
     // MARK: - Props
     
     let category: String
@@ -17,7 +19,7 @@ class MenuItem {
     let measurements: [String]
     let imageName: String
     let description: String
-    var image = UIImage(named: "Кекс")
+    var image: UIImage
     var selectedMeasurment = 0
     var count = 0
     var isFavorite = false
@@ -30,10 +32,8 @@ class MenuItem {
         self.prices = prices
         self.measurements = measurements
         self.imageName = imageName
-        if let image = UIImage(named: imageName) {
-            self.image = image
-        } else { self.image = UIImage(named: "Кекс.jpg")}
         self.description = description
+        self.image = standartImage
     }
     
     init(item: MenuItem) {
@@ -43,11 +43,10 @@ class MenuItem {
         self.measurements = item.measurements
         self.imageName = item.imageName
         self.description = item.description
-        self.image = UIImage(named: imageName)
+        self.image = item.image
         self.selectedMeasurment = item.selectedMeasurment
         self.count = item.count
         self.isFavorite = item.isFavorite
-        
     }
     
     init(menuItemJSON: MenuItemJSON) {
@@ -61,9 +60,20 @@ class MenuItem {
         } else { self.measurements = menuItemJSON.measurements }
         self.imageName = menuItemJSON.imageName
         self.description = menuItemJSON.description
-        if let image = UIImage(named: imageName) {
-            self.image = image
-        } else { self.image = UIImage(named: "Кекс.jpg")}
+        self.image = standartImage
+    }
+    
+    func setImage(completion: @escaping (UIImage) -> ()) {
+        guard self.image == standartImage else { completion(self.image); return }
+        if let assetsImage = UIImage(named: imageName) {
+            self.image = assetsImage
+            completion(self.image)
+        } else {
+            NetworkManager.fetchImage("Пирог с капустой.jpg") { image in
+                self.image = image
+                completion(self.image)
+            }
+        }
     }
 }
 

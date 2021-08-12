@@ -51,7 +51,7 @@ class MenuDetailVC: UIViewController {
             favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
         } else { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
         
-        itemImage.image = item.image
+        setPhoto()
         nameLabel.text = item.name
         descriptionLabel.text = item.description
         priceLabel.text = "\(item.prices[item.selectedMeasurment])Р"
@@ -142,6 +142,12 @@ class MenuDetailVC: UIViewController {
         }
         
         segmentedControl.selectedSegmentIndex = item.selectedMeasurment
+    }
+    
+    private func setPhoto() {
+        item.setImage { image in
+            self.itemImage.image = image
+        }
     }
     
     // MARK: - @IBAction
