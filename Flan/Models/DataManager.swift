@@ -25,7 +25,7 @@ class DataManager {
     
     // MARK: - Funcs for items
     
-    func configureItems(completion: () -> ()) {
+    func configureItems(completion: @escaping () -> ()) {
         var list: [MenuItem] = []
         NetworkManager.fetchList { [] listOfItemsJSON in
             for itemJSON in listOfItemsJSON {
@@ -33,9 +33,9 @@ class DataManager {
                 list.append(item)
             }
             self.items = list
-            self.categories = self.configureCategories()
+            self.configureCategories()
+            completion()
         }
-        completion()
     }
     
     func getItems() -> [MenuItem]{
@@ -48,14 +48,14 @@ class DataManager {
         return categories
     }
     
-    func configureCategories() -> [(category: String, items: [MenuItem])] {
+    func configureCategories() {
         var categories: [(category: String, items: [MenuItem])] = []
         for item in items {
             if let index = categories.firstIndex(where: { $0.category == item.category }) {
                 categories[index].items.append(item)
             } else { categories.append((item.category, [item])) }
         }
-        return categories
+        self.categories = categories
     }
     
     // MARK: - Funcs for favorites

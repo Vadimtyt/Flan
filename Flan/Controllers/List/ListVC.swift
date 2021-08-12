@@ -322,6 +322,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.section == 0 && !items.isEmpty else { return }
+        TapticFeedback.shared.tapticFeedback(.light)
         let storyboard = UIStoryboard(name: "MenuDetail", bundle: nil)
             
         guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }

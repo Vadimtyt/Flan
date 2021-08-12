@@ -223,6 +223,7 @@ class MenuDetailVC: UIViewController {
     
     
     @IBAction private func segmentedControlChanged(_ sender: UISegmentedControl) {
+        TapticFeedback.shared.tapticFeedback(.light)
         let index = sender.selectedSegmentIndex
         item.selectedMeasurment = index
         priceLabel.text = "\(item.prices[index])Р"

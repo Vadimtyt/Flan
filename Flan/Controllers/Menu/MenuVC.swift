@@ -18,8 +18,6 @@ class MenuVC: UITableViewController {
     private var categories: [(category: String, items: [MenuItem])] { get { return DataManager.shared.getCategories() }}
     private var items: [MenuItem] { get { return DataManager.shared.getItems()} }
     
-    private var networkCheck = NetworkCheck.sharedInstance()
-    
     private let searchController = UISearchController(searchResultsController: nil)
     private var filtredItems: [MenuItem] = []
     private var searchBarIsEmpty: Bool {
@@ -44,28 +42,15 @@ class MenuVC: UITableViewController {
         self.definesPresentationContext = true
         tableView.backgroundColor = .groupTableViewBackground
         tableView.separatorStyle = .none
-        
-        checkNetworkConnecion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        checkNetworkConnecion()
         DispatchQueue.main.async {
-            
             self.tableView.reloadData()
         }
     }
     
     // MARK: - Funcs
-    
-    private func checkNetworkConnecion() {
-        if networkCheck.currentStatus == .satisfied{
-            //Do nothing
-        } else if networkCheck.currentStatus == .unsatisfied {
-            statusDidChange(status: networkCheck.currentStatus)
-        }
-        networkCheck.addObserver(observer: self)
-    }
     
     private func configureSearchController() {
         NotificationCenter.default.addObserver(self,
@@ -153,6 +138,7 @@ class MenuVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard !isKeyboardPresented else { return }
+        TapticFeedback.shared.tapticFeedback(.light)
         let storyboard = UIStoryboard(name: "MenuDetail", bundle: nil)
             
         guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
@@ -191,20 +177,8 @@ class MenuVC: UITableViewController {
     }
 }
 
-extension MenuVC: NetworkCheckObserver {
-    // MARK: - Network check observer
-    
-    func statusDidChange(status: NWPath.Status) {
-        if status == .satisfied {
-            //Do nothing
-        }else if status == .unsatisfied {
-            showNetworkAlert(title: "Упс...", message: "Кажется пропало соединение с интернетом. Пожалуйста, проверьте wi-fi или сотовую связь")
-        }
-    }
-}
-
+// MARK: - Search results
 extension MenuVC: UISearchResultsUpdating {
-    // MARK: - Search results
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
