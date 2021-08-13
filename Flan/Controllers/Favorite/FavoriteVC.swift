@@ -13,7 +13,7 @@ class FavoriteVC: UITableViewController {
     
     // MARK: - Props
     
-    private  var items: [MenuItem] { get { return DataManager.shared.getFavorites() } }
+    private var items: [MenuItem] { get { return DataManager.shared.getFavorites() } }
 
     // MARK: - Initialization
     

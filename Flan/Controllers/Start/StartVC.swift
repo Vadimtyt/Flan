@@ -19,6 +19,11 @@ class StartVC: UIViewController {
     // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            activityIndicator.style = .large
+        } else {
+            activityIndicator.style = .gray
+        }
         activityIndicator.startAnimating()
         
         DataManager.shared.configureItems {

@@ -11,7 +11,7 @@ class MenuDetailVC: UIViewController {
     
     // MARK: - Props
     
-    var item: MenuItem!
+    var item = MenuItem()
     var indexPath: IndexPath!
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
     
@@ -44,7 +44,6 @@ class MenuDetailVC: UIViewController {
         countItemLabel.isUserInteractionEnabled = true
         countItemLabel.addGestureRecognizer(tap)
         
-        segmentedControl.isHidden = true
         if #available(iOS 13.0, *) { closeButton.isHidden = true }
         
         if item.isFavorite {
@@ -58,19 +57,14 @@ class MenuDetailVC: UIViewController {
         measurmentLabel.text = item.measurements[item.selectedMeasurment]
         
         if item.measurements.count > 1 {
-            segmentedControl.isHidden = false
             configureSegmentedControl()
-        }
+        } else { segmentedControl.isHidden = true }
         
         countItemLabel.text = "\(item.count)"
+        
         if item.count == 0 {
             removeButton.isEnabled = false
-            addButton.isEnabled = true
-        } else if item.count > 0 && item.count < 99 {
-            removeButton.isEnabled = true
-            addButton.isEnabled = true
         } else if item.count == 99 {
-            removeButton.isEnabled = true
             addButton.isEnabled = false
         }
     }
@@ -170,21 +164,18 @@ class MenuDetailVC: UIViewController {
     @IBAction private func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
+        self.item.count -= 1
+        countItemLabel.text = "\(self.item.count)"
         let itemsCount = self.item.count
         
         if itemsCount == 1 {
-            self.item.count = 0
-            countItemLabel.text = "\(self.item.count)"
-            
             DataManager.shared.removeFromList(item: self.item)
-            
             removeButton.isEnabled = false
-            removeButton.backgroundColor = .yellow
-        } else if itemsCount > 1 {
-            self.item.count -= 1
-            countItemLabel.text = "\(self.item.count)"
-            removeButton.backgroundColor = .yellow
-        } else { print("ошибка в countItemsLabel") }
+        } else if itemsCount == 98{
+            addButton.isEnabled = true
+        }
+        
+        removeButton.backgroundColor = .yellow
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.removeButton.backgroundColor = nil
@@ -197,27 +188,18 @@ class MenuDetailVC: UIViewController {
     @IBAction private func addButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        item.selectedMeasurment = segmentedControl.selectedSegmentIndex
-        
+        self.item.count += 1
+        countItemLabel.text = "\(self.item.count)"
         let itemsCount = self.item.count
         
-        if itemsCount == 0 {
-            self.item.count += 1
-            addButton.backgroundColor = .yellow
-            countItemLabel.text = "\(self.item.count)"
+        if itemsCount == 1 {
             DataManager.shared.addToList(item: item)
-            
             removeButton.isEnabled = true
-        } else if itemsCount > 0 && itemsCount < 98{
-            self.item.count += 1
-            addButton.backgroundColor = .yellow
-            countItemLabel.text = "\(self.item.count)"
-        } else if itemsCount == 98 {
-            self.item.count += 1
-            addButton.backgroundColor = .yellow
-            countItemLabel.text = "\(self.item.count)"
+        } else if itemsCount == 99 {
             addButton.isEnabled = false
-        } else { print("ошибка в countItemsLabel") }
+        }
+        
+        addButton.backgroundColor = .yellow
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.addButton.backgroundColor = nil

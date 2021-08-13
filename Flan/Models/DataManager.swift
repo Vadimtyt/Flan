@@ -9,17 +9,18 @@ import UIKit
 
 class DataManager {
     
+    static let shared = DataManager()
+    
     // MARK: - Props
     
-    static let shared = DataManager()
     private var items: [MenuItem] = []
     private var favorites: [MenuItem] = []
     private var list: [MenuItem] = []
     private var completedList: [MenuItem] = []
     
-    private lazy var categories: [(category: String, items: [MenuItem])] = []
+    private var categories: [(category: String, items: [MenuItem])] = []
     
-    private var cakes: [Cake] = []
+    private var cakes: [Cake] = cakesList
     
     private var bakeries: [Bakery] = bakeriesList
     
@@ -29,7 +30,7 @@ class DataManager {
         var list: [MenuItem] = []
         NetworkManager.fetchList { [] listOfItemsJSON in
             for itemJSON in listOfItemsJSON {
-                let item = MenuItem(menuItemJSON: itemJSON)
+                let item = MenuItem(from: itemJSON)
                 list.append(item)
             }
             self.items = list
@@ -138,7 +139,7 @@ class DataManager {
     // MARK: - Funcs for cakes
     
     func getCakes() -> [Cake] {
-        return cakesList
+        return cakes
     }
     
     // MARK: - Funcs for bakery
@@ -172,7 +173,7 @@ private let allItems: [MenuItem] = [
 ]
 
 private let cakesList = [
-    Cake(number: 1, image: UIImage(named: "Слойка")!),
+    Cake(number: 1, image: UIImage(named: "Photo1")!),
     Cake(number: 2, image: UIImage(named: "Киш3")!),
     Cake(number: 3, image: UIImage(named: "Эклер3")!),
     Cake(number: 4, image: UIImage(named: "Эклер1")!),

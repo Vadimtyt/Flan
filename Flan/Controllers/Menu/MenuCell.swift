@@ -22,7 +22,7 @@ class MenuCell: UITableViewCell {
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
     
     static let reuseId = "MenuCell"
-    private var item: MenuItem = MenuItem(category: "Категория", name: "Имя", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
+    private var item: MenuItem = MenuItem()
     
     // MARK: - @IBOutlets
     @IBOutlet private weak var backgoundSubwiew: UIView!
@@ -104,18 +104,12 @@ class MenuCell: UITableViewCell {
             favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
         } else { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
         
+        countItemLabel.text = "\(item.count)"
+        
         if item.count == 0 {
             removeButton.isEnabled = false
-            countItemLabel.text = "0"
-            addButton.isEnabled = true
         } else if item.count == 99 {
-            removeButton.isEnabled = true
-            countItemLabel.text = "\(item.count)"
             addButton.isEnabled = false
-        } else {
-            removeButton.isEnabled = true
-            countItemLabel.text = "\(item.count)"
-            addButton.isEnabled = true
         }
         
         setPhoto()
@@ -172,6 +166,9 @@ class MenuCell: UITableViewCell {
         countItemLabel.isHidden = false
         addButton.isHidden = false
         secondPriceLabel.isHidden = false
+        
+        removeButton.isEnabled = true
+        addButton.isEnabled = true
     }
     
     // MARK: - @objc funcs
@@ -207,21 +204,18 @@ class MenuCell: UITableViewCell {
     @IBAction private func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
+        self.item.count -= 1
+        countItemLabel.text = "\(self.item.count)"
         let itemsCount = self.item.count
         
         if itemsCount == 1 {
-            self.item.count = 0
-            countItemLabel.text = "\(self.item.count)"
             DataManager.shared.removeFromList(item: self.item)
-            
             removeButton.isEnabled = false
-            removeButton.backgroundColor = .yellow
-        } else if itemsCount > 1 && itemsCount < 100{
-            self.item.count -= 1
-            countItemLabel.text = "\(self.item.count)"
+        } else if itemsCount == 98{
             addButton.isEnabled = true
-            removeButton.backgroundColor = .yellow
-        } else { print("ошибка в countItemsLabel") }
+        }
+        
+        removeButton.backgroundColor = .yellow
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.removeButton.backgroundColor = nil
@@ -234,25 +228,18 @@ class MenuCell: UITableViewCell {
     @IBAction private func addButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
+        self.item.count += 1
+        countItemLabel.text = "\(self.item.count)"
         let itemsCount = self.item.count
         
-        if itemsCount == 0 {
-            self.item.count += 1
-            addButton.backgroundColor = .yellow
-            countItemLabel.text = "\(self.item.count)"
+        if itemsCount == 1 {
             DataManager.shared.addToList(item: item)
-            
             removeButton.isEnabled = true
-        } else if itemsCount > 0 && itemsCount < 98 {
-            self.item.count += 1
-            addButton.backgroundColor = .yellow
-            countItemLabel.text = "\(self.item.count)"
-        } else if itemsCount == 98 {
-            self.item.count += 1
-            addButton.backgroundColor = .yellow
-            countItemLabel.text = "\(self.item.count)"
+        } else if itemsCount == 99 {
             addButton.isEnabled = false
-        } else { print("ошибка в countItemsLabel") }
+        }
+        
+        addButton.backgroundColor = .yellow
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.addButton.backgroundColor = nil

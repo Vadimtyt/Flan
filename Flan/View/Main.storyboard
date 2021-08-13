@@ -474,7 +474,7 @@
                                     <constraint firstAttribute="width" secondItem="QGn-jt-nfr" secondAttribute="height" multiplier="414:347" id="cQr-aK-1u4"/>
                                 </constraints>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="kHi-Z7-Ggr">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kHi-Z7-Ggr">
                                 <rect key="frame" x="185" y="539" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="DGJ-Fj-6u7"/>

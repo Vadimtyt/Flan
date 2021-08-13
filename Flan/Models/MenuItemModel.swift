@@ -7,60 +7,76 @@
 
 import UIKit
 
-class MenuItem {
+class MenuItem: MenuItemJSON {
     
     private let standartImage = UIImage(named: "Кекс.jpg")!
     
     // MARK: - Props
     
-    let category: String
-    let name: String
-    let prices: [Int]
-    let measurements: [String]
-    let imageName: String
-    let description: String
-    var image: UIImage
+    private var image: UIImage
     var selectedMeasurment = 0
     var count = 0
     var isFavorite = false
     
     // MARK: - Initializations
-    
-    init(category: String, name: String, prices: [Int], measurements: [String], imageName: String, description: String) {
-        self.category = category
-        self.name = name
-        self.prices = prices
-        self.measurements = measurements
-        self.imageName = imageName
-        self.description = description
+    init(from menuItemJSON: MenuItemJSON) {
         self.image = standartImage
+
+        var prices: [Int] = []
+        if menuItemJSON.prices.count == 0 {
+            prices = [0]
+        } else { prices = menuItemJSON.prices }
+        
+        var measurements: [String] = []
+        if menuItemJSON.measurements.count == 0 {
+            measurements = [""]
+        } else { measurements = menuItemJSON.measurements }
+
+        super.init(category: menuItemJSON.category,
+                   name: menuItemJSON.name,
+                   prices: prices,
+                   measurements: measurements,
+                   imageName: menuItemJSON.imageName,
+                   description: menuItemJSON.description)
+    }
+    
+    init() {
+        self.image = standartImage
+        super.init(category: "category",
+                   name: "name",
+                   prices: [0],
+                   measurements: [""],
+                   imageName: "imageName",
+                   description: "description")
+    }
+    
+    override init(category: String, name: String, prices: [Int], measurements: [String], imageName: String, description: String) {
+
+        self.image = standartImage
+        super.init(category: category,
+                   name: name,
+                   prices: prices,
+                   measurements: measurements,
+                   imageName: imageName,
+                   description: description)
     }
     
     init(item: MenuItem) {
-        self.category = item.category
-        self.name = item.name
-        self.prices = item.prices
-        self.measurements = item.measurements
-        self.imageName = item.imageName
-        self.description = item.description
+
         self.image = item.image
         self.selectedMeasurment = item.selectedMeasurment
         self.count = item.count
         self.isFavorite = item.isFavorite
+        super.init(category: item.category,
+                   name: item.name,
+                   prices: item.prices,
+                   measurements: item.measurements,
+                   imageName: item.imageName,
+                   description: item.description)
     }
     
-    init(menuItemJSON: MenuItemJSON) {
-        self.category = menuItemJSON.category
-        self.name = menuItemJSON.name
-        if menuItemJSON.prices.count == 0 {
-            self.prices = [0]
-        } else { self.prices = menuItemJSON.prices }
-        if menuItemJSON.measurements.count == 0 {
-            self.measurements = [""]
-        } else { self.measurements = menuItemJSON.measurements }
-        self.imageName = menuItemJSON.imageName
-        self.description = menuItemJSON.description
-        self.image = standartImage
+    required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
     }
     
     func setImage(completion: @escaping (UIImage) -> ()) {
@@ -69,7 +85,7 @@ class MenuItem {
             self.image = assetsImage
             completion(self.image)
         } else {
-            NetworkManager.fetchImage("Пирог с капустой.jpg") { image in
+            NetworkManager.fetchImage(self.imageName) { image in
                 self.image = image
                 completion(self.image)
             }
@@ -80,17 +96,17 @@ class MenuItem {
 class MenuItemJSON: Decodable {
     let category: String
     let name: String
-    let prices: [Int]
-    let measurements: [String]
-    let imageName: String
-    let description: String
+    var prices: [Int]
+    var measurements: [String]
+    var imageName: String
+    var description: String
     
-    init(from MenuItemJSON: MenuItemJSON) {
-        category = MenuItemJSON.category
-        name = MenuItemJSON.name
-        prices = MenuItemJSON.prices
-        measurements = MenuItemJSON.measurements
-        imageName = MenuItemJSON.imageName
-        description = MenuItemJSON.description
+    init(category: String, name: String, prices: [Int], measurements: [String], imageName: String, description: String) {
+        self.category = category
+        self.name = name
+        self.prices = prices
+        self.measurements = measurements
+        self.imageName = imageName
+        self.description = description
     }
 }

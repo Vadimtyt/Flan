@@ -124,7 +124,7 @@ class MenuVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseCellID, for: indexPath) as! MenuCell
-        var item = MenuItem(category: "Категория", name: "Имя", prices: [0], measurements: [""], imageName: "Кекс", description: "Описание")
+        var item = MenuItem()
         
         if isFiltering {
             item = filtredItems[indexPath.row]
@@ -192,12 +192,12 @@ extension MenuVC: UISearchResultsUpdating {
         filtredItems = items.filter{
             var isFits: [Bool] = []
             let itemWords = $0.name.lowercased().components(separatedBy: [" ", ".", ","])
-            let searchingWords = searchText.lowercased().components(separatedBy: [" ", "."])
+            let searchingWords = searchText.lowercased().components(separatedBy: [" ", ".", ","])
             
             searchingWords.forEach {
                 var isThisSearchWordFits = false
-                for word in itemWords {
-                    if word.hasPrefix($0) { isThisSearchWordFits = true }
+                for itemWord in itemWords {
+                    if itemWord.hasPrefix($0) { isThisSearchWordFits = true }
                 }
                 isFits.append(isThisSearchWordFits)
             }
