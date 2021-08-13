@@ -9,7 +9,7 @@ import UIKit
 
 class MenuItem: MenuItemJSON {
     
-    private let standartImage = UIImage(named: "Кекс.jpg")!
+    private let standartImage = UIImage(named: "Standart image.jpg")!
     
     // MARK: - Props
     
@@ -85,7 +85,7 @@ class MenuItem: MenuItemJSON {
             self.image = assetsImage
             completion(self.image)
         } else {
-            NetworkManager.fetchImage(self.imageName) { image in
+            NetworkManager.fetchImage(PhotoFolder.item, self.imageName) { image in
                 self.image = image
                 completion(self.image)
             }

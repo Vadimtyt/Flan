@@ -8,22 +8,31 @@
 import UIKit
 import FirebaseStorage
 
+enum FileNameFor: String {
+    case items = "Beta.json"
+    case cakes = "Cakes.json"
+    case bakeries = "Bakeries.json"
+}
+
+enum PhotoFolder: String {
+    case item = "ItemsPhoto"
+    case cake = "CakesPhoto"
+}
+
 class NetworkManager {
     static let downloadRef = Storage.storage()
     
-    static let listName = "Beta.json"
-    static let picturesFolderName = "Pictures"
-    
-    
-    class func fetchList(completion: @escaping ([MenuItemJSON]) -> ()) {
-        downloadRef.reference(withPath: listName).getData(maxSize: 1000000000) { (data, error) in
+    class func fetchList<T: Decodable>(from path: FileNameFor, completion: @escaping ((T)?) -> ()) {
+        
+        downloadRef.reference(withPath: path.rawValue).getData(maxSize: 1000000000) { (data, error) in
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .useDefaultKeys
-                let listOfItemsJSON = try decoder.decode([MenuItemJSON].self, from: data!)
+                guard data != nil else { completion(nil); return }
+                let listJSON = try decoder.decode(T.self, from: data!)
 
                 DispatchQueue.main.async {
-                    completion(listOfItemsJSON)
+                    completion(listJSON)
                 }
             } catch let error {
                 print("ERROR", error)
@@ -31,11 +40,13 @@ class NetworkManager {
         }.resume()
     }
     
-    class func fetchImage(_ imageName: String, completion: @escaping (UIImage) -> ()) {
-        downloadRef.reference(withPath: picturesFolderName + "/" + imageName).getData(maxSize: 10000000) { (data, error) in
+    class func fetchImage(_ folder: PhotoFolder,_ imageName: String, completion: @escaping (UIImage) -> ()) {
+        downloadRef.reference(withPath: folder.rawValue + "/" + imageName).getData(maxSize: 10000000) { (data, error) in
             
             if let error = error {
                 print(error.localizedDescription)
+                let standartImage = UIImage(named: "Standart image.jpg")!
+                completion(standartImage)
                 return
             }
             

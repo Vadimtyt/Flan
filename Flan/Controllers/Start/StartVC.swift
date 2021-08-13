@@ -26,7 +26,7 @@ class StartVC: UIViewController {
         }
         activityIndicator.startAnimating()
         
-        DataManager.shared.configureItems {
+        DataManager.shared.configureData {
             guard let tapBarVC = self.storyboard?.instantiateViewController(withIdentifier: "TapBar") as? TapBarController else { return }
             self.present(tapBarVC, animated: true)
         }

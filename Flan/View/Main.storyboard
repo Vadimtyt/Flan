@@ -212,7 +212,7 @@
             </objects>
             <point key="canvasLocation" x="749" y="1293"/>
         </scene>
-        <!--Заказные-->
+        <!--Заказные торты-->
         <scene sceneID="hT8-er-Bkb">
             <objects>
                 <collectionViewController id="dGh-WF-tpX" customClass="CustomizedCVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
@@ -271,7 +271,7 @@
                             <outlet property="delegate" destination="dGh-WF-tpX" id="Veg-bP-xd8"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Заказные" id="bHH-bP-4BU">
+                    <navigationItem key="navigationItem" title="Заказные торты" id="bHH-bP-4BU">
                         <barButtonItem key="rightBarButtonItem" title="i" image="info.circle" id="Ahk-C8-4zq" userLabel="Info Bar Button">
                             <connections>
                                 <action selector="infoBarButtonPressed:" destination="dGh-WF-tpX" id="2EY-ed-78H"/>

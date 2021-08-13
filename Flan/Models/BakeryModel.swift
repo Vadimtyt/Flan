@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Bakery {
+class Bakery: Decodable {
     
     // MARK: - Props
     

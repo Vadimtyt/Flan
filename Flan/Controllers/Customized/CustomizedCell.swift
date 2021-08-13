@@ -11,7 +11,7 @@ class CustomizedCell: UICollectionViewCell {
 
     // MARK: - Props
     
-    private var cake = Cake(number: 0, image: UIImage.init(named: "Кекс")!)
+    private var cake = Cake()
     
     // MARK: - @IBOutlets
     
@@ -21,9 +21,15 @@ class CustomizedCell: UICollectionViewCell {
     
     func configureWith(cake: Cake) {
         self.cake = cake
-        cakeImage.image = cake.image
+        setPhoto()
         
         cakeImage.contentMode = .scaleAspectFill
         self.backgroundColor = .red
+    }
+    
+    private func setPhoto() {
+        cake.setImage { image in
+            self.cakeImage.image = image
+        }
     }
 }

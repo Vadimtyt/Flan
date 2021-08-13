@@ -20,20 +20,32 @@ class DataManager {
     
     private var categories: [(category: String, items: [MenuItem])] = []
     
-    private var cakes: [Cake] = cakesList
+    private var cakes: [Cake] = []
     
-    private var bakeries: [Bakery] = bakeriesList
+    private var bakeries: [Bakery] = []
+    
+    func configureData(completion: @escaping () -> ()) {
+        configureItems {
+            self.configureCakes {
+                self.configureBakeries {
+                    completion()
+                }
+            }
+        }
+    }
     
     // MARK: - Funcs for items
     
     func configureItems(completion: @escaping () -> ()) {
-        var list: [MenuItem] = []
-        NetworkManager.fetchList { [] listOfItemsJSON in
-            for itemJSON in listOfItemsJSON {
+        
+        var itemsList: [MenuItem] = []
+        NetworkManager.fetchList(from: FileNameFor.items) { [] (itemsFromJSON: [MenuItemJSON]?) in
+            guard let itemsJSON = itemsFromJSON else { completion(); return }
+            for itemJSON in itemsJSON {
                 let item = MenuItem(from: itemJSON)
-                list.append(item)
+                itemsList.append(item)
             }
-            self.items = list
+            self.items = itemsList
             self.configureCategories()
             completion()
         }
@@ -50,6 +62,7 @@ class DataManager {
     }
     
     func configureCategories() {
+        
         var categories: [(category: String, items: [MenuItem])] = []
         for item in items {
             if let index = categories.firstIndex(where: { $0.category == item.category }) {
@@ -138,62 +151,130 @@ class DataManager {
     
     // MARK: - Funcs for cakes
     
+    func configureCakes(completion: @escaping () -> ()) {
+        
+        NetworkManager.fetchList(from: FileNameFor.cakes) { [] (cakesFromJSON: [CakeJSON]?) in
+            guard let cakesJSON = cakesFromJSON else {
+                self.cakes = cakesList
+                completion()
+                return
+            }
+            var cakesList: [Cake] = []
+            for index in 0...cakesJSON.count-1 {
+                let cakeJSON = cakesJSON[index]
+                let cake = Cake(number: index + 1, imageName: cakeJSON.imageName)
+                cakesList.append(cake)
+            }
+            self.cakes = cakesList
+            completion()
+        }
+    }
+    
     func getCakes() -> [Cake] {
         return cakes
     }
     
     // MARK: - Funcs for bakery
     
+    func configureBakeries(completion: @escaping () -> ()) {
+        NetworkManager.fetchList(from: FileNameFor.bakeries) { [] (bakeriesFromJSON: [Bakery]?) in
+            
+            if let bakeries = bakeriesFromJSON {
+                self.bakeries = bakeries
+            } else { self.bakeries = bakeriesList}
+            completion()
+        }
+    }
+    
     func getBakeries() -> [Bakery] {
         return bakeries
     }
 }
 
-private let allItems: [MenuItem] = [
-    MenuItem(category: "Торты", name: "Нежность", prices: [170], measurements: ["100г"], imageName: "Киш1", description: "Описание"),
-    MenuItem(category: "Торты", name: "Киевский", prices: [190], measurements: ["100г"], imageName: "Киш2", description: "Описание"),
-    MenuItem(category: "Торты", name: "Тирамису", prices: [1500], measurements: ["100г"], imageName: "Киш3", description: "Описание"),
-    MenuItem(category: "Выпечка", name: "Сочник с творогом", prices: [70], measurements: ["шт"], imageName: "Слойка", description: "Описание"),
-    MenuItem(category: "Выпечка", name: "Плюшка", prices: [50, 300], measurements: ["шт", "целый"], imageName: "Эклер1", description: "Он родился как ремейк на тему  детских воспоминаний о вкуснейшем бабушкином торте, выполненном из качественнейших ( как и все домашнее) продуктов по современной технологии. В нем нежнейшие шоколадные бисквиты чередуются с белым сливочным бисквитом , которые прослоены сметано-творожным кремом, тающим во рту."),
-    MenuItem(category: "Выпечка", name: "Кекс творожный", prices: [55], measurements: ["шт"], imageName: "Эклер2", description: "Описание"),
-    MenuItem(category: "Кендибар", name: "Зефир из натурального пюре", prices: [100], measurements: ["шт"], imageName: "Эклер3", description: "Описание"),
-    MenuItem(category: "Кендибар", name: "Маршмеллоу", prices: [80], measurements: ["шт"], imageName: "Эклер4", description: "Описание"),
-    MenuItem(category: "Кендибар", name: "Гимов", prices: [30], measurements: ["шт"], imageName: "Капкейк1", description: "Описание"),
-    MenuItem(category: "Кендибар", name: "Корзиночка с йогуртовым кремом", prices: [40], measurements: ["шт"], imageName: "Капкейк2", description: "Описание"),
-    MenuItem(category: "Суфле", name: "Торт бисквитный со сметанным кремом", prices: [40], measurements: ["шт"], imageName: "Капкейк3", description: "Он родился как ремейк на тему  детских воспоминаний о вкуснейшем бабушкином торте, выполненном из качественнейших ( как и все домашнее) продуктов по современной технологии. В нем нежнейшие шоколадные бисквиты чередуются с белым сливочным бисквитом , которые прослоены сметано-творожным кремом, тающим во рту."),
-    MenuItem(category: "Слоеная выпечка", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
-    MenuItem(category: "Печенье", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
-    MenuItem(category: "Кондитерка", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
-    MenuItem(category: "Пицца", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
-    MenuItem(category: "Киши", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
-    MenuItem(category: "Супы", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
-    MenuItem(category: "Конфеты", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
-    MenuItem(category: "Кексы", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
-    MenuItem(category: "Салаты", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание")
-]
-
+//private let allItems: [MenuItem] = [
+//    MenuItem(category: "Торты", name: "Нежность", prices: [170], measurements: ["100г"], imageName: "Киш1", description: "Описание"),
+//    MenuItem(category: "Торты", name: "Киевский", prices: [190], measurements: ["100г"], imageName: "Киш2", description: "Описание"),
+//    MenuItem(category: "Торты", name: "Тирамису", prices: [1500], measurements: ["100г"], imageName: "Киш3", description: "Описание"),
+//    MenuItem(category: "Выпечка", name: "Сочник с творогом", prices: [70], measurements: ["шт"], imageName: "Слойка", description: "Описание"),
+//    MenuItem(category: "Выпечка", name: "Плюшка", prices: [50, 300], measurements: ["шт", "целый"], imageName: "Эклер1", description: "Он родился как ремейк на тему  детских воспоминаний о вкуснейшем бабушкином торте, выполненном из качественнейших ( как и все домашнее) продуктов по современной технологии. В нем нежнейшие шоколадные бисквиты чередуются с белым сливочным бисквитом , которые прослоены сметано-творожным кремом, тающим во рту."),
+//    MenuItem(category: "Выпечка", name: "Кекс творожный", prices: [55], measurements: ["шт"], imageName: "Эклер2", description: "Описание"),
+//    MenuItem(category: "Кендибар", name: "Зефир из натурального пюре", prices: [100], measurements: ["шт"], imageName: "Эклер3", description: "Описание"),
+//    MenuItem(category: "Кендибар", name: "Маршмеллоу", prices: [80], measurements: ["шт"], imageName: "Эклер4", description: "Описание"),
+//    MenuItem(category: "Кендибар", name: "Гимов", prices: [30], measurements: ["шт"], imageName: "Капкейк1", description: "Описание"),
+//    MenuItem(category: "Кендибар", name: "Корзиночка с йогуртовым кремом", prices: [40], measurements: ["шт"], imageName: "Капкейк2", description: "Описание"),
+//    MenuItem(category: "Суфле", name: "Торт бисквитный со сметанным кремом", prices: [40], measurements: ["шт"], imageName: "Капкейк3", description: "Он родился как ремейк на тему  детских воспоминаний о вкуснейшем бабушкином торте, выполненном из качественнейших ( как и все домашнее) продуктов по современной технологии. В нем нежнейшие шоколадные бисквиты чередуются с белым сливочным бисквитом , которые прослоены сметано-творожным кремом, тающим во рту."),
+//    MenuItem(category: "Слоеная выпечка", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+//    MenuItem(category: "Печенье", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+//    MenuItem(category: "Кондитерка", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+//    MenuItem(category: "Пицца", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+//    MenuItem(category: "Киши", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+//    MenuItem(category: "Супы", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+//    MenuItem(category: "Конфеты", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+//    MenuItem(category: "Кексы", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание"),
+//    MenuItem(category: "Салаты", name: "Безе", prices: [40], measurements: ["шт"], imageName: "Кекс", description: "Описание")
+//]
+//
 private let cakesList = [
-    Cake(number: 1, image: UIImage(named: "Photo1")!),
-    Cake(number: 2, image: UIImage(named: "Киш3")!),
-    Cake(number: 3, image: UIImage(named: "Эклер3")!),
-    Cake(number: 4, image: UIImage(named: "Эклер1")!),
-    Cake(number: 5, image: UIImage(named: "Кекс")!),
-    Cake(number: 6, image: UIImage(named: "Киш3")!),
-    Cake(number: 7, image: UIImage(named: "Эклер3")!),
-    Cake(number: 8, image: UIImage(named: "Кекс")!),
-    Cake(number: 9, image: UIImage(named: "Слойка")!),
-    Cake(number: 10, image: UIImage(named: "Кекс")!),
-    Cake(number: 11, image: UIImage(named: "Киш3")!),
-    Cake(number: 12, image: UIImage(named: "Эклер3")!),
-    Cake(number: 13, image: UIImage(named: "Кекс")!),
-    Cake(number: 14, image: UIImage(named: "Киш3")!),
-    Cake(number: 15, image: UIImage(named: "Слойка")!),
-    Cake(number: 16, image: UIImage(named: "Эклер1")!),
-    Cake(number: 17, image: UIImage(named: "Кекс")!),
-    Cake(number: 18, image: UIImage(named: "Киш3")!)
+    Cake(number: 1, imageName: "Photo1.jpg"),
+    Cake(number: 2, imageName: "Photo2.jpg"),
+    Cake(number: 3, imageName: "Photo3.jpg"),
+    Cake(number: 4, imageName: "Photo4.jpg"),
+    Cake(number: 5, imageName: "Photo5.jpg"),
+    Cake(number: 6, imageName: "Photo6.jpg"),
+    Cake(number: 7, imageName: "Photo7.jpg"),
+    Cake(number: 8, imageName: "Photo8.jpg"),
+    Cake(number: 9, imageName: "Photo9.jpg"),
+    Cake(number: 10, imageName: "Photo10.jpg"),
+    Cake(number: 11, imageName: "Photo11.jpg"),
+    Cake(number: 12, imageName: "Photo12.jpg"),
+    Cake(number: 13, imageName: "Photo13.jpg"),
+    Cake(number: 14, imageName: "Photo14.jpg"),
+    Cake(number: 15, imageName: "Photo15.jpg"),
+    Cake(number: 16, imageName: "Photo16.jpg"),
+    Cake(number: 17, imageName: "Photo17.jpg"),
+    Cake(number: 18, imageName: "Photo18.jpg"),
+    Cake(number: 19, imageName: "Photo19.jpg"),
+    Cake(number: 20, imageName: "Photo20.jpg"),
+    Cake(number: 21, imageName: "Photo21.jpg"),
+    Cake(number: 22, imageName: "Photo22.jpg"),
+    Cake(number: 23, imageName: "Photo23.jpg"),
+    Cake(number: 24, imageName: "Photo24.jpg"),
+    Cake(number: 25, imageName: "Photo25.jpg"),
+    Cake(number: 26, imageName: "Photo26.jpg"),
+    Cake(number: 27, imageName: "Photo27.jpg"),
+    Cake(number: 28, imageName: "Photo28.jpg"),
+    Cake(number: 29, imageName: "Photo29.jpg"),
+    Cake(number: 30, imageName: "Photo30.jpg"),
+    Cake(number: 31, imageName: "Photo31.jpg"),
+    Cake(number: 32, imageName: "Photo32.jpg"),
+    Cake(number: 33, imageName: "Photo33.jpg"),
+    Cake(number: 34, imageName: "Photo34.jpg"),
+    Cake(number: 35, imageName: "Photo35.jpg"),
+    Cake(number: 36, imageName: "Photo36.jpg"),
+    Cake(number: 37, imageName: "Photo37.jpg"),
+    Cake(number: 38, imageName: "Photo38.jpg"),
+    Cake(number: 39, imageName: "Photo39.jpg"),
+    Cake(number: 40, imageName: "Photo40.jpg"),
+    Cake(number: 41, imageName: "Photo41.jpg"),
+    Cake(number: 42, imageName: "Photo42.jpg"),
+    Cake(number: 43, imageName: "Photo43.jpg"),
+    Cake(number: 44, imageName: "Photo44.jpg"),
+    Cake(number: 45, imageName: "Photo45.jpg"),
+    Cake(number: 46, imageName: "Photo46.jpg"),
+    Cake(number: 47, imageName: "Photo47.jpg"),
+    Cake(number: 48, imageName: "Photo48.jpg"),
+    Cake(number: 49, imageName: "Photo49.jpg"),
+    Cake(number: 50, imageName: "Photo50.jpg"),
+    Cake(number: 51, imageName: "Photo51.jpg"),
+    Cake(number: 52, imageName: "Photo52.jpg"),
+    Cake(number: 53, imageName: "Photo53.jpg"),
+    Cake(number: 54, imageName: "Photo54.jpg"),
+    Cake(number: 55, imageName: "Photo55.jpg"),
+    Cake(number: 56, imageName: "Photo56.jpg"),
+    Cake(number: 57, imageName: "Photo57.jpg"),
+    Cake(number: 58, imageName: "Photo58.jpg"),
+    Cake(number: 59, imageName: "Photo59.jpg")
 ]
-
-let cakesNames = ["Кекс", "Киш3", "Капкейк1", "Эклер3", "Киш3", "Слойка", "Эклер2", "Эклер1"]
 
 private let bakeriesList = [
     //Bakery(name: "Флан на Новой", address: "ул.Дорожная, 5 к1", phone: "+7(989)248-14-14", openTime: 8, closeTime: 21),

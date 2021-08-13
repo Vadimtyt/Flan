@@ -12,7 +12,7 @@ class CustomizedDetailVC: UIViewController {
     
     // MARK: - Props
     
-    var cake: Cake!
+    var cake: Cake = Cake()
     
     private var hasSetPointOrigin = false
     private var pointOrigin: CGPoint?
@@ -31,7 +31,7 @@ class CustomizedDetailVC: UIViewController {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
         view.addGestureRecognizer(panGesture)
         
-        cakeImage.image = cake.image
+        setPhoto()
         cakeImage.contentMode = .scaleAspectFill
         cakeNumberLabel.text = "#\(cake.number)"
         
@@ -43,6 +43,12 @@ class CustomizedDetailVC: UIViewController {
         if !hasSetPointOrigin {
             hasSetPointOrigin = true
             pointOrigin = self.view.frame.origin
+        }
+    }
+    
+    private func setPhoto() {
+        cake.setImage { image in
+            self.cakeImage.image = image
         }
     }
     
@@ -72,7 +78,7 @@ class CustomizedDetailVC: UIViewController {
     @IBAction private func shareButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        let image = cake.image
+        let image = cake.getImage()
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
         activityVC.popoverPresentationController?.sourceView = sender
