@@ -7,13 +7,17 @@
 
 import UIKit
 
+protocol UpdatingMenuDetailDelegate: UpdatingMenuCellDelegate {
+    func updateCellAt(indexPath: IndexPath)
+}
+
 class MenuDetailVC: UIViewController {
     
     // MARK: - Props
     
     var item = MenuItem()
     var indexPath: IndexPath!
-    weak var updateCellDelegate: UpdatingMenuCellDelegate?
+    weak var updateCellDelegate: UpdatingMenuDetailDelegate?
     
     // MARK: - @IBOutlets
     

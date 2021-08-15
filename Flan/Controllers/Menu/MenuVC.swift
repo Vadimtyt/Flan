@@ -236,6 +236,12 @@ extension MenuVC: UpdatingMenuCellDelegate {
         DataManager.shared.updateFavorites()
     }
     
+//    func updateCellAt(indexPath: IndexPath) {
+//        tableView.reloadRows(at: [indexPath], with: .automatic)
+//    }
+}
+
+extension MenuVC: UpdatingMenuDetailDelegate {
     func updateCellAt(indexPath: IndexPath) {
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }

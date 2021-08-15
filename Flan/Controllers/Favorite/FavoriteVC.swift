@@ -119,7 +119,9 @@ extension FavoriteVC: UpdatingMenuCellDelegate {
         
         self.tableView.reloadData()
     }
-    
+}
+
+extension FavoriteVC:UpdatingMenuDetailDelegate {
     func updateCellAt(indexPath: IndexPath) {
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }

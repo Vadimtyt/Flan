@@ -407,7 +407,7 @@ extension ListVC: UpdatingListCellDelegate {
 
 // MARK: - Updationg MenuCell delegate
 
-extension ListVC: UpdatingMenuCellDelegate {
+extension ListVC: UpdatingMenuDetailDelegate {
     func updateListVCBadge() {
         updateListBadge()
     }

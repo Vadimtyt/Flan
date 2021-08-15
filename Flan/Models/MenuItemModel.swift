@@ -91,6 +91,8 @@ class MenuItem: MenuItemJSON {
             }
         }
     }
+    
+    
 }
 
 class MenuItemJSON: Decodable {

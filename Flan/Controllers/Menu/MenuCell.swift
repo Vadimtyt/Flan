@@ -12,7 +12,7 @@ import UIKit
 protocol UpdatingMenuCellDelegate: AnyObject {
     func updateListVCBadge()
     func updateFavorites()
-    func updateCellAt(indexPath: IndexPath)
+    //func updateCellAt(indexPath: IndexPath)
 }
 
 class MenuCell: UITableViewCell {
@@ -68,6 +68,7 @@ class MenuCell: UITableViewCell {
     
     func configureCell(with item: MenuItem) {
         self.item = item
+        setPhoto()
     }
     
     private func setupViews() {
@@ -112,8 +113,6 @@ class MenuCell: UITableViewCell {
             addButton.isEnabled = false
         }
         
-        setPhoto()
-        
         nameLabel.text = item.name
         descriptionLabel.text = item.description
         
@@ -122,8 +121,10 @@ class MenuCell: UITableViewCell {
         updatePriceLabels()
     }
     
-    private func setPhoto() {
-        item.setImage { image in
+    func setPhoto() {
+        let imageName = item.imageName + "CELL"
+        item.setImage { [imageName] image in
+            guard imageName == self.item.imageName else { return }
             self.imageItemView.image = image
         }
     }
