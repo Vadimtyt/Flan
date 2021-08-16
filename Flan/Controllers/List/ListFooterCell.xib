@@ -44,7 +44,7 @@
                                 <rect key="frame" x="258" y="8" width="132" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Поделиться списком" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opY-pz-hLT">
-                                        <rect key="frame" x="4" y="0.5" width="96" height="41"/>
+                                        <rect key="frame" x="6" y="0.5" width="94" height="41"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                                     <constraint firstAttribute="trailing" secondItem="opY-pz-hLT" secondAttribute="trailing" constant="32" id="UiW-PB-nkQ"/>
                                     <constraint firstAttribute="trailing" secondItem="7tU-bw-Yfc" secondAttribute="trailing" constant="4" id="YWm-oT-aJh"/>
                                     <constraint firstAttribute="bottom" secondItem="7tU-bw-Yfc" secondAttribute="bottom" id="lIV-sG-sQk"/>
-                                    <constraint firstItem="opY-pz-hLT" firstAttribute="leading" secondItem="aCF-DM-6az" secondAttribute="leading" constant="4" id="t9c-AL-3Qr"/>
+                                    <constraint firstItem="opY-pz-hLT" firstAttribute="leading" secondItem="aCF-DM-6az" secondAttribute="leading" constant="6" id="t9c-AL-3Qr"/>
                                 </constraints>
                             </view>
                         </subviews>

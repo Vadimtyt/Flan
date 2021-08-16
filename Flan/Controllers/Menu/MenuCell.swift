@@ -123,8 +123,8 @@ class MenuCell: UITableViewCell {
     
     func setPhoto() {
         let imageName = item.imageName + "CELL"
-        item.setImage { [imageName] image in
-            guard imageName == self.item.imageName else { return }
+        item.setImage(type: PhotoType.cellPhoto) { [imageName] image in
+            guard imageName == (self.item.imageName + "CELL") else { return }
             self.imageItemView.image = image
         }
     }
@@ -236,7 +236,7 @@ class MenuCell: UITableViewCell {
         if itemsCount == 1 {
             DataManager.shared.addToList(item: item)
             removeButton.isEnabled = true
-        } else if itemsCount == 99 {
+        } else if itemsCount >= 99 {
             addButton.isEnabled = false
         }
         

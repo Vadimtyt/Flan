@@ -61,6 +61,7 @@ class ListCell: UITableViewCell {
     
     override func layoutSubviews() {
         setupViews()
+        setupElements()
     }
     
     override func prepareForReuse() {
@@ -71,28 +72,13 @@ class ListCell: UITableViewCell {
     
     func configureCell(with item: MenuItem, isCompleted: Bool, listDelegate: UpdatingListCellDelegate) {
         self.item = item
-        selectionStyle = .none
-        
-        if item.count > 0 {
-            removeButton.isHidden = false
-            countItemLabel.isHidden = false
-        }
-        if item.count >= 99 {
-            item.count = 99
-            addButton.isEnabled = false
-        }
-        
-        nameLabel.text = item.name
-        priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\(item.measurements[item.selectedMeasurment])"
-        countItemLabel.text = "\(item.count)"
-        
         self.checkmark = isCompleted
-        
-        
         self.listDelegate = listDelegate
     }
     
     private func setupViews() {
+        selectionStyle = .none
+        
         checkmarkButton.layer.cornerRadius = 12
         countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
         countItemLabel.layer.borderWidth = 2.5
@@ -101,6 +87,16 @@ class ListCell: UITableViewCell {
         
         removeButton.layer.cornerRadius = 16
         addButton.layer.cornerRadius = 16
+    }
+    
+    private func setupElements() {
+        if item.count >= 99 {
+            addButton.isEnabled = false
+        }
+        
+        nameLabel.text = item.name
+        priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\(item.measurements[item.selectedMeasurment])"
+        countItemLabel.text = "\(item.count)"
     }
     
     private func resetAll() {
@@ -121,7 +117,7 @@ class ListCell: UITableViewCell {
         
         if self.item.count < 99  {
             addButton.isEnabled = true
-        }
+        } else { addButton.isEnabled = false }
         countItemLabel.text = "\(self.item.count)"
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
@@ -137,7 +133,7 @@ class ListCell: UITableViewCell {
         
         self.item.count += 1
         addButton.backgroundColor = .yellow
-        if self.item.count == 99 {
+        if self.item.count >= 99 {
             addButton.isEnabled = false
         }
         countItemLabel.text = "\(self.item.count)"

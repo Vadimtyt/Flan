@@ -234,7 +234,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Кекс" translatesAutoresizingMaskIntoConstraints="NO" id="vOK-Pe-TUm">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Standart image" translatesAutoresizingMaskIntoConstraints="NO" id="vOK-Pe-TUm">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -509,12 +509,12 @@
         <image name="FlanLogo" width="1096" height="930"/>
         <image name="List" width="30" height="30"/>
         <image name="Menu" width="30" height="30"/>
+        <image name="Standart image" width="596" height="596"/>
         <image name="info.circle" width="20" height="20"/>
         <image name="instaIcon" width="512" height="512"/>
         <image name="line.3.horizontal" width="20" height="10"/>
         <image name="magnifyingglass" width="19" height="19.5"/>
         <image name="trash" width="19" height="23.5"/>
-        <image name="Кекс" width="816" height="612"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

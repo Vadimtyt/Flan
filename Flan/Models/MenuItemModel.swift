@@ -13,14 +13,13 @@ class MenuItem: MenuItemJSON {
     
     // MARK: - Props
     
-    private var image: UIImage
+    private lazy var image = standartImage
     var selectedMeasurment = 0
     var count = 0
     var isFavorite = false
     
     // MARK: - Initializations
     init(from menuItemJSON: MenuItemJSON) {
-        self.image = standartImage
 
         var prices: [Int] = []
         if menuItemJSON.prices.count == 0 {
@@ -41,7 +40,6 @@ class MenuItem: MenuItemJSON {
     }
     
     init() {
-        self.image = standartImage
         super.init(category: "category",
                    name: "name",
                    prices: [0],
@@ -51,8 +49,6 @@ class MenuItem: MenuItemJSON {
     }
     
     override init(category: String, name: String, prices: [Int], measurements: [String], imageName: String, description: String) {
-
-        self.image = standartImage
         super.init(category: category,
                    name: name,
                    prices: prices,
@@ -62,8 +58,6 @@ class MenuItem: MenuItemJSON {
     }
     
     init(item: MenuItem) {
-
-        self.image = item.image
         self.selectedMeasurment = item.selectedMeasurment
         self.count = item.count
         self.isFavorite = item.isFavorite
@@ -73,21 +67,28 @@ class MenuItem: MenuItemJSON {
                    measurements: item.measurements,
                    imageName: item.imageName,
                    description: item.description)
+        
+        self.image = item.image
     }
     
     required init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
     }
     
-    func setImage(completion: @escaping (UIImage) -> ()) {
+    func setImage(type: PhotoType, completion: @escaping (UIImage) -> ()) {
+        guard self.imageName != ""  else { completion(standartImage); return }
+        
+        var currentImageName = self.imageName
+        if type == .cellPhoto { currentImageName += "CELL" }
+        
         guard self.image == standartImage else { completion(self.image); return }
-        if let assetsImage = UIImage(named: imageName) {
-            self.image = assetsImage
-            completion(self.image)
+        if let assetsImage = UIImage(named: currentImageName) {
+            if type == .detailPhoto { self.image = assetsImage }
+            completion(assetsImage)
         } else {
             NetworkManager.fetchImage(PhotoFolder.item, self.imageName) { image in
-                self.image = image
-                completion(self.image)
+                if type == .detailPhoto { self.image = image }
+                completion(image)
             }
         }
     }
@@ -111,4 +112,9 @@ class MenuItemJSON: Decodable {
         self.imageName = imageName
         self.description = description
     }
+}
+
+enum PhotoType {
+    case detailPhoto
+    case cellPhoto
 }

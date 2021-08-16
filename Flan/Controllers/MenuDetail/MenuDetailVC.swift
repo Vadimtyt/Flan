@@ -143,7 +143,7 @@ class MenuDetailVC: UIViewController {
     }
     
     private func setPhoto() {
-        item.setImage { image in
+        item.setImage(type: PhotoType.detailPhoto) { image in
             self.itemImage.image = image
         }
     }
