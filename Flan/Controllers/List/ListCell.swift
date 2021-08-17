@@ -113,13 +113,13 @@ class ListCell: UITableViewCell {
         TapticFeedback.shared.tapticFeedback(.light)
         
          self.item.count -= 1
-        removeButton.backgroundColor = .yellow
+        countItemLabel.text = "\(self.item.count)"
         
         if self.item.count < 99  {
             addButton.isEnabled = true
         } else { addButton.isEnabled = false }
-        countItemLabel.text = "\(self.item.count)"
         
+        removeButton.backgroundColor = .yellow
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.removeButton.backgroundColor = nil
         }
@@ -132,12 +132,13 @@ class ListCell: UITableViewCell {
         TapticFeedback.shared.tapticFeedback(.light)
         
         self.item.count += 1
-        addButton.backgroundColor = .yellow
+        countItemLabel.text = "\(self.item.count)"
+        
         if self.item.count >= 99 {
             addButton.isEnabled = false
         }
-        countItemLabel.text = "\(self.item.count)"
         
+        addButton.backgroundColor = .yellow
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.addButton.backgroundColor = nil
         }
@@ -150,12 +151,10 @@ class ListCell: UITableViewCell {
         animatePressingView(sender)
         checkmark = !checkmark
         if checkmark {
-            checkmarkButton.setImage(UIImage(named: "checkmark.circle.fill.png"), for: .normal)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.listDelegate?.addToCompleted(item: self!.item)
             }
         } else {
-            checkmarkButton.setImage(UIImage(named: "checkmark.circle.png"), for: .normal)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.listDelegate?.removeFromCompleted(completedItem: self!.item)
             }
