@@ -29,6 +29,9 @@ class FavoriteVC: UITableViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
     
@@ -37,9 +40,6 @@ class FavoriteVC: UITableViewController {
     private func setupTableView() {
         tableView.backgroundColor = .groupTableViewBackground
         tableView.separatorStyle = .none
-//        tableView.showsVerticalScrollIndicator = false
-//        tableView.separatorInset = .zero
-//        tableView.separatorColor = tableView.backgroundColor
     }
 
     private func updateBackgound() {

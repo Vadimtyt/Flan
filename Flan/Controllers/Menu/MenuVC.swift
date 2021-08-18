@@ -38,7 +38,6 @@ class MenuVC: UITableViewController {
         
         configureSearchController()
         configureNavigationBarLargeStyle()
-        tableView.showsVerticalScrollIndicator = false
         self.definesPresentationContext = true
         tableView.backgroundColor = .groupTableViewBackground
         tableView.separatorStyle = .none

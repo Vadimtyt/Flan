@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zr9-MP-qtO">
                         <rect key="frame" x="0.0" y="8" width="402" height="128"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Кекс" translatesAutoresizingMaskIntoConstraints="NO" id="qYp-v1-cKQ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Standart image" translatesAutoresizingMaskIntoConstraints="NO" id="qYp-v1-cKQ">
                                 <rect key="frame" x="0.0" y="12" width="115" height="96"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qYp-v1-cKQ" secondAttribute="height" multiplier="6:5" id="N8T-Se-0Rt"/>
@@ -209,10 +209,10 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Standart image" width="596" height="596"/>
         <image name="heart" width="19.5" height="18.5"/>
         <image name="minus" width="16" height="2"/>
         <image name="plus" width="16" height="16"/>
-        <image name="Кекс" width="1632" height="1224"/>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
