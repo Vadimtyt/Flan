@@ -224,7 +224,7 @@
 				C19C8C13261E5CF00039CA79 /* Favorite */,
 				C19C8BFB2618E6020039CA79 /* List */,
 				C1AD6A2726584AD2007DFBE9 /* Customized */,
-				C15C408B2645C79E0053910A /* More */,
+				C15C408B2645C79E0053910A /* Contacts */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -257,7 +257,7 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		C15C408B2645C79E0053910A /* More */ = {
+		C15C408B2645C79E0053910A /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
 				C15C408C2645C7C00053910A /* ContactsVC.swift */,
@@ -265,7 +265,7 @@
 				C15C40962645CCC40053910A /* BakeryCell.xib */,
 				C15C40CF26480C5B0053910A /* Map */,
 			);
-			path = More;
+			path = Contacts;
 			sourceTree = "<group>";
 		};
 		C15C40C52646D32C0053910A /* TapticFeedback */ = {

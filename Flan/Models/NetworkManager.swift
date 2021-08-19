@@ -9,14 +9,14 @@ import UIKit
 import FirebaseStorage
 
 enum FileNameFor: String {
-    case items = "Beta.json"
+    case items = "Items.json"
     case cakes = "Cakes.json"
     case bakeries = "Bakeries.json"
 }
 
 enum PhotoFolder: String {
-    case item = "ItemsPhoto"
-    case cake = "CakesPhoto"
+    case item = "Items Photo"
+    case cake = "Cakes Photo"
 }
 
 class NetworkManager {
@@ -41,7 +41,7 @@ class NetworkManager {
     }
     
     class func fetchImage(_ folder: PhotoFolder,_ imageName: String, completion: @escaping (UIImage) -> ()) {
-        downloadRef.reference(withPath: folder.rawValue + "/" + imageName).getData(maxSize: 10000000) { (data, error) in
+        downloadRef.reference(withPath: folder.rawValue + "/" + imageName).getData(maxSize: 1000000000) { (data, error) in
             
             if let error = error {
                 print(error.localizedDescription)

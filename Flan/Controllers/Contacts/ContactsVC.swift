@@ -16,7 +16,7 @@ class ContactsVC: UIViewController {
     
     private var bakeries: [Bakery] { get { return DataManager.shared.getBakeries() } }
     private let countOfbakeries = 4
-    private let email = "PekarnyaFlanApp@gmail.com"
+    private let flanEmail = "PekarnyaFlanApp@gmail.com"
     
     // MARK: - @IBOutlets
     
@@ -54,21 +54,26 @@ class ContactsVC: UIViewController {
         let appURL = URL(string: "instagram://user?username=\(Username)")!
         let application = UIApplication.shared
 
-        if application.canOpenURL(appURL) {
-            application.open(appURL)
-        } else {
-            // if Instagram app is not installed, open URL inside Safari
-            let webURL = URL(string: "https://instagram.com/\(Username)")!
-            application.open(webURL)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [] in
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                // if Instagram app is not installed, open URL inside Safari
+                let webURL = URL(string: "https://instagram.com/\(Username)")!
+                application.open(webURL)
+            }
         }
     }
     
     @IBAction private func feedbackButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
-        sendEmail(subject: NSLocalizedString("Идея для приложения Флан", comment: ""),
-                  messageBody: NSLocalizedString("Напишите здесь Вашу идею или предложение по улучшению приложения Флан", comment: ""),
-                  to: email)
+        let email = flanEmail
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.sendEmail(subject: NSLocalizedString("Идея для приложения Флан", comment: ""),
+                      messageBody: NSLocalizedString("Напишите здесь Вашу идею или предложение по улучшению приложения Флан", comment: ""),
+                      to: email)
+        }
     }
 }
 
@@ -118,7 +123,7 @@ extension ContactsVC: BakeryCellDelegate {
 extension ContactsVC: MFMailComposeViewControllerDelegate {
     func sendEmail(subject: String, messageBody: String, to: String){
         if !MFMailComposeViewController.canSendMail() {
-            self.showAlert(title: "Ошибка", message: "Не найден аккаунт вашей почты, но вы можете другим способом направить свое письмо на email: \(email)")
+            self.showAlert(title: "Ошибка", message: "Не найден аккаунт вашей почты, но вы можете другим способом направить свое письмо на email: \(flanEmail)")
             return
         }
         

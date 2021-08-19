@@ -69,6 +69,8 @@ class BakeryCell: UITableViewCell {
     @IBAction private func mapButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
-        bakeryCellDelegate?.openMap(with: tag)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.bakeryCellDelegate?.openMap(with: self!.tag)
+        }
     }
 }
