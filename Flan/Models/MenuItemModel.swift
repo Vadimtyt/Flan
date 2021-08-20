@@ -87,13 +87,11 @@ class MenuItem: MenuItemJSON {
             completion(assetsImage)
         } else {
             NetworkManager.fetchImage(PhotoFolder.item, self.imageName) { image in
-                if type == .detailPhoto { self.image = image }
+                self.image = image
                 completion(image)
             }
         }
     }
-    
-    
 }
 
 class MenuItemJSON: Decodable {

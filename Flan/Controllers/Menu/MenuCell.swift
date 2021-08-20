@@ -180,6 +180,8 @@ class MenuCell: UITableViewCell {
         }
         secondPriceLabel.isHidden = true
         secondMeasurmentLabel.isHidden = true
+        
+        guard addButton.isEnabled else { return }
         addButtonPressed(addButton)
         
         priceLabel.backgroundColor = .yellow
@@ -194,6 +196,8 @@ class MenuCell: UITableViewCell {
         }
         secondPriceLabel.isHidden = true
         secondMeasurmentLabel.isHidden = true
+        
+        guard addButton.isEnabled else { return }
         addButtonPressed(addButton)
         
         priceLabel.backgroundColor = .yellow
