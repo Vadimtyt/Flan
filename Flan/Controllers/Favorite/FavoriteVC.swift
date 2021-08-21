@@ -46,7 +46,7 @@ class FavoriteVC: UITableViewController {
         if items.isEmpty {
             tableView.setEmptyView(title: "Пусто",
                                    message: "Чтобы добавить свою вкусняшку в избранное нажмите на иконку сердечка",
-                                   messageImage: UIImage(named: "emptyList.png")!)
+                                   messageImage: UIImage(named: "emptyFavorites.png")!)
             tableView.isScrollEnabled = false
         } else {
             tableView.restore()

@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import LinkPresentation
 
 class CustomizedDetailVC: UIViewController {
     
@@ -79,7 +80,7 @@ class CustomizedDetailVC: UIViewController {
         TapticFeedback.shared.tapticFeedback(.light)
         
         let image = cake.getImage()
-        let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        let activityVC = UIActivityViewController(activityItems: [image, self], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
         activityVC.popoverPresentationController?.sourceView = sender
         
@@ -117,5 +118,26 @@ class CustomizedDetailVC: UIViewController {
         alert.addAction(openSettingsAction)
         
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension CustomizedDetailVC: UIActivityItemSource {
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return ""
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        return nil
+    }
+
+    @available(iOS 13.0, *)
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        let image = cake.getImage()
+        let imageProvider = NSItemProvider(object: image)
+        let metadata = LPLinkMetadata()
+        metadata.imageProvider = imageProvider
+        metadata.title = "Заказной торт из Флана " + (cakeNumberLabel.text ?? "")
+        
+        return metadata
     }
 }

@@ -290,10 +290,10 @@
 			isa = PBXGroup;
 			children = (
 				C19C8BEA261625EA0039CA79 /* MenuVC.swift */,
-				C19C8BEF261740670039CA79 /* MenuCell.swift */,
-				C19C8BF7261741050039CA79 /* MenuCell.xib */,
 				C1EE51B3268E7FA2001126DA /* MenuHeaderCell.swift */,
 				C1EE51B5268E8069001126DA /* MenuHeaderCell.xib */,
+				C19C8BEF261740670039CA79 /* MenuCell.swift */,
+				C19C8BF7261741050039CA79 /* MenuCell.xib */,
 				C15AD16E265F0C6300E8E02F /* Categories */,
 			);
 			path = Menu;
@@ -303,12 +303,12 @@
 			isa = PBXGroup;
 			children = (
 				C19C8C05261DE6F60039CA79 /* ListVC.swift */,
-				C19C8C0B261E07190039CA79 /* ListCell.swift */,
-				C19C8C08261E06520039CA79 /* ListCell.xib */,
 				C1C7BF6126B0456E0047DEF0 /* ListHeaderCell.swift */,
 				C1C7BF6526B051DA0047DEF0 /* ListHeaderCell.xib */,
 				C1C7BF6726B054620047DEF0 /* ListFooterCell.swift */,
 				C1BB9D3B26B0CB03000DC598 /* ListFooterCell.xib */,
+				C19C8C0B261E07190039CA79 /* ListCell.swift */,
+				C19C8C08261E06520039CA79 /* ListCell.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
