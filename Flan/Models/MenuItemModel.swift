@@ -9,17 +9,15 @@ import UIKit
 
 class MenuItem: MenuItemJSON {
     
-    private let standartImage = UIImage(named: "Standart image.jpg")!
+    static let standartImage = UIImage(named: "Standart image.jpg")!
     
     // MARK: - Props
-    
-    private lazy var image = standartImage
-    var selectedMeasurment = 0
-    var count = 0
-    var isFavorite = false
+
+    private lazy var cellImage = MenuItem.standartImage
+    private lazy var detailImage = MenuItem.standartImage
     
     // MARK: - Initializations
-    init(from menuItemJSON: MenuItemJSON) {
+    init(menuItemJSON: MenuItemJSON) {
 
         var prices: [Int] = []
         if menuItemJSON.prices.count == 0 {
@@ -57,50 +55,61 @@ class MenuItem: MenuItemJSON {
                    description: description)
     }
     
-    init(item: MenuItem) {
-        self.selectedMeasurment = item.selectedMeasurment
-        self.count = item.count
-        self.isFavorite = item.isFavorite
-        super.init(category: item.category,
-                   name: item.name,
-                   prices: item.prices,
-                   measurements: item.measurements,
-                   imageName: item.imageName,
-                   description: item.description)
+    override init(menuItem: MenuItem) {
+        super.init(category: menuItem.category,
+                   name: menuItem.name,
+                   prices: menuItem.prices,
+                   measurements: menuItem.measurements,
+                   imageName: menuItem.imageName,
+                   description: menuItem.description)
         
-        self.image = item.image
+        self.cellImage = menuItem.cellImage
+        self.detailImage = menuItem.detailImage
+        self.selectedMeasurment = menuItem.selectedMeasurment
+        self.count = menuItem.count
+        self.isFavorite = menuItem.isFavorite
     }
     
     required init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
     }
     
+    
     func setImage(type: PhotoType, completion: @escaping (UIImage) -> ()) {
-        guard self.imageName != ""  else { completion(standartImage); return }
+        guard self.imageName != ""  else { completion(MenuItem.standartImage); return }
         
         var currentImageName = self.imageName
         if type == .cellPhoto { currentImageName += "CELL" }
         
-        guard self.image == standartImage else { completion(self.image); return }
+        guard self.detailImage == MenuItem.standartImage else { completion(self.detailImage); return }
         if let assetsImage = UIImage(named: currentImageName) {
-            if type == .detailPhoto { self.image = assetsImage }
+            switch type {
+            case .cellPhoto:
+                self.detailImage = assetsImage;
+            case .detailPhoto:
+                self.cellImage = assetsImage
+            }
             completion(assetsImage)
         } else {
             NetworkManager.fetchImage(PhotoFolder.item, self.imageName) { image in
-                self.image = image
+                self.detailImage = image
                 completion(image)
             }
         }
     }
 }
 
-class MenuItemJSON: Decodable {
+class MenuItemJSON: Codable {
     let category: String
     let name: String
     var prices: [Int]
     var measurements: [String]
     var imageName: String
     var description: String
+    
+    lazy var selectedMeasurment = 0
+    lazy var count = 0
+    lazy var isFavorite = false
     
     init(category: String, name: String, prices: [Int], measurements: [String], imageName: String, description: String) {
         self.category = category
@@ -109,6 +118,19 @@ class MenuItemJSON: Decodable {
         self.measurements = measurements
         self.imageName = imageName
         self.description = description
+    }
+    
+    init(menuItem: MenuItem) {
+        self.category = menuItem.category
+        self.name = menuItem.name
+        self.prices = menuItem.prices
+        self.measurements = menuItem.measurements
+        self.imageName = menuItem.imageName
+        self.description = menuItem.description
+        
+        self.selectedMeasurment = menuItem.selectedMeasurment
+        self.count = menuItem.count
+        self.isFavorite = menuItem.isFavorite
     }
 }
 

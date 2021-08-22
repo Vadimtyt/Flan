@@ -359,7 +359,7 @@ extension ListVC: UpdatingListCellDelegate {
     
     func addToCompleted(item: MenuItem) {
         
-        let completedItem = MenuItem(item: item)
+        let completedItem = MenuItem(menuItem: item)
         
         DataManager.shared.addToCompletedList(item: completedItem)
         if completedItems.count == 1 {

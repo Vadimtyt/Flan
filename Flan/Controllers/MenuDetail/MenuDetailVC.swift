@@ -172,7 +172,7 @@ class MenuDetailVC: UIViewController {
         countItemLabel.text = "\(self.item.count)"
         let itemsCount = self.item.count
         
-        if itemsCount == 1 {
+        if itemsCount == 0 {
             DataManager.shared.removeFromList(item: self.item)
             removeButton.isEnabled = false
         } else if itemsCount == 98{

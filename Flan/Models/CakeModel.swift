@@ -9,7 +9,7 @@ import UIKit
 
 class Cake: CakeJSON {
     
-    private let standartImage = UIImage(named: "Standart image.jpg")!
+    static let standartImage = UIImage(named: "Standart image.jpg")!
     
     // MARK: - Props
     
@@ -20,13 +20,13 @@ class Cake: CakeJSON {
     
     init(number: Int, imageName: String) {
         self.number = number
-        self.image = standartImage
+        self.image = Cake.standartImage
         super.init(imageName: imageName)
     }
     
     init() {
         self.number = 0
-        self.image = standartImage
+        self.image = Cake.standartImage
         super.init(imageName: "standartImage")
     }
     
@@ -35,7 +35,7 @@ class Cake: CakeJSON {
     }
     
     func setImage(completion: @escaping (UIImage) -> ()) {
-        guard self.image == standartImage else { completion(self.image); return }
+        guard self.image == Cake.standartImage else { completion(self.image); return }
         if let assetsImage = UIImage(named: imageName) {
             self.image = assetsImage
             completion(self.image)

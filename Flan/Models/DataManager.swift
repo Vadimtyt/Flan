@@ -42,7 +42,7 @@ class DataManager {
         NetworkManager.fetchList(from: FileNameFor.items) { [] (itemsFromJSON: [MenuItemJSON]?) in
             guard let itemsJSON = itemsFromJSON else { completion(); return }
             for itemJSON in itemsJSON {
-                let item = MenuItem(from: itemJSON)
+                let item = MenuItem(menuItemJSON: itemJSON)
                 itemsList.append(item)
             }
             self.items = itemsList

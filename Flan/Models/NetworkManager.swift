@@ -45,7 +45,7 @@ class NetworkManager {
             
             if let error = error {
                 print(error.localizedDescription)
-                let standartImage = UIImage(named: "Standart image.jpg")!
+                let standartImage = MenuItem.standartImage
                 completion(standartImage)
                 return
             }

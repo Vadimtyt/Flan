@@ -52,6 +52,7 @@ class CustomizedCVC: UICollectionViewController {
         default:
             assert(false, "Invalid element type")
         }
+        return UICollectionReusableView()
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
