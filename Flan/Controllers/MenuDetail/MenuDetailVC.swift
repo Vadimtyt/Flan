@@ -143,6 +143,7 @@ class MenuDetailVC: UIViewController {
     }
     
     private func setPhoto() {
+        itemImage.image = MenuItem.standartImage
         item.setImage(type: PhotoType.detailPhoto) { image in
             self.itemImage.image = image
         }
@@ -168,12 +169,12 @@ class MenuDetailVC: UIViewController {
     @IBAction private func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        self.item.count -= 1
+        DataManager.shared.setNewCountFor(item: item, count: item.count - 1)
         countItemLabel.text = "\(self.item.count)"
         let itemsCount = self.item.count
         
         if itemsCount == 0 {
-            DataManager.shared.removeFromList(item: self.item)
+            //DataManager.shared.removeFromList(item: self.item)
             removeButton.isEnabled = false
         } else if itemsCount == 98{
             addButton.isEnabled = true
@@ -192,12 +193,11 @@ class MenuDetailVC: UIViewController {
     @IBAction private func addButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        self.item.count += 1
+        DataManager.shared.setNewCountFor(item: item, count: item.count + 1)
         countItemLabel.text = "\(self.item.count)"
         let itemsCount = self.item.count
         
         if itemsCount == 1 {
-            DataManager.shared.addToList(item: item)
             removeButton.isEnabled = true
         } else if itemsCount == 99 {
             addButton.isEnabled = false
@@ -240,7 +240,7 @@ class MenuDetailVC: UIViewController {
 extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
     
     func updateCell(with itemCount: Int) {
-        item.count = itemCount
+        DataManager.shared.setNewCountFor(item: item, count: itemCount)
         countItemLabel.text = "\(itemCount)"
         if itemCount == 0 {
             removeButton.isEnabled = false

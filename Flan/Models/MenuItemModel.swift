@@ -16,6 +16,10 @@ class MenuItem: MenuItemJSON {
     private lazy var cellImage = MenuItem.standartImage
     private lazy var detailImage = MenuItem.standartImage
     
+    var selectedMeasurment = 0
+    var count = 0
+    var isFavorite = false
+    
     // MARK: - Initializations
     init(menuItemJSON: MenuItemJSON) {
 
@@ -70,10 +74,55 @@ class MenuItem: MenuItemJSON {
         self.isFavorite = menuItem.isFavorite
     }
     
-    required init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
+    enum CodingKeys: String, CodingKey {
+        case category = "category"
+        case name = "name"
+        case prices = "prices"
+        case measurements = "measurements"
+        case imageName = "imageName"
+        case description = "description"
+        case selectedMeasurment = "selectedMeasurment"
+        case count = "count"
+        case isFavorite = "isFavorite"
     }
     
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(category, forKey: .category)
+        try container.encode(name, forKey: .name)
+        try container.encode(prices, forKey: .prices)
+        try container.encode(measurements, forKey: .measurements)
+        try container.encode(imageName, forKey: .imageName)
+        try container.encode(description, forKey: .description)
+        try container.encode(selectedMeasurment, forKey: .selectedMeasurment)
+        try container.encode(count, forKey: .count)
+        try container.encode(isFavorite, forKey: .isFavorite)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let newCategory = try values.decode(String.self, forKey: .category)
+        let newName = try values.decode(String.self, forKey: .name)
+        let newPrices = try values.decode([Int].self, forKey: .prices)
+        let newMeasurements = try values.decode([String].self, forKey: .measurements)
+        let newImageName = try values.decode(String.self, forKey: .imageName)
+        let newDescription = try values.decode(String.self, forKey: .description)
+        let newSelectedMeasurment = try values.decode(Int.self, forKey: .selectedMeasurment)
+        let newCount = try values.decode(Int.self, forKey: .count)
+        let newIsFavorite = try values.decode(Bool.self, forKey: .isFavorite)
+        
+        super.init(category: newCategory,
+                   name: newName,
+                   prices: newPrices,
+                   measurements: newMeasurements,
+                   imageName: newImageName,
+                   description: newDescription)
+        selectedMeasurment = newSelectedMeasurment
+        count = newCount
+        isFavorite = newIsFavorite
+    }
+    
+    // MARK: - Funcs
     
     func setImage(type: PhotoType, completion: @escaping (UIImage) -> ()) {
         guard self.imageName != ""  else { completion(MenuItem.standartImage); return }
@@ -100,6 +149,9 @@ class MenuItem: MenuItemJSON {
 }
 
 class MenuItemJSON: Codable {
+    
+    // MARK: - Props
+    
     let category: String
     let name: String
     var prices: [Int]
@@ -107,9 +159,7 @@ class MenuItemJSON: Codable {
     var imageName: String
     var description: String
     
-    lazy var selectedMeasurment = 0
-    lazy var count = 0
-    lazy var isFavorite = false
+    // MARK: - Initializations
     
     init(category: String, name: String, prices: [Int], measurements: [String], imageName: String, description: String) {
         self.category = category
@@ -127,10 +177,6 @@ class MenuItemJSON: Codable {
         self.measurements = menuItem.measurements
         self.imageName = menuItem.imageName
         self.description = menuItem.description
-        
-        self.selectedMeasurment = menuItem.selectedMeasurment
-        self.count = menuItem.count
-        self.isFavorite = menuItem.isFavorite
     }
 }
 

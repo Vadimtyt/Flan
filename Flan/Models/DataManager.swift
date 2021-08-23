@@ -11,6 +11,9 @@ class DataManager {
     
     static let shared = DataManager()
     
+    var isOnlineMode = true
+    private let defaults = UserDefaults.standard
+    
     // MARK: - Props
     
     private var items: [MenuItem] = []
@@ -24,30 +27,76 @@ class DataManager {
     
     private var bakeries: [Bakery] = []
     
-    func configureData(completion: @escaping () -> ()) {
-        configureItems {
-            self.configureCakes {
-                self.configureBakeries {
+    func configureDataFromFirebase(completion: @escaping () -> ()) {
+        downloadItems {
+            self.downloadCakes {
+                self.downloadBakeries {
                     completion()
                 }
             }
         }
     }
     
+    func configureDataFromSaved() {
+        isOnlineMode = false
+        
+        setItemsFromSaved()
+        setFavoritesFromSaved()
+        setListFromSaved()
+        setCompletedListFromSaved()
+        setCakesFromSaved()
+        setBakeriesFromSaved()
+    }
+    
     // MARK: - Funcs for items
     
-    func configureItems(completion: @escaping () -> ()) {
-        
+    func downloadItems(completion: @escaping () -> ()) {
         var itemsList: [MenuItem] = []
-        NetworkManager.fetchList(from: FileNameFor.items) { [] (itemsFromJSON: [MenuItemJSON]?) in
-            guard let itemsJSON = itemsFromJSON else { completion(); return }
+        NetworkManager.fetchList(from: FileNameFor.items) { [] (itemsFromJSON: [MenuItemJSON]?, dataJSON: Data?) in
+            guard self.isOnlineMode else { return }
+            
+            guard let itemsJSON = itemsFromJSON else {
+                //self.setItemsFromSaved()
+                completion()
+                return
+            }
+            
+            if let data = dataJSON {
+                self.saveItems(data: data, keyFor: .items)
+            }
+            
             for itemJSON in itemsJSON {
                 let item = MenuItem(menuItemJSON: itemJSON)
                 itemsList.append(item)
             }
             self.items = itemsList
             self.configureCategories()
+            self.setFavoritesFromSaved()
+            self.setListFromSaved()
+            self.setCompletedListFromSaved()
+            
             completion()
+        }
+    }
+    
+    func saveItems(data: Data, keyFor key: KeysDefaults) {
+        defaults.setValue(data, forKey: key.rawValue)
+        print("Saved items", key.rawValue)
+    }
+    
+    func setItemsFromSaved() {
+        var itemsList: [MenuItem] = []
+        if let data = defaults.value(forKey: KeysDefaults.items.rawValue) as? Data{
+            let itemsFromJSON = try? JSONDecoder().decode([MenuItemJSON].self, from: data)
+            
+            guard let itemsJSON = itemsFromJSON else { return }
+            for itemJSON in itemsJSON {
+                let item = MenuItem(menuItemJSON: itemJSON)
+                itemsList.append(item)
+            }
+            self.items = itemsList
+            self.configureCategories()
+            print("Set items from saved")
         }
     }
     
@@ -78,12 +127,32 @@ class DataManager {
         return favorites
     }
     
+    func setFavoritesFromSaved() {
+        if let data = defaults.value(forKey: KeysDefaults.favorites.rawValue) as? Data{
+            let favoritesFromJSON = try? JSONDecoder().decode([MenuItem].self, from: data)
+            
+            guard let favoritesJSON = favoritesFromJSON else { return }
+            for favoriteJSON in favoritesJSON {
+                if let index = items.firstIndex(where: {$0.name == favoriteJSON.name}) {
+                    items[index].isFavorite = true
+                    favorites.append(items[index])
+                }
+            }
+            print("Set favorites from saved", favoritesJSON.count)
+        }
+    }
+    
     func updateFavorites() {
         favorites.removeAll()
         for item in items {
             if item.isFavorite == true {
                 favorites.append(item)
             }
+        }
+
+        if let data = try? JSONEncoder().encode(favorites) {
+            defaults.setValue(data, forKey: KeysDefaults.favorites.rawValue)
+            print("Save favorites OK")
         }
     }
     
@@ -96,14 +165,50 @@ class DataManager {
     
     // MARK: - Funcs for list
     
-    func getList() -> [MenuItem]{
+    func getList() -> [MenuItem] {
         return list
     }
     
+    func setListFromSaved() {
+        if let data = defaults.value(forKey: KeysDefaults.list.rawValue) as? Data{
+            let listFromJSON = try? JSONDecoder().decode([MenuItem].self, from: data)
+            
+            guard let listJSON = listFromJSON else { return }
+            for itemJSON in listJSON {
+                let itemJSON = MenuItem(menuItem: itemJSON)
+                if let index = items.firstIndex(where: {$0.name == itemJSON.name}) {
+                    items[index].count = itemJSON.count
+                    items[index].selectedMeasurment = itemJSON.selectedMeasurment
+                    list.append(items[index])
+                }
+            }
+            print("Set list from saved", listJSON.count)
+        }
+    }
+    
+    func saveList() {
+        if let data = try? JSONEncoder().encode(list) {
+            defaults.setValue(data, forKey: KeysDefaults.list.rawValue)
+            print("Save list OK", list.count)
+        }
+    }
+    
+    func setNewCountFor(item: MenuItem, count: Int) {
+        if count > 0{
+            item.count = count
+            addToList(item: item)
+        } else if count == 0 {
+            item.count = count
+            removeFromList(item: item)
+        }
+    }
+    
     func addToList(item: MenuItem) {
-        guard (list.firstIndex(where: { $0 === item }) == nil) else { return }
-        //list.insert(item, at: 0)
-        list.append(item)
+        if list.firstIndex(where: { $0 === item }) == nil {
+            //list.insert(item, at: 0)
+            list.append(item)
+        }
+        saveList()
     }
     
     func removeFromList(item: MenuItem) {
@@ -112,12 +217,14 @@ class DataManager {
             item.selectedMeasurment = 0
             list.remove(at: index)
         }
+        saveList()
     }
     
     func clearList() {
         for item in list {
             removeFromList(item: item)
         }
+        saveList()
     }
     
     func getValueForListBadge() -> Int {
@@ -137,24 +244,52 @@ class DataManager {
         return completedList
     }
     
+    func setCompletedListFromSaved() {
+        if let data = defaults.value(forKey: KeysDefaults.completedList.rawValue) as? Data{
+            let completedListFromJSON = try? JSONDecoder().decode([MenuItem].self, from: data)
+            
+            guard let completedListJSON = completedListFromJSON else { return }
+            for itemJSON in completedListJSON {
+                completedList.append(itemJSON)
+            }
+            print("Set completed list from saved", completedListJSON.count)
+        }
+    }
+    
+    func saveCompletedList() {
+        if let data = try? JSONEncoder().encode(completedList) {
+            defaults.setValue(data, forKey: KeysDefaults.completedList.rawValue)
+            print("Save completed list OK", completedList.count)
+        }
+    }
+    
     func addToCompletedList(item: MenuItem) {
         completedList.insert(item, at: 0)
+        saveCompletedList()
     }
     
     func removeItemFromCompletedList(at index: Int) {
         completedList.remove(at: index)
+        saveCompletedList()
     }
     
     func clearCompletedList() {
         completedList.removeAll()
+        saveCompletedList()
     }
     
     // MARK: - Funcs for cakes
     
-    func configureCakes(completion: @escaping () -> ()) {
-        
-        NetworkManager.fetchList(from: FileNameFor.cakes) { [] (cakesFromJSON: [CakeJSON]?) in
+    func downloadCakes(completion: @escaping () -> ()) {
+        NetworkManager.fetchList(from: FileNameFor.cakes) { [] (cakesFromJSON: [CakeJSON]?, dataJSON: Data?) in
+            guard self.isOnlineMode else { return }
+            
             guard let cakesJSON = cakesFromJSON else { completion(); return }
+            
+            if let data = dataJSON {
+                self.saveItems(data: data, keyFor: .cakes)
+            }
+            
             var cakesList: [Cake] = []
             for index in 0...cakesJSON.count-1 {
                 let cakeJSON = cakesJSON[index]
@@ -166,33 +301,74 @@ class DataManager {
         }
     }
     
+    func setCakesFromSaved() {
+        var cakesList: [Cake] = []
+        if let data = defaults.value(forKey: KeysDefaults.cakes.rawValue) as? Data{
+            let cakesFromJSON = try? JSONDecoder().decode([CakeJSON].self, from: data)
+            
+            guard let cakesJSON = cakesFromJSON else { return }
+            for index in 0...cakesJSON.count-1 {
+                let cakeJSON = cakesJSON[index]
+                let cake = Cake(number: index + 1, imageName: cakeJSON.imageName)
+                cakesList.append(cake)
+            }
+            self.cakes = cakesList
+            print("Set cakes from saved")
+        }
+    }
+    
     func getCakes() -> [Cake] {
         return cakes
     }
     
     // MARK: - Funcs for bakery
     
-    func configureBakeries(completion: @escaping () -> ()) {
-        NetworkManager.fetchList(from: FileNameFor.bakeries) { [] (bakeriesFromJSON: [Bakery]?) in
+    func downloadBakeries(completion: @escaping () -> ()) {
+        NetworkManager.fetchList(from: FileNameFor.bakeries) { [] (bakeriesFromJSON: [Bakery]?, dataJSON: Data?) in
+            
+            if let data = dataJSON {
+                self.saveItems(data: data, keyFor: .bakeries)
+            }
             
             if let bakeries = bakeriesFromJSON {
                 self.bakeries = bakeries
-            } else { self.bakeries = bakeriesList}
+            }
             completion()
         }
     }
+    
+    func setBakeriesFromSaved() {
+        if let data = defaults.value(forKey: KeysDefaults.bakeries.rawValue) as? Data{
+            let bakeriesFromJSON = try? JSONDecoder().decode([Bakery].self, from: data)
+            
+            if let bakeries = bakeriesFromJSON {
+                self.bakeries = bakeries
+            }
+            print("Set bakeries from saved")
+        }
+    }
+    
     
     func getBakeries() -> [Bakery] {
         return bakeries
     }
 }
 
-private let bakeriesList = [
-    Bakery(name: "Флан на Новой", address: "ул.Новая, 14А", phone: "+7(989)248-14-14", workTime: "10:00-20:00 Ежедневно"),
-    Bakery(name: "Флан на Отдельской", address: "ул.Отдельская 324/7", phone: "+7(988)135-07-07", workTime: "9:00-22:00 Ежедневно"),
-    Bakery(name: "Флан на Школьной", address: "ул.Школьная, 301А", phone: "+7(918)123-45-67", workTime: "8:00-20:00 ПН-ПТ"),
-    Bakery(name: "Флан на Лермонтова", address: "ул.Лермонтова, 216Г", phone: "+7(988)316-21-21", workTime: "8:00-22:00 Ежедневно")
-]
+enum KeysDefaults: String {
+    case items = "Items"
+    case favorites = "Favorites"
+    case list = "List"
+    case completedList = "CompletedList"
+    case cakes = "Cakes"
+    case bakeries = "Bakeries"
+}
+
+//private let bakeriesList = [
+//    Bakery(name: "Флан на Новой", address: "ул.Новая, 14А", phone: "+7(989)248-14-14", workTime: "10:00-20:00 Ежедневно"),
+//    Bakery(name: "Флан на Отдельской", address: "ул.Отдельская 324/7", phone: "+7(988)135-07-07", workTime: "9:00-22:00 Ежедневно"),
+//    Bakery(name: "Флан на Школьной", address: "ул.Школьная, 301А", phone: "+7(918)123-45-67", workTime: "8:00-20:00 ПН-ПТ"),
+//    Bakery(name: "Флан на Лермонтова", address: "ул.Лермонтова, 216Г", phone: "+7(988)316-21-21", workTime: "8:00-22:00 Ежедневно")
+//]
 
 //private let allItems: [MenuItem] = [
 //    MenuItem(category: "Торты", name: "Нежность", prices: [170], measurements: ["100г"], imageName: "Киш1", description: "Описание"),

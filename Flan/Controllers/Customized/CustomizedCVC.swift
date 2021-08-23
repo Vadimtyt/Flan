@@ -12,7 +12,7 @@ private let reuseIdentifier = "customizedCell"
 class CustomizedCVC: UICollectionViewController {
     
     // MARK: - Props
-    private var cakes: [Cake] { get { return DataManager.shared.getCakes() } }
+    private var cakes: [Cake] { DataManager.shared.getCakes() }
     
     private var itemsPerRow: CGFloat = 2
     private let sectionPadding: CGFloat = 12

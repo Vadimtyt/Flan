@@ -15,7 +15,7 @@ class ListVC: UIViewController {
     
     // MARK: - Props
     
-    private var items: [MenuItem] { get { return DataManager.shared.getList() } }
+    private var items: [MenuItem] { DataManager.shared.getList() }
     private var completedItems: [MenuItem] { get { return DataManager.shared.getCompletedList() } }
     
     private let popUpText = "В этом поле указывается приблизительная сумма, она не учитывает фактический вес всех позиций, цену упаковочных изделий и т.п. Эта сумма отображается исключительно в ознакомительных целях."
@@ -389,7 +389,7 @@ extension ListVC: UpdatingListCellDelegate {
                 listTableView.insertSections([0], with: .left)
             } else { listTableView.insertRows(at: [IndexPath(row: (items.count - 1), section: 0)], with: .left) }
         } else if items.contains(where: {$0.name == completedItem.name && $0.selectedMeasurment == completedItem.selectedMeasurment}) {
-            item.count += completedItem.count
+            DataManager.shared.setNewCountFor(item: item, count: item.count + completedItem.count)
             guard let indexAtList = items.firstIndex(where: {$0.name == completedItem.name}) else { return }
             listTableView.reloadRows(at: [IndexPath(row: indexAtList, section: 0)], with: .left)
         }

@@ -112,7 +112,7 @@ class ListCell: UITableViewCell {
     @IBAction private func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-         self.item.count -= 1
+        DataManager.shared.setNewCountFor(item: item, count: item.count - 1)
         countItemLabel.text = "\(self.item.count)"
         
         if self.item.count < 99  {
@@ -131,7 +131,7 @@ class ListCell: UITableViewCell {
     @IBAction private func addButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        self.item.count += 1
+        DataManager.shared.setNewCountFor(item: item, count: item.count + 1)
         countItemLabel.text = "\(self.item.count)"
         
         if self.item.count >= 99 {

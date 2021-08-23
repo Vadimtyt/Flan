@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
                                 <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgp-7z-N4S" id="DIj-3k-2gD" customClass="UITextView">
@@ -481,6 +481,12 @@
                                     <constraint firstAttribute="height" constant="20" id="hjT-0V-l4H"/>
                                 </constraints>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ошибка" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDK-oI-fLN" userLabel="Text Label">
+                                <rect key="frame" x="20" y="567" width="350" height="20.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pOE-ns-Qto"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -489,12 +495,16 @@
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="trailing" secondItem="pOE-ns-Qto" secondAttribute="trailing" constant="-40" id="8bx-40-b9C"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerY" secondItem="pOE-ns-Qto" secondAttribute="centerY" constant="-50" id="V6z-nR-Nsa"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="W4r-PG-IZk"/>
+                            <constraint firstItem="jDK-oI-fLN" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="20" id="XCi-UC-yNy"/>
                             <constraint firstItem="kHi-Z7-Ggr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="gzl-6e-6J9"/>
+                            <constraint firstItem="pOE-ns-Qto" firstAttribute="trailing" secondItem="jDK-oI-fLN" secondAttribute="trailing" constant="20" id="qoL-st-avi"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="40" id="viv-y0-AlX"/>
+                            <constraint firstItem="jDK-oI-fLN" firstAttribute="top" secondItem="kHi-Z7-Ggr" secondAttribute="bottom" constant="8" symbolic="YES" id="zgv-ca-m3D"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="kHi-Z7-Ggr" id="xvB-dA-810"/>
+                        <outlet property="textLabel" destination="jDK-oI-fLN" id="GT4-2x-e0O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AoH-fY-zQs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -511,7 +521,7 @@
         <image name="Menu" width="30" height="30"/>
         <image name="Standart image" width="596" height="596"/>
         <image name="info.circle" width="20" height="20"/>
-        <image name="instaIcon" width="256" height="256"/>
+        <image name="instaIcon" width="512" height="512"/>
         <image name="line.3.horizontal" width="20" height="10"/>
         <image name="magnifyingglass" width="19" height="19.5"/>
         <image name="trash" width="19" height="23.5"/>

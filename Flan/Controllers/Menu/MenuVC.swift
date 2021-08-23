@@ -16,7 +16,7 @@ class MenuVC: UITableViewController {
     // MARK: - Props
     
     private var categories: [(category: String, items: [MenuItem])] { get { return DataManager.shared.getCategories() }}
-    private var items: [MenuItem] { get { return DataManager.shared.getItems()} }
+    private var items: [MenuItem] { DataManager.shared.getItems() }
     
     private let searchController = UISearchController(searchResultsController: nil)
     private var filtredItems: [MenuItem] = []
@@ -46,6 +46,7 @@ class MenuVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.updateListVCBadge()
         }
     }
     

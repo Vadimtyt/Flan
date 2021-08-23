@@ -122,6 +122,7 @@ class MenuCell: UITableViewCell {
     }
     
     func setPhoto() {
+        imageItemView.image = MenuItem.standartImage
         let imageName = item.imageName + "CELL"
         item.setImage(type: PhotoType.cellPhoto) { [imageName] image in
             guard imageName == (self.item.imageName + "CELL") else { return }
@@ -206,15 +207,18 @@ class MenuCell: UITableViewCell {
         }
     }
     
+    
+    // MARK: - @IBActions
+    
     @IBAction private func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        self.item.count -= 1
+        DataManager.shared.setNewCountFor(item: item, count: item.count - 1)
         countItemLabel.text = "\(self.item.count)"
         let itemsCount = self.item.count
         
         if itemsCount == 0 {
-            DataManager.shared.removeFromList(item: self.item)
+            //DataManager.shared.removeFromList(item: self.item)
             removeButton.isEnabled = false
         } else if itemsCount == 98{
             addButton.isEnabled = true
@@ -233,12 +237,12 @@ class MenuCell: UITableViewCell {
     @IBAction private func addButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        self.item.count += 1
+        DataManager.shared.setNewCountFor(item: item, count: item.count + 1)
         countItemLabel.text = "\(self.item.count)"
         let itemsCount = self.item.count
         
         if itemsCount == 1 {
-            DataManager.shared.addToList(item: item)
+            //DataManager.shared.addToList(item: item)
             removeButton.isEnabled = true
         } else if itemsCount >= 99 {
             addButton.isEnabled = false
@@ -263,7 +267,9 @@ class MenuCell: UITableViewCell {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             if self?.item.isFavorite == true {
                 self?.favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
-            } else if self?.item.isFavorite == false { self?.favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
+            } else if self?.item.isFavorite == false {
+                self?.favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal)
+            }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
                 self?.updateCellDelegate?.updateFavorites()

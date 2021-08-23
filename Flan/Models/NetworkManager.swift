@@ -22,17 +22,17 @@ enum PhotoFolder: String {
 class NetworkManager {
     static let downloadRef = Storage.storage()
     
-    class func fetchList<T: Decodable>(from path: FileNameFor, completion: @escaping ((T)?) -> ()) {
+    class func fetchList<T: Decodable>(from path: FileNameFor, completion: @escaping ((T)?, Data?) -> ()) {
         
         downloadRef.reference(withPath: path.rawValue).getData(maxSize: 1000000000) { (data, error) in
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .useDefaultKeys
-                guard data != nil else { completion(nil); return }
+                guard data != nil else { completion(nil, nil); return }
                 let listJSON = try decoder.decode(T.self, from: data!)
 
                 DispatchQueue.main.async {
-                    completion(listJSON)
+                    completion(listJSON, data)
                 }
             } catch let error {
                 print("ERROR", error)

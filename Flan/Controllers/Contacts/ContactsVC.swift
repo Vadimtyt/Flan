@@ -14,7 +14,7 @@ class ContactsVC: UIViewController {
     
     // MARK: - Props
     
-    private var bakeries: [Bakery] { get { return DataManager.shared.getBakeries() } }
+    private var bakeries: [Bakery] { DataManager.shared.getBakeries() }
     private let countOfbakeries = 4
     private let flanEmail = "PekarnyaFlanApp@gmail.com"
     
