@@ -125,23 +125,23 @@ class MenuItem: MenuItemJSON {
     // MARK: - Funcs
     
     func setImage(type: PhotoType, completion: @escaping (UIImage) -> ()) {
-        guard self.imageName != ""  else { completion(MenuItem.standartImage); return }
+        guard imageName != ""  else { completion(MenuItem.standartImage); return }
         
-        var currentImageName = self.imageName
+        var currentImageName = imageName
         if type == .cellPhoto { currentImageName += "CELL" }
         
-        guard self.detailImage == MenuItem.standartImage else { completion(self.detailImage); return }
+        guard detailImage == MenuItem.standartImage else { completion(self.detailImage); return }
         if let assetsImage = UIImage(named: currentImageName) {
             switch type {
             case .cellPhoto:
-                self.detailImage = assetsImage;
+                detailImage = assetsImage;
             case .detailPhoto:
-                self.cellImage = assetsImage
+                cellImage = assetsImage
             }
             completion(assetsImage)
         } else {
-            NetworkManager.fetchImage(PhotoFolder.item, self.imageName) { image in
-                self.detailImage = image
+            NetworkManager.fetchImage(PhotoFolder.item, self.imageName) { [weak self] image in
+                self?.detailImage = image
                 completion(image)
             }
         }

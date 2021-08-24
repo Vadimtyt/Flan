@@ -35,21 +35,19 @@ class Cake: CakeJSON {
     }
     
     func setImage(completion: @escaping (UIImage) -> ()) {
-        guard self.image == Cake.standartImage else { completion(self.image); return }
+        guard image == Cake.standartImage else { completion(image); return }
         if let assetsImage = UIImage(named: imageName) {
-            self.image = assetsImage
-            completion(self.image)
+            image = assetsImage
+            completion(image)
         } else {
-            NetworkManager.fetchImage(PhotoFolder.cake, self.imageName) { image in
-                self.image = image
-                completion(self.image)
+            NetworkManager.fetchImage(PhotoFolder.cake, imageName) { [weak self] image in
+                self?.image = image
+                completion(image)
             }
         }
     }
     
-    func getImage() -> UIImage {
-        return image
-    }
+    func getImage() -> UIImage { image }
 }
 
 class CakeJSON: Decodable {

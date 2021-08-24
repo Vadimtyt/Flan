@@ -25,15 +25,9 @@ class NetworkCheck {
     private var monitor = NWPathMonitor()
     private static let _sharedInstance = NetworkCheck()
     private var observations = [ObjectIdentifier: NetworkChangeObservation]()
-    var currentStatus: NWPath.Status {
-        get {
-            return monitor.currentPath.status
-        }
-    }
+    var currentStatus: NWPath.Status { monitor.currentPath.status }
 
-    class func sharedInstance() -> NetworkCheck {
-        return _sharedInstance
-    }
+    class func sharedInstance() -> NetworkCheck { _sharedInstance }
     
     // MARK: - Initialization
 
