@@ -34,9 +34,9 @@ class StartVC: UIViewController {
              self.presentApp()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             if DataManager.shared.getItems().count == 0 {
-                self.checkNetworkConnecion()
+                self?.checkNetworkConnecion()
             }
         }
     }
@@ -57,7 +57,7 @@ class StartVC: UIViewController {
             //Do nothing
         } else if networkCheck.currentStatus == .unsatisfied {
             DataManager.shared.configureDataFromSaved()
-            showNetworkAlert(title: "Упс...", message: "Кажется пропало соединение с интернетом. Пожалуйста, проверьте cоединение с Интернетом. Информация в приложении может быть неактуальной")
+            showNetworkAlert(title: "Упс...", message: "Пожалуйста, проверьте cоединение с Интернетом. Информация в приложении может быть неактуальной")
             activityIndicator.stopAnimating()
             activityIndicator.isHidden = true
         }
@@ -68,8 +68,8 @@ class StartVC: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         // OpenSettingsAction action
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            self.presentApp()
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.presentApp()
         }
         
         alert.addAction(okAction)

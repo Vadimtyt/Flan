@@ -15,7 +15,7 @@ class MenuVC: UITableViewController {
     
     // MARK: - Props
     
-    private var categories: [(category: String, items: [MenuItem])] { get { return DataManager.shared.getCategories() }}
+    private var categories: [(category: String, items: [MenuItem])] { DataManager.shared.getCategories() }
     private var items: [MenuItem] { DataManager.shared.getItems() }
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -24,9 +24,7 @@ class MenuVC: UITableViewController {
         guard let text = searchController.searchBar.text else { return false }
         return text.isEmpty
     }
-    private var isFiltering: Bool {
-        return searchController.isActive && !searchBarIsEmpty
-    }
+    private var isFiltering: Bool { searchController.isActive && !searchBarIsEmpty }
     private var isKeyboardPresented = false
 
     // MARK: - Initialization
@@ -44,9 +42,9 @@ class MenuVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.updateListVCBadge()
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+            self?.updateListVCBadge()
         }
     }
     
@@ -171,7 +169,6 @@ class MenuVC: UITableViewController {
         
         categoriesVC.transitioningDelegate = self
         categoriesVC.categoriesVCDelegate = self
-        categoriesVC.categories = categories
         categoriesVC.modalPresentationStyle = .custom
         self.present(categoriesVC, animated: true, completion: nil)
     }
@@ -226,7 +223,6 @@ extension MenuVC: UIViewControllerTransitioningDelegate {
 
 extension MenuVC: UpdatingMenuCellDelegate {
     
-    
     func updateListVCBadge() {
         let badgeValue = DataManager.shared.getValueForListBadge()
         updateListVCBadge(with: badgeValue)
@@ -235,10 +231,6 @@ extension MenuVC: UpdatingMenuCellDelegate {
     func updateFavorites() {
         DataManager.shared.updateFavorites()
     }
-    
-//    func updateCellAt(indexPath: IndexPath) {
-//        tableView.reloadRows(at: [indexPath], with: .automatic)
-//    }
 }
 
 extension MenuVC: UpdatingMenuDetailDelegate {

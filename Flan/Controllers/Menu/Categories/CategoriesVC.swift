@@ -14,7 +14,7 @@ protocol CategoriesVCDelegate: AnyObject {
 class CategoriesVC: UIViewController {
 
     weak var categoriesVCDelegate: CategoriesVCDelegate?
-    var categories: [(category: String, items: [MenuItem])] = []
+    var categories: [(category: String, items: [MenuItem])] { DataManager.shared.getCategories() }
     
     private var hasSetPointOrigin = false
     private var pointOrigin: CGPoint?

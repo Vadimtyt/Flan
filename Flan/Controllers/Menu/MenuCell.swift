@@ -12,7 +12,6 @@ import UIKit
 protocol UpdatingMenuCellDelegate: AnyObject {
     func updateListVCBadge()
     func updateFavorites()
-    //func updateCellAt(indexPath: IndexPath)
 }
 
 class MenuCell: UITableViewCell {
@@ -121,12 +120,13 @@ class MenuCell: UITableViewCell {
         updatePriceLabels()
     }
     
-    func setPhoto() {
+    private func setPhoto() {
         imageItemView.image = MenuItem.standartImage
-        let imageName = item.imageName + "CELL"
-        item.setImage(type: PhotoType.cellPhoto) { [imageName] image in
-            guard imageName == (self.item.imageName + "CELL") else { return }
-            self.imageItemView.image = image
+        let settingImageName = item.imageName + "CELL"
+        item.setImage(type: PhotoType.cellPhoto) { [settingImageName] image in
+            if settingImageName == (self.item.imageName + "CELL") {
+                self.imageItemView.image = image
+            }
         }
     }
     
@@ -218,7 +218,6 @@ class MenuCell: UITableViewCell {
         let itemsCount = self.item.count
         
         if itemsCount == 0 {
-            //DataManager.shared.removeFromList(item: self.item)
             removeButton.isEnabled = false
         } else if itemsCount == 98{
             addButton.isEnabled = true
@@ -242,7 +241,6 @@ class MenuCell: UITableViewCell {
         let itemsCount = self.item.count
         
         if itemsCount == 1 {
-            //DataManager.shared.addToList(item: item)
             removeButton.isEnabled = true
         } else if itemsCount >= 99 {
             addButton.isEnabled = false

@@ -159,7 +159,9 @@ class MenuDetailVC: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             if self?.item.isFavorite == true {
                 self?.favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
-            } else if self?.item.isFavorite == false { self?.favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
+            } else if self?.item.isFavorite == false {
+                self?.favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal)
+            }
         }
         
         updateCellDelegate?.updateCellAt(indexPath: indexPath)
@@ -174,7 +176,6 @@ class MenuDetailVC: UIViewController {
         let itemsCount = self.item.count
         
         if itemsCount == 0 {
-            //DataManager.shared.removeFromList(item: self.item)
             removeButton.isEnabled = false
         } else if itemsCount == 98{
             addButton.isEnabled = true
