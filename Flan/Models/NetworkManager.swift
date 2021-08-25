@@ -35,7 +35,8 @@ class NetworkManager {
                     completion(listJSON, data)
                 }
             } catch let error {
-                print("ERROR", error)
+                print("ERROR \(path.rawValue)\n", error)
+                completion(nil, nil)
             }
         }.resume()
     }
@@ -44,7 +45,7 @@ class NetworkManager {
         downloadRef.reference(withPath: folder.rawValue + "/" + imageName).getData(maxSize: 1000000000) { (data, error) in
             
             if let error = error {
-                print(error.localizedDescription)
+                print(error.localizedDescription, folder.rawValue, imageName)
                 let standartImage = MenuItem.standartImage
                 completion(standartImage)
                 return

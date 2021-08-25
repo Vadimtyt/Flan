@@ -109,12 +109,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Меню" id="Jhv-6H-QFp">
-                        <barButtonItem key="leftBarButtonItem" title="Search" image="magnifyingglass" id="Gi5-Hf-aZy">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="Gi5-Hf-aZy">
                             <connections>
                                 <action selector="searchButtonPressed:" destination="htg-z2-5ok" id="VxZ-QN-92F"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Cat" image="line.3.horizontal" id="cwg-sA-krC" userLabel="Categories">
+                        <barButtonItem key="rightBarButtonItem" title="Разделы" image="line.3.horizontal" id="cwg-sA-krC" userLabel="Categories">
                             <connections>
                                 <action selector="categoriesButtonPressed:" destination="htg-z2-5ok" id="jHY-7c-dzo"/>
                             </connections>
@@ -468,37 +468,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlanLogo" translatesAutoresizingMaskIntoConstraints="NO" id="QGn-jt-nfr">
-                                <rect key="frame" x="40" y="247" width="310" height="260"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flan Launch Logo" translatesAutoresizingMaskIntoConstraints="NO" id="QGn-jt-nfr">
+                                <rect key="frame" x="60" y="242" width="270" height="270"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="QGn-jt-nfr" secondAttribute="height" multiplier="414:347" id="cQr-aK-1u4"/>
+                                    <constraint firstAttribute="width" secondItem="QGn-jt-nfr" secondAttribute="height" id="cQr-aK-1u4"/>
                                 </constraints>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kHi-Z7-Ggr">
-                                <rect key="frame" x="185" y="539" width="20" height="20"/>
+                                <rect key="frame" x="185" y="544" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="DGJ-Fj-6u7"/>
                                     <constraint firstAttribute="height" constant="20" id="hjT-0V-l4H"/>
                                 </constraints>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ошибка" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDK-oI-fLN" userLabel="Text Label">
-                                <rect key="frame" x="20" y="567" width="350" height="20.333333333333371"/>
+                                <rect key="frame" x="20" y="572" width="350" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pOE-ns-Qto"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.9371530414" green="0.93731355670000005" blue="0.93714290860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kHi-Z7-Ggr" firstAttribute="top" secondItem="QGn-jt-nfr" secondAttribute="bottom" constant="32" id="5Kh-Ex-Wgg"/>
-                            <constraint firstItem="QGn-jt-nfr" firstAttribute="trailing" secondItem="pOE-ns-Qto" secondAttribute="trailing" constant="-40" id="8bx-40-b9C"/>
+                            <constraint firstItem="QGn-jt-nfr" firstAttribute="trailing" secondItem="pOE-ns-Qto" secondAttribute="trailing" constant="-60" id="8bx-40-b9C"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerY" secondItem="pOE-ns-Qto" secondAttribute="centerY" constant="-50" id="V6z-nR-Nsa"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="W4r-PG-IZk"/>
                             <constraint firstItem="jDK-oI-fLN" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="20" id="XCi-UC-yNy"/>
                             <constraint firstItem="kHi-Z7-Ggr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="gzl-6e-6J9"/>
                             <constraint firstItem="pOE-ns-Qto" firstAttribute="trailing" secondItem="jDK-oI-fLN" secondAttribute="trailing" constant="20" id="qoL-st-avi"/>
-                            <constraint firstItem="QGn-jt-nfr" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="40" id="viv-y0-AlX"/>
+                            <constraint firstItem="QGn-jt-nfr" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="60" id="viv-y0-AlX"/>
                             <constraint firstItem="jDK-oI-fLN" firstAttribute="top" secondItem="kHi-Z7-Ggr" secondAttribute="bottom" constant="8" symbolic="YES" id="zgv-ca-m3D"/>
                         </constraints>
                     </view>
@@ -516,14 +516,13 @@
         <image name="Contacts" width="30" height="30"/>
         <image name="Customized" width="30" height="30"/>
         <image name="Favorites" width="30" height="30"/>
-        <image name="FlanLogo" width="1096" height="930"/>
+        <image name="Flan Launch Logo" width="1000" height="1000"/>
         <image name="List" width="30" height="30"/>
         <image name="Menu" width="30" height="30"/>
         <image name="Standart image" width="596" height="596"/>
         <image name="info.circle" width="20" height="20"/>
         <image name="instaIcon" width="512" height="512"/>
         <image name="line.3.horizontal" width="20" height="10"/>
-        <image name="magnifyingglass" width="19" height="19.5"/>
         <image name="trash" width="19" height="23.5"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -39,12 +39,16 @@ class MenuVC: UITableViewController {
         self.definesPresentationContext = true
         tableView.backgroundColor = .groupTableViewBackground
         tableView.separatorStyle = .none
+        
+        let scrollView = self.tableView as UIScrollView
+        scrollView.keyboardDismissMode = .interactive
     }
     
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async { [weak self] in
             self?.tableView.reloadData()
             self?.updateListVCBadge()
+            self?.updateBackgound()
         }
     }
     
@@ -67,6 +71,18 @@ class MenuVC: UITableViewController {
         searchController.searchBar.placeholder = "Введите название"
         navigationItem.searchController = searchController
         definesPresentationContext = false
+    }
+    
+    private func updateBackgound() {
+        if items.isEmpty {
+            tableView.setEmptyView(title: "Ошибка сервера",
+                                   message: "Не удалось загрузить данные. Проводятся технические работы",
+                                   messageImage: UIImage(named: "cloudError.png")!)
+            tableView.isScrollEnabled = false
+        } else {
+            tableView.restore()
+            tableView.isScrollEnabled = true
+        }
     }
     
     // MARK: - @objc funcs
@@ -151,9 +167,9 @@ class MenuVC: UITableViewController {
         self.present(menuDetailVC, animated: true, completion: nil)
     }
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isKeyboardPresented { dismissKeyboard() }
-    }
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        //if isKeyboardPresented { dismissKeyboard() }
+//    }
     
     // MARK: - @IBactions
     
@@ -162,6 +178,7 @@ class MenuVC: UITableViewController {
     }
     
     @IBAction private func categoriesButtonPressed(_ sender: UIBarButtonItem) {
+        guard !(categories.isEmpty) else { return }
         
         let storyboard = UIStoryboard(name: "Categories", bundle: nil)
         
@@ -169,7 +186,9 @@ class MenuVC: UITableViewController {
         
         categoriesVC.transitioningDelegate = self
         categoriesVC.categoriesVCDelegate = self
-        categoriesVC.modalPresentationStyle = .custom
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            categoriesVC.modalPresentationStyle = .formSheet
+        } else { categoriesVC.modalPresentationStyle = .custom }
         self.present(categoriesVC, animated: true, completion: nil)
     }
 }
@@ -188,8 +207,8 @@ extension MenuVC: UISearchResultsUpdating {
         
         filtredItems = items.filter{
             var isFits: [Bool] = []
-            let itemWords = $0.name.lowercased().components(separatedBy: [" ", ".", ","])
-            let searchingWords = searchText.lowercased().components(separatedBy: [" ", ".", ","])
+            let itemWords = $0.name.lowercased().components(separatedBy: [" ", ".", ",", "(", ")"])
+            let searchingWords = searchText.lowercased().components(separatedBy: [" ", ".", ",", "(", ")"])
             
             searchingWords.forEach {
                 var isThisSearchWordFits = false

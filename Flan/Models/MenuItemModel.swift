@@ -130,18 +130,28 @@ class MenuItem: MenuItemJSON {
         var currentImageName = imageName
         if type == .cellPhoto { currentImageName += "CELL" }
         
-        guard detailImage == MenuItem.standartImage else { completion(self.detailImage); return }
+        guard detailImage == MenuItem.standartImage || cellImage == MenuItem.standartImage else {
+            switch type {
+            case .cellPhoto:
+                completion(cellImage)
+            case .detailPhoto:
+                completion(detailImage)
+            }
+            return
+        }
+        
         if let assetsImage = UIImage(named: currentImageName) {
             switch type {
             case .cellPhoto:
-                detailImage = assetsImage;
+                cellImage = assetsImage;
             case .detailPhoto:
-                cellImage = assetsImage
+                detailImage = assetsImage
             }
             completion(assetsImage)
         } else {
             NetworkManager.fetchImage(PhotoFolder.item, self.imageName) { [weak self] image in
                 self?.detailImage = image
+                self?.cellImage = image
                 completion(image)
             }
         }

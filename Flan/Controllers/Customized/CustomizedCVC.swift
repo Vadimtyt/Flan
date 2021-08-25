@@ -36,6 +36,25 @@ class CustomizedCVC: UICollectionViewController {
         //collectionView.showsVerticalScrollIndicator = false
         configureNavigationBarLargeStyle()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateBackgound()
+    }
+    
+    
+    // MARK: - Funcs
+    
+    private func updateBackgound() {
+        if cakes.isEmpty {
+            collectionView.setEmptyView(title: "Ошибка сервера",
+                                   message: "Не удалось загрузить данные. Проводятся технические работы",
+                                   messageImage: UIImage(named: "cloudError.png")!)
+            collectionView.isScrollEnabled = false
+        } else {
+            collectionView.restore()
+            collectionView.isScrollEnabled = true
+        }
+    }
 
     // MARK: - Collection view data source
     
@@ -79,7 +98,9 @@ class CustomizedCVC: UICollectionViewController {
         guard let customizedDetailVC = storyboard.instantiateViewController(withIdentifier: "customizedDetail") as? CustomizedDetailVC else { return }
         customizedDetailVC.cake = cakes[indexPath.row]
         
-        customizedDetailVC.modalPresentationStyle = .custom
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            customizedDetailVC.modalPresentationStyle = .formSheet
+        } else { customizedDetailVC.modalPresentationStyle = .custom }
         customizedDetailVC.transitioningDelegate = self
         self.present(customizedDetailVC, animated: true, completion: nil)
     }

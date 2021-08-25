@@ -15,6 +15,7 @@
 		C125437025D4C2FD0086ADD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125436F25D4C2FD0086ADD2 /* AppDelegate.swift */; };
 		C125437925D4C2FE0086ADD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C125437825D4C2FE0086ADD2 /* Assets.xcassets */; };
 		C12543BF25E070F90086ADD2 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12543BE25E070F90086ADD2 /* FavoriteVC.swift */; };
+		C13C5E3926D5712B005BCE10 /* ExtensionCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13C5E3826D5712B005BCE10 /* ExtensionCollectionView.swift */; };
 		C1573D82263103F5001C600B /* TapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1573D81263103F5001C600B /* TapBarController.swift */; };
 		C15AD175265F0F8F00E8E02F /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AD174265F0F8F00E8E02F /* CategoriesVC.swift */; };
 		C15AD17A265F1C5900E8E02F /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15AD179265F1C5900E8E02F /* Categories.storyboard */; };
@@ -75,6 +76,7 @@
 		C125437825D4C2FE0086ADD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C125437D25D4C2FE0086ADD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C12543BE25E070F90086ADD2 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
+		C13C5E3826D5712B005BCE10 /* ExtensionCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCollectionView.swift; sourceTree = "<group>"; };
 		C1573D81263103F5001C600B /* TapBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapBarController.swift; sourceTree = "<group>"; };
 		C15AD174265F0F8F00E8E02F /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		C15AD179265F1C5900E8E02F /* Categories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				C1600D26264EF65700D06F31 /* ExtensionViewController.swift */,
 				C1EE51B926A1EF9C001126DA /* ExtensionTableView.swift */,
 				C195513626B57C5500B38B59 /* ExtensionTableViewCell.swift */,
+				C13C5E3826D5712B005BCE10 /* ExtensionCollectionView.swift */,
 				C195513826BAD2EE00B38B59 /* ExtensionView.swift */,
 				C1AD6A54265BC6DF007DFBE9 /* InfoPopover.swift */,
 				C1AD6A50265BC3FF007DFBE9 /* InfoPopover.xib */,
@@ -506,6 +509,7 @@
 				C1EE51BE26A310AD001126DA /* NetworkMonitor.swift in Sources */,
 				C1573D82263103F5001C600B /* TapBarController.swift in Sources */,
 				C1EE51BA26A1EF9C001126DA /* ExtensionTableView.swift in Sources */,
+				C13C5E3926D5712B005BCE10 /* ExtensionCollectionView.swift in Sources */,
 				C15CFFF026358940006CE868 /* SceneDelegate.swift in Sources */,
 				C1AD6A35265862C1007DFBE9 /* CakeModel.swift in Sources */,
 				C15C40912645CA420053910A /* BakeryModel.swift in Sources */,

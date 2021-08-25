@@ -25,6 +25,7 @@ class CategoriesVC: UIViewController {
     @IBOutlet private weak var slideIdicator: UIView!
     @IBOutlet private weak var tableView: UITableView!
     
+    @IBOutlet weak var tableViewAspectRatio: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,14 @@ class CategoriesVC: UIViewController {
         view.addGestureRecognizer(panGesture)
         
         slideIdicator.roundCorners(.allCorners, radius: 10)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        let screenAspectRatio = UIScreen.main.bounds.height/UIScreen.main.bounds.width
+        
+        if UIDevice.current.userInterfaceIdiom == .pad || screenAspectRatio == 16/9 {
+            tableViewAspectRatio.priority = .defaultLow
+        }
     }
     
     override func viewDidLayoutSubviews() {

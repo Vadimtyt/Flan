@@ -39,10 +39,22 @@ class ContactsVC: UIViewController {
         headerLabel.roundCorners(.allCorners, radius: 14)
         bakeriesTableView.layer.cornerRadius = 16
         feedbackButton.layer.cornerRadius = 16
-        
-        bakeriesTableView.separatorColor = .black
-        bakeriesTableView.separatorStyle = .singleLine
-        bakeriesTableView.separatorInset = .zero
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateBackgound()
+    }
+    
+    // MARK: - Funcs
+    
+    private func updateBackgound() {
+        if bakeries.isEmpty {
+            bakeriesTableView.setEmptyView(title: "Ошибка сервера",
+                                   message: "Не удалось загрузить данные. Проводятся технические работы",
+                                   messageImage: UIImage(named: "cloudError.png")!)
+        } else {
+            bakeriesTableView.restore()
+        }
     }
     
     // MARK: - @IBActions

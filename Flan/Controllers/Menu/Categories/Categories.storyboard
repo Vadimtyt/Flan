@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d60-SR-Kxr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d60-SR-Kxr">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rko-Oq-KSf">
-                                <rect key="frame" x="0.0" y="36" width="414" height="475.5"/>
+                                <rect key="frame" x="0.0" y="36" width="414" height="464"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Rko-Oq-KSf" secondAttribute="height" multiplier="414:485" constant="8.2800000000000296" id="kIx-Dq-uMW"/>
+                                    <constraint firstAttribute="width" secondItem="Rko-Oq-KSf" secondAttribute="height" multiplier="414:465" constant="1" id="kIx-Dq-uMW"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="d3m-pA-VgJ">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d3m-pA-VgJ" id="HR3-d2-COr">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -53,6 +53,7 @@
                             <constraint firstItem="B4S-1H-156" firstAttribute="centerX" secondItem="kQF-Fo-UnX" secondAttribute="centerX" id="H0v-U3-bxw"/>
                             <constraint firstItem="Rko-Oq-KSf" firstAttribute="trailing" secondItem="4CM-tl-wbd" secondAttribute="trailing" id="HVf-uf-RaY"/>
                             <constraint firstItem="B4S-1H-156" firstAttribute="top" secondItem="kQF-Fo-UnX" secondAttribute="top" constant="16" id="R93-PK-CsX"/>
+                            <constraint firstItem="4CM-tl-wbd" firstAttribute="bottom" secondItem="Rko-Oq-KSf" secondAttribute="bottom" priority="750" id="r8v-6i-EMC"/>
                             <constraint firstItem="Rko-Oq-KSf" firstAttribute="top" secondItem="kQF-Fo-UnX" secondAttribute="top" constant="36" id="u99-e9-52e"/>
                             <constraint firstItem="Rko-Oq-KSf" firstAttribute="leading" secondItem="kQF-Fo-UnX" secondAttribute="leading" id="ubv-Xk-e22"/>
                         </constraints>
@@ -61,6 +62,7 @@
                     <connections>
                         <outlet property="slideIdicator" destination="B4S-1H-156" id="GLB-Qd-Oov"/>
                         <outlet property="tableView" destination="Rko-Oq-KSf" id="vsm-xX-O0t"/>
+                        <outlet property="tableViewAspectRatio" destination="kIx-Dq-uMW" id="ReU-bA-dKh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2tR-yD-1Xz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
