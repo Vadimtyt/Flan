@@ -58,6 +58,12 @@ class CustomizedCVC: UICollectionViewController {
 
     // MARK: - Collection view data source
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return CGSize(width: UIScreen.main.bounds.width, height: 68)
+        } else { return CGSize(width: UIScreen.main.bounds.width, height: 110)}
+    }
+    
     override func collectionView(_ collectionView: UICollectionView,
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {

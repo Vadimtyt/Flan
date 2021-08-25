@@ -122,10 +122,17 @@ class MenuCell: UITableViewCell {
     
     private func setPhoto() {
         imageItemView.image = MenuItem.standartImage
-        let settingImageName = item.imageName + "CELL"
-        item.setImage(type: PhotoType.cellPhoto) { [settingImageName] image in
-            if settingImageName == (self.item.imageName + "CELL") {
-                self.imageItemView.image = image
+        
+        let settingImageName = item.imageName
+        
+        let aspectRatio = CGFloat(0.75)
+        let imageWidth = imageItemView.bounds.height/aspectRatio
+        let imageSize = CGSize(width: imageWidth, height: imageItemView.bounds.height)
+        item.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image in
+            DispatchQueue.main.async {
+                if settingImageName == (self.item.imageName) {
+                    self.imageItemView.image = image
+                }
             }
         }
     }
@@ -275,4 +282,3 @@ class MenuCell: UITableViewCell {
         }
     }
 }
-

@@ -28,8 +28,16 @@ class CustomizedCell: UICollectionViewCell {
     }
     
     private func setPhoto() {
-        cake.setImage { image in
-            self.cakeImage.image = image
+        cakeImage.image = Cake.standartImage
+        
+        let settingImageName = cake.imageName
+        let imageSize = CGSize(width: cakeImage.bounds.width, height: cakeImage.bounds.height)
+        cake.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image in
+            DispatchQueue.main.async {
+                if settingImageName == (self.cake.imageName) {
+                    self.cakeImage.image = image
+                }
+            }
         }
     }
 }

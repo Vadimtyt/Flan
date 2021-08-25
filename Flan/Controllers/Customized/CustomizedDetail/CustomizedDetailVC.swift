@@ -48,8 +48,16 @@ class CustomizedDetailVC: UIViewController {
     }
     
     private func setPhoto() {
-        cake.setImage { image in
-            self.cakeImage.image = image
+        cakeImage.image = Cake.standartImage
+        
+        let settingImageName = cake.imageName
+        let imageSize = CGSize(width: cakeImage.bounds.width, height: cakeImage.bounds.height)
+        cake.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image in
+            DispatchQueue.main.async {
+                if settingImageName == (self.cake.imageName) {
+                    self.cakeImage.image = image
+                }
+            }
         }
     }
     
@@ -79,7 +87,7 @@ class CustomizedDetailVC: UIViewController {
     @IBAction private func shareButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        let image = cake.getImage()
+        let image = cake.getImage(type: .detailPhoto)
         let activityVC = UIActivityViewController(activityItems: [image, self], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
         activityVC.popoverPresentationController?.sourceView = sender
@@ -132,7 +140,7 @@ extension CustomizedDetailVC: UIActivityItemSource {
 
     @available(iOS 13.0, *)
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-        let image = cake.getImage()
+        let image = cake.getImage(type: .detailPhoto)
         let imageProvider = NSItemProvider(object: image)
         let metadata = LPLinkMetadata()
         metadata.imageProvider = imageProvider

@@ -8,17 +8,6 @@
 import UIKit
 import FirebaseStorage
 
-enum FileNameFor: String {
-    case items = "Items.json"
-    case cakes = "Cakes.json"
-    case bakeries = "Bakeries.json"
-}
-
-enum PhotoFolder: String {
-    case item = "Items Photo"
-    case cake = "Cakes Photo"
-}
-
 class NetworkManager {
     static let downloadRef = Storage.storage()
     

@@ -144,8 +144,15 @@ class MenuDetailVC: UIViewController {
     
     private func setPhoto() {
         itemImage.image = MenuItem.standartImage
-        item.setImage(type: PhotoType.detailPhoto) { image in
-            self.itemImage.image = image
+        
+        let settingImageName = item.imageName
+        let imageSize = CGSize(width: itemImage.bounds.width, height: itemImage.bounds.height)
+        item.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image in
+            DispatchQueue.main.async {
+                if settingImageName == (self.item.imageName) {
+                    self.itemImage.image = image
+                }
+            }
         }
     }
     

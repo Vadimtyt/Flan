@@ -213,12 +213,7 @@ class DataManager {
         saveList()
     }
     
-    func getValueForListBadge() -> Int {
-        var sumCountOfItems = 0
-        list.forEach({ sumCountOfItems += $0.count})
-        
-        return sumCountOfItems
-    }
+    func getValueForListBadge() -> Int { list.count }
     
     // MARK: - Funcs for completedItems
     
@@ -323,15 +318,6 @@ class DataManager {
     
     
     func getBakeries() -> [Bakery] { bakeries }
-}
-
-enum KeysDefaults: String {
-    case items = "Items"
-    case favorites = "Favorites"
-    case list = "List"
-    case completedList = "CompletedList"
-    case cakes = "Cakes"
-    case bakeries = "Bakeries"
 }
 
 //private let bakeriesList = [
