@@ -33,11 +33,7 @@ class CustomizedDetailVC: UIViewController {
         view.addGestureRecognizer(panGesture)
         
         setPhoto()
-        cakeImage.contentMode = .scaleAspectFill
-        cakeNumberLabel.text = "#\(cake.number)"
-        
-        cakeImage.layer.cornerRadius = 20
-        topView.layer.cornerRadius = 3
+        setupElements()
     }
     
     override func viewDidLayoutSubviews() {
@@ -82,6 +78,35 @@ class CustomizedDetailVC: UIViewController {
         }
     }
     
+    // MARK: - Funcs
+    
+    private func setupElements() {
+        cakeImage.contentMode = .scaleAspectFill
+        cakeNumberLabel.text = "#\(cake.number)"
+        
+        cakeImage.layer.cornerRadius = 20
+        topView.layer.cornerRadius = 3
+    }
+    
+    private func permissionDeniedAlert() {
+        let title = "Запись изображения в галерею недоступна"
+        let message = "Вероятно, вы запретили приложению добавлять изображения в ваши фото. Если вы сделали это случайно или передумали, вы можете перейти в настройки приложения и разрешите доступ к фото."
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // OpenSettingsAction action
+        let openSettingsAction = UIAlertAction(title: "Настройки", style: .default) {  _ in
+            UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
+        }
+        
+        // Close action
+        let closelAction = UIAlertAction(title: "Закрыть", style: .cancel)
+        alert.addAction(closelAction)
+        alert.addAction(openSettingsAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - @IBActions
     
     @IBAction private func shareButtonPressed(_ sender: UIButton) {
@@ -106,28 +131,9 @@ class CustomizedDetailVC: UIViewController {
         }
         
     }
-    
-    // MARK: - Funcs
-    
-    private func permissionDeniedAlert() {
-        let title = "Запись изображения в галерею недоступна"
-        let message = "Вероятно, вы запретили приложению добавлять изображения в ваши фото. Если вы сделали это случайно или передумали, вы можете перейти в настройки приложения и разрешите доступ к фото."
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        // OpenSettingsAction action
-        let openSettingsAction = UIAlertAction(title: "Настройки", style: .default) {  _ in
-            UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
-        }
-        
-        // Close action
-        let closelAction = UIAlertAction(title: "Закрыть", style: .cancel)
-        alert.addAction(closelAction)
-        alert.addAction(openSettingsAction)
-        
-        self.present(alert, animated: true, completion: nil)
-    }
 }
+
+// MARK: - UIActivityItemSource
 
 extension CustomizedDetailVC: UIActivityItemSource {
     func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {

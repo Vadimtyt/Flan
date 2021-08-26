@@ -32,8 +32,6 @@ class CustomizedCVC: UICollectionViewController {
         if UIDevice.current.userInterfaceIdiom == .pad {
             itemsPerRow = 3
         }
-
-        //collectionView.showsVerticalScrollIndicator = false
         configureNavigationBarLargeStyle()
     }
     
@@ -73,6 +71,7 @@ class CustomizedCVC: UICollectionViewController {
                                                                                    withReuseIdentifier: "\(CustomizedHeaderView.self)",
                                                                                    for: indexPath) as? CustomizedHeaderView
             else { fatalError("Invalid view type") }
+            headerView.superVC = self
             return headerView
         default:
             assert(false, "Invalid element type")
@@ -90,8 +89,6 @@ class CustomizedCVC: UICollectionViewController {
     
         let cake = cakes[indexPath.row]
         cell.configureWith(cake: cake)
-        
-        cell.roundCorners(.allCorners, radius: 20)
         
         return cell
     }

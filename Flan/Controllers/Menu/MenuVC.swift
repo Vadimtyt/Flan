@@ -31,17 +31,12 @@ class MenuVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: reuseHeaderID, bundle: nil), forCellReuseIdentifier: MenuHeaderCell.reuseId)
-        tableView.register(UINib(nibName: reuseCellID, bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
-        
+        configureTableView()
         configureSearchController()
         configureNavigationBarLargeStyle()
-        self.definesPresentationContext = true
-        tableView.backgroundColor = .groupTableViewBackground
-        tableView.separatorStyle = .none
+        configureScrollView()
         
-        let scrollView = self.tableView as UIScrollView
-        scrollView.keyboardDismissMode = .interactive
+        self.definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +48,14 @@ class MenuVC: UITableViewController {
     }
     
     // MARK: - Funcs
+    
+    private func configureTableView() {
+        tableView.register(UINib(nibName: reuseHeaderID, bundle: nil), forCellReuseIdentifier: MenuHeaderCell.reuseId)
+        tableView.register(UINib(nibName: reuseCellID, bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
+        
+        tableView.backgroundColor = .groupTableViewBackground
+        tableView.separatorStyle = .none
+    }
     
     private func configureSearchController() {
         NotificationCenter.default.addObserver(self,
@@ -71,6 +74,11 @@ class MenuVC: UITableViewController {
         searchController.searchBar.placeholder = "Введите название"
         navigationItem.searchController = searchController
         definesPresentationContext = false
+    }
+    
+    private func configureScrollView() {
+        let scrollView = self.tableView as UIScrollView
+        scrollView.keyboardDismissMode = .interactive
     }
     
     private func updateBackgound() {
@@ -100,8 +108,31 @@ class MenuVC: UITableViewController {
         self.searchController.searchBar.endEditing(true)
     }
 
-    // MARK: - Table view data source
+    // MARK: - @IBactions
     
+    @IBAction private func searchButtonPressed(_ sender: UIBarButtonItem) {
+        searchController.isActive = true
+    }
+    
+    @IBAction private func categoriesButtonPressed(_ sender: UIBarButtonItem) {
+        guard !(categories.isEmpty) else { return }
+        
+        let storyboard = UIStoryboard(name: "Categories", bundle: nil)
+        
+        guard let categoriesVC = storyboard.instantiateViewController(withIdentifier: "Categories") as? CategoriesVC else { return }
+        
+        categoriesVC.transitioningDelegate = self
+        categoriesVC.categoriesVCDelegate = self
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            categoriesVC.modalPresentationStyle = .formSheet
+        } else { categoriesVC.modalPresentationStyle = .custom }
+        self.present(categoriesVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - TableViewDelegate, TableViewDelegate
+
+extension MenuVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
         if isFiltering {
             return 1
@@ -170,27 +201,6 @@ class MenuVC: UITableViewController {
 //    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        //if isKeyboardPresented { dismissKeyboard() }
 //    }
-    
-    // MARK: - @IBactions
-    
-    @IBAction private func searchButtonPressed(_ sender: UIBarButtonItem) {
-        searchController.isActive = true
-    }
-    
-    @IBAction private func categoriesButtonPressed(_ sender: UIBarButtonItem) {
-        guard !(categories.isEmpty) else { return }
-        
-        let storyboard = UIStoryboard(name: "Categories", bundle: nil)
-        
-        guard let categoriesVC = storyboard.instantiateViewController(withIdentifier: "Categories") as? CategoriesVC else { return }
-        
-        categoriesVC.transitioningDelegate = self
-        categoriesVC.categoriesVCDelegate = self
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            categoriesVC.modalPresentationStyle = .formSheet
-        } else { categoriesVC.modalPresentationStyle = .custom }
-        self.present(categoriesVC, animated: true, completion: nil)
-    }
 }
 
 // MARK: - Search results
@@ -253,13 +263,18 @@ extension MenuVC: UpdatingMenuCellDelegate {
 }
 
 extension MenuVC: UpdatingMenuDetailDelegate {
-    func updateCellAt(indexPath: IndexPath) {
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+    func updateCellAt(indexPath: IndexPath?) {
+        if let indexPath = indexPath {
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        } else { tableView.reloadData() }
     }
 }
 
 extension MenuVC: CategoriesVCDelegate{
     func scrollTableToRow(at indexPath: IndexPath) {
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
 }

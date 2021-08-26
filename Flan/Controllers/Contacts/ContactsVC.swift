@@ -27,12 +27,8 @@ class ContactsVC: UIViewController {
     // MARK: - Initialization
     
     override func viewDidLoad() {
-        
-        bakeriesTableView.delegate = self
-        bakeriesTableView.dataSource = self
-        bakeriesTableView.isScrollEnabled = false
-        
-        bakeriesTableView.register(UINib(nibName: "BakeryCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+        super.viewDidLoad()
+        configureTableView()
     }
     
     override func viewWillLayoutSubviews() {
@@ -46,6 +42,14 @@ class ContactsVC: UIViewController {
     }
     
     // MARK: - Funcs
+    
+    private func configureTableView() {
+        bakeriesTableView.delegate = self
+        bakeriesTableView.dataSource = self
+        bakeriesTableView.isScrollEnabled = false
+        
+        bakeriesTableView.register(UINib(nibName: "BakeryCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+    }
     
     private func updateBackgound() {
         if bakeries.isEmpty {

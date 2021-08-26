@@ -11,6 +11,8 @@ class CustomizedHeaderView: UICollectionReusableView {
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var headerView: UIView!
     
+    weak var superVC: CustomizedCVC?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let tapHeaderView = UITapGestureRecognizer(target: self, action: #selector(CustomizedHeaderView.tapHeaderView))
@@ -19,7 +21,10 @@ class CustomizedHeaderView: UICollectionReusableView {
     }
     
     @objc private func tapHeaderView(sender:UITapGestureRecognizer) {
-        let tabBarController: UITabBarController = (self.window?.rootViewController as? UITabBarController)!
-        tabBarController.selectedIndex = 1
+        guard let tabsCount = superVC?.tabBarController?.tabBar.items?.count else { return }
+        superVC?.animatePressingView(headerView)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.superVC?.tabBarController?.selectedIndex = tabsCount - 1
+        }
     }
 }

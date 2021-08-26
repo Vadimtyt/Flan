@@ -18,18 +18,12 @@ class StartVC: UIViewController {
     @IBOutlet weak var textLabel: UILabel!
     
     // MARK: - Initialization
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        textLabel.text = ""
-        textLabel.isHidden = true
-        
-        if #available(iOS 13.0, *) {
-            activityIndicator.style = .large
-        } else {
-            activityIndicator.style = .gray
-        }
-        activityIndicator.startAnimating()
-        
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureElements()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         DataManager.shared.configureDataFromFirebase {
              self.presentApp()
         }
@@ -41,7 +35,21 @@ class StartVC: UIViewController {
         }
     }
     
-    func presentApp() {
+    // MARK: - Funcs
+    
+    private func configureElements() {
+        textLabel.text = ""
+        textLabel.isHidden = true
+        
+        if #available(iOS 13.0, *) {
+            activityIndicator.style = .large
+        } else {
+            activityIndicator.style = .gray
+        }
+        activityIndicator.startAnimating()
+    }
+    
+    private func presentApp() {
         if !(DataManager.shared.isOnlineMode) && DataManager.shared.getItems().count == 0 {
             textLabel.text = "Ошибка...\nНет предзагруженных данных. Попробуйте перезапустить приложение c подключенным Интернетом"
             textLabel.isHidden = false

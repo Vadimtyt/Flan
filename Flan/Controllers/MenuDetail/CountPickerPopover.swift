@@ -33,7 +33,6 @@ class CountPickerPopover: UIViewController {
         
         countPicker.delegate = self
         countPicker.dataSource = self
-        
         countPicker.selectRow(currentCount, inComponent: 0, animated: true)
     }
     
@@ -44,7 +43,6 @@ class CountPickerPopover: UIViewController {
     init(currentCount: Int, updatingDelegate: UpdatingMenuDetailVCDelegate) {
         self.currentCount = currentCount
         self.updatingMenuDetailVCDelegate = updatingDelegate
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -72,7 +70,7 @@ class CountPickerPopover: UIViewController {
 extension CountPickerPopover: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

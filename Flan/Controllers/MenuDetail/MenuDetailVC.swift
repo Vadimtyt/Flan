@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UpdatingMenuDetailDelegate: UpdatingMenuCellDelegate {
-    func updateCellAt(indexPath: IndexPath)
+    func updateCellAt(indexPath: IndexPath?)
 }
 
 class MenuDetailVC: UIViewController {
@@ -16,7 +16,7 @@ class MenuDetailVC: UIViewController {
     // MARK: - Props
     
     var item = MenuItem()
-    var indexPath: IndexPath!
+    var indexPath: IndexPath?
     weak var updateCellDelegate: UpdatingMenuDetailDelegate?
     
     // MARK: - @IBOutlets
@@ -47,30 +47,9 @@ class MenuDetailVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(MenuDetailVC.tapFunction))
         countItemLabel.isUserInteractionEnabled = true
         countItemLabel.addGestureRecognizer(tap)
-        
-        if #available(iOS 13.0, *) { closeButton.isHidden = true }
-        
-        if item.isFavorite {
-            favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
-        } else { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
-        
+
         setPhoto()
-        nameLabel.text = item.name
-        descriptionLabel.text = item.description
-        priceLabel.text = "\(item.prices[item.selectedMeasurment])Р"
-        measurmentLabel.text = item.measurements[item.selectedMeasurment]
-        
-        if item.measurements.count > 1 {
-            configureSegmentedControl()
-        } else { segmentedControl.isHidden = true }
-        
-        countItemLabel.text = "\(item.count)"
-        
-        if item.count == 0 {
-            removeButton.isEnabled = false
-        } else if item.count == 99 {
-            addButton.isEnabled = false
-        }
+        setupElements()
     }
     
     override func viewWillLayoutSubviews() {
@@ -133,6 +112,31 @@ class MenuDetailVC: UIViewController {
         addButton.layer.cornerRadius = 16
     }
     
+    private func setupElements() {
+        if #available(iOS 13.0, *) { closeButton.isHidden = true }
+        
+        if item.isFavorite {
+            favoriteButton.setImage(UIImage(named: "heart.fill.png"), for: .normal)
+        } else { favoriteButton.setImage(UIImage(named: "heart.png"), for: .normal) }
+        
+        nameLabel.text = item.name
+        descriptionLabel.text = item.description
+        priceLabel.text = "\(item.prices[item.selectedMeasurment])Р"
+        measurmentLabel.text = item.measurements[item.selectedMeasurment]
+        
+        if item.measurements.count > 1 {
+            configureSegmentedControl()
+        } else { segmentedControl.isHidden = true }
+        
+        countItemLabel.text = "\(item.count)"
+        
+        if item.count == 0 {
+            removeButton.isEnabled = false
+        } else if item.count == 99 {
+            addButton.isEnabled = false
+        }
+    }
+    
     private func configureSegmentedControl() {
         segmentedControl.removeAllSegments()
         for index in 0..<item.measurements.count {
@@ -189,7 +193,6 @@ class MenuDetailVC: UIViewController {
         }
         
         removeButton.backgroundColor = .yellow
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.removeButton.backgroundColor = nil
         }
@@ -212,7 +215,6 @@ class MenuDetailVC: UIViewController {
         }
         
         addButton.backgroundColor = .yellow
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.addButton.backgroundColor = nil
         }
@@ -229,7 +231,7 @@ class MenuDetailVC: UIViewController {
         priceLabel.text = "\(item.prices[index])Р"
         measurmentLabel.text = item.measurements[index]
         
-        DataManager.shared.removeFromList(item: item)
+        DataManager.shared.setNewCountFor(item: item, count: 0)
         countItemLabel.text = "\(item.count)"
         removeButton.isEnabled = false
         
@@ -253,15 +255,12 @@ extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
         if itemCount == 0 {
             removeButton.isEnabled = false
             addButton.isEnabled = true
-            DataManager.shared.removeFromList(item: item)
         } else if itemCount > 0 && itemCount < 99 {
             removeButton.isEnabled = true
             addButton.isEnabled = true
-            DataManager.shared.addToList(item: item)
         } else if itemCount == 99 {
             removeButton.isEnabled = true
             addButton.isEnabled = false
-            DataManager.shared.addToList(item: item)
         }
         updateCellDelegate?.updateListVCBadge()
         updateCellDelegate?.updateCellAt(indexPath: indexPath)

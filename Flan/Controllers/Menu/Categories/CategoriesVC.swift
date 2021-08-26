@@ -12,9 +12,13 @@ protocol CategoriesVCDelegate: AnyObject {
 }
 
 class CategoriesVC: UIViewController {
+    
+    // MARK: - Props
 
     weak var categoriesVCDelegate: CategoriesVCDelegate?
     var categories: [(category: String, items: [MenuItem])] { DataManager.shared.getCategories() }
+    
+    // MARK: - Private Props
     
     private var hasSetPointOrigin = false
     private var pointOrigin: CGPoint?
@@ -22,10 +26,14 @@ class CategoriesVC: UIViewController {
     private var isScrollBeganFromTop = true
     private var isScrollingViewWithTable = false
     
+    // MARK: - @IBOutlets
+    
     @IBOutlet private weak var slideIdicator: UIView!
     @IBOutlet private weak var tableView: UITableView!
     
     @IBOutlet weak var tableViewAspectRatio: NSLayoutConstraint!
+    
+    // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +60,8 @@ class CategoriesVC: UIViewController {
         }
     }
     
+    // MARK: - @objc Funcs
+    
     @objc private func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
@@ -68,6 +78,8 @@ class CategoriesVC: UIViewController {
             }
         }
     }
+    
+    // MARK: - Funcs
     
     private func configureTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -120,7 +132,7 @@ class CategoriesVC: UIViewController {
         isScrollingViewWithTable = false
     }
     
-    func backToPointOrigin() {
+    fileprivate func backToPointOrigin() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction) {
             self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
         }

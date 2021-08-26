@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
                                 <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgp-7z-N4S" id="DIj-3k-2gD" customClass="UITextView">
@@ -216,7 +216,7 @@
         <scene sceneID="hT8-er-Bkb">
             <objects>
                 <collectionViewController id="dGh-WF-tpX" customClass="CustomizedCVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" prefetchingEnabled="NO" id="Mt6-mZ-REF">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Mt6-mZ-REF">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -280,7 +280,7 @@
                                 <constraint firstAttribute="bottom" secondItem="VGo-L7-ecy" secondAttribute="bottom" constant="12" id="rP1-Us-Pe5"/>
                             </constraints>
                             <connections>
-                                <outlet property="headerView" destination="VGo-L7-ecy" id="xHz-u8-e0p"/>
+                                <outlet property="headerView" destination="VGo-L7-ecy" id="Epv-Y2-W4A"/>
                                 <outlet property="label" destination="wD2-PT-Jbz" id="VVf-Oa-eMc"/>
                             </connections>
                         </collectionReusableView>

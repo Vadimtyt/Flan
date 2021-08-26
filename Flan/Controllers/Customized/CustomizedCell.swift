@@ -25,6 +25,7 @@ class CustomizedCell: UICollectionViewCell {
         
         cakeImage.contentMode = .scaleAspectFill
         self.backgroundColor = .red
+        roundCorners(.allCorners, radius: 20)
     }
     
     private func setPhoto() {

@@ -231,7 +231,6 @@ class MenuCell: UITableViewCell {
         }
         
         removeButton.backgroundColor = .yellow
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.removeButton.backgroundColor = nil
         }
@@ -254,7 +253,6 @@ class MenuCell: UITableViewCell {
         }
         
         addButton.backgroundColor = .yellow
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.addButton.backgroundColor = nil
         }

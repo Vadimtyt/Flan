@@ -277,7 +277,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
                     self.listTableView.deleteSections([0], with: .fade)
                 } else { self.listTableView.deleteRows(at: [indexPath], with: .left)}
             } else if indexPath.section == 0 {
-                DataManager.shared.removeFromList(item: self.items[indexPath.row])
+                DataManager.shared.setNewCountFor(item: self.items[indexPath.row], count: 0)
                 if self.items.isEmpty {
                     self.listTableView.deleteSections([0], with: .fade)
                 } else { self.listTableView.deleteRows(at: [indexPath], with: .left)}
@@ -341,7 +341,7 @@ extension ListVC: UpdatingListCellDelegate {
     func updateList() {
         for index in 0..<items.count {
             if items[index].count == 0 {
-                DataManager.shared.removeFromList(item: items[index])
+                DataManager.shared.setNewCountFor(item: items[index], count: 0)
                 if items.isEmpty {
                     listTableView.deleteSections([0], with: .fade)
                 } else { listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .middle) }
@@ -367,7 +367,7 @@ extension ListVC: UpdatingListCellDelegate {
         } else { listTableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .left) }
         
         guard let index = items.firstIndex(where: {$0 === item}) else { return }
-        DataManager.shared.removeFromList(item: item)
+        DataManager.shared.setNewCountFor(item: item, count: 0)
         if items.isEmpty {
             listTableView.deleteSections([0], with: .fade)
         } else { listTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left) }
@@ -382,9 +382,8 @@ extension ListVC: UpdatingListCellDelegate {
         let item = DataManager.shared.getItems()[index]
         
         if !(items.contains(where: {$0.name == completedItem.name })) {
-            item.count = completedItem.count
+            DataManager.shared.setNewCountFor(item: item, count: completedItem.count)
             item.selectedMeasurment = completedItem.selectedMeasurment
-            DataManager.shared.addToList(item: item)
             if items.count == 1 {
                 listTableView.insertSections([0], with: .left)
             } else { listTableView.insertRows(at: [IndexPath(row: (items.count - 1), section: 0)], with: .left) }
@@ -416,7 +415,7 @@ extension ListVC: UpdatingMenuDetailDelegate {
         DataManager.shared.updateFavorites()
     }
     
-    func updateCellAt(indexPath: IndexPath) {
+    func updateCellAt(indexPath: IndexPath?) {
         updateList()
     }
 }

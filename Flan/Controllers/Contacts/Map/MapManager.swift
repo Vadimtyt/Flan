@@ -145,7 +145,7 @@ class MapManager {
     }
 }
 
-// MARK: - Map manager
+// MARK: - Extension Map manager
 
 extension MapManager {
     func turnOnLocationAlert(message: String) {

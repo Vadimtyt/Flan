@@ -11,13 +11,17 @@ import FirebaseStorage
 class NetworkManager {
     static let downloadRef = Storage.storage()
     
-    class func fetchList<T: Decodable>(from path: FileNameFor, completion: @escaping ((T)?, Data?) -> ()) {
+    class func fetchList<T: Decodable>(from path: FileNameFor, completion: @escaping (T?, Data?) -> ()) {
         
         downloadRef.reference(withPath: path.rawValue).getData(maxSize: 1000000000) { (data, error) in
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .useDefaultKeys
-                guard data != nil else { completion(nil, nil); return }
+                guard data != nil else {
+                    print("ERROR for \(path.rawValue). Data = nil")
+                    completion(nil, nil)
+                    return
+                }
                 let listJSON = try decoder.decode(T.self, from: data!)
 
                 DispatchQueue.main.async {
