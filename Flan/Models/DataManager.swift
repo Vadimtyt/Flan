@@ -54,7 +54,6 @@ class DataManager {
     private func downloadItems(completion: @escaping () -> ()) {
         var itemsList: [MenuItem] = []
         NetworkManager.fetchList(from: FileNameFor.items) { [weak self, isOnlineMode] (itemsFromJSON: [MenuItemJSON]?, dataJSON: Data?) in
-            guard isOnlineMode else { return }
             
             guard let itemsJSON = itemsFromJSON else {
                 //self.setItemsFromSaved()
@@ -70,6 +69,8 @@ class DataManager {
                 let item = MenuItem(menuItemJSON: itemJSON)
                 itemsList.append(item)
             }
+            
+            guard isOnlineMode else { return }
             self?.items = itemsList
             self?.configureCategories()
             self?.setFavoritesFromSaved()

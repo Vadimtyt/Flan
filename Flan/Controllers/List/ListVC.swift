@@ -76,13 +76,20 @@ class ListVC: UIViewController {
     }
     
     private func getTextList() -> String {
-        var list = "Весь список:"
+        var list = "Список покупок во Флане:\n"
         for item in items {
-            list += "\n\(item.name) - \(item.count) шт.,"
+            
+            let name = item.name,
+                count = item.count,
+                measurment = item.measurements[item.selectedMeasurment],
+                price = item.prices[item.selectedMeasurment]
+            
+            list += "-\(name)\n      \(count) * \(measurment)/\(price)Р,\n"
         }
         list.removeLast()
-        let sum = String(getTotalSum())
-        list += "\n" + sum
+        list.removeLast()
+        let totalSum = "Примерная сумма: " + String(getTotalSum()) + "Р"
+        list += "\n" + totalSum
         return list
     }
     
