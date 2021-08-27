@@ -64,11 +64,15 @@ class StartVC: UIViewController {
         if networkCheck.currentStatus == .satisfied{
             //Do nothing
         } else if networkCheck.currentStatus == .unsatisfied {
-            DataManager.shared.configureDataFromSaved()
+            setDataFromSaved()
             showNetworkAlert(title: "Упс...", message: "Пожалуйста, проверьте cоединение с Интернетом. Информация в приложении может быть неактуальной")
-            activityIndicator.stopAnimating()
-            activityIndicator.isHidden = true
         }
+    }
+    
+    private func setDataFromSaved() {
+        DataManager.shared.configureDataFromSaved()
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
     }
     
     private func showNetworkAlert(title: String, message: String) {
