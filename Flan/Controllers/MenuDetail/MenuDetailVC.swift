@@ -33,6 +33,8 @@ class MenuDetailVC: UIViewController {
     @IBOutlet private weak var countItemLabel: UILabel!
     @IBOutlet private weak var addButton: UIButton!
     
+    
+    @IBOutlet private weak var slideIndicatorView: UIView!
     @IBOutlet private weak var nameView: UIView!
     @IBOutlet private weak var bottomView: UIView!
     @IBOutlet private weak var priceAndCountView: UIView!
@@ -92,7 +94,8 @@ class MenuDetailVC: UIViewController {
             bottomViewHeight.constant = priceAndCountView.bounds.height + 32
         }
         let aspectRatio = UIScreen.main.bounds.height / UIScreen.main.bounds.width
-        if aspectRatio <= 16/9 {
+        if aspectRatio == 16/9 {
+            slideIndicatorView.isHidden = true
             bottomViewIdent.constant = 8
         }
         
