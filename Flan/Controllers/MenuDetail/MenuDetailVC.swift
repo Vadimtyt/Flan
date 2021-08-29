@@ -101,6 +101,7 @@ class MenuDetailVC: UIViewController {
         
         if #available(*, iOS 12.0) { segmentedControl.tintColor = .systemGray }
         
+        slideIndicatorView.layer.cornerRadius = 2
         itemImage.roundCorners([.topLeft, .topRight], radius: 24)
         nameView.roundCorners([.bottomLeft, .bottomRight], radius: 24)
         countItemLabel.layer.borderColor =  UIColor.yellow.cgColor

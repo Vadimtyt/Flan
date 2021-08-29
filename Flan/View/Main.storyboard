@@ -487,20 +487,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flan Launch Logo" translatesAutoresizingMaskIntoConstraints="NO" id="QGn-jt-nfr">
-                                <rect key="frame" x="60" y="242" width="270" height="270"/>
+                                <rect key="frame" x="45" y="227" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QGn-jt-nfr" secondAttribute="height" id="cQr-aK-1u4"/>
+                                    <constraint firstAttribute="width" constant="300" id="ekv-TO-2PO"/>
+                                    <constraint firstAttribute="height" constant="300" id="hHW-lL-hYC"/>
                                 </constraints>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kHi-Z7-Ggr">
-                                <rect key="frame" x="185" y="544" width="20" height="20"/>
+                                <rect key="frame" x="185" y="559" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="DGJ-Fj-6u7"/>
                                     <constraint firstAttribute="height" constant="20" id="hjT-0V-l4H"/>
                                 </constraints>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ошибка" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDK-oI-fLN" userLabel="Text Label">
-                                <rect key="frame" x="20" y="572" width="350" height="20.333333333333371"/>
+                                <rect key="frame" x="20" y="587" width="350" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -510,13 +512,11 @@
                         <color key="backgroundColor" red="0.9371530414" green="0.93731355670000005" blue="0.93714290860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kHi-Z7-Ggr" firstAttribute="top" secondItem="QGn-jt-nfr" secondAttribute="bottom" constant="32" id="5Kh-Ex-Wgg"/>
-                            <constraint firstItem="QGn-jt-nfr" firstAttribute="trailing" secondItem="pOE-ns-Qto" secondAttribute="trailing" constant="-60" id="8bx-40-b9C"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerY" secondItem="pOE-ns-Qto" secondAttribute="centerY" constant="-50" id="V6z-nR-Nsa"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="W4r-PG-IZk"/>
                             <constraint firstItem="jDK-oI-fLN" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="20" id="XCi-UC-yNy"/>
                             <constraint firstItem="kHi-Z7-Ggr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="gzl-6e-6J9"/>
                             <constraint firstItem="pOE-ns-Qto" firstAttribute="trailing" secondItem="jDK-oI-fLN" secondAttribute="trailing" constant="20" id="qoL-st-avi"/>
-                            <constraint firstItem="QGn-jt-nfr" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="60" id="viv-y0-AlX"/>
                             <constraint firstItem="jDK-oI-fLN" firstAttribute="top" secondItem="kHi-Z7-Ggr" secondAttribute="bottom" constant="8" symbolic="YES" id="zgv-ca-m3D"/>
                         </constraints>
                     </view>

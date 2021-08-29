@@ -38,11 +38,11 @@ class CategoriesVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        slideIdicator.roundCorners(.allCorners, radius: 10)
         
+        guard UIDevice.current.userInterfaceIdiom != .pad else { return }
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
         view.addGestureRecognizer(panGesture)
-        
-        slideIdicator.roundCorners(.allCorners, radius: 10)
     }
     
     override func viewWillLayoutSubviews() {

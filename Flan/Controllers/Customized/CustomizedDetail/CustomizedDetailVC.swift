@@ -29,11 +29,12 @@ class CustomizedDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
-        view.addGestureRecognizer(panGesture)
-        
         setPhoto()
         setupElements()
+        
+        guard UIDevice.current.userInterfaceIdiom != .pad else { return }
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
+        view.addGestureRecognizer(panGesture)
     }
     
     override func viewDidLayoutSubviews() {
