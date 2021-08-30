@@ -16,6 +16,7 @@ class CustomizedCell: UICollectionViewCell {
     // MARK: - @IBOutlets
     
     @IBOutlet private weak var cakeImage: UIImageView!
+    @IBOutlet weak var downloadIndicator: UIActivityIndicatorView!
     
     // MARK: - Funcs
     
@@ -24,20 +25,35 @@ class CustomizedCell: UICollectionViewCell {
         setPhoto()
         
         cakeImage.contentMode = .scaleAspectFill
-        self.backgroundColor = .red
         roundCorners(.allCorners, radius: 20)
     }
     
     private func setPhoto() {
-        cakeImage.image = Cake.standartImage
+        var isSetPhoto = false
+        cakeImage.image = nil
         
         let settingImageName = cake.imageName
-        let imageSize = CGSize(width: cakeImage.bounds.width, height: cakeImage.bounds.height)
+        let imageSize = CGSize(width: cakeImage.bounds.width * 3, height: cakeImage.bounds.height * 3)
         cake.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image in
             DispatchQueue.main.async {
-                if settingImageName == (self.cake.imageName) {
-                    self.cakeImage.image = image
+                guard settingImageName == (self.cake.imageName) && !isSetPhoto else { return }
+                self.cakeImage.image = image
+                
+                self.cakeImage.alpha = 0
+                UIView.animate(withDuration: 0.2) {
+                    isSetPhoto = true
+                    self.cakeImage.alpha = 1
                 }
+
+                self.downloadIndicator.stopAnimating()
+                self.downloadIndicator.isHidden = true
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            if !isSetPhoto {
+                self?.downloadIndicator.isHidden = false
+                self?.downloadIndicator.startAnimating()
             }
         }
     }

@@ -26,6 +26,9 @@
                                     <constraint firstAttribute="width" secondItem="qYp-v1-cKQ" secondAttribute="height" multiplier="6:5" id="N8T-Se-0Rt"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="QgV-qc-KUC" userLabel="Download Indicator">
+                                <rect key="frame" x="47.5" y="50" width="20" height="20"/>
+                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hr9-7C-MjJ">
                                 <rect key="frame" x="123" y="74" width="271" height="36"/>
                                 <subviews>
@@ -160,6 +163,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="QgV-qc-KUC" firstAttribute="centerX" secondItem="qYp-v1-cKQ" secondAttribute="centerX" id="3Ph-VW-W43"/>
                             <constraint firstAttribute="bottom" secondItem="Hr9-7C-MjJ" secondAttribute="bottom" constant="18" id="9jS-ap-DrM"/>
                             <constraint firstAttribute="trailing" secondItem="XFq-FM-5Nq" secondAttribute="trailing" constant="4" id="BTR-tw-USm"/>
                             <constraint firstItem="Euu-Am-soA" firstAttribute="leading" secondItem="qYp-v1-cKQ" secondAttribute="trailing" constant="8" symbolic="YES" id="J1t-24-eKH"/>
@@ -169,6 +173,7 @@
                             <constraint firstItem="CmL-JV-CLD" firstAttribute="top" secondItem="Hr9-7C-MjJ" secondAttribute="bottom" id="WoS-bj-C4a"/>
                             <constraint firstItem="XFq-FM-5Nq" firstAttribute="top" secondItem="Euu-Am-soA" secondAttribute="bottom" id="Ymh-hr-Bq4"/>
                             <constraint firstItem="qYp-v1-cKQ" firstAttribute="top" secondItem="zr9-MP-qtO" secondAttribute="top" constant="12" id="ZFh-Cl-HTE"/>
+                            <constraint firstItem="QgV-qc-KUC" firstAttribute="centerY" secondItem="qYp-v1-cKQ" secondAttribute="centerY" id="c1R-z7-SBr"/>
                             <constraint firstItem="MIl-zv-7Vk" firstAttribute="top" secondItem="zr9-MP-qtO" secondAttribute="top" id="cFH-ss-ab4"/>
                             <constraint firstAttribute="bottom" secondItem="qYp-v1-cKQ" secondAttribute="bottom" constant="20" id="dIa-gP-RDB"/>
                             <constraint firstItem="XFq-FM-5Nq" firstAttribute="leading" secondItem="qYp-v1-cKQ" secondAttribute="trailing" constant="10" id="dj0-XI-qig"/>
@@ -195,6 +200,7 @@
                 <outlet property="backgoundSubwiew" destination="zr9-MP-qtO" id="z1p-4S-RDX"/>
                 <outlet property="countItemLabel" destination="ytp-pN-ag1" id="kyz-Nq-FFz"/>
                 <outlet property="descriptionLabel" destination="XFq-FM-5Nq" id="4IJ-TG-nh9"/>
+                <outlet property="downloadIndicator" destination="QgV-qc-KUC" id="ibO-V7-RVc"/>
                 <outlet property="favoriteButton" destination="MIl-zv-7Vk" id="HxO-fU-JOx"/>
                 <outlet property="imageItemView" destination="qYp-v1-cKQ" id="Tv5-wx-KeS"/>
                 <outlet property="measurmentLabel" destination="CmL-JV-CLD" id="dTb-F7-Fix"/>

@@ -150,9 +150,15 @@ class MenuItem: MenuItemJSON {
             }
         } else {
             NetworkManager.fetchImage(PhotoFolder.item, self.imageName) { [weak self] image in
+                if image == MenuItem.standartImage {
+                    self?.cellImage = image
+                    self?.detailImage = image
+                    completion(image)
+                    return
+                }
+                
                 switch type {
                 case .cellPhoto:
-                    let size = CGSize(width: 400, height: 300)
                     self?.detailImage = image
                     DispatchQueue.global(qos: .userInitiated).async {
                         let resizedImage = image.resized(to: size)

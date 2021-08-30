@@ -26,6 +26,7 @@ class MenuCell: UITableViewCell {
     // MARK: - @IBOutlets
     @IBOutlet private weak var backgoundSubwiew: UIView!
     @IBOutlet private weak var imageItemView: UIImageView!
+    @IBOutlet private weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var favoriteButton: UIButton!
@@ -121,18 +122,32 @@ class MenuCell: UITableViewCell {
     }
     
     private func setPhoto() {
-        imageItemView.image = MenuItem.standartImage
+        downloadIndicator.isHidden = true
+        var isSetPhoto = false
+        imageItemView.image = nil
         
         let settingImageName = item.imageName
         
-        let aspectRatio = CGFloat(0.75)
-        let imageWidth = imageItemView.bounds.height/aspectRatio
-        let imageSize = CGSize(width: imageWidth, height: imageItemView.bounds.height)
+        let imageSize = CGSize(width: 400, height: 300)
         item.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image in
             DispatchQueue.main.async {
-                if settingImageName == (self.item.imageName) {
-                    self.imageItemView.image = image
+                guard settingImageName == (self.item.imageName) && !isSetPhoto else { return }
+                self.imageItemView.image = image
+                self.imageItemView.alpha = 0
+                UIView.animate(withDuration: 0.2) {
+                    isSetPhoto = true
+                    self.imageItemView.alpha = 1
                 }
+
+                self.downloadIndicator.stopAnimating()
+                self.downloadIndicator.isHidden = true
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            if !isSetPhoto {
+                self?.downloadIndicator.isHidden = false
+                self?.downloadIndicator.startAnimating()
             }
         }
     }
@@ -170,6 +185,7 @@ class MenuCell: UITableViewCell {
         measurmentLabel.text = nil
         secondMeasurmentLabel.text = nil
         
+        downloadIndicator.isHidden = true
         descriptionLabel.isHidden = false
         removeButton.isHidden = false
         countItemLabel.isHidden = false

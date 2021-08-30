@@ -9,7 +9,7 @@ import UIKit
 
 class Cake: CakeJSON {
     
-    static let standartImage = UIImage(named: "Standart image.jpg")!
+    static let standartImage = MenuItem.standartImage
     
     // MARK: - Props
     
@@ -66,7 +66,6 @@ class Cake: CakeJSON {
         if let assetsImage = UIImage(named: imageName) {
             switch type {
             case .cellPhoto:
-                //let size = CGSize(width: 400, height: 300)
                 DispatchQueue.global(qos: .userInitiated).async {
                     self.cellImage = assetsImage.resized(to: size)
                     completion(self.cellImage)
@@ -77,6 +76,13 @@ class Cake: CakeJSON {
             }
         } else {
             NetworkManager.fetchImage(PhotoFolder.cake, self.imageName) { [weak self] image in
+                if image == Cake.standartImage {
+                    self?.cellImage = image
+                    self?.detailImage = image
+                    completion(image)
+                    return
+                }
+                
                 switch type {
                 case .cellPhoto:
                     let size = CGSize(width: 300, height: 300)
