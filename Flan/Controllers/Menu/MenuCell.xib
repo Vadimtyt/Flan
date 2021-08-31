@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="width" secondItem="qYp-v1-cKQ" secondAttribute="height" multiplier="6:5" id="N8T-Se-0Rt"/>
                                 </constraints>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="QgV-qc-KUC" userLabel="Download Indicator">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QgV-qc-KUC" userLabel="Download Indicator">
                                 <rect key="frame" x="47.5" y="50" width="20" height="20"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hr9-7C-MjJ">

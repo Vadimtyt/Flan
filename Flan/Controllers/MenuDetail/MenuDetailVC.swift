@@ -24,6 +24,7 @@ class MenuDetailVC: UIViewController {
     @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var itemImage: UIImageView!
     @IBOutlet private weak var closeButton: UIButton!
+    @IBOutlet weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
@@ -151,15 +152,31 @@ class MenuDetailVC: UIViewController {
     }
     
     private func setPhoto() {
-        itemImage.image = MenuItem.standartImage
+        downloadIndicator.isHidden = true
+        var isSetPhoto = false
+        itemImage.image = nil
         
         let settingImageName = item.imageName
         let imageSize = CGSize(width: itemImage.bounds.width, height: itemImage.bounds.height)
         item.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image in
             DispatchQueue.main.async {
-                if settingImageName == (self.item.imageName) {
-                    self.itemImage.image = image
+                guard settingImageName == (self.item.imageName) && !isSetPhoto else { return }
+                self.itemImage.image = image
+                isSetPhoto = true
+                self.itemImage.alpha = 0
+                UIView.animate(withDuration: 0.2) {
+                    self.itemImage.alpha = 1
                 }
+
+                self.downloadIndicator.stopAnimating()
+                self.downloadIndicator.isHidden = true
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            if !isSetPhoto {
+                self?.downloadIndicator.isHidden = false
+                self?.downloadIndicator.startAnimating()
             }
         }
     }
@@ -231,11 +248,11 @@ class MenuDetailVC: UIViewController {
     @IBAction private func segmentedControlChanged(_ sender: UISegmentedControl) {
         TapticFeedback.shared.tapticFeedback(.light)
         let index = sender.selectedSegmentIndex
-        item.selectedMeasurment = index
         priceLabel.text = "\(item.prices[index])Р"
         measurmentLabel.text = item.measurements[index]
         
         DataManager.shared.setNewCountFor(item: item, count: 0)
+        item.selectedMeasurment = index
         countItemLabel.text = "\(item.count)"
         removeButton.isEnabled = false
         

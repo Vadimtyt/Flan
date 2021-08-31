@@ -54,11 +54,15 @@
                                     <constraint firstAttribute="width" constant="60" id="ven-hI-tDu"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gi7-my-NgO" userLabel="Download Indicator">
+                                <rect key="frame" x="197" y="210" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HbS-lk-X07"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="HbS-lk-X07" firstAttribute="trailing" secondItem="Qlr-qz-JZh" secondAttribute="trailing" constant="20" id="5Hu-5r-xlT"/>
+                            <constraint firstItem="Gi7-my-NgO" firstAttribute="centerY" secondItem="PJl-sV-gKg" secondAttribute="centerY" id="F20-H8-0CS"/>
                             <constraint firstItem="PJl-sV-gKg" firstAttribute="top" secondItem="Mmd-VU-eU5" secondAttribute="bottom" constant="12" id="LDu-ZE-cqb"/>
                             <constraint firstItem="Mmd-VU-eU5" firstAttribute="top" secondItem="zfE-OD-Ad6" secondAttribute="top" constant="12" id="TNR-UK-5dh"/>
                             <constraint firstItem="PJl-sV-gKg" firstAttribute="trailing" secondItem="HbS-lk-X07" secondAttribute="trailing" constant="-16" id="VRm-BJ-Una"/>
@@ -67,12 +71,14 @@
                             <constraint firstItem="O2o-qh-l2W" firstAttribute="centerX" secondItem="zfE-OD-Ad6" secondAttribute="centerX" id="p8Z-6z-Ii7"/>
                             <constraint firstItem="Qlr-qz-JZh" firstAttribute="top" secondItem="PJl-sV-gKg" secondAttribute="bottom" constant="17" id="qj9-eq-ezk"/>
                             <constraint firstItem="Mmd-VU-eU5" firstAttribute="centerX" secondItem="zfE-OD-Ad6" secondAttribute="centerX" id="tMS-BE-IXU"/>
+                            <constraint firstItem="Gi7-my-NgO" firstAttribute="centerX" secondItem="PJl-sV-gKg" secondAttribute="centerX" id="xb2-UH-ioj"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="530"/>
                     <connections>
                         <outlet property="cakeImage" destination="PJl-sV-gKg" id="n3P-NW-6ht"/>
                         <outlet property="cakeNumberLabel" destination="O2o-qh-l2W" id="ycw-5e-CyG"/>
+                        <outlet property="downloadIndicator" destination="Gi7-my-NgO" id="FyX-Gd-BYN"/>
                         <outlet property="topView" destination="Mmd-VU-eU5" id="fPH-BV-baF"/>
                     </connections>
                 </viewController>

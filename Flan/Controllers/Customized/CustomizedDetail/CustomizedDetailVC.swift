@@ -21,6 +21,7 @@ class CustomizedDetailVC: UIViewController {
     // MARK: - @IBOutlets
     
     @IBOutlet weak var cakeImage: UIImageView!
+    @IBOutlet weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet weak var cakeNumberLabel: UILabel!
     
     @IBOutlet weak var topView: UIView!
@@ -45,15 +46,31 @@ class CustomizedDetailVC: UIViewController {
     }
     
     private func setPhoto() {
-        cakeImage.image = Cake.standartImage
+        downloadIndicator.isHidden = true
+        var isSetPhoto = false
+        cakeImage.image = nil
         
         let settingImageName = cake.imageName
         let imageSize = CGSize(width: cakeImage.bounds.width, height: cakeImage.bounds.height)
         cake.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image in
             DispatchQueue.main.async {
-                if settingImageName == (self.cake.imageName) {
-                    self.cakeImage.image = image
+                guard settingImageName == (self.cake.imageName) && !isSetPhoto else { return }
+                self.cakeImage.image = image
+                isSetPhoto = true
+                self.cakeImage.alpha = 0
+                UIView.animate(withDuration: 0.2) {
+                    self.cakeImage.alpha = 1
                 }
+
+                self.downloadIndicator.stopAnimating()
+                self.downloadIndicator.isHidden = true
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            if !isSetPhoto {
+                self?.downloadIndicator.isHidden = false
+                self?.downloadIndicator.startAnimating()
             }
         }
     }

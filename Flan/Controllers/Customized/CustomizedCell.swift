@@ -29,6 +29,7 @@ class CustomizedCell: UICollectionViewCell {
     }
     
     private func setPhoto() {
+        downloadIndicator.isHidden = true
         var isSetPhoto = false
         cakeImage.image = nil
         
@@ -38,10 +39,9 @@ class CustomizedCell: UICollectionViewCell {
             DispatchQueue.main.async {
                 guard settingImageName == (self.cake.imageName) && !isSetPhoto else { return }
                 self.cakeImage.image = image
-                
+                isSetPhoto = true
                 self.cakeImage.alpha = 0
                 UIView.animate(withDuration: 0.2) {
-                    isSetPhoto = true
                     self.cakeImage.alpha = 1
                 }
 

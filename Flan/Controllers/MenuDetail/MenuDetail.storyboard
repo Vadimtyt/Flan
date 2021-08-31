@@ -222,6 +222,9 @@
                                     <constraint firstItem="XVC-XG-z45" firstAttribute="centerX" secondItem="gBx-VE-86S" secondAttribute="centerX" id="zFG-7p-LHa"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RIQ-I1-IN4" userLabel="Download Indicator">
+                                <rect key="frame" x="197" y="160.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yYH-Y0-N2A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -231,6 +234,7 @@
                             <constraint firstItem="kLk-8b-Vgg" firstAttribute="top" secondItem="W94-64-xo6" secondAttribute="top" constant="10" id="Aiw-rj-uI7"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="top" secondItem="W94-64-xo6" secondAttribute="top" constant="24" id="FCf-Rc-QQo"/>
                             <constraint firstItem="cZU-Qj-s9Z" firstAttribute="top" secondItem="gBx-VE-86S" secondAttribute="bottom" constant="-20" id="K9l-vc-DTR"/>
+                            <constraint firstItem="RIQ-I1-IN4" firstAttribute="centerY" secondItem="MKe-uL-GAh" secondAttribute="centerY" id="KlF-Lc-yXh"/>
                             <constraint firstAttribute="bottom" secondItem="cWU-Yk-6D3" secondAttribute="bottom" constant="24" id="MHz-RI-yDN"/>
                             <constraint firstItem="gBx-VE-86S" firstAttribute="width" secondItem="MKe-uL-GAh" secondAttribute="width" id="MyD-ul-2Ro"/>
                             <constraint firstItem="lQp-Hz-M73" firstAttribute="top" secondItem="W94-64-xo6" secondAttribute="top" constant="40" id="OtY-xa-67C"/>
@@ -242,6 +246,7 @@
                             <constraint firstItem="oK3-pL-uYd" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="28" id="lBB-Yt-EyC"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="top" secondItem="kLk-8b-Vgg" secondAttribute="bottom" constant="10" id="lfm-Kc-MSM"/>
                             <constraint firstItem="cWU-Yk-6D3" firstAttribute="trailing" secondItem="yYH-Y0-N2A" secondAttribute="trailing" constant="-16" id="lho-9Z-PGe"/>
+                            <constraint firstItem="RIQ-I1-IN4" firstAttribute="centerX" secondItem="MKe-uL-GAh" secondAttribute="centerX" id="loZ-eU-juT"/>
                             <constraint firstItem="gBx-VE-86S" firstAttribute="top" secondItem="MKe-uL-GAh" secondAttribute="bottom" id="ovM-fa-ZNq"/>
                             <constraint firstItem="oK3-pL-uYd" firstAttribute="top" secondItem="W94-64-xo6" secondAttribute="top" constant="40" id="tU5-XX-8YD"/>
                             <constraint firstItem="MKe-uL-GAh" firstAttribute="leading" secondItem="yYH-Y0-N2A" secondAttribute="leading" constant="12" id="uQz-TK-a11"/>
@@ -256,6 +261,7 @@
                         <outlet property="closeButton" destination="oK3-pL-uYd" id="MNB-Gz-fnD"/>
                         <outlet property="countItemLabel" destination="Fiz-mU-BNb" id="WtR-Ej-83J"/>
                         <outlet property="descriptionLabel" destination="eip-EP-xfm" id="5S1-xm-iBm"/>
+                        <outlet property="downloadIndicator" destination="RIQ-I1-IN4" id="tDb-wN-RGL"/>
                         <outlet property="favoriteButton" destination="lQp-Hz-M73" id="nKQ-u4-Cif"/>
                         <outlet property="itemImage" destination="MKe-uL-GAh" id="L0w-G7-feP"/>
                         <outlet property="measurmentLabel" destination="gVF-k4-0ln" id="pPB-rW-vQ8"/>

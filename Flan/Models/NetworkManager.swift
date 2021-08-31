@@ -35,6 +35,12 @@ class NetworkManager {
     }
     
     class func fetchImage(_ folder: PhotoFolder,_ imageName: String, completion: @escaping (UIImage) -> ()) {
+        guard DataManager.shared.isOnlineMode else {
+            let standartImage = MenuItem.standartImage
+            completion(standartImage)
+            return
+        }
+        
         downloadRef.reference(withPath: folder.rawValue + "/" + imageName).getData(maxSize: 1000000000) { (data, error) in
             
             if let error = error {

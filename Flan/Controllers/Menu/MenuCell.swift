@@ -133,9 +133,9 @@ class MenuCell: UITableViewCell {
             DispatchQueue.main.async {
                 guard settingImageName == (self.item.imageName) && !isSetPhoto else { return }
                 self.imageItemView.image = image
+                isSetPhoto = true
                 self.imageItemView.alpha = 0
                 UIView.animate(withDuration: 0.2) {
-                    isSetPhoto = true
                     self.imageItemView.alpha = 1
                 }
 
