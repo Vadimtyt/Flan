@@ -29,6 +29,8 @@ class DataManager {
     
     func configureDataFromFirebase(completion: @escaping () -> ()) {
         isOnlineMode = true
+        clearAll()
+        
         downloadItems { [weak self] in
             self?.downloadCakes {
                 self?.downloadBakeries {
@@ -40,6 +42,7 @@ class DataManager {
     
     func configureDataFromSaved() {
         isOnlineMode = false
+        clearAll()
         
         setItemsFromSaved()
         setFavoritesFromSaved()
@@ -47,6 +50,22 @@ class DataManager {
         setCompletedListFromSaved()
         setCakesFromSaved()
         setBakeriesFromSaved()
+    }
+    
+    private func clearAll() {
+        items.removeAll()
+        favorites.removeAll()
+        list.removeAll()
+        completedList.removeAll()
+        categories.removeAll()
+        cakes.removeAll()
+        bakeries.removeAll()
+    }
+    
+    func offlineModeIsRedi() -> Bool {
+        if let _ = defaults.value(forKey: KeysDefaults.items.rawValue) as? Data {
+            return true
+        } else { return false }
     }
     
     // MARK: - Funcs for items

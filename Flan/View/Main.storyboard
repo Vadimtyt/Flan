@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
                                 <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgp-7z-N4S" id="DIj-3k-2gD" customClass="UITextView">
@@ -509,26 +509,37 @@
                                     <constraint firstAttribute="height" constant="20" id="hjT-0V-l4H"/>
                                 </constraints>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ошибка" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDK-oI-fLN" userLabel="Text Label">
-                                <rect key="frame" x="20" y="587" width="350" height="20.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текст" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDK-oI-fLN" userLabel="Text Label">
+                                <rect key="frame" x="20" y="595" width="350" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alF-Rh-x5C" userLabel="Action Button">
+                                <rect key="frame" x="150.66666666666666" y="623.33333333333337" width="89" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Действие"/>
+                                <connections>
+                                    <action selector="actionButtonPressed:" destination="wf6-Ai-2aa" eventType="touchUpInside" id="8n5-Sq-jXP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pOE-ns-Qto"/>
                         <color key="backgroundColor" red="0.9371530414" green="0.93731355670000005" blue="0.93714290860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kHi-Z7-Ggr" firstAttribute="top" secondItem="QGn-jt-nfr" secondAttribute="bottom" constant="32" id="5Kh-Ex-Wgg"/>
+                            <constraint firstItem="alF-Rh-x5C" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="Fl5-lh-Y8z"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerY" secondItem="pOE-ns-Qto" secondAttribute="centerY" constant="-50" id="V6z-nR-Nsa"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="W4r-PG-IZk"/>
                             <constraint firstItem="jDK-oI-fLN" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="20" id="XCi-UC-yNy"/>
                             <constraint firstItem="kHi-Z7-Ggr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="gzl-6e-6J9"/>
                             <constraint firstItem="pOE-ns-Qto" firstAttribute="trailing" secondItem="jDK-oI-fLN" secondAttribute="trailing" constant="20" id="qoL-st-avi"/>
-                            <constraint firstItem="jDK-oI-fLN" firstAttribute="top" secondItem="kHi-Z7-Ggr" secondAttribute="bottom" constant="8" symbolic="YES" id="zgv-ca-m3D"/>
+                            <constraint firstItem="alF-Rh-x5C" firstAttribute="top" secondItem="jDK-oI-fLN" secondAttribute="bottom" constant="8" id="xSe-aI-oJq"/>
+                            <constraint firstItem="jDK-oI-fLN" firstAttribute="top" secondItem="kHi-Z7-Ggr" secondAttribute="bottom" constant="16" id="zgv-ca-m3D"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="alF-Rh-x5C" id="hyK-GN-dIK"/>
                         <outlet property="activityIndicator" destination="kHi-Z7-Ggr" id="xvB-dA-810"/>
                         <outlet property="textLabel" destination="jDK-oI-fLN" id="GT4-2x-e0O"/>
                     </connections>
