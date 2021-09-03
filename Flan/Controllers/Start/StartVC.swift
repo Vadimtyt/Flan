@@ -17,8 +17,9 @@ class StartVC: UIViewController {
     
     // MARK: - @IBOutlet
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var reconnectButton: UIButton!
     @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var offlineModeButton: UIButton!
     
     // MARK: - Initialization
     
@@ -27,15 +28,18 @@ class StartVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        checkNetworkConnecion()
+        tryToConnect()
     }
     
     // MARK: - Funcs
     
     private func configureElements() {
         textLabel.text = ""
+        reconnectButton.isHidden = true
+        reconnectButton.layer.cornerRadius = 16
         textLabel.isHidden = true
-        actionButton.isHidden = true
+        offlineModeButton.isHidden = true
+        offlineModeButton.layer.cornerRadius = 14
         
         if #available(iOS 13.0, *) {
             activityIndicator.style = .large
@@ -45,11 +49,12 @@ class StartVC: UIViewController {
     }
     
     // MARK: - Funcs
-    private func checkNetworkConnecion() {
+    private func tryToConnect() {
         if networkCheck.currentStatus == .satisfied{
             DataManager.shared.configureDataFromFirebase {
                  self.presentApp()
             }
+            reconnectButton.isHidden = true
             activityIndicator.startAnimating()
             activityIndicator.isHidden = false
             
@@ -64,19 +69,12 @@ class StartVC: UIViewController {
     }
     
     private func prepareOfflineMode() {
-        guard DataManager.shared.offlineModeIsRedi() else {
-            offlineModeDisabled()
-            return
-        }
+        reconnectButton.isHidden = false
+        guard DataManager.shared.offlineModeIsRedi() else { return }
         textLabel.text = "Вы можете включить оффлайн режим, при этом отобразятся последние загруженные данные, но они могут быть неактуальны"
         textLabel.isHidden = false
-        actionButton.setTitle(textForOfflineMode, for: .normal)
-        actionButton.isHidden = false
-    }
-    
-    private func offlineModeDisabled() {
-        actionButton.setTitle(textForRepeatConnection, for: .normal)
-        actionButton.isHidden = false
+        offlineModeButton.setTitle(textForOfflineMode, for: .normal)
+        offlineModeButton.isHidden = false
     }
     
     private func showNetworkAlert(title: String, message: String) {
@@ -97,6 +95,7 @@ class StartVC: UIViewController {
         DataManager.shared.configureDataFromSaved()
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
+        reconnectButton.isHidden = false
     }
     
     private func presentApp() {
@@ -106,12 +105,16 @@ class StartVC: UIViewController {
     
     // MARK: - @IBActions
     
-    @IBAction func actionButtonPressed(_ sender: UIButton) {
-        if actionButton.currentTitle == textForOfflineMode {
-            setDataFromSaved()
-            presentApp()
-        } else if actionButton.currentTitle == textForRepeatConnection {
-            checkNetworkConnecion()
+    @IBAction func reconnectButtonPressed(_ sender: UIButton) {
+        animatePressingView(sender)
+        tryToConnect()
+    }
+    
+    @IBAction func offlineModeButtonPressed(_ sender: UIButton) {
+        animatePressingView(sender)
+        setDataFromSaved()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.presentApp()
         }
     }
 }
