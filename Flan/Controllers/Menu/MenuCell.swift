@@ -87,8 +87,11 @@ class MenuCell: UITableViewCell {
         secondPriceLabel.layer.borderColor =  UIColor.yellow.cgColor
         secondPriceLabel.layer.borderWidth = 2.5
         secondPriceLabel.layer.cornerRadius = 16
-        backgoundSubwiew.roundCorners([.topRight,.bottomRight], radius: 20)
-        imageItemView.roundCorners([.topRight, .bottomRight], radius: 20)
+        backgoundSubwiew.layer.cornerRadius = 20
+        backgoundSubwiew.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        imageItemView.layer.cornerRadius = 20
+        imageItemView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        //imageItemView.roundCorners([.topRight, .bottomRight], radius: 20)
         countItemLabel.roundCorners(.allCorners, radius: 12)
         
         removeButton.layer.cornerRadius = 16
@@ -128,7 +131,7 @@ class MenuCell: UITableViewCell {
         
         let settingImageName = item.imageName
         
-        let imageSize = CGSize(width: 400, height: 300)
+        let imageSize = getImageSize()
         item.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image in
             DispatchQueue.main.async {
                 guard settingImageName == (self.item.imageName) && !isSetPhoto else { return }
@@ -150,6 +153,16 @@ class MenuCell: UITableViewCell {
                 self?.downloadIndicator.startAnimating()
             }
         }
+    }
+    
+    private func getImageSize() -> CGSize {
+        let imageAspectRatio = CGFloat(0.75)
+        var imageSize = CGSize(width: imageItemView.bounds.height / imageAspectRatio, height: imageItemView.bounds.height)
+        
+        let scale = UIScreen.main.nativeScale
+        imageSize = CGSize(width: imageSize.width * scale, height: imageSize.height * scale)
+        
+        return imageSize
     }
     
     private func updatePriceLabels() {

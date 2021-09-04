@@ -14,6 +14,7 @@ class FavoriteVC: UITableViewController {
     // MARK: - Props
     
     private var items: [MenuItem] { DataManager.shared.getFavorites() }
+    private var isFirstAppearance = true
 
     // MARK: - Initialization
     
@@ -25,14 +26,10 @@ class FavoriteVC: UITableViewController {
         setupTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-        }
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
+        if !isFirstAppearance {
+            tableView.reloadData()
+        } else { isFirstAppearance = false }
     }
     
     // MARK: - Funcs
@@ -59,6 +56,14 @@ class FavoriteVC: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         updateBackgound()
         return items.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height = CGFloat(150)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            height = 168
+        }
+        return height
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

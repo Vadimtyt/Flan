@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -176,30 +175,6 @@
                                     <action selector="favoriteButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="K8G-GY-3Ho"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-pL-uYd" userLabel="Close Button">
-                                <rect key="frame" x="28" y="40" width="36" height="36"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="36" id="rN4-vc-n2s"/>
-                                    <constraint firstAttribute="height" constant="36" id="sE6-PF-A4b"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <imageReference key="image" image="chevron.down" symbolScale="large" renderingMode="original"/>
-                                </state>
-                                <state key="highlighted" title="X">
-                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="closeButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="3pE-KT-Czb"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBx-VE-86S" userLabel="Name View">
                                 <rect key="frame" x="12" y="316.5" width="390" height="44"/>
                                 <subviews>
@@ -225,6 +200,27 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RIQ-I1-IN4" userLabel="Download Indicator">
                                 <rect key="frame" x="197" y="160.5" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-pL-uYd" userLabel="Close Button">
+                                <rect key="frame" x="28" y="40" width="36" height="36"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="rN4-vc-n2s"/>
+                                    <constraint firstAttribute="height" constant="36" id="sE6-PF-A4b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" image="chevron.down"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="closeButtonPressed:" destination="nUc-xs-zVD" eventType="touchUpInside" id="3pE-KT-Czb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yYH-Y0-N2A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

@@ -95,7 +95,7 @@ class MenuDetailVC: UIViewController {
             bottomViewHeight.constant = priceAndCountView.bounds.height + 32
         }
         let aspectRatio = UIScreen.main.bounds.height / UIScreen.main.bounds.width
-        if aspectRatio == 16/9 {
+        if aspectRatio <= 16/9 && UIDevice.current.userInterfaceIdiom != .pad {
             slideIndicatorView.isHidden = true
             bottomViewIdent.constant = 8
         }

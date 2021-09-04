@@ -59,11 +59,11 @@ class MapVC: UIViewController {
     
     @IBAction private func startRouteButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
-        mapManager.getDirection(mapView: mapView, distanceAndTimeLabel: distanceAndTimeLabel)
+        mapManager.getDirection(mapView: mapView, distanceAndTimeView: distanceAndTimeView, distanceAndTimeLabel: distanceAndTimeLabel)
         
         startRouteButton.isHidden = true
         distanceAndTimeView.layer.cornerRadius = 16
-        distanceAndTimeView.isHidden = false
+        //distanceAndTimeView.isHidden = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
             self?.distanceAndTimeView.isHidden = true

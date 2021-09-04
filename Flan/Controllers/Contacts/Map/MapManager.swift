@@ -90,7 +90,7 @@ class MapManager {
         mapView.setRegion(region, animated: true)
     }
     
-    func getDirection(mapView: MKMapView, distanceAndTimeLabel: UILabel) {
+    func getDirection(mapView: MKMapView, distanceAndTimeView: UIView, distanceAndTimeLabel: UILabel) {
         guard let location = locationManager.location?.coordinate else {
             showAlert(title: "Ошибка", message: "Ваше местоположение не найдено")
             return
@@ -108,6 +108,8 @@ class MapManager {
         direction.calculate { [weak self] (response, error) in
             if let error = error {
                 print(error)
+                distanceAndTimeView.isHidden = false
+                distanceAndTimeLabel.text = "Пешие маршруты недоступны"
                 self?.showAlert(title: "Ошибка", message: "Пешие маршруты недоступны")
                 return
             }
@@ -126,6 +128,7 @@ class MapManager {
                 
                 distanceAndTimeLabel.text! = "Расстояние - \(distance)м.\n"
                 distanceAndTimeLabel.text! += "Время - \(timeInterval)мин."
+                distanceAndTimeView.isHidden = false
             }
         }
     }

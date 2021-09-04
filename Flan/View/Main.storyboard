@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-7z-N4S" customClass="MenuCell">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgp-7z-N4S" id="DIj-3k-2gD" customClass="UITextView">
@@ -93,7 +93,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="WHn-3N-e0f" customClass="MenuCell" customModule="Flan" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" rowHeight="150" id="WHn-3N-e0f" customClass="MenuCell" customModule="Flan" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WHn-3N-e0f" id="7L6-D7-Rwb">
@@ -221,25 +221,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TGC-XV-l7P">
-                            <size key="itemSize" width="128" height="128"/>
+                            <size key="itemSize" width="150" height="150"/>
                             <size key="headerReferenceSize" width="50" height="110"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customizedCell" id="cqD-TH-0oC" customClass="CustomizedCell" customModule="Flan" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="110" width="128" height="128"/>
+                                <rect key="frame" x="0.0" y="110" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CPd-uE-FTr">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Standart image" translatesAutoresizingMaskIntoConstraints="NO" id="vOK-Pe-TUm">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="b3K-Z5-5uB" userLabel="Download Indicator">
-                                            <rect key="frame" x="54" y="54" width="20" height="20"/>
+                                            <rect key="frame" x="65" y="65" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
                                     <constraints>
@@ -495,7 +495,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flan Launch Logo" translatesAutoresizingMaskIntoConstraints="NO" id="QGn-jt-nfr">
-                                <rect key="frame" x="57" y="253" width="300" height="300"/>
+                                <rect key="frame" x="57" y="223" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QGn-jt-nfr" secondAttribute="height" id="cQr-aK-1u4"/>
                                     <constraint firstAttribute="width" constant="300" id="ekv-TO-2PO"/>
@@ -503,14 +503,14 @@
                                 </constraints>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kHi-Z7-Ggr">
-                                <rect key="frame" x="197" y="553" width="20" height="20"/>
+                                <rect key="frame" x="197" y="523" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="DGJ-Fj-6u7"/>
                                     <constraint firstAttribute="height" constant="20" id="hjT-0V-l4H"/>
                                 </constraints>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvb-m3-A5e" userLabel="Reconnect Button">
-                                <rect key="frame" x="187" y="543" width="40" height="40"/>
+                                <rect key="frame" x="187" y="513" width="40" height="40"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="7yA-Ej-vBQ"/>
@@ -522,13 +522,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текст" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDK-oI-fLN" userLabel="Text Label">
-                                <rect key="frame" x="20" y="593" width="374" height="20.5"/>
+                                <rect key="frame" x="20" y="563" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alF-Rh-x5C" userLabel="Offline Mode Button">
-                                <rect key="frame" x="117" y="629.5" width="180" height="36"/>
+                                <rect key="frame" x="117" y="599.5" width="180" height="36"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="Zu9-Fl-Tcp"/>
@@ -548,7 +548,7 @@
                             <constraint firstItem="kHi-Z7-Ggr" firstAttribute="top" secondItem="QGn-jt-nfr" secondAttribute="bottom" id="5Kh-Ex-Wgg"/>
                             <constraint firstItem="Uvb-m3-A5e" firstAttribute="centerX" secondItem="kHi-Z7-Ggr" secondAttribute="centerX" id="8FD-zF-2HM"/>
                             <constraint firstItem="alF-Rh-x5C" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="Fl5-lh-Y8z"/>
-                            <constraint firstItem="QGn-jt-nfr" firstAttribute="centerY" secondItem="pOE-ns-Qto" secondAttribute="centerY" constant="-50" id="V6z-nR-Nsa"/>
+                            <constraint firstItem="QGn-jt-nfr" firstAttribute="centerY" secondItem="pOE-ns-Qto" secondAttribute="centerY" constant="-80" id="V6z-nR-Nsa"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="W4r-PG-IZk"/>
                             <constraint firstItem="jDK-oI-fLN" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="20" id="XCi-UC-yNy"/>
                             <constraint firstItem="kHi-Z7-Ggr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="gzl-6e-6J9"/>

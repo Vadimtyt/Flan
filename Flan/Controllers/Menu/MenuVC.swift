@@ -26,6 +26,8 @@ class MenuVC: UITableViewController {
     }
     private var isFiltering: Bool { searchController.isActive && !searchBarIsEmpty }
     private var isKeyboardPresented = false
+    
+    private var isFirstAppearance = true
 
     // MARK: - Initialization
     
@@ -40,11 +42,11 @@ class MenuVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-            self?.updateListVCBadge()
-            self?.updateBackgound()
-        }
+        if !isFirstAppearance {
+            tableView.reloadData()
+        } else { isFirstAppearance = false }
+        updateListVCBadge()
+        updateBackgound()
     }
     
     // MARK: - Funcs
@@ -158,6 +160,14 @@ extension MenuVC {
             return nil
         }
         return categories[section].category
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height = CGFloat(150)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            height = 168
+        }
+        return height
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
