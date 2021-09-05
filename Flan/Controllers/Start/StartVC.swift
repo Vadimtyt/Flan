@@ -14,6 +14,7 @@ class StartVC: UIViewController {
     private var networkCheck = NetworkCheck.sharedInstance()
     private let textForOfflineMode = "Оффлайн режим"
     private let textForRepeatConnection = "Повторить загрузку"
+    private var isFirstTry = true
     
     // MARK: - @IBOutlet
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
@@ -62,8 +63,17 @@ class StartVC: UIViewController {
                 self?.prepareOfflineMode()
             }
         } else if networkCheck.currentStatus == .unsatisfied {
+            guard !isFirstTry else {
+                isFirstTry = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                    self?.tryToConnect()
+                    print("second try")
+                }
+                return
+            }
             activityIndicator.stopAnimating()
             activityIndicator.isHidden = true
+            TapticFeedback.shared.tapticFeedback(.light)
             showNetworkAlert(title: "Упс...", message: "Пожалуйста, проверьте cоединение с Интернетом")
         }
     }
@@ -111,6 +121,7 @@ class StartVC: UIViewController {
     }
     
     @IBAction func offlineModeButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
         setDataFromSaved()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in

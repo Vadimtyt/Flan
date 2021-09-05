@@ -227,8 +227,8 @@ extension MenuVC: UISearchResultsUpdating {
         
         filtredItems = items.filter{
             var isFits: [Bool] = []
-            let itemWords = $0.name.lowercased().components(separatedBy: [" ", ".", ",", "(", ")"])
-            let searchingWords = searchText.lowercased().components(separatedBy: [" ", ".", ",", "(", ")"])
+            let itemWords = $0.name.lowercased().components(separatedBy: [" ", ".", ",", "(", ")", "-"])
+            let searchingWords = searchText.lowercased().components(separatedBy: [" ", ".", ",", "(", ")", "-"])
             
             searchingWords.forEach {
                 var isThisSearchWordFits = false
