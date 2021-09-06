@@ -21,6 +21,7 @@ class CustomizedHeaderView: UICollectionReusableView {
     }
     
     @objc private func tapHeaderView(sender:UITapGestureRecognizer) {
+        TapticFeedback.shared.tapticFeedback(.medium)
         guard let tabsCount = superVC?.tabBarController?.tabBar.items?.count else { return }
         superVC?.animatePressingView(headerView)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in

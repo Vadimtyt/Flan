@@ -104,8 +104,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="questionmark.circle" width="20" height="20"/>
-        <image name="square.and.arrow.up" width="17.5" height="23.5"/>
+        <image name="questionmark.circle" width="996.093994140625" height="996.58197021484375"/>
+        <image name="square.and.arrow.up" width="17.333999633789062" height="23.486299514770508"/>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

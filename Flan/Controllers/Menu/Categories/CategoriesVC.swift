@@ -46,9 +46,7 @@ class CategoriesVC: UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        let screenAspectRatio = UIScreen.main.bounds.height/UIScreen.main.bounds.width
-        
-        if UIDevice.current.userInterfaceIdiom == .pad || screenAspectRatio == 16/9 {
+        if UIDevice.current.userInterfaceIdiom == .pad {
             tableViewAspectRatio.priority = .defaultLow
         }
     }

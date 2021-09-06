@@ -41,7 +41,7 @@ class MenuDetailVC: UIViewController {
     @IBOutlet private weak var priceAndCountView: UIView!
     
     @IBOutlet private weak var bottomViewHeight: NSLayoutConstraint!
-    @IBOutlet private weak var bottomViewIdent: NSLayoutConstraint!
+    @IBOutlet private weak var bottomViewBottomIdent: NSLayoutConstraint!
     
     // MARK: - Initialization
     
@@ -94,13 +94,18 @@ class MenuDetailVC: UIViewController {
         if item.measurements.count < 2 {
             bottomViewHeight.constant = priceAndCountView.bounds.height + 32
         }
-        let aspectRatio = UIScreen.main.bounds.height / UIScreen.main.bounds.width
-        if aspectRatio <= 16/9 && UIDevice.current.userInterfaceIdiom != .pad {
-            slideIndicatorView.isHidden = true
-            bottomViewIdent.constant = 8
+        
+        if UIScreen.main.bounds.height <= 568 {
+            //For 4-inch display
+            bottomViewBottomIdent.constant = 8
         }
         
-        if #available(*, iOS 12.0) { segmentedControl.tintColor = .systemGray }
+        if #available(iOS 13.0, *) {
+            slideIndicatorView.isHidden = false
+        } else {
+            slideIndicatorView.isHidden = true
+            segmentedControl.tintColor = .systemGray
+        }
         
         slideIndicatorView.layer.cornerRadius = 2
         itemImage.roundCorners([.topLeft, .topRight], radius: 24)

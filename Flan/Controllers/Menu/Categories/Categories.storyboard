@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rko-Oq-KSf">
-                                <rect key="frame" x="0.0" y="36" width="414" height="464"/>
+                                <rect key="frame" x="0.0" y="36" width="414" height="455"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Rko-Oq-KSf" secondAttribute="height" multiplier="414:465" constant="1" id="kIx-Dq-uMW"/>
+                                    <constraint firstAttribute="width" secondItem="Rko-Oq-KSf" secondAttribute="height" multiplier="414:456" constant="1" id="kIx-Dq-uMW"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="d3m-pA-VgJ">

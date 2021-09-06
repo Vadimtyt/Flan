@@ -33,10 +33,10 @@ class PresentationController: UIPresentationController {
     // MARK: - Layout
   
     override var frameOfPresentedViewInContainerView: CGRect {
-        var indent: CGFloat = 80
-        let aspectRatio = self.containerView!.frame.height/self.containerView!.frame.width
-        if aspectRatio > 16/9 {
-            indent += 30
+        var indent: CGFloat = 68
+        let bottomIdent = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        if bottomIdent > 0 {
+            indent += bottomIdent
         }
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height

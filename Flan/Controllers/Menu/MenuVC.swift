@@ -152,7 +152,7 @@ extension MenuVC {
         if isFiltering {
             return 0
         }
-        return 60
+        return 56
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -163,7 +163,7 @@ extension MenuVC {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height = CGFloat(150)
+        var height = CGFloat(142)
         if UIDevice.current.userInterfaceIdiom == .pad {
             height = 168
         }
