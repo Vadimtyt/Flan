@@ -33,14 +33,14 @@ class PresentationController: UIPresentationController {
     // MARK: - Layout
   
     override var frameOfPresentedViewInContainerView: CGRect {
-        var indent: CGFloat = 68
-        let bottomIdent = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
-        if bottomIdent > 0 {
-            indent += bottomIdent
+        var bottomIndent: CGFloat = 68
+        let safeAreaBottomIdent = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        if safeAreaBottomIdent > 0 {
+            bottomIndent += safeAreaBottomIdent
         }
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
-        return CGRect(origin: CGPoint(x: 0, y: height - (width + indent)),
+        return CGRect(origin: CGPoint(x: 0, y: height - (width + bottomIndent)),
                       size: CGSize(width: width, height: height))
     }
 

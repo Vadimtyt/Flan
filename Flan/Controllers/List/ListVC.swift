@@ -99,7 +99,7 @@ class ListVC: UIViewController {
     @IBAction private func infoButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
 
-        let popUpWidth: CGFloat = 294
+        let popUpWidth: CGFloat = 288
         let popUpHeight: CGFloat = 163
 
         var arrowY: CGFloat = 0

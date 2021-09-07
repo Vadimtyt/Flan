@@ -18,7 +18,7 @@ class CustomizedCVC: UICollectionViewController {
     private let sectionPadding: CGFloat = 12
     
     private let popoverText = "Здесь находится лишь небольшая часть наших работ, но мы надеемся, что одна из них поможет вам найти идею для индивидуального заказа."
-    private let popoverTextFontSize: CGFloat = 22
+    private let popoverTextFontSize: CGFloat = 20
     
     // MARK: - @IBOutlets
     
@@ -113,8 +113,8 @@ class CustomizedCVC: UICollectionViewController {
     @IBAction private func infoBarButtonPressed(_ sender: UIBarButtonItem) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        let popoverWidth = 290
-        let popoverHeight = 175
+        let popoverWidth = 288
+        let popoverHeight = 128
         
         let vc = InfoPopover(text: popoverText, fontSize: popoverTextFontSize)
         vc.modalPresentationStyle = UIModalPresentationStyle.popover

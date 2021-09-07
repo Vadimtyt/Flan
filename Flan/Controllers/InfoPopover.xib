@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Здесь находится какой-нибудь текст, который будет отображаться в popUp." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieg-SB-W6m" userLabel="textLabel">
-                    <rect key="frame" x="8" y="44" width="284" height="156"/>
+                    <rect key="frame" x="8" y="52" width="284" height="140"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -33,9 +33,9 @@
                 <constraint firstItem="ieg-SB-W6m" firstAttribute="leading" secondItem="2G4-gt-6am" secondAttribute="leading" constant="8" id="CPH-8N-DFm"/>
                 <constraint firstItem="ieg-SB-W6m" firstAttribute="centerX" secondItem="7y3-Jc-sFm" secondAttribute="centerX" id="PdR-bh-szE"/>
                 <constraint firstItem="ieg-SB-W6m" firstAttribute="centerY" secondItem="7y3-Jc-sFm" secondAttribute="centerY" id="UjT-O1-oHt"/>
-                <constraint firstItem="ieg-SB-W6m" firstAttribute="top" secondItem="7y3-Jc-sFm" secondAttribute="top" id="bEJ-JC-7Y0"/>
+                <constraint firstItem="ieg-SB-W6m" firstAttribute="top" secondItem="7y3-Jc-sFm" secondAttribute="top" constant="8" id="bEJ-JC-7Y0"/>
                 <constraint firstAttribute="trailing" secondItem="ieg-SB-W6m" secondAttribute="trailing" constant="8" id="cU1-Ye-lyN"/>
-                <constraint firstItem="7y3-Jc-sFm" firstAttribute="bottom" secondItem="ieg-SB-W6m" secondAttribute="bottom" id="cpK-i9-cJU"/>
+                <constraint firstItem="7y3-Jc-sFm" firstAttribute="bottom" secondItem="ieg-SB-W6m" secondAttribute="bottom" constant="8" id="cpK-i9-cJU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-102.89855072463769" y="-266.51785714285711"/>

@@ -19,7 +19,9 @@ enum Labels {
     enum MenuVC {
         static let searchPlaceholder = "Введите название",
                    emptyViewTitle = "Ошибка сервера",
-                   emptyViewMessage = "Не удалось загрузить данные. Проводятся технические работы"
+                   emptyViewMessage = "Не удалось загрузить данные. Проводятся технические работы",
+                   emptyFilteringViewTitle = "Ничего не найдено...",
+                   emptyFilteringViewMessage = "Попробуйте ввести что-нибудь другое"
     }
     
     enum FavoriteVC {

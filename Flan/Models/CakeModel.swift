@@ -37,19 +37,6 @@ class Cake: CakeJSON {
         fatalError("init(from:) has not been implemented")
     }
     
-//    func setImage(type: PhotoType, completion: @escaping (UIImage) -> ()) {
-//        guard image == Cake.standartImage else { completion(image); return }
-//        if let assetsImage = UIImage(named: imageName) {
-//            image = assetsImage
-//            completion(image)
-//        } else {
-//            NetworkManager.fetchImage(PhotoFolder.cake, imageName) { [weak self] image in
-//                self?.image = image
-//                completion(image)
-//            }
-//        }
-//    }
-    
     func setImage(size: CGSize, type: PhotoType, completion: @escaping (UIImage) -> ()) {
         guard imageName != ""  else { completion(Cake.standartImage); return }
         

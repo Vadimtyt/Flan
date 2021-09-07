@@ -193,8 +193,10 @@
 			children = (
 				C1FEDC2926D6C5160036816C /* Enums */,
 				C125438425D4C3120086ADD2 /* Models */,
+				C18E93C426E7EAD5005A7F3E /* Supporting Models */,
 				C125438525D4C31A0086ADD2 /* View */,
 				C125438625D4C3240086ADD2 /* Controllers */,
+				C18E93C526E7EB1B005A7F3E /* Extensions */,
 				C15C40C52646D32C0053910A /* TapticFeedback */,
 				C125438725D4C3300086ADD2 /* Supporting resourses */,
 				C125438825D4C3510086ADD2 /* App */,
@@ -208,8 +210,6 @@
 				C19DD6FE26080E3600D00BFD /* MenuItemModel.swift */,
 				C1AD6A34265862C1007DFBE9 /* CakeModel.swift */,
 				C15C40902645CA420053910A /* BakeryModel.swift */,
-				C195513A26BB05D100B38B59 /* DataManager.swift */,
-				C1A25C1126C17843000B07F0 /* NetworkManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -226,18 +226,11 @@
 		C125438625D4C3240086ADD2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C1EE51BD26A310AD001126DA /* NetworkMonitor.swift */,
 				C1AD6A412659223D007DFBE9 /* PresentationController.swift */,
-				C1573D81263103F5001C600B /* TapBarController.swift */,
-				C1600D26264EF65700D06F31 /* ExtensionViewController.swift */,
-				C1EE51B926A1EF9C001126DA /* ExtensionTableView.swift */,
-				C195513626B57C5500B38B59 /* ExtensionTableViewCell.swift */,
-				C13C5E3826D5712B005BCE10 /* ExtensionCollectionView.swift */,
-				C122109126D696710099335A /* ExtensionUIImage.swift */,
-				C195513826BAD2EE00B38B59 /* ExtensionView.swift */,
 				C1AD6A54265BC6DF007DFBE9 /* InfoPopover.swift */,
 				C1AD6A50265BC3FF007DFBE9 /* InfoPopover.xib */,
 				C1A25C1E26C2B7C6000B07F0 /* Start */,
+				C18E93C226E7EA98005A7F3E /* TapBarController */,
 				C19C8BEE261740100039CA79 /* Menu */,
 				C11F36C02666CDE600D1E14A /* MenuDetail */,
 				C19C8C13261E5CF00039CA79 /* Favorite */,
@@ -304,6 +297,37 @@
 				C1600D2A26515B5900D06F31 /* MapManager.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		C18E93C226E7EA98005A7F3E /* TapBarController */ = {
+			isa = PBXGroup;
+			children = (
+				C1573D81263103F5001C600B /* TapBarController.swift */,
+			);
+			path = TapBarController;
+			sourceTree = "<group>";
+		};
+		C18E93C426E7EAD5005A7F3E /* Supporting Models */ = {
+			isa = PBXGroup;
+			children = (
+				C195513A26BB05D100B38B59 /* DataManager.swift */,
+				C1A25C1126C17843000B07F0 /* NetworkManager.swift */,
+				C1EE51BD26A310AD001126DA /* NetworkMonitor.swift */,
+			);
+			path = "Supporting Models";
+			sourceTree = "<group>";
+		};
+		C18E93C526E7EB1B005A7F3E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C1600D26264EF65700D06F31 /* ExtensionViewController.swift */,
+				C1EE51B926A1EF9C001126DA /* ExtensionTableView.swift */,
+				C195513626B57C5500B38B59 /* ExtensionTableViewCell.swift */,
+				C13C5E3826D5712B005BCE10 /* ExtensionCollectionView.swift */,
+				C122109126D696710099335A /* ExtensionUIImage.swift */,
+				C195513826BAD2EE00B38B59 /* ExtensionView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C19C8BEE261740100039CA79 /* Menu */ = {

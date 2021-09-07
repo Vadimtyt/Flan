@@ -46,7 +46,6 @@ class MenuVC: UITableViewController {
             tableView.reloadData()
         } else { isFirstAppearance = false }
         updateListVCBadge()
-        updateBackgound()
     }
     
     // MARK: - Funcs
@@ -84,11 +83,15 @@ class MenuVC: UITableViewController {
     }
     
     private func updateBackgound() {
-        if items.isEmpty {
+        if !isFiltering && items.isEmpty {
             tableView.setEmptyView(title: Labels.MenuVC.emptyViewTitle,
                                    message: Labels.MenuVC.emptyViewMessage,
                                    messageImage: UIImage(named: "cloudError.png")!)
             tableView.isScrollEnabled = false
+        } else if isFiltering && filtredItems.isEmpty {
+            tableView.setEmptyView(title: Labels.MenuVC.emptyFilteringViewTitle,
+                                   message: Labels.MenuVC.emptyFilteringViewMessage,
+                                   messageImage: nil)
         } else {
             tableView.restore()
             tableView.isScrollEnabled = true
@@ -136,6 +139,7 @@ class MenuVC: UITableViewController {
 
 extension MenuVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
+        updateBackgound()
         if isFiltering {
             return 1
         }
