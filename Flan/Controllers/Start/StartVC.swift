@@ -12,8 +12,8 @@ class StartVC: UIViewController {
     
     // MARK: - Props
     private var networkCheck = NetworkCheck.sharedInstance()
-    private let textForOfflineMode = "Оффлайн режим"
-    private let textForRepeatConnection = "Повторить загрузку"
+    //private let textForOfflineMode = "Оффлайн режим"
+    //private let textForRepeatConnection = "Повторить загрузку"
     private var isFirstTry = true
     
     // MARK: - @IBOutlet
@@ -74,16 +74,16 @@ class StartVC: UIViewController {
             activityIndicator.stopAnimating()
             activityIndicator.isHidden = true
             TapticFeedback.shared.tapticFeedback(.light)
-            showNetworkAlert(title: "Упс...", message: "Пожалуйста, проверьте cоединение с Интернетом")
+            showNetworkAlert(title: Labels.StartVC.networkAlertTitle, message: Labels.StartVC.networkAlertTitle)
         }
     }
     
     private func prepareOfflineMode() {
         reconnectButton.isHidden = false
         guard DataManager.shared.offlineModeIsRedi() else { return }
-        textLabel.text = "Вы можете включить оффлайн режим, при этом отобразятся последние загруженные данные, но они могут быть неактуальны"
+        textLabel.text = Labels.StartVC.textLabel
         textLabel.isHidden = false
-        offlineModeButton.setTitle(textForOfflineMode, for: .normal)
+        offlineModeButton.setTitle(Labels.StartVC.textForOfflineMode, for: .normal)
         offlineModeButton.isHidden = false
     }
     

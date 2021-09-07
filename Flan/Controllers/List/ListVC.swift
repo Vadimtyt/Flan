@@ -17,8 +17,7 @@ class ListVC: UIViewController {
     
     private var items: [MenuItem] { DataManager.shared.getList() }
     private var completedItems: [MenuItem] { get { return DataManager.shared.getCompletedList() } }
-    
-    private let popUpText = "В этом поле указывается приблизительная сумма, она не учитывает фактический вес всех позиций, цену упаковочных изделий и т.п. Эта сумма отображается исключительно в ознакомительных целях."
+
     private let popUpTextFontSize: CGFloat = 18
     
     // MARK: - @IBOutlets
@@ -71,7 +70,9 @@ class ListVC: UIViewController {
     
     private func updateBackground() {
         if items.isEmpty && completedItems.isEmpty {
-            listTableView.setEmptyView(title: "Пусто", message: "Добавьте что-нибудь в список", messageImage: UIImage(named: "emptyList.png")!)
+            listTableView.setEmptyView(title: Labels.ListVC.emptyViewTitle,
+                                       message: Labels.ListVC.emptyViewMessage,
+                                       messageImage: UIImage(named: "emptyList.png")!)
         } else { listTableView.restore() }
     }
     
@@ -112,7 +113,7 @@ class ListVC: UIViewController {
             arrowY = sender.bounds.minY
         }
 
-        let vc = InfoPopover(text: popUpText, fontSize: popUpTextFontSize, topConstraint: textTopConstraint)
+        let vc = InfoPopover(text: Labels.ListVC.popoverText, fontSize: popUpTextFontSize, topConstraint: textTopConstraint)
         vc.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover: UIPopoverPresentationController = vc.popoverPresentationController!
 
@@ -237,8 +238,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseHeaderID) as! ListHeaderCell
-        var sectionTitle = "Купить"
-        if section == 1 || items.isEmpty { sectionTitle = "Куплено" }
+        var sectionTitle = Labels.ListVC.firstSectionTitle
+        if section == 1 || items.isEmpty { sectionTitle = Labels.ListVC.secondSectionTitle }
         
         cell.configureCell(with: sectionTitle)
         
@@ -413,7 +414,7 @@ extension ListVC: UpdatingListCellDelegate {
 
 // MARK: - Updationg MenuCell delegate
 
-extension ListVC: UpdatingMenuDetailDelegate {
+extension ListVC: UpdatingMenuDetailVCDelegate {
     func updateListVCBadge() {
         updateListBadge()
     }

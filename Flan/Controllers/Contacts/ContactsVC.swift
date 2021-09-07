@@ -16,7 +16,7 @@ class ContactsVC: UIViewController {
     
     private var bakeries: [Bakery] { DataManager.shared.getBakeries() }
     private let countOfbakeries = 4
-    private let flanEmail = "PekarnyaFlanApp@gmail.com"
+    //private let flanEmail = "PekarnyaFlanApp@gmail.com"
     
     // MARK: - @IBOutlets
     
@@ -53,9 +53,9 @@ class ContactsVC: UIViewController {
     
     private func updateBackgound() {
         if bakeries.isEmpty {
-            bakeriesTableView.setEmptyView(title: "Ошибка сервера",
-                                   message: "Не удалось загрузить данные. Проводятся технические работы",
-                                   messageImage: UIImage(named: "cloudError.png")!)
+            bakeriesTableView.setEmptyView(title: Labels.ContactsVC.emptyViewTitle,
+                                           message: Labels.ContactsVC.emptyViewMessage,
+                                           messageImage: UIImage(named: "cloudError.png")!)
         } else {
             bakeriesTableView.restore()
         }
@@ -66,8 +66,7 @@ class ContactsVC: UIViewController {
     @IBAction private func instagramButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.medium)
         animatePressingView(sender)
-        let Username = "pekarnya_flan" // Instagram Username here
-        let appURL = URL(string: "instagram://user?username=\(Username)")!
+        let appURL = URL(string: "instagram://user?username=\(Labels.ContactsVC.instagramUsername)")!
         let application = UIApplication.shared
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [] in
@@ -75,7 +74,7 @@ class ContactsVC: UIViewController {
                 application.open(appURL)
             } else {
                 // if Instagram app is not installed, open URL inside Safari
-                let webURL = URL(string: "https://instagram.com/\(Username)")!
+                let webURL = URL(string: "https://instagram.com/\(Labels.ContactsVC.instagramUsername)")!
                 application.open(webURL)
             }
         }
@@ -84,11 +83,11 @@ class ContactsVC: UIViewController {
     @IBAction private func feedbackButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
-        let email = flanEmail
+        let email = Labels.ContactsVC.flanEmail
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            self?.sendEmail(subject: NSLocalizedString("Идея для приложения Флан", comment: ""),
-                      messageBody: NSLocalizedString("Напишите здесь Вашу идею или предложение по улучшению приложения Флан", comment: ""),
-                      to: email)
+            self?.sendEmail(subject: NSLocalizedString(Labels.ContactsVC.sendEmailSubject, comment: ""),
+                            messageBody: NSLocalizedString(Labels.ContactsVC.sendEmailMessageBody, comment: ""),
+                            to: email)
         }
     }
 }
@@ -139,7 +138,7 @@ extension ContactsVC: BakeryCellDelegate {
 extension ContactsVC: MFMailComposeViewControllerDelegate {
     func sendEmail(subject: String, messageBody: String, to: String){
         if !MFMailComposeViewController.canSendMail() {
-            self.showAlert(title: "Ошибка", message: "Не найден аккаунт вашей почты, но вы можете другим способом направить свое письмо на email: \(flanEmail)")
+            self.showAlert(title: Labels.ContactsVC.showAlertTitle, message: Labels.ContactsVC.showAlertMessage)
             return
         }
         

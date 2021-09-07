@@ -41,8 +41,8 @@ class FavoriteVC: UITableViewController {
 
     private func updateBackgound() {
         if items.isEmpty {
-            tableView.setEmptyView(title: "Пусто",
-                                   message: "Чтобы добавить свою вкусняшку в избранное нажмите на иконку сердечка",
+            tableView.setEmptyView(title: Labels.FavoriteVC.emptyViewTitle,
+                                   message: Labels.FavoriteVC.emptyViewMessage,
                                    messageImage: UIImage(named: "emptyFavorites.png")!)
             tableView.isScrollEnabled = false
         } else {
@@ -126,7 +126,7 @@ extension FavoriteVC: UpdatingMenuCellDelegate {
     }
 }
 
-extension FavoriteVC: UpdatingMenuDetailDelegate {
+extension FavoriteVC: UpdatingMenuDetailVCDelegate {
     func updateCellAt(indexPath: IndexPath?) {
         if let indexPath = indexPath {
             tableView.reloadRows(at: [indexPath], with: .automatic)

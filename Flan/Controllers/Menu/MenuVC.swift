@@ -73,7 +73,7 @@ class MenuVC: UITableViewController {
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Введите название"
+        searchController.searchBar.placeholder = Labels.MenuVC.searchPlaceholder
         navigationItem.searchController = searchController
         definesPresentationContext = false
     }
@@ -85,8 +85,8 @@ class MenuVC: UITableViewController {
     
     private func updateBackgound() {
         if items.isEmpty {
-            tableView.setEmptyView(title: "Ошибка сервера",
-                                   message: "Не удалось загрузить данные. Проводятся технические работы",
+            tableView.setEmptyView(title: Labels.MenuVC.emptyViewTitle,
+                                   message: Labels.MenuVC.emptyViewMessage,
                                    messageImage: UIImage(named: "cloudError.png")!)
             tableView.isScrollEnabled = false
         } else {

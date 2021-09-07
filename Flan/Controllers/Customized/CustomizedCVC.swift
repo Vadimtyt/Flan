@@ -44,9 +44,9 @@ class CustomizedCVC: UICollectionViewController {
     
     private func updateBackgound() {
         if cakes.isEmpty {
-            collectionView.setEmptyView(title: "Ошибка сервера",
-                                   message: "Не удалось загрузить данные. Проводятся технические работы",
-                                   messageImage: UIImage(named: "cloudError.png")!)
+            collectionView.setEmptyView(title: Labels.CustomizedCVC.emptyViewTitle,
+                                        message: Labels.CustomizedCVC.emptyViewMessage,
+                                        messageImage: UIImage(named: "cloudError.png")!)
             collectionView.isScrollEnabled = false
         } else {
             collectionView.restore()

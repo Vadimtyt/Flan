@@ -32,6 +32,7 @@
 		C1600D27264EF65700D06F31 /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1600D26264EF65700D06F31 /* ExtensionViewController.swift */; };
 		C1600D2B26515B5900D06F31 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1600D2A26515B5900D06F31 /* MapManager.swift */; };
 		C18E93BF26E6922D005A7F3E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C18E93BE26E6922D005A7F3E /* Settings.bundle */; };
+		C18E93C126E7884B005A7F3E /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E93C026E7884B005A7F3E /* Labels.swift */; };
 		C195513726B57C5500B38B59 /* ExtensionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195513626B57C5500B38B59 /* ExtensionTableViewCell.swift */; };
 		C195513926BAD2EE00B38B59 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195513826BAD2EE00B38B59 /* ExtensionView.swift */; };
 		C195513B26BB05D100B38B59 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195513A26BB05D100B38B59 /* DataManager.swift */; };
@@ -99,6 +100,7 @@
 		C1600D26264EF65700D06F31 /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
 		C1600D2A26515B5900D06F31 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		C18E93BE26E6922D005A7F3E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		C18E93C026E7884B005A7F3E /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		C195513626B57C5500B38B59 /* ExtensionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTableViewCell.swift; sourceTree = "<group>"; };
 		C195513826BAD2EE00B38B59 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		C195513A26BB05D100B38B59 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 		C1FEDC2926D6C5160036816C /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				C18E93C026E7884B005A7F3E /* Labels.swift */,
 				C122109326D6A2FE0099335A /* PhotoType.swift */,
 				C1FEDC2A26D6C53C0036816C /* KeysDefaults.swift */,
 				C1FEDC2C26D6C59E0036816C /* FileNameFor.swift */,
@@ -523,6 +526,7 @@
 				C1AD6A422659223D007DFBE9 /* PresentationController.swift in Sources */,
 				C1AD6A3026585138007DFBE9 /* CustomizedCell.swift in Sources */,
 				C195513926BAD2EE00B38B59 /* ExtensionView.swift in Sources */,
+				C18E93C126E7884B005A7F3E /* Labels.swift in Sources */,
 				C15C409A2645CD670053910A /* BakeryCell.swift in Sources */,
 				C1FEDC2B26D6C53C0036816C /* KeysDefaults.swift in Sources */,
 				C195513B26BB05D100B38B59 /* DataManager.swift in Sources */,

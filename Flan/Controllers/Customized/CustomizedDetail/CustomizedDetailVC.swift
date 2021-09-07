@@ -107,10 +107,9 @@ class CustomizedDetailVC: UIViewController {
     }
     
     private func permissionDeniedAlert() {
-        let title = "Запись изображения в галерею недоступна"
-        let message = "Вероятно, вы запретили приложению добавлять изображения в ваши фото. Если вы сделали это случайно или передумали, вы можете перейти в настройки приложения и разрешить доступ к фото."
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: Labels.CustomizedDetailVC.permissionDeniedAlertTitle,
+                                      message: Labels.CustomizedDetailVC.permissionDeniedAlertMessage,
+                                      preferredStyle: .alert)
         
         // OpenSettingsAction action
         let openSettingsAction = UIAlertAction(title: "Настройки", style: .default) {  _ in

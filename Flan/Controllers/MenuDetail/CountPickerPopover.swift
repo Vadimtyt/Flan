@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Protocol
 
-protocol UpdatingMenuDetailVCDelegate: AnyObject {
+protocol UpdatingCountPickerPopoverDelegate: AnyObject {
     func updateCell(with itemCount: Int)
 }
     
@@ -20,7 +20,7 @@ class CountPickerPopover: UIViewController {
     private let currentCount: Int
     private let pickerData = Array(0...99)
     
-    weak var updatingMenuDetailVCDelegate: UpdatingMenuDetailVCDelegate!
+    weak var updatingMenuDetailVCDelegate: UpdatingCountPickerPopoverDelegate!
     
     // MARK: - @IBOutlets
     
@@ -40,7 +40,7 @@ class CountPickerPopover: UIViewController {
         updateItemCount()
     }
     
-    init(currentCount: Int, updatingDelegate: UpdatingMenuDetailVCDelegate) {
+    init(currentCount: Int, updatingDelegate: UpdatingCountPickerPopoverDelegate) {
         self.currentCount = currentCount
         self.updatingMenuDetailVCDelegate = updatingDelegate
         super.init(nibName: nil, bundle: nil)

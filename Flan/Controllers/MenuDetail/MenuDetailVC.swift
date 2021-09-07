@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol UpdatingMenuDetailDelegate: UpdatingMenuCellDelegate {
+protocol UpdatingMenuDetailVCDelegate: UpdatingMenuCellDelegate {
     func updateCellAt(indexPath: IndexPath?)
 }
 
@@ -17,7 +17,7 @@ class MenuDetailVC: UIViewController {
     
     var item = MenuItem()
     var indexPath: IndexPath?
-    weak var updateCellDelegate: UpdatingMenuDetailDelegate?
+    weak var updateCellDelegate: UpdatingMenuDetailVCDelegate?
     
     // MARK: - @IBOutlets
     
@@ -273,7 +273,7 @@ class MenuDetailVC: UIViewController {
 
 // MARK: Updating MenuDetailVC delegate
 
-extension MenuDetailVC: UpdatingMenuDetailVCDelegate {
+extension MenuDetailVC: UpdatingCountPickerPopoverDelegate {
     
     func updateCell(with itemCount: Int) {
         DataManager.shared.setNewCountFor(item: item, count: itemCount)
