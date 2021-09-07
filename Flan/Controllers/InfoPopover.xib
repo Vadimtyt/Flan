@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoPopUp" customModule="Flan" customModuleProvider="target">
             <connections>
-                <outlet property="constraintTop" destination="ih0-aB-aCR" id="b0q-ZS-6AY"/>
                 <outlet property="textLabel" destination="ieg-SB-W6m" id="Bcp-YI-leK"/>
                 <outlet property="view" destination="2G4-gt-6am" id="SKq-9J-PB5"/>
             </connections>
@@ -21,9 +20,9 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Здесь находится какой-нибудь текст, который будет отображаться в popUp." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieg-SB-W6m" userLabel="textLabel">
-                    <rect key="frame" x="8" y="20" width="292" height="33.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Здесь находится какой-нибудь текст, который будет отображаться в popUp." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieg-SB-W6m" userLabel="textLabel">
+                    <rect key="frame" x="8" y="44" width="284" height="156"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -31,9 +30,12 @@
             <viewLayoutGuide key="safeArea" id="7y3-Jc-sFm"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="ieg-SB-W6m" firstAttribute="leading" secondItem="7y3-Jc-sFm" secondAttribute="leading" constant="8" id="DZj-94-avh"/>
-                <constraint firstItem="ieg-SB-W6m" firstAttribute="top" secondItem="2G4-gt-6am" secondAttribute="top" constant="20" id="ih0-aB-aCR"/>
-                <constraint firstItem="7y3-Jc-sFm" firstAttribute="trailing" secondItem="ieg-SB-W6m" secondAttribute="trailing" id="jc8-oH-rQJ"/>
+                <constraint firstItem="ieg-SB-W6m" firstAttribute="leading" secondItem="2G4-gt-6am" secondAttribute="leading" constant="8" id="CPH-8N-DFm"/>
+                <constraint firstItem="ieg-SB-W6m" firstAttribute="centerX" secondItem="7y3-Jc-sFm" secondAttribute="centerX" id="PdR-bh-szE"/>
+                <constraint firstItem="ieg-SB-W6m" firstAttribute="centerY" secondItem="7y3-Jc-sFm" secondAttribute="centerY" id="UjT-O1-oHt"/>
+                <constraint firstItem="ieg-SB-W6m" firstAttribute="top" secondItem="7y3-Jc-sFm" secondAttribute="top" id="bEJ-JC-7Y0"/>
+                <constraint firstAttribute="trailing" secondItem="ieg-SB-W6m" secondAttribute="trailing" constant="8" id="cU1-Ye-lyN"/>
+                <constraint firstItem="7y3-Jc-sFm" firstAttribute="bottom" secondItem="ieg-SB-W6m" secondAttribute="bottom" id="cpK-i9-cJU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-102.89855072463769" y="-266.51785714285711"/>

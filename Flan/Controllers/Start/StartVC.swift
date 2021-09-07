@@ -74,7 +74,7 @@ class StartVC: UIViewController {
             activityIndicator.stopAnimating()
             activityIndicator.isHidden = true
             TapticFeedback.shared.tapticFeedback(.light)
-            showNetworkAlert(title: Labels.StartVC.networkAlertTitle, message: Labels.StartVC.networkAlertTitle)
+            showNetworkAlert(title: Labels.StartVC.networkAlertTitle, message: Labels.StartVC.networkAlerMessage)
         }
     }
     

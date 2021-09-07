@@ -13,12 +13,10 @@ class InfoPopover: UIViewController {
     
     private let text: String
     private let fontSize: CGFloat
-    private let topConstraint: CGFloat
     
     // MARK: - @IBOutet
     
     @IBOutlet private weak var textLabel: UILabel!
-    @IBOutlet private weak var constraintTop: NSLayoutConstraint!
     
     // MARK: - Initialization
     
@@ -27,13 +25,13 @@ class InfoPopover: UIViewController {
         
         textLabel.text = text
         textLabel.font = UIFont.systemFont(ofSize: fontSize)
-        constraintTop.constant = topConstraint
+        textLabel.adjustsFontSizeToFitWidth = true
+        textLabel.minimumScaleFactor = 0.5
     }
     
-    init(text: String?, fontSize: CGFloat?, topConstraint: CGFloat?) {
+    init(text: String?, fontSize: CGFloat?) {
         self.text = text ?? ""
         self.fontSize = fontSize ?? 18
-        self.topConstraint = topConstraint ?? 8
         
         super.init(nibName: nil, bundle: nil)
     }

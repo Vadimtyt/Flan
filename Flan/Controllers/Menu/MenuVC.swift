@@ -272,7 +272,7 @@ extension MenuVC: UpdatingMenuCellDelegate {
     }
 }
 
-extension MenuVC: UpdatingMenuDetailDelegate {
+extension MenuVC: UpdatingMenuDetailVCDelegate {
     func updateCellAt(indexPath: IndexPath?) {
         if let indexPath = indexPath {
             tableView.reloadRows(at: [indexPath], with: .automatic)

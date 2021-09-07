@@ -99,7 +99,6 @@ class ListVC: UIViewController {
     @IBAction private func infoButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
 
-        var textTopConstraint: CGFloat = 6
         let popUpWidth: CGFloat = 294
         let popUpHeight: CGFloat = 163
 
@@ -108,12 +107,11 @@ class ListVC: UIViewController {
         let rectOfCellInSuperview = listTableView.convert(rectOfCell, to: listTableView.superview)
         if rectOfCellInSuperview.maxY < popUpHeight {
             arrowY = sender.bounds.maxY
-            textTopConstraint = 16
         } else {
             arrowY = sender.bounds.minY
         }
 
-        let vc = InfoPopover(text: Labels.ListVC.popoverText, fontSize: popUpTextFontSize, topConstraint: textTopConstraint)
+        let vc = InfoPopover(text: Labels.ListVC.popoverText, fontSize: popUpTextFontSize)
         vc.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover: UIPopoverPresentationController = vc.popoverPresentationController!
 
