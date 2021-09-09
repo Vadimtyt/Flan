@@ -495,7 +495,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flan Launch Logo" translatesAutoresizingMaskIntoConstraints="NO" id="QGn-jt-nfr">
-                                <rect key="frame" x="57" y="223" width="300" height="300"/>
+                                <rect key="frame" x="57" y="203" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QGn-jt-nfr" secondAttribute="height" id="cQr-aK-1u4"/>
                                     <constraint firstAttribute="width" constant="300" id="ekv-TO-2PO"/>
@@ -536,7 +536,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <state key="normal" title="Офлайн режим">
-                                    <color key="titleColor" red="0.31368762249999999" green="0.313747257" blue="0.31368386749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.35941641692903686" green="0.36297499531447286" blue="0.36297499531447286" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="offlineModeButtonPressed:" destination="wf6-Ai-2aa" eventType="touchUpInside" id="8n5-Sq-jXP"/>
@@ -544,12 +544,12 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pOE-ns-Qto"/>
-                        <color key="backgroundColor" red="0.9371530414" green="0.93731355670000005" blue="0.93714290860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="kHi-Z7-Ggr" firstAttribute="top" secondItem="QGn-jt-nfr" secondAttribute="bottom" id="5Kh-Ex-Wgg"/>
+                            <constraint firstItem="kHi-Z7-Ggr" firstAttribute="top" secondItem="QGn-jt-nfr" secondAttribute="bottom" constant="20" id="5Kh-Ex-Wgg"/>
                             <constraint firstItem="Uvb-m3-A5e" firstAttribute="centerX" secondItem="kHi-Z7-Ggr" secondAttribute="centerX" id="8FD-zF-2HM"/>
                             <constraint firstItem="alF-Rh-x5C" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="Fl5-lh-Y8z"/>
-                            <constraint firstItem="QGn-jt-nfr" firstAttribute="centerY" secondItem="pOE-ns-Qto" secondAttribute="centerY" constant="-80" id="V6z-nR-Nsa"/>
+                            <constraint firstItem="QGn-jt-nfr" firstAttribute="centerY" secondItem="pOE-ns-Qto" secondAttribute="centerY" constant="-100" id="V6z-nR-Nsa"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="W4r-PG-IZk"/>
                             <constraint firstItem="jDK-oI-fLN" firstAttribute="leading" secondItem="pOE-ns-Qto" secondAttribute="leading" constant="20" id="XCi-UC-yNy"/>
                             <constraint firstItem="pOE-ns-Qto" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="alF-Rh-x5C" secondAttribute="bottom" constant="16" id="ZsW-Uc-trn"/>

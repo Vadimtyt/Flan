@@ -12,8 +12,6 @@ class StartVC: UIViewController {
     
     // MARK: - Props
     private var networkCheck = NetworkCheck.sharedInstance()
-    //private let textForOfflineMode = "Оффлайн режим"
-    //private let textForRepeatConnection = "Повторить загрузку"
     private var isFirstTry = true
     
     // MARK: - @IBOutlet
