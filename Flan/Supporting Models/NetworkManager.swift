@@ -36,7 +36,7 @@ class NetworkManager {
     
     class func fetchImage(_ folder: PhotoFolder,_ imageName: String, completion: @escaping (UIImage) -> ()) {
         guard DataManager.shared.isOnlineMode else {
-            let standartImage = MenuItem.standartImage
+            let standartImage = ImageModel.standartImage
             completion(standartImage)
             return
         }
@@ -45,7 +45,7 @@ class NetworkManager {
             
             if let error = error {
                 print(error.localizedDescription, folder.rawValue, imageName)
-                let standartImage = MenuItem.standartImage
+                let standartImage = ImageModel.standartImage
                 completion(standartImage)
                 return
             }

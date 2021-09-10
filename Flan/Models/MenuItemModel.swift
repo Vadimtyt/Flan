@@ -9,13 +9,9 @@ import UIKit
 
 class MenuItem: MenuItemJSON {
     
-    static let standartImage = UIImage(named: "Standart image.jpg")!
-    
     // MARK: - Props
-
-    private lazy var cellImage = MenuItem.standartImage
-    private lazy var detailImage = MenuItem.standartImage
     
+    let imageModel = ImageModel()
     var selectedMeasurment = 0
     var count = 0
     var isFavorite = false
@@ -67,8 +63,8 @@ class MenuItem: MenuItemJSON {
                    imageName: menuItem.imageName,
                    description: menuItem.description)
         
-        self.cellImage = menuItem.cellImage
-        self.detailImage = menuItem.detailImage
+        self.imageModel.cellImage = menuItem.imageModel.cellImage
+        self.imageModel.detailImage = menuItem.imageModel.detailImage
         self.selectedMeasurment = menuItem.selectedMeasurment
         self.count = menuItem.count
         self.isFavorite = menuItem.isFavorite
@@ -125,51 +121,8 @@ class MenuItem: MenuItemJSON {
     // MARK: - Funcs
     
     func setImage(size: CGSize, type: PhotoType, completion: @escaping (UIImage) -> ()) {
-        guard imageName != ""  else { completion(MenuItem.standartImage); return }
-        
-        if type == .cellPhoto && cellImage != MenuItem.standartImage {
-            completion(cellImage)
-            return
-        }
-        
-        if type == .detailPhoto && detailImage != MenuItem.standartImage {
-            completion(detailImage)
-            return
-        }
-
-        if let assetsImage = UIImage(named: imageName) {
-            switch type {
-            case .cellPhoto:
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.cellImage = assetsImage.resized(to: size)
-                    completion(self.cellImage)
-                }
-            case .detailPhoto:
-                detailImage = assetsImage
-                completion(assetsImage)
-            }
-        } else {
-            NetworkManager.fetchImage(PhotoFolder.item, self.imageName) { [weak self] image in
-                if image == MenuItem.standartImage {
-                    self?.cellImage = image
-                    self?.detailImage = image
-                    completion(image)
-                    return
-                }
-                
-                switch type {
-                case .cellPhoto:
-                    self?.detailImage = image
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        let resizedImage = image.resized(to: size)
-                        self?.cellImage = resizedImage
-                        completion(resizedImage)
-                    }
-                case .detailPhoto:
-                    self?.detailImage = image
-                    completion(image)
-                }
-            }
+        imageModel.prepareImage(size: size, type: type, imageName: imageName) { image in
+            completion(image)
         }
     }
 }

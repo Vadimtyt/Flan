@@ -61,6 +61,7 @@
 		C1C7BF6226B0456E0047DEF0 /* ListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C7BF6126B0456E0047DEF0 /* ListHeaderCell.swift */; };
 		C1C7BF6626B051DA0047DEF0 /* ListHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C7BF6526B051DA0047DEF0 /* ListHeaderCell.xib */; };
 		C1C7BF6826B054620047DEF0 /* ListFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C7BF6726B054620047DEF0 /* ListFooterCell.swift */; };
+		C1ECF5B926EB640E006B3EBC /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF5B826EB640E006B3EBC /* ImageModel.swift */; };
 		C1EE51B4268E7FA2001126DA /* MenuHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE51B3268E7FA2001126DA /* MenuHeaderCell.swift */; };
 		C1EE51B6268E8069001126DA /* MenuHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EE51B5268E8069001126DA /* MenuHeaderCell.xib */; };
 		C1EE51BA26A1EF9C001126DA /* ExtensionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE51B926A1EF9C001126DA /* ExtensionTableView.swift */; };
@@ -129,6 +130,7 @@
 		C1C7BF6126B0456E0047DEF0 /* ListHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderCell.swift; sourceTree = "<group>"; };
 		C1C7BF6526B051DA0047DEF0 /* ListHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListHeaderCell.xib; sourceTree = "<group>"; };
 		C1C7BF6726B054620047DEF0 /* ListFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFooterCell.swift; sourceTree = "<group>"; };
+		C1ECF5B826EB640E006B3EBC /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		C1EE51B3268E7FA2001126DA /* MenuHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCell.swift; sourceTree = "<group>"; };
 		C1EE51B5268E8069001126DA /* MenuHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuHeaderCell.xib; sourceTree = "<group>"; };
 		C1EE51B926A1EF9C001126DA /* ExtensionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTableView.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				C19DD6FE26080E3600D00BFD /* MenuItemModel.swift */,
 				C1AD6A34265862C1007DFBE9 /* CakeModel.swift */,
 				C15C40902645CA420053910A /* BakeryModel.swift */,
+				C1ECF5B826EB640E006B3EBC /* ImageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				C195513926BAD2EE00B38B59 /* ExtensionView.swift in Sources */,
 				C18E93C126E7884B005A7F3E /* Labels.swift in Sources */,
 				C15C409A2645CD670053910A /* BakeryCell.swift in Sources */,
+				C1ECF5B926EB640E006B3EBC /* ImageModel.swift in Sources */,
 				C1FEDC2B26D6C53C0036816C /* KeysDefaults.swift in Sources */,
 				C195513B26BB05D100B38B59 /* DataManager.swift in Sources */,
 				C1C7BF6826B054620047DEF0 /* ListFooterCell.swift in Sources */,
@@ -714,7 +718,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8AY3LQ3Z88;
+				DEVELOPMENT_TEAM = V3933YHTS3;
 				INFOPLIST_FILE = "Flan/Supporting resourses/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -722,7 +726,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = vadimtyt.Flan;
+				PRODUCT_BUNDLE_IDENTIFIER = Vadimtyt.FlanApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -738,7 +742,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8AY3LQ3Z88;
+				DEVELOPMENT_TEAM = V3933YHTS3;
 				INFOPLIST_FILE = "Flan/Supporting resourses/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -746,7 +750,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = vadimtyt.Flan;
+				PRODUCT_BUNDLE_IDENTIFIER = Vadimtyt.FlanApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
