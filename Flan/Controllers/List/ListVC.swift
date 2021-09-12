@@ -133,13 +133,17 @@ class ListVC: UIViewController {
 
     @IBAction private func shareButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
-
+        animatePressingView(sender)
+        
         let message = getTextList()
         let objectsToShare = [message]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
         activityVC.popoverPresentationController?.sourceView = sender
-        self.present(activityVC, animated: true, completion: nil)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.present(activityVC, animated: true, completion: nil)
+        }
     }
     
     @IBAction private func clearListButtonPressed(_ sender: UIBarButtonItem) {

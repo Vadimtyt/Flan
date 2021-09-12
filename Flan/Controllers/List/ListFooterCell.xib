@@ -40,46 +40,46 @@
                                     <action selector="infoButtonPressed:" destination="pYe-ZF-cyK" eventType="touchUpInside" id="dAs-WQ-Ie9"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCF-DM-6az" userLabel="Share View">
-                                <rect key="frame" x="258" y="8" width="132" height="42"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Поделиться списком" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opY-pz-hLT">
-                                        <rect key="frame" x="6" y="0.5" width="98" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tU-bw-Yfc" userLabel="Share Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="42"/>
-                                        <state key="normal" title=" " image="square.and.arrow.up"/>
-                                        <connections>
-                                            <action selector="shareButtonPressed:" destination="pYe-ZF-cyK" eventType="touchUpInside" id="gtc-4a-540"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7tU-bw-Yfc" userLabel="Share Button">
+                                <rect key="frame" x="274" y="8" width="116" height="42"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="132" id="5Lk-gg-YQB"/>
-                                    <constraint firstItem="opY-pz-hLT" firstAttribute="centerY" secondItem="aCF-DM-6az" secondAttribute="centerY" id="9QK-BU-EPH"/>
-                                    <constraint firstItem="7tU-bw-Yfc" firstAttribute="leading" secondItem="aCF-DM-6az" secondAttribute="leading" id="EzQ-BN-VXR"/>
-                                    <constraint firstItem="7tU-bw-Yfc" firstAttribute="top" secondItem="aCF-DM-6az" secondAttribute="top" id="PgE-AH-H4J"/>
-                                    <constraint firstAttribute="trailing" secondItem="opY-pz-hLT" secondAttribute="trailing" constant="28" id="UiW-PB-nkQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="7tU-bw-Yfc" secondAttribute="trailing" constant="4" id="YWm-oT-aJh"/>
-                                    <constraint firstAttribute="bottom" secondItem="7tU-bw-Yfc" secondAttribute="bottom" id="lIV-sG-sQk"/>
-                                    <constraint firstItem="opY-pz-hLT" firstAttribute="leading" secondItem="aCF-DM-6az" secondAttribute="leading" constant="6" id="t9c-AL-3Qr"/>
+                                    <constraint firstAttribute="width" constant="116" id="hC0-aE-rwS"/>
                                 </constraints>
-                            </view>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment>
+                                            <string key="content">Поделитьcя
+</string>
+                                            <attributes>
+                                                <color key="NSColor" red="0.27854634294606218" green="0.27854634294606218" blue="0.27854634294606218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" metaFont="system" size="18"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="списком">
+                                            <attributes>
+                                                <color key="NSColor" red="0.27854634294606218" green="0.27854634294606218" blue="0.27854634294606218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" metaFont="system" size="18"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="shareButtonPressed:" destination="pYe-ZF-cyK" eventType="touchUpInside" id="gtc-4a-540"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99856287239999997" green="0.92149561639999999" blue="0.62666600939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="aCF-DM-6az" secondAttribute="trailing" constant="8" id="6mL-kc-xYi"/>
+                            <constraint firstAttribute="bottom" secondItem="7tU-bw-Yfc" secondAttribute="bottom" constant="8" id="304-Rv-sZk"/>
+                            <constraint firstAttribute="trailing" secondItem="7tU-bw-Yfc" secondAttribute="trailing" constant="8" id="EMY-7B-rgZ"/>
                             <constraint firstItem="G7M-OE-MbY" firstAttribute="top" secondItem="tDv-gG-Yyy" secondAttribute="top" constant="8" id="Exj-jv-iEA"/>
                             <constraint firstItem="p0H-ns-Bcw" firstAttribute="centerY" secondItem="G7M-OE-MbY" secondAttribute="centerY" id="ZMM-FU-0oO"/>
                             <constraint firstItem="p0H-ns-Bcw" firstAttribute="leading" secondItem="G7M-OE-MbY" secondAttribute="trailing" id="a3e-au-h3d"/>
                             <constraint firstItem="G7M-OE-MbY" firstAttribute="leading" secondItem="tDv-gG-Yyy" secondAttribute="leading" constant="4" id="afm-4f-UpR"/>
-                            <constraint firstAttribute="bottom" secondItem="aCF-DM-6az" secondAttribute="bottom" constant="8" id="b9z-32-4aN"/>
                             <constraint firstAttribute="bottom" secondItem="G7M-OE-MbY" secondAttribute="bottom" constant="8" id="d4D-Qy-TeV"/>
-                            <constraint firstItem="aCF-DM-6az" firstAttribute="top" secondItem="tDv-gG-Yyy" secondAttribute="top" constant="8" id="tTb-D8-p8E"/>
+                            <constraint firstItem="7tU-bw-Yfc" firstAttribute="top" secondItem="tDv-gG-Yyy" secondAttribute="top" constant="8" id="veo-rd-7L2"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -97,7 +97,7 @@
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="ListFooterCell"/>
             <connections>
-                <outlet property="shareView" destination="aCF-DM-6az" id="sc8-4Z-V6N"/>
+                <outlet property="shareButton" destination="7tU-bw-Yfc" id="tFa-UL-8oC"/>
                 <outlet property="totalSumLabel" destination="G7M-OE-MbY" id="toU-dn-ED9"/>
             </connections>
             <point key="canvasLocation" x="-226.08695652173915" y="-147.32142857142856"/>
@@ -105,9 +105,8 @@
     </objects>
     <resources>
         <image name="questionmark.circle" width="996.093994140625" height="996.58197021484375"/>
-        <image name="square.and.arrow.up" width="17.333999633789062" height="23.486299514770508"/>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

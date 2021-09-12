@@ -148,6 +148,7 @@ class ListCell: UITableViewCell {
     }
     
     @IBAction private func checkmarkButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
         checkmark = !checkmark
         if checkmark {
