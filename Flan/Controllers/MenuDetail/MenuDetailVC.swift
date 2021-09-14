@@ -24,12 +24,15 @@ class MenuDetailVC: UIViewController {
     @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var itemImage: UIImageView!
     @IBOutlet private weak var closeButton: UIButton!
-    @IBOutlet weak var downloadIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var nameLabel: UILabel!
+    
     @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var additionLabel: UILabel!
+    
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var measurmentLabel: UILabel!
-    @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var removeButton: UIButton!
     @IBOutlet private weak var countItemLabel: UILabel!
     @IBOutlet private weak var addButton: UIButton!
@@ -97,7 +100,9 @@ class MenuDetailVC: UIViewController {
         
         if UIScreen.main.bounds.height <= 568 {
             //For 4-inch display
-            bottomViewBottomIdent.constant = 8
+            bottomViewBottomIdent.constant = 0
+            bottomViewHeight.constant -= 4
+            descriptionLabel.font = descriptionLabel.font.withSize(14)
         }
         
         if #available(iOS 13.0, *) {
@@ -131,7 +136,8 @@ class MenuDetailVC: UIViewController {
         
         nameLabel.text = item.name
         descriptionLabel.text = item.description
-        priceLabel.text = "\(item.prices[item.selectedMeasurment])Р"
+        additionLabel.text = Labels.MenuDetailVC.additionText
+        priceLabel.text = "\(item.prices[item.selectedMeasurment])₽"
         measurmentLabel.text = item.measurements[item.selectedMeasurment]
         
         if item.measurements.count > 1 {
@@ -253,7 +259,7 @@ class MenuDetailVC: UIViewController {
     @IBAction private func segmentedControlChanged(_ sender: UISegmentedControl) {
         TapticFeedback.shared.tapticFeedback(.light)
         let index = sender.selectedSegmentIndex
-        priceLabel.text = "\(item.prices[index])Р"
+        priceLabel.text = "\(item.prices[index])₽"
         measurmentLabel.text = item.measurements[index]
         
         DataManager.shared.setNewCountFor(item: item, count: 0)

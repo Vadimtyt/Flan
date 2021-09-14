@@ -24,6 +24,10 @@ enum Labels {
                    emptyFilteringViewMessage = "Попробуйте ввести что-нибудь другое"
     }
     
+    enum MenuDetailVC {
+        static let additionText = "Изображение в приложении и внешний вид продукта могут отличаться"
+    }
+    
     enum FavoriteVC {
         static let emptyViewTitle = "Пусто",
                    emptyViewMessage = "Чтобы добавить свою вкусняшку в избранное нажмите на иконку сердечка"

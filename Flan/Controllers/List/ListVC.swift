@@ -64,8 +64,8 @@ class ListVC: UIViewController {
     private func updateTotalSumLabel() {
         let totalSum = getTotalSum()
         if totalSum > 99999 {
-            totalSumLabel?.text = "Итого: 99999+Р"
-        } else { totalSumLabel?.text = "Итого: ≈\(totalSum)Р" }
+            totalSumLabel?.text = "Итого: 99999+₽"
+        } else { totalSumLabel?.text = "Итого: ≈\(totalSum)₽" }
     }
     
     private func updateBackground() {
@@ -89,7 +89,7 @@ class ListVC: UIViewController {
         }
         list.removeLast()
         list.removeLast()
-        let totalSum = "Примерная сумма: " + String(getTotalSum()) + "Р"
+        let totalSum = "Примерная сумма: " + String(getTotalSum()) + "₽"
         list += "\n" + totalSum
         return list
     }

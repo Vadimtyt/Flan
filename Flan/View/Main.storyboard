@@ -377,8 +377,11 @@
                                                 <sections/>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCh-uR-4eD" userLabel="Feedback">
-                                                <rect key="frame" x="20" y="596" width="350" height="44"/>
+                                                <rect key="frame" x="75" y="596" width="240" height="44"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="240" id="WvN-iv-skM"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title="Обратная связь">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -400,12 +403,11 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="KCi-38-oeo" firstAttribute="top" secondItem="BUD-JI-9wL" secondAttribute="bottom" constant="16" id="81Q-vB-itd"/>
-                                            <constraint firstItem="zCh-uR-4eD" firstAttribute="leading" secondItem="pLq-is-DzV" secondAttribute="leading" constant="20" id="AD5-af-Y3r"/>
                                             <constraint firstItem="8CQ-cv-p5l" firstAttribute="top" secondItem="zCh-uR-4eD" secondAttribute="bottom" constant="4" id="AUu-6U-T6J"/>
-                                            <constraint firstAttribute="trailing" secondItem="zCh-uR-4eD" secondAttribute="trailing" constant="20" id="CF4-Hb-89m"/>
                                             <constraint firstItem="khW-Ip-Xpz" firstAttribute="centerY" secondItem="BUD-JI-9wL" secondAttribute="centerY" id="HTf-eW-ZUF"/>
                                             <constraint firstItem="8CQ-cv-p5l" firstAttribute="centerX" secondItem="pLq-is-DzV" secondAttribute="centerX" id="Inc-s1-PDC"/>
                                             <constraint firstAttribute="bottom" secondItem="8CQ-cv-p5l" secondAttribute="bottom" constant="8" id="Meu-bS-ZQP"/>
+                                            <constraint firstItem="zCh-uR-4eD" firstAttribute="centerX" secondItem="pLq-is-DzV" secondAttribute="centerX" id="URo-hb-8H2"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zCh-uR-4eD" secondAttribute="bottom" constant="18" id="Wdm-Ic-I1s"/>
                                             <constraint firstItem="khW-Ip-Xpz" firstAttribute="leading" secondItem="pLq-is-DzV" secondAttribute="leading" constant="60" id="djK-YW-kFC"/>
                                             <constraint firstItem="KCi-38-oeo" firstAttribute="centerX" secondItem="pLq-is-DzV" secondAttribute="centerX" id="gav-3X-nmP"/>
@@ -503,14 +505,14 @@
                                 </constraints>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kHi-Z7-Ggr">
-                                <rect key="frame" x="197" y="523" width="20" height="20"/>
+                                <rect key="frame" x="197" y="531" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="DGJ-Fj-6u7"/>
                                     <constraint firstAttribute="height" constant="20" id="hjT-0V-l4H"/>
                                 </constraints>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvb-m3-A5e" userLabel="Reconnect Button">
-                                <rect key="frame" x="187" y="513" width="40" height="40"/>
+                                <rect key="frame" x="187" y="521" width="40" height="40"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="7yA-Ej-vBQ"/>
@@ -522,13 +524,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текст" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDK-oI-fLN" userLabel="Text Label">
-                                <rect key="frame" x="20" y="563" width="374" height="17"/>
+                                <rect key="frame" x="20" y="571" width="374" height="17"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alF-Rh-x5C" userLabel="Offline Mode Button">
-                                <rect key="frame" x="117" y="596" width="180" height="36"/>
+                                <rect key="frame" x="117" y="604" width="180" height="36"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="WLq-ve-Afy"/>
@@ -546,7 +548,7 @@
                         <viewLayoutGuide key="safeArea" id="pOE-ns-Qto"/>
                         <color key="backgroundColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="kHi-Z7-Ggr" firstAttribute="top" secondItem="QGn-jt-nfr" secondAttribute="bottom" constant="20" id="5Kh-Ex-Wgg"/>
+                            <constraint firstItem="kHi-Z7-Ggr" firstAttribute="top" secondItem="QGn-jt-nfr" secondAttribute="bottom" constant="28" id="5Kh-Ex-Wgg"/>
                             <constraint firstItem="Uvb-m3-A5e" firstAttribute="centerX" secondItem="kHi-Z7-Ggr" secondAttribute="centerX" id="8FD-zF-2HM"/>
                             <constraint firstItem="alF-Rh-x5C" firstAttribute="centerX" secondItem="pOE-ns-Qto" secondAttribute="centerX" id="Fl5-lh-Y8z"/>
                             <constraint firstItem="QGn-jt-nfr" firstAttribute="centerY" secondItem="pOE-ns-Qto" secondAttribute="centerY" constant="-100" id="V6z-nR-Nsa"/>

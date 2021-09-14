@@ -22,7 +22,7 @@ extension UIViewController {
         let largeStyle = UINavigationBarAppearance()
         largeStyle.configureWithTransparentBackground()
         
-        if #available(iOS 14.0, *) { largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 42)] }
+        if #available(iOS 14.0, *) { largeStyle.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 40)] }
         self.navigationController?.navigationBar.scrollEdgeAppearance = largeStyle
     }
     

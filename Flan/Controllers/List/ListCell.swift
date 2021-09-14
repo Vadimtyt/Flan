@@ -95,7 +95,7 @@ class ListCell: UITableViewCell {
         }
         
         nameLabel.text = item.name
-        priceLabel.text = "\(item.prices[item.selectedMeasurment])Р/\(item.measurements[item.selectedMeasurment])"
+        priceLabel.text = "\(item.prices[item.selectedMeasurment])₽/\(item.measurements[item.selectedMeasurment])"
         countItemLabel.text = "\(item.count)"
     }
     

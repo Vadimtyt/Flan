@@ -91,7 +91,6 @@ class MenuCell: UITableViewCell {
         backgoundSubwiew.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         imageItemView.layer.cornerRadius = 20
         imageItemView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        //imageItemView.roundCorners([.topRight, .bottomRight], radius: 20)
         countItemLabel.roundCorners(.allCorners, radius: 12)
         
         removeButton.layer.cornerRadius = 16
@@ -119,7 +118,7 @@ class MenuCell: UITableViewCell {
         nameLabel.text = item.name
         descriptionLabel.text = item.description
         
-        priceLabel.text = "\(item.prices[0])Р"
+        priceLabel.text = "\(item.prices[0])₽"
         measurmentLabel.text = item.measurements[0]
         updatePriceLabels()
     }
@@ -168,9 +167,9 @@ class MenuCell: UITableViewCell {
     private func updatePriceLabels() {
         guard item.prices.count > 1 else { return }
         if item.count == 0 {
-            priceLabel.text = "\(item.prices[0])Р"
+            priceLabel.text = "\(item.prices[0])₽"
             measurmentLabel.text = item.measurements[0]
-            secondPriceLabel.text = "\(item.prices[1])Р"
+            secondPriceLabel.text = "\(item.prices[1])₽"
             secondMeasurmentLabel.text = item.measurements[1]
             secondPriceLabel.isHidden = false
             secondMeasurmentLabel.isHidden = false
@@ -178,7 +177,7 @@ class MenuCell: UITableViewCell {
             countItemLabel.isHidden = true
             addButton.isHidden = true
         } else if item.count > 0 {
-            priceLabel.text = "\(item.prices[item.selectedMeasurment])Р"
+            priceLabel.text = "\(item.prices[item.selectedMeasurment])₽"
             measurmentLabel.text = item.measurements[item.selectedMeasurment]
             secondPriceLabel.isHidden = true
             secondMeasurmentLabel.isHidden = true

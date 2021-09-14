@@ -18,28 +18,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYb-JP-lxO" userLabel="Main View">
-                        <rect key="frame" x="16" y="4" width="382" height="116"/>
+                        <rect key="frame" x="12" y="4" width="390" height="116"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Флан на Лермонтова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vg-1d-jxw" userLabel="Name Label">
-                                <rect key="frame" x="12" y="16" width="310" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="12" y="16" width="322" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:00-23:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLA-EC-gLQ" userLabel="Work Time Label">
-                                <rect key="frame" x="20" y="48" width="302" height="21"/>
+                                <rect key="frame" x="20" y="48" width="310" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ул. Лермонтова, 216Г" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKG-8c-7pS" userLabel="Address Label">
-                                <rect key="frame" x="20" y="78" width="302" height="22"/>
+                                <rect key="frame" x="20" y="78" width="310" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuC-1z-8SO" userLabel="Phone Button">
-                                <rect key="frame" x="330" y="12" width="40" height="40"/>
+                                <rect key="frame" x="338" y="12" width="40" height="40"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bSI-b8-jwf"/>
@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-sq-6gh" userLabel="Map Button">
-                                <rect key="frame" x="330" y="64" width="40" height="40"/>
+                                <rect key="frame" x="338" y="64" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.95165318249999997" green="0.6624903083" blue="0.083994559940000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="FNT-rt-4CD"/>
@@ -68,7 +68,7 @@
                         <constraints>
                             <constraint firstItem="jPv-sq-6gh" firstAttribute="leading" secondItem="DKG-8c-7pS" secondAttribute="trailing" constant="8" id="5O3-mH-Gis"/>
                             <constraint firstItem="DKG-8c-7pS" firstAttribute="leading" secondItem="SYb-JP-lxO" secondAttribute="leading" constant="20" id="BdU-4b-cpW"/>
-                            <constraint firstItem="LuC-1z-8SO" firstAttribute="leading" secondItem="1vg-1d-jxw" secondAttribute="trailing" constant="8" id="GeW-RB-Iwb"/>
+                            <constraint firstItem="LuC-1z-8SO" firstAttribute="leading" secondItem="1vg-1d-jxw" secondAttribute="trailing" constant="4" id="GeW-RB-Iwb"/>
                             <constraint firstAttribute="trailing" secondItem="jPv-sq-6gh" secondAttribute="trailing" constant="12" id="J7e-6r-lv8"/>
                             <constraint firstAttribute="bottom" secondItem="jPv-sq-6gh" secondAttribute="bottom" constant="12" id="MvE-tX-Cn1"/>
                             <constraint firstItem="LuC-1z-8SO" firstAttribute="top" secondItem="SYb-JP-lxO" secondAttribute="top" constant="12" id="P7T-3U-ITS"/>
@@ -84,9 +84,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="SYb-JP-lxO" firstAttribute="top" secondItem="PTp-xG-eGU" secondAttribute="top" constant="4" id="1rh-vk-TD2"/>
-                    <constraint firstItem="SYb-JP-lxO" firstAttribute="leading" secondItem="PTp-xG-eGU" secondAttribute="leading" constant="16" id="QQp-2J-zqE"/>
+                    <constraint firstItem="SYb-JP-lxO" firstAttribute="leading" secondItem="PTp-xG-eGU" secondAttribute="leading" constant="12" id="QQp-2J-zqE"/>
                     <constraint firstAttribute="bottom" secondItem="SYb-JP-lxO" secondAttribute="bottom" constant="4" id="Usn-Fd-hKb"/>
-                    <constraint firstAttribute="trailing" secondItem="SYb-JP-lxO" secondAttribute="trailing" constant="16" id="wcK-g6-YSP"/>
+                    <constraint firstAttribute="trailing" secondItem="SYb-JP-lxO" secondAttribute="trailing" constant="12" id="wcK-g6-YSP"/>
                 </constraints>
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="BakeryCell"/>
