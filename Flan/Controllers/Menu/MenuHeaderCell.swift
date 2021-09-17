@@ -26,6 +26,9 @@ class MenuHeaderCell: UITableViewCell {
     
     func configureCell(with header: String) {
         labelBackgroundView.layer.cornerRadius = 16
+        labelBackgroundView.applyShadow()
+        labelBackgroundView.layer.shadowOffset = CGSize(width: 1, height: 1)
+        
         nameLabel.text = header
         nameLabel.backgroundColor = labelBackgroundView.backgroundColor
         self.backgroundView?.alpha = 0.0

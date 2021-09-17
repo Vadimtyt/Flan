@@ -121,7 +121,7 @@ class ListVC: UIViewController {
 
         popover.sourceView = sender
         popover.delegate = self
-        popover.sourceRect = CGRect(x: sender.bounds.minX - 19,
+        popover.sourceRect = CGRect(x: sender.bounds.minX - 21,
                                        y: arrowY,
                                        width: 0,
                                        height: 0)

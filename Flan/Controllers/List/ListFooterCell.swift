@@ -15,20 +15,24 @@ class ListFooterCell: UITableViewCell {
     
     // MARK: - @IBOutlets
     
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var totalSumLabel: UILabel!
     @IBOutlet weak var shareButton: UIButton!
-    //@IBOutlet private weak var shareView: UIView!
     
     // MARK: - Initialization
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        mainView.applyShadow()
+        mainView.layer.shadowOpacity = 0.4
+        mainView.layer.shadowRadius = 5
         if #available(iOS 13.0, *) {
-            shareButton.layer.borderColor =  UIColor.systemGray2.cgColor
+            shareButton.layer.borderColor =  UIColor.opaqueSeparator.cgColor
         } else {
             shareButton.layer.borderColor =  UIColor.lightGray.cgColor
         }
         shareButton.layer.borderWidth = 2
         shareButton.layer.cornerRadius = 12
+        shareButton.applyShadow()
     }
 }

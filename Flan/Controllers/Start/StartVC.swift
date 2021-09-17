@@ -36,9 +36,14 @@ class StartVC: UIViewController {
         textLabel.text = ""
         reconnectButton.isHidden = true
         reconnectButton.layer.cornerRadius = 16
+        reconnectButton.applyShadow()
+        reconnectButton.layer.shadowOpacity = 0.8
         textLabel.isHidden = true
         offlineModeButton.isHidden = true
         offlineModeButton.layer.cornerRadius = 14
+        offlineModeButton.applyShadow()
+        offlineModeButton.layer.shadowRadius = 5
+        offlineModeButton.layer.shadowOpacity = 0.8
         
         if #available(iOS 13.0, *) {
             activityIndicator.style = .large

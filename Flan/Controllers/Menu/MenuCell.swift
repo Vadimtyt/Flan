@@ -25,6 +25,7 @@ class MenuCell: UITableViewCell {
     
     // MARK: - @IBOutlets
     @IBOutlet private weak var backgoundSubwiew: UIView!
+    @IBOutlet private weak var containerImageView: UIView!
     @IBOutlet private weak var imageItemView: UIImageView!
     @IBOutlet private weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var nameLabel: UILabel!
@@ -77,7 +78,7 @@ class MenuCell: UITableViewCell {
             nameLabel.adjustsFontSizeToFitWidth = true
             priceLabelWidth.constant = 82
         }
-        countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
+        countItemLabel.layer.borderColor = UIColor.yellow.cgColor
         countItemLabel.layer.borderWidth = 2.5
         countItemLabel.layer.cornerRadius = 16
         priceLabel.layer.borderColor =  UIColor.yellow.cgColor
@@ -89,10 +90,13 @@ class MenuCell: UITableViewCell {
         secondPriceLabel.layer.cornerRadius = 16
         backgoundSubwiew.layer.cornerRadius = 20
         backgoundSubwiew.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        backgoundSubwiew.applyShadow()
+        backgoundSubwiew.layer.shadowOpacity = 0.3
+        layer.shadowOffset = CGSize(width: 2, height: 2)
+        
         imageItemView.layer.cornerRadius = 20
         imageItemView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        countItemLabel.roundCorners(.allCorners, radius: 12)
-        
+
         removeButton.layer.cornerRadius = 16
         addButton.layer.cornerRadius = 16
     }
@@ -139,6 +143,10 @@ class MenuCell: UITableViewCell {
                 self.imageItemView.alpha = 0
                 UIView.animate(withDuration: 0.2) {
                     self.imageItemView.alpha = 1
+                    self.containerImageView.applyShadow()
+                    self.containerImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+                    self.containerImageView.layer.cornerRadius = self.imageItemView.layer.cornerRadius
+                    self.containerImageView.layer.maskedCorners = self.imageItemView.layer.maskedCorners
                 }
 
                 self.downloadIndicator.stopAnimating()

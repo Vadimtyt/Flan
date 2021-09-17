@@ -26,6 +26,7 @@ class MenuDetailVC: UIViewController {
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var imageAndNameShadowView: UIView!
     
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var additionLabel: UILabel!
@@ -101,8 +102,11 @@ class MenuDetailVC: UIViewController {
         if UIScreen.main.bounds.height <= 568 {
             //For 4-inch display
             bottomViewBottomIdent.constant = 0
-            bottomViewHeight.constant -= 4
+            bottomViewHeight.constant = slideIndicatorView.bounds.height + priceAndCountView.bounds.height + 68
             descriptionLabel.font = descriptionLabel.font.withSize(14)
+        } else if UIScreen.main.bounds.height <= 750 {
+            bottomViewBottomIdent.constant = 12
+            descriptionLabel.font = descriptionLabel.font.withSize(16)
         }
         
         if #available(iOS 13.0, *) {
@@ -115,6 +119,16 @@ class MenuDetailVC: UIViewController {
         slideIndicatorView.layer.cornerRadius = 2
         itemImage.roundCorners([.topLeft, .topRight], radius: 24)
         nameView.roundCorners([.bottomLeft, .bottomRight], radius: 24)
+        imageAndNameShadowView.layer.cornerRadius = 24
+        imageAndNameShadowView.applyShadow()
+        imageAndNameShadowView.layer.shadowOpacity = 0.8
+        imageAndNameShadowView.layer.shadowRadius = 6
+        
+        favoriteButton.layer.cornerRadius = 12
+        favoriteButton.applyShadow()
+        closeButton.layer.cornerRadius = favoriteButton.layer.cornerRadius
+        closeButton.applyShadow()
+        
         countItemLabel.layer.borderColor =  UIColor.yellow.cgColor
         countItemLabel.layer.borderWidth = 2.5
         countItemLabel.layer.cornerRadius = 16
@@ -122,7 +136,13 @@ class MenuDetailVC: UIViewController {
         priceLabel.layer.borderWidth = 2.5
         priceLabel.layer.cornerRadius = 16
         bottomView.layer.cornerRadius = 24
+        bottomView.applyShadow()
+        bottomView.layer.shadowOpacity = 0.8
+        bottomView.layer.shadowRadius = 6
+        bottomView.layer.shadowColor = UIColor.lightGray.cgColor
         priceAndCountView.layer.cornerRadius = 16
+        priceAndCountView.applyShadow()
+        priceAndCountView.layer.shadowOpacity = 0.3
         removeButton.layer.cornerRadius = 16
         addButton.layer.cornerRadius = 16
     }

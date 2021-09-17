@@ -16,4 +16,13 @@ extension UIView {
         mask.path = path.cgPath
         layer.mask = mask
     }
+    
+    func applyShadow() {
+        clipsToBounds = true
+        layer.masksToBounds = false
+        layer.shadowRadius = 3
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = .zero
+        layer.shadowColor = UIColor.gray.cgColor
+    }
 }

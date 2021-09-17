@@ -16,10 +16,10 @@ class ContactsVC: UIViewController {
     
     private var bakeries: [Bakery] { DataManager.shared.getBakeries() }
     private let countOfbakeries = 4
-    //private let flanEmail = "PekarnyaFlanApp@gmail.com"
     
     // MARK: - @IBOutlets
     
+    @IBOutlet private weak var headerContainerView: UIView!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var bakeriesTableView: UITableView!
     @IBOutlet private weak var feedbackButton: UIButton!
@@ -32,9 +32,15 @@ class ContactsVC: UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        headerLabel.roundCorners(.allCorners, radius: 14)
+        headerLabel.layer.cornerRadius = 14
+        headerLabel.layer.masksToBounds = true
+        headerContainerView.layer.cornerRadius = headerLabel.layer.cornerRadius
+        headerContainerView.applyShadow()
+        headerContainerView.layer.shadowRadius = 6
         bakeriesTableView.layer.cornerRadius = 16
         feedbackButton.layer.cornerRadius = 16
+        feedbackButton.applyShadow()
+        feedbackButton.layer.shadowRadius = 6
     }
     
     override func viewWillAppear(_ animated: Bool) {

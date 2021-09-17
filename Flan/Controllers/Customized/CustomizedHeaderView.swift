@@ -15,6 +15,8 @@ class CustomizedHeaderView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        headerView.applyShadow()
+        
         let tapHeaderView = UITapGestureRecognizer(target: self, action: #selector(CustomizedHeaderView.tapHeaderView))
         headerView.isUserInteractionEnabled = true
         headerView.addGestureRecognizer(tapHeaderView)

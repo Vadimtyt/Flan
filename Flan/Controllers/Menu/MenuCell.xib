@@ -20,15 +20,29 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zr9-MP-qtO">
                         <rect key="frame" x="0.0" y="4" width="404" height="142"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Standart image" translatesAutoresizingMaskIntoConstraints="NO" id="qYp-v1-cKQ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTR-8B-nRB" userLabel="Container Image View">
                                 <rect key="frame" x="0.0" y="12" width="132" height="110"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Standart image" translatesAutoresizingMaskIntoConstraints="NO" id="qYp-v1-cKQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="132" height="110"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="qYp-v1-cKQ" secondAttribute="height" multiplier="6:5" id="N8T-Se-0Rt"/>
+                                        </constraints>
+                                    </imageView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QgV-qc-KUC" userLabel="Download Indicator">
+                                        <rect key="frame" x="56" y="45" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="qYp-v1-cKQ" secondAttribute="height" multiplier="6:5" id="N8T-Se-0Rt"/>
+                                    <constraint firstAttribute="trailing" secondItem="qYp-v1-cKQ" secondAttribute="trailing" id="93F-ms-wyC"/>
+                                    <constraint firstAttribute="bottom" secondItem="qYp-v1-cKQ" secondAttribute="bottom" id="L2B-1S-GtB"/>
+                                    <constraint firstItem="qYp-v1-cKQ" firstAttribute="leading" secondItem="vTR-8B-nRB" secondAttribute="leading" id="N9w-gW-0gH"/>
+                                    <constraint firstItem="qYp-v1-cKQ" firstAttribute="top" secondItem="vTR-8B-nRB" secondAttribute="top" id="cXT-II-WiW"/>
+                                    <constraint firstAttribute="width" secondItem="vTR-8B-nRB" secondAttribute="height" multiplier="6:5" id="dxP-pt-0Im"/>
                                 </constraints>
-                            </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QgV-qc-KUC" userLabel="Download Indicator">
-                                <rect key="frame" x="56" y="57" width="20" height="20"/>
-                            </activityIndicatorView>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hr9-7C-MjJ">
                                 <rect key="frame" x="140" y="88" width="256" height="36"/>
                                 <subviews>
@@ -123,8 +137,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описаниеekuhgqlieuliuqegliucgeliugciugweiugliweuglivugwev" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFq-FM-5Nq" userLabel="Description Label">
-                                <rect key="frame" x="142" y="36" width="258" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFq-FM-5Nq" userLabel="Description Label">
+                                <rect key="frame" x="140" y="36" width="260" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -163,24 +177,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="QgV-qc-KUC" firstAttribute="centerX" secondItem="qYp-v1-cKQ" secondAttribute="centerX" id="3Ph-VW-W43"/>
                             <constraint firstAttribute="bottom" secondItem="Hr9-7C-MjJ" secondAttribute="bottom" constant="18" id="9jS-ap-DrM"/>
                             <constraint firstAttribute="trailing" secondItem="XFq-FM-5Nq" secondAttribute="trailing" constant="4" id="BTR-tw-USm"/>
-                            <constraint firstItem="Euu-Am-soA" firstAttribute="leading" secondItem="qYp-v1-cKQ" secondAttribute="trailing" constant="8" symbolic="YES" id="J1t-24-eKH"/>
+                            <constraint firstItem="vTR-8B-nRB" firstAttribute="leading" secondItem="zr9-MP-qtO" secondAttribute="leading" id="CMZ-pn-anT"/>
                             <constraint firstAttribute="trailing" secondItem="Euu-Am-soA" secondAttribute="trailing" constant="32" id="J4h-3t-Ick"/>
-                            <constraint firstItem="qYp-v1-cKQ" firstAttribute="leading" secondItem="zr9-MP-qtO" secondAttribute="leading" id="NWC-8P-Tcw"/>
+                            <constraint firstItem="Euu-Am-soA" firstAttribute="leading" secondItem="vTR-8B-nRB" secondAttribute="trailing" constant="8" id="LaT-Cv-7Hm"/>
                             <constraint firstItem="CmL-JV-CLD" firstAttribute="centerX" secondItem="TiK-cc-1sx" secondAttribute="centerX" id="ShF-Le-hZ6"/>
                             <constraint firstItem="CmL-JV-CLD" firstAttribute="top" secondItem="Hr9-7C-MjJ" secondAttribute="bottom" id="WoS-bj-C4a"/>
                             <constraint firstItem="XFq-FM-5Nq" firstAttribute="top" secondItem="Euu-Am-soA" secondAttribute="bottom" id="Ymh-hr-Bq4"/>
-                            <constraint firstItem="qYp-v1-cKQ" firstAttribute="top" secondItem="zr9-MP-qtO" secondAttribute="top" constant="12" id="ZFh-Cl-HTE"/>
-                            <constraint firstItem="QgV-qc-KUC" firstAttribute="centerY" secondItem="qYp-v1-cKQ" secondAttribute="centerY" id="c1R-z7-SBr"/>
                             <constraint firstItem="MIl-zv-7Vk" firstAttribute="top" secondItem="zr9-MP-qtO" secondAttribute="top" id="cFH-ss-ab4"/>
-                            <constraint firstAttribute="bottom" secondItem="qYp-v1-cKQ" secondAttribute="bottom" constant="20" id="dIa-gP-RDB"/>
-                            <constraint firstItem="XFq-FM-5Nq" firstAttribute="leading" secondItem="qYp-v1-cKQ" secondAttribute="trailing" constant="10" id="dj0-XI-qig"/>
-                            <constraint firstItem="Hr9-7C-MjJ" firstAttribute="leading" secondItem="qYp-v1-cKQ" secondAttribute="trailing" constant="8" symbolic="YES" id="fSY-8i-E7O"/>
                             <constraint firstAttribute="trailing" secondItem="MIl-zv-7Vk" secondAttribute="trailing" id="hsN-2f-RRy"/>
                             <constraint firstAttribute="trailing" secondItem="Hr9-7C-MjJ" secondAttribute="trailing" constant="8" id="hvS-5g-bjm"/>
+                            <constraint firstItem="XFq-FM-5Nq" firstAttribute="leading" secondItem="vTR-8B-nRB" secondAttribute="trailing" constant="8" id="ibp-Ml-MS5"/>
+                            <constraint firstItem="Hr9-7C-MjJ" firstAttribute="leading" secondItem="vTR-8B-nRB" secondAttribute="trailing" constant="8" symbolic="YES" id="kGS-ZB-inq"/>
                             <constraint firstItem="Wgy-AO-4sq" firstAttribute="centerX" secondItem="fG9-Vv-lsZ" secondAttribute="centerX" id="nXu-BA-xdK"/>
+                            <constraint firstAttribute="bottom" secondItem="vTR-8B-nRB" secondAttribute="bottom" constant="20" symbolic="YES" id="ocP-qY-LbC"/>
+                            <constraint firstItem="vTR-8B-nRB" firstAttribute="top" secondItem="zr9-MP-qtO" secondAttribute="top" constant="12" id="qLa-IA-W2I"/>
                             <constraint firstItem="Euu-Am-soA" firstAttribute="top" secondItem="zr9-MP-qtO" secondAttribute="top" constant="12" id="rj3-ow-jV2"/>
                             <constraint firstItem="Wgy-AO-4sq" firstAttribute="top" secondItem="Hr9-7C-MjJ" secondAttribute="bottom" id="slJ-bt-Gt9"/>
                         </constraints>
@@ -198,6 +210,7 @@
             <connections>
                 <outlet property="addButton" destination="E3V-Fb-cEn" id="TbY-Ze-CgY"/>
                 <outlet property="backgoundSubwiew" destination="zr9-MP-qtO" id="z1p-4S-RDX"/>
+                <outlet property="containerImageView" destination="vTR-8B-nRB" id="bln-Ev-5Gw"/>
                 <outlet property="countItemLabel" destination="ytp-pN-ag1" id="kyz-Nq-FFz"/>
                 <outlet property="descriptionLabel" destination="XFq-FM-5Nq" id="4IJ-TG-nh9"/>
                 <outlet property="downloadIndicator" destination="QgV-qc-KUC" id="ibO-V7-RVc"/>
@@ -219,6 +232,9 @@
         <image name="heart" width="19.394500732421875" height="18.525400161743164"/>
         <image name="minus" width="16.113300323486328" height="1.7675800323486328"/>
         <image name="plus" width="16.113300323486328" height="16.12299919128418"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

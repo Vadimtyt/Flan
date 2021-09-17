@@ -15,7 +15,6 @@
 		C122109226D696710099335A /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C122109126D696710099335A /* ExtensionUIImage.swift */; };
 		C122109426D6A2FE0099335A /* PhotoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C122109326D6A2FE0099335A /* PhotoType.swift */; };
 		C125437025D4C2FD0086ADD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125436F25D4C2FD0086ADD2 /* AppDelegate.swift */; };
-		C125437925D4C2FE0086ADD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C125437825D4C2FE0086ADD2 /* Assets.xcassets */; };
 		C12543BF25E070F90086ADD2 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12543BE25E070F90086ADD2 /* FavoriteVC.swift */; };
 		C13C5E3926D5712B005BCE10 /* ExtensionCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13C5E3826D5712B005BCE10 /* ExtensionCollectionView.swift */; };
 		C1573D82263103F5001C600B /* TapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1573D81263103F5001C600B /* TapBarController.swift */; };
@@ -61,6 +60,7 @@
 		C1C7BF6226B0456E0047DEF0 /* ListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C7BF6126B0456E0047DEF0 /* ListHeaderCell.swift */; };
 		C1C7BF6626B051DA0047DEF0 /* ListHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C7BF6526B051DA0047DEF0 /* ListHeaderCell.xib */; };
 		C1C7BF6826B054620047DEF0 /* ListFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C7BF6726B054620047DEF0 /* ListFooterCell.swift */; };
+		C1D5017726F2668700E2E588 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1D5017626F2668700E2E588 /* Assets.xcassets */; };
 		C1ECF5B926EB640E006B3EBC /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF5B826EB640E006B3EBC /* ImageModel.swift */; };
 		C1EE51B4268E7FA2001126DA /* MenuHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE51B3268E7FA2001126DA /* MenuHeaderCell.swift */; };
 		C1EE51B6268E8069001126DA /* MenuHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EE51B5268E8069001126DA /* MenuHeaderCell.xib */; };
@@ -83,7 +83,6 @@
 		C122109326D6A2FE0099335A /* PhotoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoType.swift; sourceTree = "<group>"; };
 		C125436C25D4C2FD0086ADD2 /* Flan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C125436F25D4C2FD0086ADD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C125437825D4C2FE0086ADD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C125437D25D4C2FE0086ADD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C12543BE25E070F90086ADD2 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		C13C5E3826D5712B005BCE10 /* ExtensionCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCollectionView.swift; sourceTree = "<group>"; };
@@ -130,6 +129,7 @@
 		C1C7BF6126B0456E0047DEF0 /* ListHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderCell.swift; sourceTree = "<group>"; };
 		C1C7BF6526B051DA0047DEF0 /* ListHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListHeaderCell.xib; sourceTree = "<group>"; };
 		C1C7BF6726B054620047DEF0 /* ListFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFooterCell.swift; sourceTree = "<group>"; };
+		C1D5017626F2668700E2E588 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1ECF5B826EB640E006B3EBC /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		C1EE51B3268E7FA2001126DA /* MenuHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCell.swift; sourceTree = "<group>"; };
 		C1EE51B5268E8069001126DA /* MenuHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuHeaderCell.xib; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 		C125438725D4C3300086ADD2 /* Supporting resourses */ = {
 			isa = PBXGroup;
 			children = (
-				C125437825D4C2FE0086ADD2 /* Assets.xcassets */,
+				C1D5017626F2668700E2E588 /* Assets.xcassets */,
 				C125437D25D4C2FE0086ADD2 /* Info.plist */,
 				C18E93BE26E6922D005A7F3E /* Settings.bundle */,
 			);
@@ -481,8 +481,8 @@
 				C15AD17A265F1C5900E8E02F /* Categories.storyboard in Resources */,
 				C1600D242649F17700D06F31 /* Map.storyboard in Resources */,
 				C1EE51B6268E8069001126DA /* MenuHeaderCell.xib in Resources */,
+				C1D5017726F2668700E2E588 /* Assets.xcassets in Resources */,
 				C1A25C1B26C2B3E3000B07F0 /* Main.storyboard in Resources */,
-				C125437925D4C2FE0086ADD2 /* Assets.xcassets in Resources */,
 				C1AD6A3A26586EE1007DFBE9 /* CustomizedDetail.storyboard in Resources */,
 				C1A25C1026C16F66000B07F0 /* GoogleService-Info.plist in Resources */,
 				C1A25C1926C2B3D0000B07F0 /* LaunchScreen.storyboard in Resources */,
@@ -718,7 +718,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = V3933YHTS3;
 				INFOPLIST_FILE = "Flan/Supporting resourses/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -743,7 +743,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = V3933YHTS3;
 				INFOPLIST_FILE = "Flan/Supporting resourses/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

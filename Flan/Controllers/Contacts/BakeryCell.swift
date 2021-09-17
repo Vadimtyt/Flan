@@ -42,8 +42,15 @@ class BakeryCell: UITableViewCell {
     
     override func layoutSubviews() {
         phoneButton.layer.cornerRadius = 8
+        phoneButton.applyShadow()
+        phoneButton.layer.shadowOpacity = 1
         mapButton.layer.cornerRadius = 8
+        mapButton.applyShadow()
+        mapButton.layer.shadowOpacity = 1
         mainView.layer.cornerRadius = 16
+        mainView.applyShadow()
+        mainView.layer.shadowOpacity = 0.5
+        mainView.layer.shadowRadius = 6
     }
     
     // MARK: - Funcs

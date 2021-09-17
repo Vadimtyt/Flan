@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDv-gG-Yyy">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDv-gG-Yyy" userLabel="Main View">
                         <rect key="frame" x="8" y="4" width="398" height="58"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Итого: 0Р" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7M-OE-MbY" userLabel="Total Sum Label">
@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0H-ns-Bcw" userLabel="Info Button">
-                                <rect key="frame" x="85" y="18" width="22" height="22"/>
+                                <rect key="frame" x="87" y="18" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="DgM-hF-zoY"/>
                                     <constraint firstAttribute="height" constant="22" id="LHk-KJ-5C0"/>
@@ -76,7 +76,7 @@
                             <constraint firstAttribute="trailing" secondItem="7tU-bw-Yfc" secondAttribute="trailing" constant="8" id="EMY-7B-rgZ"/>
                             <constraint firstItem="G7M-OE-MbY" firstAttribute="top" secondItem="tDv-gG-Yyy" secondAttribute="top" constant="8" id="Exj-jv-iEA"/>
                             <constraint firstItem="p0H-ns-Bcw" firstAttribute="centerY" secondItem="G7M-OE-MbY" secondAttribute="centerY" id="ZMM-FU-0oO"/>
-                            <constraint firstItem="p0H-ns-Bcw" firstAttribute="leading" secondItem="G7M-OE-MbY" secondAttribute="trailing" id="a3e-au-h3d"/>
+                            <constraint firstItem="p0H-ns-Bcw" firstAttribute="leading" secondItem="G7M-OE-MbY" secondAttribute="trailing" constant="2" id="a3e-au-h3d"/>
                             <constraint firstItem="G7M-OE-MbY" firstAttribute="leading" secondItem="tDv-gG-Yyy" secondAttribute="leading" constant="4" id="afm-4f-UpR"/>
                             <constraint firstAttribute="bottom" secondItem="G7M-OE-MbY" secondAttribute="bottom" constant="8" id="d4D-Qy-TeV"/>
                             <constraint firstItem="7tU-bw-Yfc" firstAttribute="top" secondItem="tDv-gG-Yyy" secondAttribute="top" constant="8" id="veo-rd-7L2"/>
@@ -97,6 +97,7 @@
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="ListFooterCell"/>
             <connections>
+                <outlet property="mainView" destination="tDv-gG-Yyy" id="1xO-OE-WAh"/>
                 <outlet property="shareButton" destination="7tU-bw-Yfc" id="tFa-UL-8oC"/>
                 <outlet property="totalSumLabel" destination="G7M-OE-MbY" id="toU-dn-ED9"/>
             </connections>
