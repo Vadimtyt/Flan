@@ -135,19 +135,25 @@ class MenuCell: UITableViewCell {
         let settingImageName = item.imageName
         
         let imageSize = getImageSize()
-        item.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image in
+        item.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image, isNeedAnimation  in
             DispatchQueue.main.async {
                 guard settingImageName == (self.item.imageName) && !isSetPhoto else { return }
                 self.imageItemView.image = image
                 isSetPhoto = true
-                self.imageItemView.alpha = 0
-                UIView.animate(withDuration: 0.2) {
-                    self.imageItemView.alpha = 1
-                    self.containerImageView.applyShadow()
-                    self.containerImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
-                    self.containerImageView.layer.cornerRadius = self.imageItemView.layer.cornerRadius
-                    self.containerImageView.layer.maskedCorners = self.imageItemView.layer.maskedCorners
+                
+                if isNeedAnimation {
+                    self.imageItemView.alpha = 0
+                    UIView.animate(withDuration: 0.2) {
+                        self.imageItemView.alpha = 1
+                        self.downloadIndicator.isHidden = true
+                    }
                 }
+                
+                self.containerImageView.applyShadow()
+                self.containerImageView.layer.shadowOpacity = 0.8
+                self.containerImageView.layer.shadowOffset = CGSize(width: 2, height: 0)
+                self.containerImageView.layer.cornerRadius = self.imageItemView.layer.cornerRadius
+                self.containerImageView.layer.maskedCorners = self.imageItemView.layer.maskedCorners
 
                 self.downloadIndicator.stopAnimating()
                 self.downloadIndicator.isHidden = true

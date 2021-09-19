@@ -105,11 +105,6 @@
                             <constraint firstItem="a5O-Fl-vgw" firstAttribute="width" secondItem="4YZ-Sh-SZc" secondAttribute="width" id="l8k-OQ-5Td"/>
                             <constraint firstAttribute="trailing" secondItem="AUH-LN-uJC" secondAttribute="trailing" constant="8" id="rFN-Fj-J6p"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <integer key="value" value="16"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybf-Hk-sHr" userLabel="Checkmark Button">
                         <rect key="frame" x="366" y="4" width="40" height="80"/>
@@ -150,9 +145,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="checkmark.circle" width="20" height="20"/>
-        <image name="minus" width="16" height="2"/>
-        <image name="plus" width="16" height="16"/>
+        <image name="checkmark.circle" width="19.921899795532227" height="19.931600570678711"/>
+        <image name="minus" width="16.113300323486328" height="1.7675800323486328"/>
+        <image name="plus" width="16.113300323486328" height="16.12299919128418"/>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

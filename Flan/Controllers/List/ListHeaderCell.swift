@@ -28,13 +28,7 @@ class ListHeaderCell: UITableViewCell {
     
     func configureCell(with header: String) {
         labelBackgroundView.layer.cornerRadius = 16
-        
-        labelBackgroundView.clipsToBounds = true
-        labelBackgroundView.layer.masksToBounds = false
-        labelBackgroundView.layer.shadowRadius = 3
-        labelBackgroundView.layer.shadowOpacity = 0.5
-        labelBackgroundView.layer.shadowOffset = CGSize(width: 1, height: 1)
-        labelBackgroundView.layer.shadowColor = UIColor.gray.cgColor
+        labelBackgroundView.applyShadow()
         
         nameLabel.text = header
         nameLabel.backgroundColor = labelBackgroundView.backgroundColor

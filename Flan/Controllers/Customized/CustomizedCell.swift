@@ -35,14 +35,17 @@ class CustomizedCell: UICollectionViewCell {
         
         let settingImageName = cake.imageName
         let imageSize = getImageSize()
-        cake.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image in
+        cake.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image, isNeedAnimation  in
             DispatchQueue.main.async {
                 guard settingImageName == (self.cake.imageName) && !isSetPhoto else { return }
                 self.cakeImage.image = image
                 isSetPhoto = true
-                self.cakeImage.alpha = 0
-                UIView.animate(withDuration: 0.2) {
-                    self.cakeImage.alpha = 1
+                
+                if isNeedAnimation {
+                    self.cakeImage.alpha = 0
+                    UIView.animate(withDuration: 0.2) {
+                        self.cakeImage.alpha = 1
+                    }
                 }
 
                 self.downloadIndicator.stopAnimating()

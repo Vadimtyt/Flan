@@ -17,13 +17,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="530"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PJl-sV-gKg" userLabel="Cake Image">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cf-7D-kAF" userLabel="Cake Image Container View">
                                 <rect key="frame" x="16" y="29" width="382" height="382"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PJl-sV-gKg" userLabel="Cake Image">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="382"/>
+                                    </imageView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gi7-my-NgO" userLabel="Download Indicator">
+                                        <rect key="frame" x="181" y="181" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="PJl-sV-gKg" secondAttribute="height" multiplier="1:1" id="BZ4-SY-yz0"/>
-                                    <constraint firstAttribute="width" secondItem="PJl-sV-gKg" secondAttribute="height" multiplier="1:1" id="ayE-1S-OJ5"/>
+                                    <constraint firstItem="PJl-sV-gKg" firstAttribute="top" secondItem="0cf-7D-kAF" secondAttribute="top" id="25x-x9-6dr"/>
+                                    <constraint firstItem="PJl-sV-gKg" firstAttribute="leading" secondItem="0cf-7D-kAF" secondAttribute="leading" id="4Sw-aj-Wog"/>
+                                    <constraint firstItem="Gi7-my-NgO" firstAttribute="centerY" secondItem="PJl-sV-gKg" secondAttribute="centerY" id="7Oh-39-kNH"/>
+                                    <constraint firstAttribute="width" secondItem="0cf-7D-kAF" secondAttribute="height" multiplier="1:1" id="D0a-ei-oXe"/>
+                                    <constraint firstAttribute="trailing" secondItem="PJl-sV-gKg" secondAttribute="trailing" id="EdT-Qw-pJf"/>
+                                    <constraint firstAttribute="bottom" secondItem="PJl-sV-gKg" secondAttribute="bottom" id="P6r-Bb-qy8"/>
+                                    <constraint firstItem="Gi7-my-NgO" firstAttribute="centerX" secondItem="PJl-sV-gKg" secondAttribute="centerX" id="vQk-6k-3qg"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2o-qh-l2W" userLabel="Numbel Label">
                                 <rect key="frame" x="196.5" y="431" width="21" height="21"/>
                                 <constraints>
@@ -54,29 +68,25 @@
                                     <constraint firstAttribute="width" constant="60" id="ven-hI-tDu"/>
                                 </constraints>
                             </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gi7-my-NgO" userLabel="Download Indicator">
-                                <rect key="frame" x="197" y="210" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HbS-lk-X07"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="HbS-lk-X07" firstAttribute="trailing" secondItem="Qlr-qz-JZh" secondAttribute="trailing" constant="20" id="5Hu-5r-xlT"/>
-                            <constraint firstItem="Gi7-my-NgO" firstAttribute="centerY" secondItem="PJl-sV-gKg" secondAttribute="centerY" id="F20-H8-0CS"/>
-                            <constraint firstItem="PJl-sV-gKg" firstAttribute="top" secondItem="Mmd-VU-eU5" secondAttribute="bottom" constant="12" id="LDu-ZE-cqb"/>
+                            <constraint firstItem="O2o-qh-l2W" firstAttribute="top" secondItem="0cf-7D-kAF" secondAttribute="bottom" constant="20" id="HsL-lh-Opm"/>
+                            <constraint firstItem="Qlr-qz-JZh" firstAttribute="top" secondItem="0cf-7D-kAF" secondAttribute="bottom" constant="17" id="PFK-ps-Pnl"/>
+                            <constraint firstItem="0cf-7D-kAF" firstAttribute="leading" secondItem="HbS-lk-X07" secondAttribute="leading" constant="16" id="RBC-Mz-c1E"/>
                             <constraint firstItem="Mmd-VU-eU5" firstAttribute="top" secondItem="zfE-OD-Ad6" secondAttribute="top" constant="12" id="TNR-UK-5dh"/>
-                            <constraint firstItem="PJl-sV-gKg" firstAttribute="trailing" secondItem="HbS-lk-X07" secondAttribute="trailing" constant="-16" id="VRm-BJ-Una"/>
-                            <constraint firstItem="PJl-sV-gKg" firstAttribute="leading" secondItem="HbS-lk-X07" secondAttribute="leading" constant="16" id="c8n-Ll-bda"/>
-                            <constraint firstItem="O2o-qh-l2W" firstAttribute="top" secondItem="PJl-sV-gKg" secondAttribute="bottom" constant="20" id="mKF-Cf-tin"/>
+                            <constraint firstItem="0cf-7D-kAF" firstAttribute="top" secondItem="Mmd-VU-eU5" secondAttribute="bottom" constant="12" id="ake-mi-651"/>
                             <constraint firstItem="O2o-qh-l2W" firstAttribute="centerX" secondItem="zfE-OD-Ad6" secondAttribute="centerX" id="p8Z-6z-Ii7"/>
-                            <constraint firstItem="Qlr-qz-JZh" firstAttribute="top" secondItem="PJl-sV-gKg" secondAttribute="bottom" constant="17" id="qj9-eq-ezk"/>
                             <constraint firstItem="Mmd-VU-eU5" firstAttribute="centerX" secondItem="zfE-OD-Ad6" secondAttribute="centerX" id="tMS-BE-IXU"/>
-                            <constraint firstItem="Gi7-my-NgO" firstAttribute="centerX" secondItem="PJl-sV-gKg" secondAttribute="centerX" id="xb2-UH-ioj"/>
+                            <constraint firstItem="HbS-lk-X07" firstAttribute="trailing" secondItem="0cf-7D-kAF" secondAttribute="trailing" constant="16" id="xxL-PD-PEe"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="530"/>
                     <connections>
                         <outlet property="cakeImage" destination="PJl-sV-gKg" id="n3P-NW-6ht"/>
+                        <outlet property="cakeImageContainerView" destination="0cf-7D-kAF" id="gkm-nk-Yj2"/>
                         <outlet property="cakeNumberLabel" destination="O2o-qh-l2W" id="ycw-5e-CyG"/>
                         <outlet property="downloadIndicator" destination="Gi7-my-NgO" id="FyX-Gd-BYN"/>
                         <outlet property="topView" destination="Mmd-VU-eU5" id="fPH-BV-baF"/>
@@ -88,7 +98,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="square.and.arrow.up" width="17.5" height="23.5"/>
+        <image name="square.and.arrow.up" width="17.333999633789062" height="23.486299514770508"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

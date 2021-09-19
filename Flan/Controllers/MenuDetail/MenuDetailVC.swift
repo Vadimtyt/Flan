@@ -95,9 +95,6 @@ class MenuDetailVC: UIViewController {
     // MARK: - Funcs
     
     private func setupViews() {
-        if item.measurements.count < 2 {
-            bottomViewHeight.constant = priceAndCountView.bounds.height + 32
-        }
         
         if UIScreen.main.bounds.height <= 568 {
             //For 4-inch display
@@ -107,6 +104,10 @@ class MenuDetailVC: UIViewController {
         } else if UIScreen.main.bounds.height <= 750 {
             bottomViewBottomIdent.constant = 12
             descriptionLabel.font = descriptionLabel.font.withSize(16)
+        }
+        
+        if item.measurements.count < 2 {
+            bottomViewHeight.constant = priceAndCountView.bounds.height + 32
         }
         
         if #available(iOS 13.0, *) {
@@ -189,7 +190,7 @@ class MenuDetailVC: UIViewController {
         
         let settingImageName = item.imageName
         let imageSize = CGSize(width: itemImage.bounds.width, height: itemImage.bounds.height)
-        item.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image in
+        item.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image, isNeedAnimation in
             DispatchQueue.main.async {
                 guard settingImageName == (self.item.imageName) && !isSetPhoto else { return }
                 self.itemImage.image = image

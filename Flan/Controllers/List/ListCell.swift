@@ -78,10 +78,8 @@ class ListCell: UITableViewCell {
     
     private func setupViews() {
         selectionStyle = .none
-        
-        mainView.applyShadow()
-        mainView.layer.shadowOpacity = 0.3
-        
+
+        mainView.layer.cornerRadius = 16
         checkmarkButton.layer.cornerRadius = 12
         checkmarkButton.applyShadow()
         checkmarkButton.layer.shadowOpacity = 0.4

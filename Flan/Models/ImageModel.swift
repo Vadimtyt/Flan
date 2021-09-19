@@ -15,6 +15,7 @@ class ImageModel {
 
     var cellImage: UIImage
     var detailImage: UIImage
+    var isCellImageSet: Bool { return self.cellImage != ImageModel.standartImage}
     
     init() {
         cellImage = ImageModel.standartImage

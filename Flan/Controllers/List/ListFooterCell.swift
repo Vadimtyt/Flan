@@ -24,8 +24,7 @@ class ListFooterCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         mainView.applyShadow()
-        mainView.layer.shadowOpacity = 0.4
-        mainView.layer.shadowRadius = 5
+        
         if #available(iOS 13.0, *) {
             shareButton.layer.borderColor =  UIColor.opaqueSeparator.cgColor
         } else {

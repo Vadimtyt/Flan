@@ -20,6 +20,7 @@ class CustomizedDetailVC: UIViewController {
     
     // MARK: - @IBOutlets
     
+    @IBOutlet weak var cakeImageContainerView: UIView!
     @IBOutlet weak var cakeImage: UIImageView!
     @IBOutlet weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet weak var cakeNumberLabel: UILabel!
@@ -52,7 +53,7 @@ class CustomizedDetailVC: UIViewController {
         
         let settingImageName = cake.imageName
         let imageSize = CGSize(width: cakeImage.bounds.width, height: cakeImage.bounds.height)
-        cake.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image in
+        cake.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image, isNeedAnimation  in
             DispatchQueue.main.async {
                 guard settingImageName == (self.cake.imageName) && !isSetPhoto else { return }
                 self.cakeImage.image = image
@@ -102,8 +103,13 @@ class CustomizedDetailVC: UIViewController {
         cakeImage.contentMode = .scaleAspectFill
         cakeNumberLabel.text = "#\(cake.number)"
         
-        cakeImage.layer.cornerRadius = 20
         topView.layer.cornerRadius = 3
+        cakeImage.layer.cornerRadius = 20
+        
+        cakeImageContainerView.layer.cornerRadius = cakeImage.layer.cornerRadius
+        cakeImageContainerView.applyShadow()
+        cakeImageContainerView.layer.shadowRadius = 6
+        cakeImageContainerView.layer.shadowOpacity = 1
     }
     
     private func permissionDeniedAlert() {
