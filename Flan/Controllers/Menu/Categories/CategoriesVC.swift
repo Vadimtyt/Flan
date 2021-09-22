@@ -63,8 +63,9 @@ class CategoriesVC: UIViewController {
     @objc private func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
-        // setting x as 0 because we don't want users to move the frame side ways!! Only want straight up or down
-        view.frame.origin = CGPoint(x: 0, y: self.pointOrigin!.y + translation.y)
+        if translation.y >= -100 {
+            view.frame.origin = CGPoint(x: 0, y: self.pointOrigin!.y + translation.y)
+        }
         
         if sender.state == .ended {
             let dragVelocity = sender.velocity(in: view)

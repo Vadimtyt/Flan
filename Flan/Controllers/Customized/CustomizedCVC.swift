@@ -17,7 +17,6 @@ class CustomizedCVC: UICollectionViewController {
     private var itemsPerRow: CGFloat = 2
     private let sectionPadding: CGFloat = 12
     
-    private let popoverText = "Здесь находится лишь небольшая часть наших работ, но мы надеемся, что одна из них поможет вам найти идею для индивидуального заказа."
     private let popoverTextFontSize: CGFloat = 20
     
     // MARK: - @IBOutlets
@@ -116,7 +115,7 @@ class CustomizedCVC: UICollectionViewController {
         let popoverWidth = 288
         let popoverHeight = 128
         
-        let vc = InfoPopover(text: popoverText, fontSize: popoverTextFontSize)
+        let vc = InfoPopover(text: Labels.CustomizedCVC.popoverText, fontSize: popoverTextFontSize)
         vc.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover: UIPopoverPresentationController = vc.popoverPresentationController!
         
