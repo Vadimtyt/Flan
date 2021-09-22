@@ -145,25 +145,28 @@ class MenuCell: UITableViewCell {
                     self.imageItemView.alpha = 0
                     UIView.animate(withDuration: 0.2) {
                         self.imageItemView.alpha = 1
-                        self.downloadIndicator.isHidden = true
                     }
                 }
-                
-                self.containerImageView.applyShadow()
-                self.containerImageView.layer.shadowOpacity = 0.8
-                self.containerImageView.layer.shadowOffset = CGSize(width: 2, height: 0)
-                self.containerImageView.layer.cornerRadius = self.imageItemView.layer.cornerRadius
-                self.containerImageView.layer.maskedCorners = self.imageItemView.layer.maskedCorners
+                if image != ImageModel.standartImage {
+                    self.containerImageView.applyShadow()
+                    self.containerImageView.layer.shadowOpacity = 0.8
+                    self.containerImageView.layer.shadowOffset = CGSize(width: 2, height: 0)
+                    self.containerImageView.layer.cornerRadius = self.imageItemView.layer.cornerRadius
+                    self.containerImageView.layer.maskedCorners = self.imageItemView.layer.maskedCorners
+                }
 
                 self.downloadIndicator.stopAnimating()
                 self.downloadIndicator.isHidden = true
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             if !isSetPhoto {
                 self?.downloadIndicator.isHidden = false
                 self?.downloadIndicator.startAnimating()
+            } else {
+                self?.downloadIndicator.stopAnimating()
+                self?.downloadIndicator.isHidden = true
             }
         }
     }
@@ -211,6 +214,7 @@ class MenuCell: UITableViewCell {
         measurmentLabel.text = nil
         secondMeasurmentLabel.text = nil
         
+        containerImageView.layer.masksToBounds = true
         downloadIndicator.isHidden = true
         descriptionLabel.isHidden = false
         removeButton.isHidden = false

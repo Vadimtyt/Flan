@@ -29,16 +29,17 @@
                                             <constraint firstAttribute="width" secondItem="qYp-v1-cKQ" secondAttribute="height" multiplier="6:5" id="N8T-Se-0Rt"/>
                                         </constraints>
                                     </imageView>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QgV-qc-KUC" userLabel="Download Indicator">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QgV-qc-KUC" userLabel="Download Indicator">
                                         <rect key="frame" x="56" y="45" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="qYp-v1-cKQ" secondAttribute="trailing" id="93F-ms-wyC"/>
+                                    <constraint firstItem="QgV-qc-KUC" firstAttribute="centerY" secondItem="qYp-v1-cKQ" secondAttribute="centerY" id="AlD-fx-7au"/>
                                     <constraint firstAttribute="bottom" secondItem="qYp-v1-cKQ" secondAttribute="bottom" id="L2B-1S-GtB"/>
                                     <constraint firstItem="qYp-v1-cKQ" firstAttribute="leading" secondItem="vTR-8B-nRB" secondAttribute="leading" id="N9w-gW-0gH"/>
+                                    <constraint firstItem="QgV-qc-KUC" firstAttribute="centerX" secondItem="qYp-v1-cKQ" secondAttribute="centerX" id="RRp-4l-iPk"/>
                                     <constraint firstItem="qYp-v1-cKQ" firstAttribute="top" secondItem="vTR-8B-nRB" secondAttribute="top" id="cXT-II-WiW"/>
                                     <constraint firstAttribute="width" secondItem="vTR-8B-nRB" secondAttribute="height" multiplier="6:5" id="dxP-pt-0Im"/>
                                 </constraints>

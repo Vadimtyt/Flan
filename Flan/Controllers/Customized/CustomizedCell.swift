@@ -53,10 +53,13 @@ class CustomizedCell: UICollectionViewCell {
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             if !isSetPhoto {
                 self?.downloadIndicator.isHidden = false
                 self?.downloadIndicator.startAnimating()
+            } else {
+                self?.downloadIndicator.stopAnimating()
+                self?.downloadIndicator.isHidden = true
             }
         }
     }
