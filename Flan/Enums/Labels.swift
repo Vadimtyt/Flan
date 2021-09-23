@@ -19,7 +19,7 @@ enum Labels {
     enum MenuVC {
         static let searchPlaceholder = "Введите название",
                    emptyViewTitle = "Ошибка сервера",
-                   emptyViewMessage = "Не удалось загрузить данные. Проводятся технические работы",
+                   emptyViewMessage = "Не удалось загрузить данные. Повторите попытку позже",
                    emptyFilteringViewTitle = "Ничего не найдено...",
                    emptyFilteringViewMessage = "Попробуйте ввести что-нибудь другое"
     }
@@ -43,8 +43,8 @@ enum Labels {
     
     enum CustomizedCVC {
         static let popoverText = "Здесь находится лишь небольшая часть наших работ, но мы надеемся, что одна из них поможет вам найти идею для индивидуального заказа.",
-                   emptyViewTitle = "Ошибка сервера",
-                   emptyViewMessage = "Не удалось загрузить данные. Проводятся технические работы"
+                   emptyViewTitle = MenuVC.emptyViewTitle,
+                   emptyViewMessage = MenuVC.emptyViewMessage
     }
     
     enum CustomizedDetailVC {
@@ -54,8 +54,8 @@ enum Labels {
     
     enum ContactsVC {
         static let flanEmail = "PekarnyaFlanApp@gmail.com",
-                   emptyViewTitle = "Ошибка сервера",
-                   emptyViewMessage = "Не удалось загрузить данные. Проводятся технические работы",
+                   emptyViewTitle = MenuVC.emptyViewTitle,
+                   emptyViewMessage = MenuVC.emptyViewMessage,
                    instagramUsername = "pekarnya_flan",
                    sendEmailSubject = "Идея для приложения Флан",
                    sendEmailMessageBody = "Напишите здесь Вашу идею или предложение по улучшению приложения Флан",

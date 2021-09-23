@@ -22,7 +22,7 @@
                         <rect key="frame" x="8" y="4" width="350" height="80"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YZ-Sh-SZc">
-                                <rect key="frame" x="16" y="4" width="230" height="44"/>
+                                <rect key="frame" x="16" y="4" width="234" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="SSL-8B-ieX"/>
                                 </constraints>
@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5O-Fl-vgw">
-                                <rect key="frame" x="20" y="48" width="230" height="20"/>
+                                <rect key="frame" x="20" y="48" width="234" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="beg-R8-RqF"/>
                                 </constraints>
@@ -100,7 +100,7 @@
                             <constraint firstItem="a5O-Fl-vgw" firstAttribute="leading" secondItem="tDC-Rh-ecc" secondAttribute="leading" constant="20" id="GgE-eW-NMz"/>
                             <constraint firstItem="AUH-LN-uJC" firstAttribute="centerY" secondItem="tDC-Rh-ecc" secondAttribute="centerY" id="Lff-wX-b1T"/>
                             <constraint firstItem="a5O-Fl-vgw" firstAttribute="top" secondItem="4YZ-Sh-SZc" secondAttribute="bottom" id="Slh-L3-4ws"/>
-                            <constraint firstItem="AUH-LN-uJC" firstAttribute="leading" secondItem="4YZ-Sh-SZc" secondAttribute="trailing" constant="8" symbolic="YES" id="VsP-Jm-TBS"/>
+                            <constraint firstItem="AUH-LN-uJC" firstAttribute="leading" secondItem="4YZ-Sh-SZc" secondAttribute="trailing" constant="4" id="VsP-Jm-TBS"/>
                             <constraint firstItem="4YZ-Sh-SZc" firstAttribute="top" secondItem="tDC-Rh-ecc" secondAttribute="top" constant="4" id="h1b-hl-aPm"/>
                             <constraint firstItem="a5O-Fl-vgw" firstAttribute="width" secondItem="4YZ-Sh-SZc" secondAttribute="width" id="l8k-OQ-5Td"/>
                             <constraint firstAttribute="trailing" secondItem="AUH-LN-uJC" secondAttribute="trailing" constant="8" id="rFN-Fj-J6p"/>

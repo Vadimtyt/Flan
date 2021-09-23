@@ -98,6 +98,7 @@ class ListCell: UITableViewCell {
         }
         
         nameLabel.text = item.name
+        nameLabel.adjustsFontSizeToFitWidth = true
         priceLabel.text = "\(item.prices[item.selectedMeasurment])₽/\(item.measurements[item.selectedMeasurment])"
         countItemLabel.text = "\(item.count)"
     }
