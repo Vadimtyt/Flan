@@ -92,8 +92,13 @@ class MenuCell: UITableViewCell {
         backgoundSubwiew.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         backgoundSubwiew.applyShadow()
         backgoundSubwiew.layer.shadowOpacity = 0.3
-        layer.shadowOffset = CGSize(width: 2, height: 2)
+        backgoundSubwiew.layer.shadowOffset = CGSize(width: 2, height: 2)
         
+        containerImageView.layer.shadowPath = UIBezierPath(roundedRect: containerImageView.bounds,
+                                                           byRoundingCorners: [.bottomRight, .topRight],
+                                                           cornerRadii: CGSize(width: 20, height: 20)).cgPath
+        containerImageView.layer.shouldRasterize = true
+        containerImageView.layer.rasterizationScale = UIScreen.main.scale
         imageItemView.layer.cornerRadius = 20
         imageItemView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
 
