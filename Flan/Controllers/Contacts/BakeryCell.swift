@@ -18,6 +18,8 @@ class BakeryCell: UITableViewCell {
     
     // MARK: - Props
     
+    private var bakery: Bakery = Bakery()
+    
     static let reuseId = "BakeryCell"
     weak var bakeryCellDelegate: BakeryCellDelegate?
     
@@ -57,10 +59,13 @@ class BakeryCell: UITableViewCell {
 
     func configureCell(with bakery: Bakery, and tag: Int) {
         selectionStyle = .none
+        self.bakery = bakery
         
         nameLabel.text = bakery.name
         workTimeLabel.text = bakery.workTime
         addressLabel.text = bakery.address
+        
+        nameLabel.adjustsFontSizeToFitWidth = true
         
         self.tag = tag
     }

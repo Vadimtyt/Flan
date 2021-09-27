@@ -73,9 +73,8 @@ class MenuCell: UITableViewCell {
     }
     
     private func setupViews() {
-        
+        nameLabel.adjustsFontSizeToFitWidth = true
         if UIScreen.main.bounds.width <= 320 {
-            nameLabel.adjustsFontSizeToFitWidth = true
             priceLabelWidth.constant = 82
         }
         countItemLabel.layer.borderColor = UIColor.yellow.cgColor

@@ -24,4 +24,11 @@ class Bakery: Decodable {
         self.phone = phone
         self.workTime = workTime
     }
+
+    init() {
+        self.name = "Название"
+        self.address = "Адрес"
+        self.phone = "Телефон"
+        self.workTime = "Часы работы"
+    }
 }
