@@ -29,6 +29,7 @@ class MenuHeaderCell: UITableViewCell {
         labelBackgroundView.applyShadow()
         
         nameLabel.text = header
+        nameLabel.adjustsFontSizeToFitWidth = true
         nameLabel.backgroundColor = labelBackgroundView.backgroundColor
         self.backgroundView?.alpha = 0.0
     }

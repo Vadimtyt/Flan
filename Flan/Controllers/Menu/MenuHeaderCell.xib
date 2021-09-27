@@ -41,6 +41,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Qna-Dp-H91" secondAttribute="bottom" constant="4" id="5h1-1N-PPT"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qna-Dp-H91" secondAttribute="trailing" constant="20" id="Md1-eC-Lri"/>
                     <constraint firstItem="Qna-Dp-H91" firstAttribute="top" secondItem="4SJ-dn-1tj" secondAttribute="top" constant="4" id="cih-sj-cM6"/>
                     <constraint firstItem="Qna-Dp-H91" firstAttribute="leading" secondItem="4SJ-dn-1tj" secondAttribute="leading" constant="20" id="jxa-ZO-ZVz"/>
                 </constraints>

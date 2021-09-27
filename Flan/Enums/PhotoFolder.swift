@@ -8,6 +8,6 @@
 import Foundation
 
 enum PhotoFolder: String {
-    case item = "Items Photo"
-    case cake = "Cakes Photo"
+    case forItems = "Items Photo"
+    case forCakes = "Cakes Photo"
 }

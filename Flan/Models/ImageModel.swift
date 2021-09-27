@@ -27,7 +27,7 @@ class ImageModel {
         self.detailImage = imageModel.detailImage
     }
     
-    func prepareImage(size: CGSize, type: PhotoType, imageName: String, completion: @escaping (UIImage) -> ()) {
+    func prepareImage(size: CGSize, type: PhotoType, folder: PhotoFolder, imageName: String, completion: @escaping (UIImage) -> ()) {
         guard imageName != ""  else { completion(ImageModel.standartImage); return }
         
         if type == .cellPhoto && cellImage != ImageModel.standartImage {
@@ -52,7 +52,7 @@ class ImageModel {
                 completion(assetsImage)
             }
         } else {
-            NetworkManager.fetchImage(PhotoFolder.item, imageName) { image in
+            NetworkManager.fetchImage(folder, imageName) { image in
                 if image == ImageModel.standartImage {
                     self.cellImage = image
                     self.detailImage = image

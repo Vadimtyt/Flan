@@ -157,6 +157,7 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
             cell.contentConfiguration = content
         } else {
             cell.textLabel?.text = categories[indexPath.row].category
+            cell.textLabel?.adjustsFontSizeToFitWidth = true
         }
  
         return cell
