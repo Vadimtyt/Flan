@@ -50,6 +50,10 @@ class ListVC: UIViewController {
         listTableView.register(UINib(nibName: reuseCellID, bundle: nil), forCellReuseIdentifier: ListCell.reuseId)
         listTableView.register(UINib(nibName: reuseHeaderID, bundle: nil), forCellReuseIdentifier: ListHeaderCell.reuseId)
         listTableView.register(UINib(nibName: reuseFooterID, bundle: nil), forCellReuseIdentifier: ListFooterCell.reuseId)
+        
+        if #available(iOS 15.0, *) {
+            listTableView.sectionHeaderTopPadding = 0
+        }
     }
     
     private func getTotalSum() -> Int {

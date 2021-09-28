@@ -56,6 +56,10 @@ class MenuVC: UITableViewController {
         
         tableView.backgroundColor = .groupTableViewBackground
         tableView.separatorStyle = .none
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
     
     private func configureSearchController() {
