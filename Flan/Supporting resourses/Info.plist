@@ -5,7 +5,7 @@
 	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>&quot;ru&quot;</string>
+	<string>"ru"</string>
 	<key>CFBundleDisplayName</key>
 	<string>Флан</string>
 	<key>CFBundleExecutable</key>
