@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -275,7 +275,7 @@
                         <outlet property="downloadIndicator" destination="RIQ-I1-IN4" id="tDb-wN-RGL"/>
                         <outlet property="favoriteButton" destination="lQp-Hz-M73" id="nKQ-u4-Cif"/>
                         <outlet property="imageAndNameShadowView" destination="7X5-Qu-83m" id="kxb-2l-EFq"/>
-                        <outlet property="itemImage" destination="MKe-uL-GAh" id="L0w-G7-feP"/>
+                        <outlet property="itemImageView" destination="MKe-uL-GAh" id="L0w-G7-feP"/>
                         <outlet property="measurmentLabel" destination="gVF-k4-0ln" id="pPB-rW-vQ8"/>
                         <outlet property="nameLabel" destination="XVC-XG-z45" id="WDi-Tn-bjK"/>
                         <outlet property="nameView" destination="gBx-VE-86S" id="zUx-16-3ue"/>

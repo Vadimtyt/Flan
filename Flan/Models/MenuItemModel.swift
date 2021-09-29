@@ -19,12 +19,12 @@ class MenuItem: MenuItemJSON {
     // MARK: - Initializations
     init(menuItemJSON: MenuItemJSON) {
 
-        var prices: [Int] = []
+        var prices = [Int]()
         if menuItemJSON.prices.count == 0 {
             prices = [0]
         } else { prices = menuItemJSON.prices }
         
-        var measurements: [String] = []
+        var measurements = [String]()
         if menuItemJSON.measurements.count == 0 {
             measurements = [""]
         } else { measurements = menuItemJSON.measurements }

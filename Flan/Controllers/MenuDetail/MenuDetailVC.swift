@@ -16,13 +16,23 @@ class MenuDetailVC: UIViewController {
     // MARK: - Props
     
     var item = MenuItem()
+    private var itemImage: UIImage? {
+        get {
+            return itemImageView.image
+        }
+        
+        set {
+            setItemImage(with: newValue)
+        }
+    }
+    
     var indexPath: IndexPath?
     weak var updateCellDelegate: UpdatingMenuDetailVCDelegate?
     
     // MARK: - @IBOutlets
     
     @IBOutlet private weak var favoriteButton: UIButton!
-    @IBOutlet private weak var itemImage: UIImageView!
+    @IBOutlet private weak var itemImageView: UIImageView!
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var nameLabel: UILabel!
@@ -118,7 +128,7 @@ class MenuDetailVC: UIViewController {
         }
         
         slideIndicatorView.layer.cornerRadius = 2
-        itemImage.roundCorners([.topLeft, .topRight], radius: 24)
+        itemImageView.roundCorners([.topLeft, .topRight], radius: 24)
         nameView.roundCorners([.bottomLeft, .bottomRight], radius: 24)
         imageAndNameShadowView.layer.cornerRadius = 24
         imageAndNameShadowView.applyShadow()
@@ -186,31 +196,39 @@ class MenuDetailVC: UIViewController {
     private func setPhoto() {
         downloadIndicator.isHidden = true
         var isSetPhoto = false
-        itemImage.image = nil
+        itemImage = nil
         
         let settingImageName = item.imageName
-        let imageSize = CGSize(width: itemImage.bounds.width, height: itemImage.bounds.height)
+        let imageSize = CGSize(width: itemImageView.bounds.width, height: itemImageView.bounds.height)
         item.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image, isNeedAnimation in
             DispatchQueue.main.async {
                 guard settingImageName == (self.item.imageName) && !isSetPhoto else { return }
-                self.itemImage.image = image
+                self.itemImage = image
                 isSetPhoto = true
-                self.itemImage.alpha = 0
+                
+                guard isNeedAnimation else { return }
+                self.itemImageView.alpha = 0
                 UIView.animate(withDuration: 0.2) {
-                    self.itemImage.alpha = 1
+                    self.itemImageView.alpha = 1
                 }
-
-                self.downloadIndicator.stopAnimating()
-                self.downloadIndicator.isHidden = true
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             if !isSetPhoto {
                 self?.downloadIndicator.isHidden = false
                 self?.downloadIndicator.startAnimating()
+            } else {
+                self?.downloadIndicator.stopAnimating()
+                self?.downloadIndicator.isHidden = true
             }
         }
+    }
+    
+    private func setItemImage(with newImage: UIImage?) {
+        downloadIndicator.stopAnimating()
+        downloadIndicator.isHidden = true
+        itemImageView.image = newImage
     }
     
     // MARK: - @IBAction

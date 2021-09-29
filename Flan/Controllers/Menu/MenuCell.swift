@@ -21,12 +21,21 @@ class MenuCell: UITableViewCell {
     weak var updateCellDelegate: UpdatingMenuCellDelegate?
     
     static let reuseId = "MenuCell"
-    private var item: MenuItem = MenuItem()
+    private var item = MenuItem()
+    private var itemImage: UIImage? {
+        get {
+            return itemImageView.image
+        }
+        
+        set {
+            setItemImage(with: newValue)
+        }
+    }
     
     // MARK: - @IBOutlets
     @IBOutlet private weak var backgoundSubwiew: UIView!
     @IBOutlet private weak var containerImageView: UIView!
-    @IBOutlet private weak var imageItemView: UIImageView!
+    @IBOutlet private weak var itemImageView: UIImageView!
     @IBOutlet private weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
@@ -98,8 +107,8 @@ class MenuCell: UITableViewCell {
                                                            cornerRadii: CGSize(width: 20, height: 20)).cgPath
         containerImageView.layer.shouldRasterize = true
         containerImageView.layer.rasterizationScale = UIScreen.main.scale
-        imageItemView.layer.cornerRadius = 20
-        imageItemView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        itemImageView.layer.cornerRadius = 20
+        itemImageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
 
         removeButton.layer.cornerRadius = 16
         addButton.layer.cornerRadius = 16
@@ -134,7 +143,7 @@ class MenuCell: UITableViewCell {
     private func setPhoto() {
         downloadIndicator.isHidden = true
         var isSetPhoto = false
-        imageItemView.image = nil
+        itemImage = nil
         
         let settingImageName = item.imageName
         
@@ -142,25 +151,14 @@ class MenuCell: UITableViewCell {
         item.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image, isNeedAnimation  in
             DispatchQueue.main.async {
                 guard settingImageName == (self.item.imageName) && !isSetPhoto else { return }
-                self.imageItemView.image = image
+                self.itemImage = image
                 isSetPhoto = true
                 
-                if isNeedAnimation {
-                    self.imageItemView.alpha = 0
-                    UIView.animate(withDuration: 0.2) {
-                        self.imageItemView.alpha = 1
-                    }
+                guard isNeedAnimation else { return }
+                self.itemImageView.alpha = 0
+                UIView.animate(withDuration: 0.2) {
+                    self.itemImageView.alpha = 1
                 }
-                if image != ImageModel.standartImage {
-                    self.containerImageView.applyShadow()
-                    self.containerImageView.layer.shadowOpacity = 0.8
-                    self.containerImageView.layer.shadowOffset = CGSize(width: 2, height: 0)
-                    self.containerImageView.layer.cornerRadius = self.imageItemView.layer.cornerRadius
-                    self.containerImageView.layer.maskedCorners = self.imageItemView.layer.maskedCorners
-                }
-
-                self.downloadIndicator.stopAnimating()
-                self.downloadIndicator.isHidden = true
             }
         }
         
@@ -177,12 +175,25 @@ class MenuCell: UITableViewCell {
     
     private func getImageSize() -> CGSize {
         let imageAspectRatio = CGFloat(0.75)
-        var imageSize = CGSize(width: imageItemView.bounds.height / imageAspectRatio, height: imageItemView.bounds.height)
+        var imageSize = CGSize(width: itemImageView.bounds.height / imageAspectRatio, height: itemImageView.bounds.height)
         
         let scale = UIScreen.main.nativeScale
         imageSize = CGSize(width: imageSize.width * scale, height: imageSize.height * scale)
         
         return imageSize
+    }
+    
+    private func setItemImage(with newImage: UIImage?) {
+        downloadIndicator.stopAnimating()
+        downloadIndicator.isHidden = true
+        itemImageView.image = newImage
+        
+        guard itemImage != nil && itemImage != ImageModel.standartImage else { return }
+        containerImageView.applyShadow()
+        containerImageView.layer.shadowOpacity = 0.8
+        containerImageView.layer.shadowOffset = CGSize(width: 2, height: 0)
+        containerImageView.layer.cornerRadius = itemImageView.layer.cornerRadius
+        containerImageView.layer.maskedCorners = itemImageView.layer.maskedCorners
     }
     
     private func updatePriceLabels() {
@@ -209,7 +220,7 @@ class MenuCell: UITableViewCell {
     }
     
     private func resetAll() {
-        imageItemView.image = nil
+        itemImage = nil
         nameLabel.text = nil
         descriptionLabel.text = nil
         favoriteButton.imageView?.image = nil

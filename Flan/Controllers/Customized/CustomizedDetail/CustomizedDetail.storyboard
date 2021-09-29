@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ISY-UO-iD6">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ISY-UO-iD6">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -85,8 +83,8 @@
                     </view>
                     <size key="freeformSize" width="414" height="530"/>
                     <connections>
-                        <outlet property="cakeImage" destination="PJl-sV-gKg" id="n3P-NW-6ht"/>
                         <outlet property="cakeImageContainerView" destination="0cf-7D-kAF" id="gkm-nk-Yj2"/>
+                        <outlet property="cakeImageView" destination="PJl-sV-gKg" id="n3P-NW-6ht"/>
                         <outlet property="cakeNumberLabel" destination="O2o-qh-l2W" id="ycw-5e-CyG"/>
                         <outlet property="downloadIndicator" destination="Gi7-my-NgO" id="FyX-Gd-BYN"/>
                         <outlet property="topView" destination="Mmd-VU-eU5" id="fPH-BV-baF"/>

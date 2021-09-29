@@ -363,7 +363,8 @@ extension ListVC: UpdatingListCellDelegate {
              }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+        updateTotalSumLabel()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
             self?.listTableView.reloadData()
         }
     }

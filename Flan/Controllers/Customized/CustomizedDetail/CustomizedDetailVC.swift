@@ -14,6 +14,15 @@ class CustomizedDetailVC: UIViewController {
     // MARK: - Props
     
     var cake: Cake = Cake()
+    private var cakeImage: UIImage? {
+        get {
+            return cakeImageView.image
+        }
+        
+        set {
+            setCakeImage(with: newValue)
+        }
+    }
     
     private var hasSetPointOrigin = false
     private var pointOrigin: CGPoint?
@@ -21,7 +30,7 @@ class CustomizedDetailVC: UIViewController {
     // MARK: - @IBOutlets
     
     @IBOutlet weak var cakeImageContainerView: UIView!
-    @IBOutlet weak var cakeImage: UIImageView!
+    @IBOutlet weak var cakeImageView: UIImageView!
     @IBOutlet weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet weak var cakeNumberLabel: UILabel!
     
@@ -49,31 +58,39 @@ class CustomizedDetailVC: UIViewController {
     private func setPhoto() {
         downloadIndicator.isHidden = true
         var isSetPhoto = false
-        cakeImage.image = nil
+        cakeImage = nil
         
         let settingImageName = cake.imageName
-        let imageSize = CGSize(width: cakeImage.bounds.width, height: cakeImage.bounds.height)
+        let imageSize = CGSize(width: cakeImageView.bounds.width, height: cakeImageView.bounds.height)
         cake.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image, isNeedAnimation  in
             DispatchQueue.main.async {
                 guard settingImageName == (self.cake.imageName) && !isSetPhoto else { return }
-                self.cakeImage.image = image
+                self.cakeImage = image
                 isSetPhoto = true
-                self.cakeImage.alpha = 0
+                
+                guard isNeedAnimation else { return }
+                self.cakeImageView.alpha = 0
                 UIView.animate(withDuration: 0.2) {
-                    self.cakeImage.alpha = 1
+                    self.cakeImageView.alpha = 1
                 }
-
-                self.downloadIndicator.stopAnimating()
-                self.downloadIndicator.isHidden = true
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             if !isSetPhoto {
                 self?.downloadIndicator.isHidden = false
                 self?.downloadIndicator.startAnimating()
+            } else {
+                self?.downloadIndicator.stopAnimating()
+                self?.downloadIndicator.isHidden = true
             }
         }
+    }
+    
+    private func setCakeImage(with newImage: UIImage?) {
+        downloadIndicator.stopAnimating()
+        downloadIndicator.isHidden = true
+        cakeImageView.image = newImage
     }
     
     // MARK: - @objc funcs
@@ -101,13 +118,13 @@ class CustomizedDetailVC: UIViewController {
     // MARK: - Funcs
     
     private func setupElements() {
-        cakeImage.contentMode = .scaleAspectFill
+        cakeImageView.contentMode = .scaleAspectFill
         cakeNumberLabel.text = "#\(cake.number)"
         
         topView.layer.cornerRadius = 3
-        cakeImage.layer.cornerRadius = 20
+        cakeImageView.layer.cornerRadius = 20
         
-        cakeImageContainerView.layer.cornerRadius = cakeImage.layer.cornerRadius
+        cakeImageContainerView.layer.cornerRadius = cakeImageView.layer.cornerRadius
         cakeImageContainerView.applyShadow()
         cakeImageContainerView.layer.shadowRadius = 6
         cakeImageContainerView.layer.shadowOpacity = 1

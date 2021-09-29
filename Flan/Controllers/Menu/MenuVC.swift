@@ -19,7 +19,7 @@ class MenuVC: UITableViewController {
     private var items: [MenuItem] { DataManager.shared.getItems() }
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private var filtredItems: [MenuItem] = []
+    private var filtredItems = [MenuItem]()
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
         return text.isEmpty
@@ -234,7 +234,7 @@ extension MenuVC: UISearchResultsUpdating {
         //filtredItems = items.filter{ $0.name.lowercased().hasPrefix(searchText.lowercased()) }
         
         filtredItems = items.filter{
-            var isFits: [Bool] = []
+            var isFits = [Bool]()
             let itemWords = $0.name.lowercased().components(separatedBy: [" ", ".", ",", "(", ")", "-"])
             let searchingWords = searchText.lowercased().components(separatedBy: [" ", ".", ",", "(", ")", "-"])
             
@@ -250,7 +250,7 @@ extension MenuVC: UISearchResultsUpdating {
         }
         
         if searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            filtredItems = []
+            filtredItems.removeAll()
         }
         
         tableView.reloadData()
