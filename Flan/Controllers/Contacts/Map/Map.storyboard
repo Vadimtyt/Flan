@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MapVC-->
+        <scene sceneID="adq-0A-JSL">
+            <objects>
+                <viewController storyboardIdentifier="mapVC" id="kFa-Qo-8ns" customClass="MapVC" customModule="Flan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qU2-0A-WvV">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fRO-8h-EFn">
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U45-oG-a0g" userLabel="Close">
+                                <rect key="frame" x="364" y="76" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1S5-rh-LNc"/>
+                                    <constraint firstAttribute="width" constant="40" id="tvy-uC-t9o"/>
+                                </constraints>
+                                <state key="normal">
+                                    <imageReference key="image" image="xmark" symbolScale="large" renderingMode="original"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeVC:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="Z4B-BN-Gx9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sh-LC-UAj" userLabel="Start route">
+                                <rect key="frame" x="194" y="785" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="PyI-01-o7B"/>
+                                    <constraint firstAttribute="width" constant="40" id="hle-N7-5tn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <imageReference key="image" image="chevron.right" symbolScale="large" renderingMode="original"/>
+                                </state>
+                                <connections>
+                                    <action selector="startRouteButtonPressed:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="nxV-8m-PgR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgQ-z3-0MS" userLabel="My position">
+                                <rect key="frame" x="358" y="786" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="BWV-jF-Jd9"/>
+                                    <constraint firstAttribute="height" constant="40" id="gIk-Xb-jQN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.0" green="0.31014114749999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <imageReference key="image" image="location.fill" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="myPositionButtonPressed:" destination="kFa-Qo-8ns" eventType="touchUpInside" id="7d6-Pq-41X"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ceh-6m-y0O" userLabel="Distance And Time View">
+                                <rect key="frame" x="123.33333333333333" y="687" width="181.33333333333337" height="58"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Расстояние и время" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygk-ED-9zH" userLabel="Distance">
+                                        <rect key="frame" x="8.0000000000000142" y="4" width="165.33333333333337" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="a7l-k4-R4v"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstItem="ygk-ED-9zH" firstAttribute="leading" secondItem="Ceh-6m-y0O" secondAttribute="leading" constant="8" id="2Kh-vV-i2H"/>
+                                    <constraint firstItem="ygk-ED-9zH" firstAttribute="top" secondItem="Ceh-6m-y0O" secondAttribute="top" constant="4" id="b1O-Ud-d3d"/>
+                                    <constraint firstAttribute="height" secondItem="ygk-ED-9zH" secondAttribute="height" constant="8" id="cro-UD-HsB"/>
+                                    <constraint firstAttribute="bottom" secondItem="ygk-ED-9zH" secondAttribute="bottom" constant="4" id="edB-FX-kWW"/>
+                                    <constraint firstAttribute="trailing" secondItem="ygk-ED-9zH" secondAttribute="trailing" constant="8" id="uMG-4J-xAo"/>
+                                    <constraint firstAttribute="width" secondItem="ygk-ED-9zH" secondAttribute="width" constant="16" id="waM-bJ-wBN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6n8-cs-dZl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ceh-6m-y0O" firstAttribute="centerX" secondItem="6n8-cs-dZl" secondAttribute="centerX" id="A1u-Zk-hON"/>
+                            <constraint firstItem="7sh-LC-UAj" firstAttribute="top" secondItem="Ceh-6m-y0O" secondAttribute="bottom" constant="40" id="CEH-5y-CAu"/>
+                            <constraint firstAttribute="trailing" secondItem="fRO-8h-EFn" secondAttribute="trailing" id="PhV-Yh-1Ro"/>
+                            <constraint firstItem="U45-oG-a0g" firstAttribute="top" secondItem="6n8-cs-dZl" secondAttribute="top" constant="32" id="QYb-pw-PFU"/>
+                            <constraint firstAttribute="bottom" secondItem="fRO-8h-EFn" secondAttribute="bottom" id="R2O-1z-RdK"/>
+                            <constraint firstItem="fRO-8h-EFn" firstAttribute="leading" secondItem="qU2-0A-WvV" secondAttribute="leading" id="Xsf-tv-ndN"/>
+                            <constraint firstItem="6n8-cs-dZl" firstAttribute="bottom" secondItem="7sh-LC-UAj" secondAttribute="bottom" constant="67" id="bfw-qa-H3g"/>
+                            <constraint firstItem="6n8-cs-dZl" firstAttribute="trailing" secondItem="EgQ-z3-0MS" secondAttribute="trailing" constant="30" id="chZ-et-5Nj"/>
+                            <constraint firstItem="6n8-cs-dZl" firstAttribute="bottom" secondItem="EgQ-z3-0MS" secondAttribute="bottom" constant="66" id="hOA-Di-IaT"/>
+                            <constraint firstItem="7sh-LC-UAj" firstAttribute="centerX" secondItem="fRO-8h-EFn" secondAttribute="centerX" id="iWU-zw-rwD"/>
+                            <constraint firstItem="fRO-8h-EFn" firstAttribute="top" secondItem="qU2-0A-WvV" secondAttribute="top" id="wb1-FQ-se3"/>
+                            <constraint firstItem="6n8-cs-dZl" firstAttribute="trailing" secondItem="U45-oG-a0g" secondAttribute="trailing" constant="24" id="xPY-EB-sNi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="distanceAndTimeLabel" destination="ygk-ED-9zH" id="3yg-hW-uPl"/>
+                        <outlet property="distanceAndTimeView" destination="Ceh-6m-y0O" id="OsR-di-3ek"/>
+                        <outlet property="mapView" destination="fRO-8h-EFn" id="jmB-Xj-EOw"/>
+                        <outlet property="startRouteButton" destination="7sh-LC-UAj" id="U2H-2u-Cog"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qOp-Nz-Uhw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2523.3644859813085" y="1298.4881209503242"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chevron.right" width="9.5" height="17"/>
+        <image name="location.fill" width="18.5" height="18.5"/>
+        <image name="xmark" width="15.5" height="15.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

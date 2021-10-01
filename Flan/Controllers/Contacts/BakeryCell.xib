@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BakeryCell" id="kwe-tE-TCk" customClass="BakeryCell" customModule="Flan" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="132"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kwe-tE-TCk" id="PTp-xG-eGU">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="132"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYb-JP-lxO" userLabel="Main View">
+                        <rect key="frame" x="12" y="8" width="390" height="116"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Флан на Лермонтова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vg-1d-jxw" userLabel="Name Label">
+                                <rect key="frame" x="12" y="16" width="322" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:00-23:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLA-EC-gLQ" userLabel="Work Time Label">
+                                <rect key="frame" x="20" y="48" width="310" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ул. Лермонтова, 216Г" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKG-8c-7pS" userLabel="Address Label">
+                                <rect key="frame" x="20" y="78" width="310" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuC-1z-8SO" userLabel="Phone Button">
+                                <rect key="frame" x="338" y="12" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bSI-b8-jwf"/>
+                                    <constraint firstAttribute="width" constant="40" id="jPN-XG-rSv"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="linkColor"/>
+                                <state key="normal" image="phone"/>
+                                <connections>
+                                    <action selector="phoneButtonPressed:" destination="kwe-tE-TCk" eventType="touchUpInside" id="DIm-ds-dQ8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPv-sq-6gh" userLabel="Map Button">
+                                <rect key="frame" x="338" y="64" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.95165318249999997" green="0.6624903083" blue="0.083994559940000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="FNT-rt-4CD"/>
+                                    <constraint firstAttribute="width" constant="40" id="Gmj-UQ-ggY"/>
+                                </constraints>
+                                <state key="normal" image="map"/>
+                                <connections>
+                                    <action selector="mapButtonPressed:" destination="kwe-tE-TCk" eventType="touchUpInside" id="sYN-M5-Qbd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="jPv-sq-6gh" firstAttribute="leading" secondItem="DKG-8c-7pS" secondAttribute="trailing" constant="8" id="5O3-mH-Gis"/>
+                            <constraint firstItem="DKG-8c-7pS" firstAttribute="leading" secondItem="SYb-JP-lxO" secondAttribute="leading" constant="20" id="BdU-4b-cpW"/>
+                            <constraint firstItem="LuC-1z-8SO" firstAttribute="leading" secondItem="1vg-1d-jxw" secondAttribute="trailing" constant="4" id="GeW-RB-Iwb"/>
+                            <constraint firstAttribute="trailing" secondItem="jPv-sq-6gh" secondAttribute="trailing" constant="12" id="J7e-6r-lv8"/>
+                            <constraint firstAttribute="bottom" secondItem="jPv-sq-6gh" secondAttribute="bottom" constant="12" id="MvE-tX-Cn1"/>
+                            <constraint firstItem="LuC-1z-8SO" firstAttribute="top" secondItem="SYb-JP-lxO" secondAttribute="top" constant="12" id="P7T-3U-ITS"/>
+                            <constraint firstItem="LuC-1z-8SO" firstAttribute="leading" secondItem="oLA-EC-gLQ" secondAttribute="trailing" constant="8" id="W4G-im-hzy"/>
+                            <constraint firstAttribute="trailing" secondItem="LuC-1z-8SO" secondAttribute="trailing" constant="12" id="WRa-Hk-Nga"/>
+                            <constraint firstItem="oLA-EC-gLQ" firstAttribute="top" secondItem="1vg-1d-jxw" secondAttribute="bottom" constant="8" id="g46-OL-A44"/>
+                            <constraint firstItem="1vg-1d-jxw" firstAttribute="top" secondItem="SYb-JP-lxO" secondAttribute="top" constant="16" id="ilo-6N-A8U"/>
+                            <constraint firstAttribute="bottom" secondItem="DKG-8c-7pS" secondAttribute="bottom" constant="16" id="k8b-oL-DP7"/>
+                            <constraint firstItem="oLA-EC-gLQ" firstAttribute="leading" secondItem="SYb-JP-lxO" secondAttribute="leading" constant="20" id="rdD-fr-mP7"/>
+                            <constraint firstItem="1vg-1d-jxw" firstAttribute="leading" secondItem="SYb-JP-lxO" secondAttribute="leading" constant="12" id="zCE-K7-Rey"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="SYb-JP-lxO" firstAttribute="top" secondItem="PTp-xG-eGU" secondAttribute="top" constant="8" id="1rh-vk-TD2"/>
+                    <constraint firstItem="SYb-JP-lxO" firstAttribute="leading" secondItem="PTp-xG-eGU" secondAttribute="leading" constant="12" id="QQp-2J-zqE"/>
+                    <constraint firstAttribute="bottom" secondItem="SYb-JP-lxO" secondAttribute="bottom" constant="8" id="Usn-Fd-hKb"/>
+                    <constraint firstAttribute="trailing" secondItem="SYb-JP-lxO" secondAttribute="trailing" constant="12" id="wcK-g6-YSP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration" identifier="BakeryCell"/>
+            <connections>
+                <outlet property="addressLabel" destination="DKG-8c-7pS" id="Zpo-VI-gIZ"/>
+                <outlet property="mainView" destination="SYb-JP-lxO" id="LiH-dF-rXy"/>
+                <outlet property="mapButton" destination="jPv-sq-6gh" id="SWn-GS-pNV"/>
+                <outlet property="nameLabel" destination="1vg-1d-jxw" id="lb6-76-9DY"/>
+                <outlet property="phoneButton" destination="LuC-1z-8SO" id="tfx-bK-DEx"/>
+                <outlet property="workTimeLabel" destination="oLA-EC-gLQ" id="NaS-RU-adt"/>
+            </connections>
+            <point key="canvasLocation" x="-852.17391304347836" y="-358.25892857142856"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="map" width="20.3125" height="19.267599105834961"/>
+        <image name="phone" width="19.101600646972656" height="19.150400161743164"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

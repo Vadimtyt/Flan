@@ -6,101 +6,293 @@
 //
 
 import UIKit
+import Network
 
-private let reuseIdentifier = "MenuCell"
+private let reuseHeaderID = "MenuHeaderCell"
+private let reuseCellID = "MenuCell"
 
 class MenuVC: UITableViewController {
     
-    let names: Set = ["Пирожок", "Слойка", "Пицца", "Торт", "Коктейль", "Киш", "Кекс"]
-
-    var list: ListOfMenuItems = ListOfMenuItems.shared
+    // MARK: - Props
     
-    weak var delegate: UITabBarControllerDelegate?
+    private var categories: [(category: String, items: [MenuItem])] { DataManager.shared.getCategories() }
+    private var items: [MenuItem] { DataManager.shared.getItems() }
+    
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var filtredItems = [MenuItem]()
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    private var isFiltering: Bool { searchController.isActive && !searchBarIsEmpty }
+    private var isKeyboardPresented = false
+    
+    private var isFirstAppearance = true
 
+    // MARK: - Initialization
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
-        list.items = generateList(count: Int.random(in: 5...20))
+        configureTableView()
+        configureSearchController()
+        configureNavigationBarLargeStyle()
+        configureScrollView()
+        
+        self.definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        if !isFirstAppearance {
+            tableView.reloadData()
+        } else { isFirstAppearance = false }
+        updateListVCBadge()
+    }
+    
+    // MARK: - Funcs
+    
+    private func configureTableView() {
+        tableView.register(UINib(nibName: reuseHeaderID, bundle: nil), forCellReuseIdentifier: MenuHeaderCell.reuseId)
+        tableView.register(UINib(nibName: reuseCellID, bundle: nil), forCellReuseIdentifier: MenuCell.reuseId)
+        
+        tableView.backgroundColor = .groupTableViewBackground
+        tableView.separatorStyle = .none
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+    }
+    
+    private func configureSearchController() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification,
+                                               object:nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification,
+                                               object:nil)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MenuVC.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = Labels.MenuVC.searchPlaceholder
+        navigationItem.searchController = searchController
+        definesPresentationContext = false
+    }
+    
+    private func configureScrollView() {
+        let scrollView = self.tableView as UIScrollView
+        scrollView.keyboardDismissMode = .interactive
+    }
+    
+    private func updateBackgound() {
+        if !isFiltering && items.isEmpty {
+            tableView.setEmptyView(title: Labels.MenuVC.emptyViewTitle,
+                                   message: Labels.MenuVC.emptyViewMessage,
+                                   messageImage: UIImage(named: "cloudError.png")!)
+            tableView.isScrollEnabled = false
+        } else if isFiltering && filtredItems.isEmpty {
+            tableView.setEmptyView(title: Labels.MenuVC.emptyFilteringViewTitle,
+                                   message: Labels.MenuVC.emptyFilteringViewMessage,
+                                   messageImage: nil)
+        } else {
+            tableView.restore()
+            tableView.isScrollEnabled = true
+        }
+    }
+    
+    // MARK: - @objc funcs
+    
+    @objc private func keyboardDidShow(notification: NSNotification) {
+        isKeyboardPresented = true
     }
 
-    // MARK: - Table view data source
+
+    @objc private func keyboardDidHide(notification: NSNotification) {
+        isKeyboardPresented = false
+    }
+    
+    @objc private func dismissKeyboard() {
+        self.searchController.searchBar.endEditing(true)
+    }
+
+    // MARK: - @IBactions
+    
+    @IBAction private func searchButtonPressed(_ sender: UIBarButtonItem) {
+        searchController.isActive = true
+    }
+    
+    @IBAction private func categoriesButtonPressed(_ sender: UIBarButtonItem) {
+        guard !(categories.isEmpty) else { return }
+        
+        let storyboard = UIStoryboard(name: "Categories", bundle: nil)
+        
+        guard let categoriesVC = storyboard.instantiateViewController(withIdentifier: "Categories") as? CategoriesVC else { return }
+        
+        categoriesVC.transitioningDelegate = self
+        categoriesVC.categoriesVCDelegate = self
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            categoriesVC.modalPresentationStyle = .formSheet
+        } else { categoriesVC.modalPresentationStyle = .custom }
+        self.present(categoriesVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - TableViewDelegate, TableViewDelegate
+
+extension MenuVC {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        updateBackgound()
+        if isFiltering {
+            return 1
+        }
+        return categories.count
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseHeaderID) as! MenuHeaderCell
+        cell.configureCell(with: categories[section].category)
+        return cell.contentView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if isFiltering {
+            return 0
+        }
+        return 56
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if isFiltering {
+            return nil
+        }
+        return categories[section].category
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height = CGFloat(142)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            height = 168
+        }
+        return height
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.items.count
+        if isFiltering {
+            return filtredItems.count
+        }
+        return categories[section].items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
-        let item = list.items[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseCellID, for: indexPath) as! MenuCell
+        var item = MenuItem()
+        
+        if isFiltering {
+            item = filtredItems[indexPath.row]
+        } else { item = categories[indexPath.section].items[indexPath.row] }
         
         cell.configureCell(with: item)
-        cell.viewController = self
+        cell.updateCellDelegate = self
  
         return cell
     }
     
-    func generateItem() -> MenuItem {
-        return MenuItem(name: names.randomElement() ?? "Error", price: Int.random(in: 100...500))
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !isKeyboardPresented else { return }
+        TapticFeedback.shared.tapticFeedback(.light)
+        let storyboard = UIStoryboard(name: "MenuDetail", bundle: nil)
+            
+        guard let menuDetailVC = storyboard.instantiateViewController(withIdentifier: "MenuDetail") as? MenuDetailVC else { return }
+        if isFiltering {
+            menuDetailVC.item = self.filtredItems[indexPath.row]
+        } else {
+            menuDetailVC.item = self.categories[indexPath.section].items[indexPath.row]
+        }
+        menuDetailVC.indexPath = indexPath
+        menuDetailVC.updateCellDelegate = self
+
+        self.present(menuDetailVC, animated: true, completion: nil)
     }
     
-    func generateList(count: Int) -> [MenuItem]{
-        var list: [MenuItem] = []
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        //if isKeyboardPresented { dismissKeyboard() }
+//    }
+}
+
+// MARK: - Search results
+extension MenuVC: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    func filterContentForSearchText(_ searchText: String){
+        //Uncomment to change filter strategy
+        //filtredItems = items.filter{ $0.name.lowercased().contains(searchText.lowercased()) }
+        //filtredItems = items.filter{ $0.name.lowercased().hasPrefix(searchText.lowercased()) }
         
-        for _ in 0...count {
-            let newItem = generateItem()
-            list.append(newItem)
+        filtredItems = items.filter{
+            var isFits = [Bool]()
+            let itemWords = $0.name.lowercased().components(separatedBy: [" ", ".", ",", "(", ")", "-"])
+            let searchingWords = searchText.lowercased().components(separatedBy: [" ", ".", ",", "(", ")", "-"])
+            
+            searchingWords.forEach {
+                var isThisSearchWordFits = false
+                for itemWord in itemWords {
+                    if itemWord.hasPrefix($0) { isThisSearchWordFits = true }
+                }
+                isFits.append(isThisSearchWordFits)
+            }
+            
+            return !(isFits.contains(false))
         }
         
-        return list
+        if searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            filtredItems.removeAll()
+        }
+        
+        tableView.reloadData()
+        if !(filtredItems.isEmpty) {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
+    }
+}
+
+extension MenuVC: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        PresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+// MARK: - Updating menu cell delegate
+
+extension MenuVC: UpdatingMenuCellDelegate {
+    
+    func updateListVCBadge() {
+        let badgeValue = DataManager.shared.getValueForListBadge()
+        updateListVCBadge(with: badgeValue)
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func updateFavorites() {
+        DataManager.shared.updateFavorites()
     }
-    */
+}
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+extension MenuVC: UpdatingMenuDetailVCDelegate {
+    func updateCellAt(indexPath: IndexPath?) {
+        if let indexPath = indexPath {
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        } else { tableView.reloadData() }
     }
-    */
+}
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+extension MenuVC: CategoriesVCDelegate{
+    func scrollTableToRow(at indexPath: IndexPath) {
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

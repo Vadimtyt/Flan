@@ -1,5 +1,5 @@
 //
-//  MenuItem.swift
+//  MenuItemModel.swift
 //  Flan
 //
 //  Created by Вадим on 22.03.2021.
@@ -7,31 +7,155 @@
 
 import UIKit
 
-class MenuItem {
-    let name: String
-    let price: Int
-    var image = UIImage(named: "downloading_icon 13.04.59")
-    var count = 0
+class MenuItem: MenuItemJSON {
     
-    init(name: String, price: Int) {
-        self.name = name
-        self.price = price
+    // MARK: - Props
+    
+    let imageModel = ImageModel()
+    var selectedMeasurment = 0
+    var count = 0
+    var isFavorite = false
+    
+    // MARK: - Initializations
+    init(menuItemJSON: MenuItemJSON) {
+
+        var prices = [Int]()
+        if menuItemJSON.prices.count == 0 {
+            prices = [0]
+        } else { prices = menuItemJSON.prices }
+        
+        var measurements = [String]()
+        if menuItemJSON.measurements.count == 0 {
+            measurements = [""]
+        } else { measurements = menuItemJSON.measurements }
+
+        super.init(category: menuItemJSON.category,
+                   name: menuItemJSON.name,
+                   prices: prices,
+                   measurements: measurements,
+                   imageName: menuItemJSON.imageName,
+                   description: menuItemJSON.description)
+    }
+    
+    init() {
+        super.init(category: "category",
+                   name: "name",
+                   prices: [0],
+                   measurements: [""],
+                   imageName: "imageName",
+                   description: "description")
+    }
+    
+    override init(category: String, name: String, prices: [Int], measurements: [String], imageName: String, description: String) {
+        super.init(category: category,
+                   name: name,
+                   prices: prices,
+                   measurements: measurements,
+                   imageName: imageName,
+                   description: description)
+    }
+    
+    override init(menuItem: MenuItem) {
+        super.init(category: menuItem.category,
+                   name: menuItem.name,
+                   prices: menuItem.prices,
+                   measurements: menuItem.measurements,
+                   imageName: menuItem.imageName,
+                   description: menuItem.description)
+        
+        self.imageModel.cellImage = menuItem.imageModel.cellImage
+        self.imageModel.detailImage = menuItem.imageModel.detailImage
+        self.selectedMeasurment = menuItem.selectedMeasurment
+        self.count = menuItem.count
+        self.isFavorite = menuItem.isFavorite
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case category = "category"
+        case name = "name"
+        case prices = "prices"
+        case measurements = "measurements"
+        case imageName = "imageName"
+        case description = "description"
+        case selectedMeasurment = "selectedMeasurment"
+        case count = "count"
+        case isFavorite = "isFavorite"
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(category, forKey: .category)
+        try container.encode(name, forKey: .name)
+        try container.encode(prices, forKey: .prices)
+        try container.encode(measurements, forKey: .measurements)
+        try container.encode(imageName, forKey: .imageName)
+        try container.encode(description, forKey: .description)
+        try container.encode(selectedMeasurment, forKey: .selectedMeasurment)
+        try container.encode(count, forKey: .count)
+        try container.encode(isFavorite, forKey: .isFavorite)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let newCategory = try values.decode(String.self, forKey: .category)
+        let newName = try values.decode(String.self, forKey: .name)
+        let newPrices = try values.decode([Int].self, forKey: .prices)
+        let newMeasurements = try values.decode([String].self, forKey: .measurements)
+        let newImageName = try values.decode(String.self, forKey: .imageName)
+        let newDescription = try values.decode(String.self, forKey: .description)
+        let newSelectedMeasurment = try values.decode(Int.self, forKey: .selectedMeasurment)
+        let newCount = try values.decode(Int.self, forKey: .count)
+        let newIsFavorite = try values.decode(Bool.self, forKey: .isFavorite)
+        
+        super.init(category: newCategory,
+                   name: newName,
+                   prices: newPrices,
+                   measurements: newMeasurements,
+                   imageName: newImageName,
+                   description: newDescription)
+        selectedMeasurment = newSelectedMeasurment
+        count = newCount
+        isFavorite = newIsFavorite
+    }
+    
+    // MARK: - Funcs
+    
+    func setImage(size: CGSize, type: PhotoType, completion: @escaping (UIImage, Bool) -> ()) {
+        let isNeedAnimation = !(self.imageModel.isCellImageSet)
+        imageModel.prepareImage(size: size, type: type, folder: .forItems, imageName: imageName) { [isNeedAnimation] image  in
+            completion(image, isNeedAnimation)
+        }
     }
 }
 
-class ListOfMenuItems {
-    static let shared = ListOfMenuItems()
-    var items: [MenuItem] = []
-    var favorites: [MenuItem] = []
-    var list: [MenuItem] = []
+class MenuItemJSON: Codable {
     
-    func addToList(item: MenuItem) {
-        list.append(item)
+    // MARK: - Props
+    
+    let category: String
+    let name: String
+    var prices: [Int]
+    var measurements: [String]
+    var imageName: String
+    var description: String
+    
+    // MARK: - Initializations
+    
+    init(category: String, name: String, prices: [Int], measurements: [String], imageName: String, description: String) {
+        self.category = category
+        self.name = name
+        self.prices = prices
+        self.measurements = measurements
+        self.imageName = imageName
+        self.description = description
     }
     
-    func removeFromList(item: MenuItem) {
-        if let index = list.firstIndex(where: { $0 === item }) {
-            list.remove(at: index)
-        }
+    init(menuItem: MenuItem) {
+        self.category = menuItem.category
+        self.name = menuItem.name
+        self.prices = menuItem.prices
+        self.measurements = menuItem.measurements
+        self.imageName = menuItem.imageName
+        self.description = menuItem.description
     }
 }
