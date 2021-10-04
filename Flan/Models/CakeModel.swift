@@ -11,19 +11,16 @@ class Cake: CakeJSON {
     
     // MARK: - Props
     
-    let number: Int
     let imageModel = ImageModel()
     
     // MARK: - Initialization
     
-    init(number: Int, imageName: String) {
-        self.number = number
-        super.init(imageName: imageName)
+    override init(name: String, imageName: String) {
+        super.init(name: name, imageName: imageName)
     }
     
     init() {
-        self.number = 0
-        super.init(imageName: "standartImage")
+        super.init(name: "Название", imageName: "standartImage")
     }
     
     required init(from decoder: Decoder) throws {
@@ -48,9 +45,11 @@ class Cake: CakeJSON {
 }
 
 class CakeJSON: Decodable {
+    let name: String
     let imageName: String
     
-    init(imageName: String) {
+    init(name: String, imageName: String) {
+        self.name = name
         self.imageName = imageName
     }
 }

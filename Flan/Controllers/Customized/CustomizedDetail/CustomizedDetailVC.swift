@@ -18,7 +18,6 @@ class CustomizedDetailVC: UIViewController {
         get {
             return cakeImageView.image
         }
-        
         set {
             setCakeImage(with: newValue)
         }
@@ -119,7 +118,7 @@ class CustomizedDetailVC: UIViewController {
     
     private func setupElements() {
         cakeImageView.contentMode = .scaleAspectFill
-        cakeNumberLabel.text = "#\(cake.number)"
+        cakeNumberLabel.text = cake.name
         
         topView.layer.cornerRadius = 3
         cakeImageView.layer.cornerRadius = 20

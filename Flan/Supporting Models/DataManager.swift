@@ -286,7 +286,7 @@ class DataManager {
             var cakesList = [Cake]()
             for index in 0...cakesJSON.count-1 {
                 let cakeJSON = cakesJSON[index]
-                let cake = Cake(number: index + 1, imageName: cakeJSON.imageName)
+                let cake = Cake(name: cakeJSON.name, imageName: cakeJSON.imageName)
                 cakesList.append(cake)
             }
             self?.cakes = cakesList
@@ -302,7 +302,7 @@ class DataManager {
             guard let cakesJSON = cakesFromJSON else { return }
             for index in 0...cakesJSON.count-1 {
                 let cakeJSON = cakesJSON[index]
-                let cake = Cake(number: index + 1, imageName: cakeJSON.imageName)
+                let cake = Cake(name: cakeJSON.name, imageName: cakeJSON.imageName)
                 cakesList.append(cake)
             }
             self.cakes = cakesList
