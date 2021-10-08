@@ -38,14 +38,13 @@ class CustomizedCVC: UICollectionViewController {
         updateBackgound()
     }
     
-    
     // MARK: - Funcs
     
     private func updateBackgound() {
         if cakes.isEmpty {
             collectionView.setEmptyView(title: Labels.CustomizedCVC.emptyViewTitle,
                                         message: Labels.CustomizedCVC.emptyViewMessage,
-                                        messageImage: UIImage(named: "cloudError.png")!)
+                                        messageImage: UIImage(named: "cloudError.png"))
             collectionView.isScrollEnabled = false
         } else {
             collectionView.restore()

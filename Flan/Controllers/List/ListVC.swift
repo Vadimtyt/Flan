@@ -76,7 +76,7 @@ class ListVC: UIViewController {
         if items.isEmpty && completedItems.isEmpty {
             listTableView.setEmptyView(title: Labels.ListVC.emptyViewTitle,
                                        message: Labels.ListVC.emptyViewMessage,
-                                       messageImage: UIImage(named: "emptyList.png")!)
+                                       messageImage: UIImage(named: "emptyList.png"))
         } else { listTableView.restore() }
     }
     

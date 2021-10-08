@@ -157,11 +157,13 @@ class ListCell: UITableViewCell {
         checkmark = !checkmark
         if checkmark {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-                self?.listDelegate?.addToCompleted(item: self!.item)
+                guard let item = self?.item else { return }
+                self?.listDelegate?.addToCompleted(item: item)
             }
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-                self?.listDelegate?.removeFromCompleted(completedItem: self!.item)
+                guard let item = self?.item else { return }
+                self?.listDelegate?.removeFromCompleted(completedItem: item)
             }
         }
     }

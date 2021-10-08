@@ -82,7 +82,8 @@ class BakeryCell: UITableViewCell {
         TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            self?.bakeryCellDelegate?.openMap(with: self!.tag)
+            guard let tag = self?.tag else { return }
+            self?.bakeryCellDelegate?.openMap(with: tag)
         }
     }
 }

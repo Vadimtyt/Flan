@@ -120,9 +120,9 @@ class MenuItem: MenuItemJSON {
     
     // MARK: - Funcs
     
-    func setImage(size: CGSize, type: PhotoType, completion: @escaping (UIImage, Bool) -> ()) {
+    func setImage(type: PhotoType, size: CGSize?, completion: @escaping (UIImage?, Bool) -> ()) {
         let isNeedAnimation = !(self.imageModel.isCellImageSet)
-        imageModel.prepareImage(size: size, type: type, folder: .forItems, imageName: imageName) { [isNeedAnimation] image  in
+        imageModel.loadImage(type: type, folder: .forItems, imageName: imageName, size: size) { [isNeedAnimation] image  in
             completion(image, isNeedAnimation)
         }
     }

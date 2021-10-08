@@ -148,16 +148,18 @@ class MenuCell: UITableViewCell {
         let settingImageName = item.imageName
         
         let imageSize = getImageSize()
-        item.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image, isNeedAnimation  in
+        item.setImage(type: .cellPhoto, size: imageSize) { [settingImageName] image, isNeedAnimation  in
             DispatchQueue.main.async {
                 guard settingImageName == (self.item.imageName) && !isSetPhoto else { return }
                 self.itemImage = image
                 isSetPhoto = true
                 
-                guard isNeedAnimation else { return }
-                self.itemImageView.alpha = 0
-                UIView.animate(withDuration: 0.2) {
-                    self.itemImageView.alpha = 1
+                if #available(iOS 13.0, *) {
+                    guard isNeedAnimation else { return }
+                    self.itemImageView.alpha = 0
+                    UIView.animate(withDuration: 0.2) {
+                        self.itemImageView.alpha = 1
+                    }
                 }
             }
         }

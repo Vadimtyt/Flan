@@ -90,7 +90,7 @@ class MenuVC: UITableViewController {
         if !isFiltering && items.isEmpty {
             tableView.setEmptyView(title: Labels.MenuVC.emptyViewTitle,
                                    message: Labels.MenuVC.emptyViewMessage,
-                                   messageImage: UIImage(named: "cloudError.png")!)
+                                   messageImage: UIImage(named: "cloudError.png"))
             tableView.isScrollEnabled = false
         } else if isFiltering && filtredItems.isEmpty {
             tableView.setEmptyView(title: Labels.MenuVC.emptyFilteringViewTitle,
@@ -225,7 +225,8 @@ extension MenuVC {
 extension MenuVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
+        guard let text = searchController.searchBar.text else { return }
+        filterContentForSearchText(text)
     }
     
     func filterContentForSearchText(_ searchText: String){
@@ -292,7 +293,11 @@ extension MenuVC: CategoriesVCDelegate{
     func scrollTableToRow(at indexPath: IndexPath) {
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            var animated = false
+            if #available(iOS 13.0, *) {
+                animated = true
+            }
+            self?.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
         }
     }
 }
