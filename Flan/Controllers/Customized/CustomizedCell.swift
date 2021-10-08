@@ -43,8 +43,8 @@ class CustomizedCell: UICollectionViewCell {
         cakeImage = nil
         
         let settingImageName = cake.imageName
-        let imageSize = getImageSize()
-        cake.setImage(size: imageSize, type: .cellPhoto) { [settingImageName] image, isNeedAnimation  in
+        //let imageSize = getImageSize()
+        cake.setImage(size: nil) { [settingImageName] image, isNeedAnimation in
             DispatchQueue.main.async {
                 guard settingImageName == (self.cake.imageName) && !isSetPhoto else { return }
                 self.cakeImage = image
@@ -69,16 +69,13 @@ class CustomizedCell: UICollectionViewCell {
         }
     }
     
-    private func getImageSize() -> CGSize {
-        let scale = UIScreen.main.nativeScale
-        let imageSize = CGSize(width: cakeImageView.bounds.width * scale, height: cakeImageView.bounds.height * scale)
-        
-        return imageSize
-    }
-    
     private func setCakeImage(with newImage: UIImage?) {
         downloadIndicator.stopAnimating()
         downloadIndicator.isHidden = true
         cakeImageView.image = newImage
+    }
+    
+    override func prepareForReuse() {
+        cakeImage = nil
     }
 }

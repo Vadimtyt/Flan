@@ -8,7 +8,7 @@
 import UIKit
 
 extension UICollectionView {
-    func setEmptyView(title: String, message: String, messageImage: UIImage) {
+    func setEmptyView(title: String, message: String, messageImage: UIImage?) {
         
         let emptyView = UIView(frame: CGRect(x: self.center.x, y: self.center.y, width: self.bounds.size.width, height: self.bounds.size.height))
         

@@ -199,8 +199,7 @@ class MenuDetailVC: UIViewController {
         itemImage = nil
         
         let settingImageName = item.imageName
-        let imageSize = CGSize(width: itemImageView.bounds.width, height: itemImageView.bounds.height)
-        item.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image, isNeedAnimation in
+        item.setImage(type: .detailPhoto, size: nil) { [settingImageName] image, isNeedAnimation in
             DispatchQueue.main.async {
                 guard settingImageName == (self.item.imageName) && !isSetPhoto else { return }
                 self.itemImage = image

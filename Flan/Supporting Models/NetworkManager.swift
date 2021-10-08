@@ -17,12 +17,12 @@ class NetworkManager {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .useDefaultKeys
-                guard data != nil else {
+                guard let data = data else {
                     print("ERROR for \(path.rawValue). Data = nil")
                     completion(nil, nil)
                     return
                 }
-                let listJSON = try decoder.decode(T.self, from: data!)
+                let listJSON = try decoder.decode(T.self, from: data)
 
                 DispatchQueue.main.async {
                     completion(listJSON, data)
@@ -51,7 +51,7 @@ class NetworkManager {
             }
             
             DispatchQueue.main.async {
-                guard let image = UIImage(data: data!) else { return }
+                guard let data = data, let image = UIImage(data: data) else { return }
                 completion(image)
             }
         }

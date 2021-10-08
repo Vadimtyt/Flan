@@ -18,7 +18,6 @@ class CustomizedDetailVC: UIViewController {
         get {
             return cakeImageView.image
         }
-        
         set {
             setCakeImage(with: newValue)
         }
@@ -61,8 +60,8 @@ class CustomizedDetailVC: UIViewController {
         cakeImage = nil
         
         let settingImageName = cake.imageName
-        let imageSize = CGSize(width: cakeImageView.bounds.width, height: cakeImageView.bounds.height)
-        cake.setImage(size: imageSize, type: .detailPhoto) { [settingImageName] image, isNeedAnimation  in
+        //let imageSize = CGSize(width: cakeImageView.bounds.width, height: cakeImageView.bounds.height)
+        cake.setImage(size: nil) { [settingImageName] image, isNeedAnimation  in
             DispatchQueue.main.async {
                 guard settingImageName == (self.cake.imageName) && !isSetPhoto else { return }
                 self.cakeImage = image
@@ -119,7 +118,7 @@ class CustomizedDetailVC: UIViewController {
     
     private func setupElements() {
         cakeImageView.contentMode = .scaleAspectFill
-        cakeNumberLabel.text = "#\(cake.number)"
+        cakeNumberLabel.text = cake.name
         
         topView.layer.cornerRadius = 3
         cakeImageView.layer.cornerRadius = 20
@@ -153,7 +152,7 @@ class CustomizedDetailVC: UIViewController {
     @IBAction private func shareButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
-        let image = cake.getImage(type: .detailPhoto)
+        guard let image = cake.getImage() else { return }
         let activityVC = UIActivityViewController(activityItems: [image, self], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
         activityVC.popoverPresentationController?.sourceView = sender
@@ -187,7 +186,7 @@ extension CustomizedDetailVC: UIActivityItemSource {
 
     @available(iOS 13.0, *)
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-        let image = cake.getImage(type: .detailPhoto)
+        guard let image = cake.getImage() else { return nil }
         let imageProvider = NSItemProvider(object: image)
         let metadata = LPLinkMetadata()
         metadata.imageProvider = imageProvider

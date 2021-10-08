@@ -13,66 +13,74 @@ class ImageModel {
     
     // MARK: - Props
 
-    var cellImage: UIImage
-    var detailImage: UIImage
-    var isCellImageSet: Bool { return self.cellImage != ImageModel.standartImage}
-    
-    init() {
-        cellImage = ImageModel.standartImage
-        detailImage = ImageModel.standartImage
+    var cellImage: UIImage?
+    var detailImage: UIImage?
+    var isCellImageSet: Bool {
+        return ((self.cellImage != ImageModel.standartImage) && (self.cellImage != nil))
     }
+    
+    init() { }
     
     init(from imageModel: ImageModel) {
         self.cellImage = imageModel.cellImage
         self.detailImage = imageModel.detailImage
     }
     
-    func prepareImage(size: CGSize, type: PhotoType, folder: PhotoFolder, imageName: String, completion: @escaping (UIImage) -> ()) {
+    func loadImage(type: PhotoType, folder: PhotoFolder, imageName: String, size: CGSize?, completion: @escaping (UIImage?) -> ()) {
         guard imageName != ""  else { completion(ImageModel.standartImage); return }
         
-        if type == .cellPhoto && cellImage != ImageModel.standartImage {
+        if type == .cellPhoto && cellImage != nil {
             completion(cellImage)
             return
         }
         
-        if type == .detailPhoto && detailImage != ImageModel.standartImage {
+        if type == .detailPhoto && detailImage != nil {
             completion(detailImage)
             return
         }
 
         if let assetsImage = UIImage(named: imageName) {
-            switch type {
-            case .cellPhoto:
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.cellImage = assetsImage.resized(to: size)
-                    completion(self.cellImage)
-                }
-            case .detailPhoto:
-                detailImage = assetsImage
-                completion(assetsImage)
+            resizeIfNeeded(image: assetsImage, size: size, type: type) { image in
+                completion(image)
             }
         } else {
-            NetworkManager.fetchImage(folder, imageName) { image in
+            NetworkManager.fetchImage(folder, imageName) { [size, type, weak self] image in
                 if image == ImageModel.standartImage {
-                    self.cellImage = image
-                    self.detailImage = image
                     completion(image)
                     return
                 }
                 
-                switch type {
-                case .cellPhoto:
-                    self.detailImage = image
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        let resizedImage = image.resized(to: size)
-                        self.cellImage = resizedImage
-                        completion(resizedImage)
-                    }
-                case .detailPhoto:
-                    self.detailImage = image
+                self?.detailImage = image
+                self?.resizeIfNeeded(image: image, size: size, type: type) { image in
                     completion(image)
                 }
             }
+        }
+    }
+    
+    private func resizeIfNeeded(image: UIImage, size: CGSize?, type: PhotoType, completion: @escaping (UIImage?) -> ()) {
+        switch type {
+        case .cellPhoto:
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                if let size = size {
+                    self?.cellImage = image.resized(to: size)
+                } else {
+                    self?.cellImage = image
+                }
+                completion(self?.cellImage)
+            }
+        case .detailPhoto:
+            detailImage = image
+            completion(detailImage)
+        }
+    }
+    
+    func getImage(type: PhotoType) -> UIImage? {
+        switch type {
+        case .cellPhoto:
+            return cellImage
+        case .detailPhoto:
+            return detailImage
         }
     }
 }

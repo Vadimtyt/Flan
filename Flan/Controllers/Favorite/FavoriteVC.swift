@@ -43,7 +43,7 @@ class FavoriteVC: UITableViewController {
         if items.isEmpty {
             tableView.setEmptyView(title: Labels.FavoriteVC.emptyViewTitle,
                                    message: Labels.FavoriteVC.emptyViewMessage,
-                                   messageImage: UIImage(named: "emptyFavorites.png")!)
+                                   messageImage: UIImage(named: "emptyFavorites.png"))
             tableView.isScrollEnabled = false
         } else {
             tableView.restore()

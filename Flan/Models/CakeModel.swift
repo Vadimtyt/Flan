@@ -11,46 +11,40 @@ class Cake: CakeJSON {
     
     // MARK: - Props
     
-    let number: Int
     let imageModel = ImageModel()
     
     // MARK: - Initialization
     
-    init(number: Int, imageName: String) {
-        self.number = number
-        super.init(imageName: imageName)
+    override init(name: String, imageName: String) {
+        super.init(name: name, imageName: imageName)
     }
     
     init() {
-        self.number = 0
-        super.init(imageName: "standartImage")
+        super.init(name: "Название", imageName: "standartImage")
     }
     
     required init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
     }
     
-    func setImage(size: CGSize, type: PhotoType, completion: @escaping (UIImage, Bool) -> ()) {
-        let isNeedAnimation = !(self.imageModel.isCellImageSet)
-        imageModel.prepareImage(size: size, type: type, folder: .forCakes, imageName: imageName) { [isNeedAnimation] image  in
+    func setImage(size: CGSize?, completion: @escaping (UIImage?, Bool) -> ()) {
+        let isNeedAnimation = !(imageModel.detailImage != nil && imageModel.detailImage != ImageModel.standartImage)
+        imageModel.loadImage(type: .detailPhoto, folder: .forCakes, imageName: imageName, size: size) { [isNeedAnimation] image  in
             completion(image, isNeedAnimation)
         }
     }
     
-    func getImage(type: PhotoType) -> UIImage {
-        switch type {
-        case .cellPhoto:
-            return imageModel.cellImage
-        case .detailPhoto:
-            return imageModel.detailImage
-        }
+    func getImage() -> UIImage? {
+        imageModel.getImage(type: .detailPhoto)
     }
 }
 
 class CakeJSON: Decodable {
+    let name: String
     let imageName: String
     
-    init(imageName: String) {
+    init(name: String, imageName: String) {
+        self.name = name
         self.imageName = imageName
     }
 }
