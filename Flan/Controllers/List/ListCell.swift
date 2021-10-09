@@ -10,20 +10,21 @@ import UIKit
 // MARK: - Protocol
 
 protocol UpdatingListCellDelegate: AnyObject {
-    func updateList()
-    func updateListBadge()
+    func removeRow(at indexPath: IndexPath)
+    func updateListVCBadgeAndTotalSum()
     func addToCompleted(item: MenuItem)
     func removeFromCompleted(completedItem: MenuItem)
 }
 
 class ListCell: UITableViewCell {
     
-    // MARK: - Props
-    
-    weak var listDelegate: UpdatingListCellDelegate?
-    
     static let reuseId = "ListCell"
-    var checkmark = false {
+    
+    // MARK: - Props
+    private var item: MenuItem = MenuItem()
+    private weak var listDelegate: UpdatingListCellDelegate?
+    
+    private var checkmark = false {
         didSet {
             if checkmark {
                 removeButton.isEnabled = false
@@ -38,7 +39,7 @@ class ListCell: UITableViewCell {
             }
         }
     }
-    private var item: MenuItem = MenuItem()
+    
     
     // MARK: - @IBOutlets
     
@@ -72,8 +73,8 @@ class ListCell: UITableViewCell {
     
     func configureCell(with item: MenuItem, isCompleted: Bool, listDelegate: UpdatingListCellDelegate) {
         self.item = item
-        self.checkmark = isCompleted
         self.listDelegate = listDelegate
+        self.checkmark = isCompleted
     }
     
     private func setupViews() {
@@ -116,7 +117,9 @@ class ListCell: UITableViewCell {
     @IBAction private func removeButtonPressed(_ sender: UIButton) {
         TapticFeedback.shared.tapticFeedback(.light)
         
+        let itemIndex = DataManager.shared.getList().firstIndex(where: { $0 === item })
         DataManager.shared.setNewCountFor(item: item, count: item.count - 1)
+        let itemCount = item.count
         countItemLabel.text = "\(self.item.count)"
         
         if self.item.count < 99  {
@@ -124,12 +127,15 @@ class ListCell: UITableViewCell {
         } else { addButton.isEnabled = false }
         
         removeButton.backgroundColor = .yellow
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [itemIndex, itemCount, weak self] in
             self?.removeButton.backgroundColor = nil
+            
+            guard itemCount == 0, let row = itemIndex else { return }
+            let indexPath = IndexPath(row: row, section: 0)
+            self?.listDelegate?.removeRow(at: indexPath)
         }
         
-        self.listDelegate?.updateList()
-        self.listDelegate?.updateListBadge()
+        listDelegate?.updateListVCBadgeAndTotalSum()
     }
     
     @IBAction private func addButtonPressed(_ sender: UIButton) {
@@ -143,12 +149,11 @@ class ListCell: UITableViewCell {
         }
         
         addButton.backgroundColor = .yellow
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
             self?.addButton.backgroundColor = nil
         }
         
-        self.listDelegate?.updateList()
-        self.listDelegate?.updateListBadge()
+        listDelegate?.updateListVCBadgeAndTotalSum()
     }
     
     @IBAction private func checkmarkButtonPressed(_ sender: UIButton) {
