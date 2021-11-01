@@ -60,8 +60,7 @@ class CustomizedDetailVC: UIViewController {
         cakeImage = nil
         
         let settingImageName = cake.imageName
-        //let imageSize = CGSize(width: cakeImageView.bounds.width, height: cakeImageView.bounds.height)
-        cake.setImage(size: nil) { [settingImageName] image, isNeedAnimation  in
+        cake.setImage() { [settingImageName] image, isNeedAnimation  in
             DispatchQueue.main.async {
                 guard settingImageName == (self.cake.imageName) && !isSetPhoto else { return }
                 self.cakeImage = image

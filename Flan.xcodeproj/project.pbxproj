@@ -195,7 +195,7 @@
 			children = (
 				C1FEDC2926D6C5160036816C /* Enums */,
 				C125438425D4C3120086ADD2 /* Models */,
-				C18E93C426E7EAD5005A7F3E /* Supporting Models */,
+				C18E93C426E7EAD5005A7F3E /* Services */,
 				C125438525D4C31A0086ADD2 /* View */,
 				C125438625D4C3240086ADD2 /* Controllers */,
 				C18E93C526E7EB1B005A7F3E /* Extensions */,
@@ -310,14 +310,14 @@
 			path = TapBarController;
 			sourceTree = "<group>";
 		};
-		C18E93C426E7EAD5005A7F3E /* Supporting Models */ = {
+		C18E93C426E7EAD5005A7F3E /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				C195513A26BB05D100B38B59 /* DataManager.swift */,
 				C1A25C1126C17843000B07F0 /* NetworkManager.swift */,
 				C1EE51BD26A310AD001126DA /* NetworkMonitor.swift */,
 			);
-			path = "Supporting Models";
+			path = Services;
 			sourceTree = "<group>";
 		};
 		C18E93C526E7EB1B005A7F3E /* Extensions */ = {

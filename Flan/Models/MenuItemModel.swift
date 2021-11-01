@@ -11,7 +11,7 @@ class MenuItem: MenuItemJSON {
     
     // MARK: - Props
     
-    let imageModel = ImageModel()
+    var imageModel = ImageModel()
     var selectedMeasurment = 0
     var count = 0
     var isFavorite = false
@@ -63,8 +63,7 @@ class MenuItem: MenuItemJSON {
                    imageName: menuItem.imageName,
                    description: menuItem.description)
         
-        self.imageModel.cellImage = menuItem.imageModel.cellImage
-        self.imageModel.detailImage = menuItem.imageModel.detailImage
+        self.imageModel = menuItem.imageModel
         self.selectedMeasurment = menuItem.selectedMeasurment
         self.count = menuItem.count
         self.isFavorite = menuItem.isFavorite
@@ -121,8 +120,9 @@ class MenuItem: MenuItemJSON {
     // MARK: - Funcs
     
     func setImage(type: PhotoType, size: CGSize?, completion: @escaping (UIImage?, Bool) -> ()) {
+        
         let isNeedAnimation = !(self.imageModel.isCellImageSet)
-        imageModel.loadImage(type: type, folder: .forItems, imageName: imageName, size: size) { [isNeedAnimation] image  in
+        imageModel.loadImage(type: type, folder: .forItems, imageName: imageName, size: size) { [isNeedAnimation] (image) in
             completion(image, isNeedAnimation)
         }
     }

@@ -43,8 +43,7 @@ class CustomizedCell: UICollectionViewCell {
         cakeImage = nil
         
         let settingImageName = cake.imageName
-        //let imageSize = getImageSize()
-        cake.setImage(size: nil) { [settingImageName] image, isNeedAnimation in
+        cake.setImage() { [settingImageName] image, isNeedAnimation in
             DispatchQueue.main.async {
                 guard settingImageName == (self.cake.imageName) && !isSetPhoto else { return }
                 self.cakeImage = image

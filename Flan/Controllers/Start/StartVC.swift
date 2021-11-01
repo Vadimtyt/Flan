@@ -119,6 +119,7 @@ class StartVC: UIViewController {
     // MARK: - @IBActions
     
     @IBAction func reconnectButtonPressed(_ sender: UIButton) {
+        TapticFeedback.shared.tapticFeedback(.light)
         animatePressingView(sender)
         tryToConnect()
     }

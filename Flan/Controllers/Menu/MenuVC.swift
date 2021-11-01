@@ -64,10 +64,12 @@ class MenuVC: UITableViewController {
     
     private func configureSearchController() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification,
+                                               selector: #selector(keyboardDidShow(notification:)),
+                                               name: UIResponder.keyboardDidShowNotification,
                                                object:nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification,
+                                               selector: #selector(keyboardDidHide(notification:)),
+                                               name: UIResponder.keyboardDidHideNotification,
                                                object:nil)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MenuVC.dismissKeyboard))

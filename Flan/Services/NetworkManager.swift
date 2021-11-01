@@ -34,7 +34,7 @@ class NetworkManager {
         }.resume()
     }
     
-    class func fetchImage(_ folder: PhotoFolder,_ imageName: String, completion: @escaping (UIImage) -> ()) {
+    class func fetchImage(from folder: PhotoFolder, by imageName: String, completion: @escaping (UIImage) -> ()) {
         guard DataManager.shared.isOnlineMode else {
             let standartImage = ImageModel.standartImage
             completion(standartImage)

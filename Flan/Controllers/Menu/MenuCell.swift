@@ -135,8 +135,8 @@ class MenuCell: UITableViewCell {
         nameLabel.text = item.name
         descriptionLabel.text = item.description
         
-        priceLabel.text = "\(item.prices[0])₽"
-        measurmentLabel.text = item.measurements[0]
+        priceLabel.text = "\(item.prices.first ?? 0)₽"
+        measurmentLabel.text = item.measurements.first
         updatePriceLabels()
     }
     
@@ -199,10 +199,11 @@ class MenuCell: UITableViewCell {
     }
     
     private func updatePriceLabels() {
-        guard item.prices.count > 1 else { return }
+        guard item.prices.count > 1 && item.measurements.count > 1 else { return }
+        
         if item.count == 0 {
-            priceLabel.text = "\(item.prices[0])₽"
-            measurmentLabel.text = item.measurements[0]
+            priceLabel.text = "\(item.prices.first ?? 0)₽"
+            measurmentLabel.text = item.measurements.first
             secondPriceLabel.text = "\(item.prices[1])₽"
             secondMeasurmentLabel.text = item.measurements[1]
             secondPriceLabel.isHidden = false

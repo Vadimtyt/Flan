@@ -27,9 +27,9 @@ class Cake: CakeJSON {
         fatalError("init(from:) has not been implemented")
     }
     
-    func setImage(size: CGSize?, completion: @escaping (UIImage?, Bool) -> ()) {
-        let isNeedAnimation = !(imageModel.detailImage != nil && imageModel.detailImage != ImageModel.standartImage)
-        imageModel.loadImage(type: .detailPhoto, folder: .forCakes, imageName: imageName, size: size) { [isNeedAnimation] image  in
+    func setImage(completion: @escaping (UIImage?, Bool) -> ()) {
+        let isNeedAnimation = !(self.imageModel.isDetailImageSet)
+        imageModel.loadImage(type: .detailPhoto, folder: .forCakes, imageName: imageName, size: nil) { [isNeedAnimation] (image) in
             completion(image, isNeedAnimation)
         }
     }

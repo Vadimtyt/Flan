@@ -106,7 +106,7 @@ class DataManager {
     
     private func setItemsFromSaved() {
         var itemsList = [MenuItem]()
-        if let data = defaults.value(forKey: KeysDefaults.items.rawValue) as? Data{
+        if let data = defaults.value(forKey: KeysDefaults.items.rawValue) as? Data {
             let itemsFromJSON = try? JSONDecoder().decode([MenuItemJSON].self, from: data)
             
             guard let itemsJSON = itemsFromJSON else { return }
@@ -140,7 +140,7 @@ class DataManager {
     func getFavorites() -> [MenuItem] { favorites }
     
     private func setFavoritesFromSaved() {
-        if let data = defaults.value(forKey: KeysDefaults.favorites.rawValue) as? Data{
+        if let data = defaults.value(forKey: KeysDefaults.favorites.rawValue) as? Data {
             let favoritesFromJSON = try? JSONDecoder().decode([MenuItem].self, from: data)
             
             guard let favoritesJSON = favoritesFromJSON else { return }
@@ -240,7 +240,7 @@ class DataManager {
     func getCompletedList() -> [MenuItem] { completedList }
     
     private func setCompletedListFromSaved() {
-        if let data = defaults.value(forKey: KeysDefaults.completedList.rawValue) as? Data{
+        if let data = defaults.value(forKey: KeysDefaults.completedList.rawValue) as? Data {
             let completedListFromJSON = try? JSONDecoder().decode([MenuItem].self, from: data)
             
             guard let completedListJSON = completedListFromJSON else { return }
@@ -296,7 +296,7 @@ class DataManager {
     
     private func setCakesFromSaved() {
         var cakesList = [Cake]()
-        if let data = defaults.value(forKey: KeysDefaults.cakes.rawValue) as? Data{
+        if let data = defaults.value(forKey: KeysDefaults.cakes.rawValue) as? Data {
             let cakesFromJSON = try? JSONDecoder().decode([CakeJSON].self, from: data)
             
             guard let cakesJSON = cakesFromJSON else { return }
@@ -327,7 +327,7 @@ class DataManager {
     }
     
     private func setBakeriesFromSaved() {
-        if let data = defaults.value(forKey: KeysDefaults.bakeries.rawValue) as? Data{
+        if let data = defaults.value(forKey: KeysDefaults.bakeries.rawValue) as? Data {
             let bakeriesFromJSON = try? JSONDecoder().decode([Bakery].self, from: data)
             
             if let bakeries = bakeriesFromJSON {
