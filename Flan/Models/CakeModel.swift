@@ -19,6 +19,10 @@ class Cake: CakeJSON {
         super.init(name: name, imageName: imageName)
     }
     
+    init(cakeJSON: CakeJSON) {
+        super.init(name: cakeJSON.name, imageName: cakeJSON.imageName)
+    }
+    
     init() {
         super.init(name: "Название", imageName: "standartImage")
     }

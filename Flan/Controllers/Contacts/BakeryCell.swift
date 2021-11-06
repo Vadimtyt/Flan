@@ -40,6 +40,8 @@ class BakeryCell: UITableViewCell {
         super.awakeFromNib()
         nameLabel.text = "Название пекарни"
         addressLabel.text = "Адрес пекарни"
+        
+        mapButton.backgroundColor = Colors.mapIconBackground
     }
     
     override func layoutSubviews() {

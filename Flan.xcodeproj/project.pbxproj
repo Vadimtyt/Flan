@@ -30,6 +30,7 @@
 		C1600D242649F17700D06F31 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1600D232649F17700D06F31 /* Map.storyboard */; };
 		C1600D27264EF65700D06F31 /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1600D26264EF65700D06F31 /* ExtensionViewController.swift */; };
 		C1600D2B26515B5900D06F31 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1600D2A26515B5900D06F31 /* MapManager.swift */; };
+		C16D90D62736BDDA006983EB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16D90D52736BDDA006983EB /* Colors.swift */; };
 		C18E93BF26E6922D005A7F3E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C18E93BE26E6922D005A7F3E /* Settings.bundle */; };
 		C18E93C126E7884B005A7F3E /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E93C026E7884B005A7F3E /* Labels.swift */; };
 		C195513726B57C5500B38B59 /* ExtensionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195513626B57C5500B38B59 /* ExtensionTableViewCell.swift */; };
@@ -99,6 +100,7 @@
 		C1600D232649F17700D06F31 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		C1600D26264EF65700D06F31 /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
 		C1600D2A26515B5900D06F31 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		C16D90D52736BDDA006983EB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C18E93BE26E6922D005A7F3E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C18E93C026E7884B005A7F3E /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		C195513626B57C5500B38B59 /* ExtensionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTableViewCell.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				C18E93C026E7884B005A7F3E /* Labels.swift */,
+				C16D90D52736BDDA006983EB /* Colors.swift */,
 				C122109326D6A2FE0099335A /* PhotoType.swift */,
 				C1FEDC2A26D6C53C0036816C /* KeysDefaults.swift */,
 				C1FEDC2C26D6C59E0036816C /* FileNameFor.swift */,
@@ -545,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1AD6A47265A7599007DFBE9 /* CustomizedHeaderView.swift in Sources */,
+				C16D90D62736BDDA006983EB /* Colors.swift in Sources */,
 				C11F36CD2677E83C00D1E14A /* CountPickerPopover.swift in Sources */,
 				C1600D27264EF65700D06F31 /* ExtensionViewController.swift in Sources */,
 				C19C8C06261DE6F60039CA79 /* ListVC.swift in Sources */,

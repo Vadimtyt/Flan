@@ -27,6 +27,7 @@ class MenuHeaderCell: UITableViewCell {
     func configureCell(with header: String) {
         labelBackgroundView.layer.cornerRadius = 16
         labelBackgroundView.applyShadow()
+        labelBackgroundView.backgroundColor = Colors.orange
         
         nameLabel.text = header
         nameLabel.adjustsFontSizeToFitWidth = true
